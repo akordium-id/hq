@@ -30,3 +30,15 @@ Akses root dimatikan demi keamanan. Gunakan user `ubuntu` dan SSH Key.
 ```bash
 # Cara Login
 ssh -i /path/to/your/private-key.key ubuntu@IP_PUBLIC_SERVER
+````
+
+## 4\. Maintenance Rutin
+
+Server ini "Self-Managed" namun dibantu Coolify.
+
+  * **Update OS:** Lakukan `sudo apt update && sudo apt upgrade` sebulan sekali.
+  * **Monitoring:** Cek penggunaan Disk Space (`df -h`). Docker sering memakan space, lakukan `docker system prune -a` jika disk penuh (hati-hati, ini menghapus cache build).
+
+-----
+
+**⚠️ Peringatan:** Jangan menginstall Nginx/Apache/MySQL secara manual di server ini. Biarkan **Coolify** yang memanagenya via Docker container agar tidak konflik.
