@@ -70,6 +70,32 @@ This is **Akordium Lab HQ** - the central documentation repository for Akordium 
 - `/01-SOP/workflow-git.md` - Git workflow procedures
 - `/02-Tech-Docs/coolify-deployment.md` - Deployment guide
 - `/00-Onboarding/02-setup-akses.md` - Developer setup instructions
+- `/CONTRIBUTING.md` - Comprehensive contribution guide
+- `/CHANGELOG.md` - Version history and changes
+
+## GitHub Templates & Workflows
+
+### Issue Templates (`.github/ISSUE_TEMPLATE/`)
+
+- **`bug-report.md`** - For reporting bugs with reproduction steps
+- **`feature-request.md`** - For proposing new features
+- **`akses-request.md`** - For system/access requests
+- **`ide-produk.md`** - For new product/service ideas
+- **`request_admin.md`** - For administrative requests
+
+### Pull Request Process
+
+- Use `.github/PULL_REQUEST_TEMPLATE.md` for all PRs
+- Requires comprehensive testing and review checklists
+- Follows conventional commit standards
+- CHANGELOG.md updates required for significant changes
+
+### Git Workflow Standards
+
+- Branch naming: `type/description` (feat/, fix/, docs/, chore/)
+- Conventional commits format
+- Squash and merge for clean history
+- Main branch always deployable
 
 ## Company Specific Context
 
