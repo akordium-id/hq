@@ -5,6 +5,7 @@ Selamat datang di minggu pertama Anda di Akordium Lab! Minggu ini fokus pada ada
 ## 🗓️ Day 1-2: Orientation & Setup
 
 ### **Senin - Hari Pertama**
+
 - [ ] **📖 Baca Dokumentasi Dasar**
   - [ ] `01-welcome.md` - Pengenalan perusahaan
   - [ ] `02-setup-akses.md` - Setup peralatan kerja
@@ -24,6 +25,7 @@ Selamat datang di minggu pertama Anda di Akordium Lab! Minggu ini fokus pada ada
   - [ ] Understanding current projects & team structure
 
 ### **Selasa - Setup Environment**
+
 - [ ] **💻 Development Environment**
   - [ ] Go installation & verification
   - [ ] Node.js LTS & npm/yarn
@@ -46,6 +48,7 @@ Selamat datang di minggu pertama Anda di Akordium Lab! Minggu ini fokus pada ada
 ## 🗓️ Day 3-4: Product & Technical Deep Dive
 
 ### **Rabu - Product Knowledge**
+
 - [ ] **🎯 Product Portfolio Review**
   - [ ] **WaqfWise** - Islamic endowment management
     - [ ] Business model & target users
@@ -63,6 +66,7 @@ Selamat datang di minggu pertama Anda di Akordium Lab! Minggu ini fokus pada ada
   - [ ] Infrastructure overview
 
 ### **Kamis - Code & Process**
+
 - [ ] **💻 Code Standards Review**
   - [ ] Go conventions & best practices
   - [ ] Laravel/PHP standards (untuk legacy)
@@ -83,6 +87,7 @@ Selamat datang di minggu pertama Anda di Akordium Lab! Minggu ini fokus pada ada
 ## 🗓️ Day 5: Integration & Planning
 
 ### **Jumat - Integration**
+
 - [ ] **🚀 Deployment Practice**
   - [ ] Deploy changes ke staging
   - [ ] Monitoring & log review
@@ -96,6 +101,7 @@ Selamat datang di minggu pertama Anda di Akordium Lab! Minggu ini fokus pada ada
   - [ ] Dependencies identification
 
 ### **Weekly Planning**
+
 - [ ] **🎯 Goal Setting untuk Bulan Pertama**
   - [ ] Technical learning objectives
   - [ ] Project contribution targets
@@ -111,18 +117,21 @@ Selamat datang di minggu pertama Anda di Akordium Lab! Minggu ini fokus pada ada
 ## 🔍 Self-Assessment Checklist
 
 ### **Technical Skills**
+
 - [ ] Comfortable dengan development environment
 - [ ] Understand basic project architecture
 - [ ] Can navigate codebase independently
 - [ ] Able to perform basic deployment
 
 ### **Process Knowledge**
+
 - [ ] Understand async communication flow
 - [ ] Know when dan how to ask for help
 - [ ] Comfortable dengan documentation-driven workflow
 - [ ] Understand code review process
 
 ### **Team Integration**
+
 - [ ] Know team members dan roles
 - [ ] Understand project priorities
 - [ ] Comfortable dengan team communication tools
@@ -131,17 +140,20 @@ Selamat datang di minggu pertama Anda di Akordium Lab! Minggu ini fokus pada ada
 ## 📞 Support & Resources
 
 ### **Help Channels**
+
 - **Technical Questions:** GitHub Issues dengan label `help-wanted`
 - **Process Questions:** Tag @najib in relevant discussions
 - **Urgent Matters:** WhatsApp/Telegram (sesuai agreement)
 
 ### **Learning Resources**
+
 - **Technical Standards:** `/02-Tech-Docs/`
 - **SOP & Workflows:** `/01-SOP/`
 - **Product Documentation:** `/03-Produk/`
 - **Company Culture:** `/05-team-culture.md`
 
 ### **Mentorship**
+
 - **Assigned Mentor:** [Nama Mentor]
 - **Weekly Check-in:** Setiap hari Jumat sore
 - **Office Hours:** Available via async communication
@@ -149,6 +161,7 @@ Selamat datang di minggu pertama Anda di Akordium Lab! Minggu ini fokus pada ada
 ## ✅ Completion Criteria
 
 Minggu pertama dianggap selesai ketika:
+
 1. Anda bisa melakukan development setup secara mandiri
 2. Memahami produk-produk perusahaan
 3. Dapat melakukan basic Git workflow
