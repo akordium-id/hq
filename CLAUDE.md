@@ -77,11 +77,29 @@ This is **Akordium Lab HQ** - the central documentation repository for Akordium 
 
 ### Issue Templates (`.github/ISSUE_TEMPLATE/`)
 
+**🚨 Emergency & Priority:**
+- **`emergency-support.md`** - For critical production issues requiring immediate attention
+- **`akses-request.md`** - For system/access requests (servers, databases, tools)
+
+**🐛 Development & Features:**
 - **`bug-report.md`** - For reporting bugs with reproduction steps
 - **`feature-request.md`** - For proposing new features
-- **`akses-request.md`** - For system/access requests
+
+**💼 Business & Administration:**
 - **`ide-produk.md`** - For new product/service ideas
-- **`request_admin.md`** - For administrative requests
+- **`request_admin.md`** - For administrative requests (equipment, purchases)
+
+### Emergency Contacts
+- **🚨 Critical Issues**: WhatsApp +62 812-3456-7890 (via config.yml contact link)
+- **📧 Non-urgent**: support@akordium.id
+- **💬 General Discussion**: GitHub Discussions
+
+### Template Usage Guidelines
+1. **🚨 Emergency Support**: Use for production down, security breaches, data loss
+2. **🔑 Akses Request**: Use for new access needs, follow approval workflow
+3. **🐛 Bug Report**: Use for reproducible issues with clear steps
+4. **💡 Feature Request**: Use for enhancement ideas with business justification
+5. **📦 Admin Request**: Use for equipment, software licenses, office needs
 
 ### Pull Request Process
 

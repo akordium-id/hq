@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 🚨 Emergency Support
+    url: https://wa.me/6281234567890
+    about: Untuk masalah urgent (server down, production issues, security incidents)
+  - name: 💬 General Discussion
+    url: https://github.com/akordium/akordium-hq/discussions
+    about: Untuk pertanyaan umum dan diskusi non-urgent
+  - name: 📧 Email Support
+    url: mailto:support@akordium.id
+    about: Untuk request yang tidak urgent butuh dokumentasi tertulis
