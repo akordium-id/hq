@@ -74,7 +74,7 @@ Akordium Lab implemented [product/solution name], providing a comprehensive solu
 
 **Technical Solution:**
 
-```
+```text
 ┌─────────────────────────────────────────────────┐
 │                 Solution Architecture            │
 ├─────────────────────────────────────────────────┤

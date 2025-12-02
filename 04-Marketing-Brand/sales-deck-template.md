@@ -50,7 +50,7 @@
 
 **Content:**
 
-```
+```markdown
 [Company Logo]
 
 Transformasi Digital Bisnis Anda
@@ -74,7 +74,7 @@ Presented by:
 
 **Content:**
 
-```
+```markdown
 📋 Agenda Hari Ini (30 Menit)
 
 1. **Understanding Your Challenges** (5 menit)
@@ -106,7 +106,7 @@ Presented by:
 
 **Content:**
 
-```
+```markdown
 🎯 Memahami [Client Company Name]
 
 **Company Overview:**
@@ -135,7 +135,7 @@ Presented by:
 
 **Content:**
 
-```
+```markdown
 📊 Tantangan Industri [Industry Name] 2024
 
 **Market Dynamics:**
@@ -170,11 +170,10 @@ Presented by:
 
 **Content:**
 
-```
+```markdown
 💡 Solusi Komprehensif dari Akordium Lab
 
 **Our Approach:**
-```
 
 ┌─────────────────────────────────────────────────┐
 │                 Akordium Platform                │
@@ -190,8 +189,6 @@ Presented by:
 │  │  Backend    │ │ Frontend    │ │  Database   │ │
 │  └─────────────┘ └─────────────┘ └─────────────┘ │
 └─────────────────────────────────────────────────┘
-
-```
 
 **Key Benefits untuk [Client Company]:**
 - **Efficiency:** [X]% improvement dalam operational efficiency
@@ -209,7 +206,7 @@ Presented by:
 
 **Content:**
 
-```
+```markdown
 🚀 [Product Name] - Solusi Spesifik untuk [Client Company]
 
 **Product Overview:**
@@ -249,11 +246,10 @@ Presented by:
 
 **Content:**
 
-```
+```markdown
 🏗️ Arsitektur Teknis - [Product Name]
 
 **System Overview:**
-```
 
 ┌─────────────────────────────────────────────────┐
 │                  Presentation Layer               │
@@ -278,7 +274,6 @@ Presented by:
 │  └─────────────┘ └─────────────┘ └─────────────┘ │
 └─────────────────────────────────────────────────┘
 
-```
 
 **Technical Specifications:**
 - **Performance:** [X] requests/second, [X]ms response time
@@ -300,7 +295,7 @@ Presented by:
 
 **Content:**
 
-```
+```markdown
 📅 Implementation Roadmap
 
 **Phase 1: Discovery & Planning (Weeks 1-2)**
@@ -340,7 +335,7 @@ Presented by:
 
 **Content:**
 
-```
+```markdown
 🏆 Proven Results dengan Similar Companies
 
 **Case Study 1: [Company Name] - [Industry]**
@@ -384,7 +379,7 @@ Presented by:
 
 **Content:**
 
-```
+```markdown
 💰 Investment Analysis & ROI
 
 **Total Investment:**
@@ -422,7 +417,7 @@ Presented by:
 
 **Content:**
 
-```
+```markdown
 💳 Investment Options
 
 **Option 1: [Tier Name] - Recommended untuk [Client Company]**
@@ -469,7 +464,7 @@ Presented by:
 
 **Content:**
 
-```
+```markdown
 🛡️ Risk Mitigation & Assurance
 
 **Identified Risks dan Mitigation:**
@@ -510,7 +505,7 @@ Presented by:
 
 **Content:**
 
-```
+```markdown
 🎯 Proposed Next Steps
 
 **Immediate Actions (This Week):**

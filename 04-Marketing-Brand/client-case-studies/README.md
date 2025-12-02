@@ -7,6 +7,7 @@
 ### Case Study Purpose
 
 **Primary Objectives:**
+
 1. **Social Proof:** Demonstrate real-world value dan expertise
 2. **Lead Generation:** Attract qualified leads dengan success stories
 3. **Trust Building:** Build credibility melalui authentic client experiences
@@ -18,24 +19,28 @@
 #### Product-Specific Case Studies
 
 **WaqfWise Success Stories**
+
 - Islamic institutions transformation
 - Waqf management digitalization
 - Sharia compliance automation
 - Donor engagement improvement
 
 **Anggarin Implementation Stories**
+
 - Personal finance transformation
 - Financial inclusion impact
 - Millennial adoption cases
 - ROI measurement examples
 
 **Atribuo User Journeys**
+
 - Skill gamification success
 - Personal development tracking
 - Team implementation stories
 - Engagement metric improvements
 
 **SnapKasir Transformations**
+
 - UMKM digitalization journeys
 - Retail operations optimization
 - Multi-location management
@@ -44,24 +49,28 @@
 #### Industry-Specific Case Studies
 
 **Financial Technology**
+
 - Banking integration projects
 - Payment gateway implementations
 - Regulatory compliance solutions
 - Digital banking transformations
 
 **Retail & E-commerce**
+
 - POS modernization projects
 - Inventory management systems
 - Customer experience improvements
 - Omnichannel implementations
 
 **Education Technology**
+
 - Learning platform developments
 - Student management systems
 - Assessment automation tools
 - Educational analytics
 
 **Healthcare Technology**
+
 - Hospital management systems
 - Patient engagement platforms
 - Medical record digitization
@@ -366,7 +375,9 @@
 ### Pre-Production Phase
 
 #### Client Selection Criteria
+
 **Ideal Case Study Candidates:**
+
 - **Quantifiable Results:** Clear, measurable business impact
 - **Innovative Solutions:** Technical challenges dengan creative approaches
 - **Industry Leadership:** Well-respected companies dalam industry
@@ -374,6 +385,7 @@
 - **Story Appeal:** Compelling narrative dengan clear before/after
 
 **Selection Process:**
+
 1. **Identify Candidates:** Review successful implementations dari past 12-18 months
 2. **Assess Impact:** Quantify business results dan technical achievements
 3. **Evaluate Stories:** Consider narrative appeal and market relevance
@@ -381,13 +393,16 @@
 5. **Resource Assessment:** Ensure available team capacity for case study development
 
 #### Initial Client Outreach
+
 **Approach Strategy:**
+
 - **Personal Outreach:** Direct contact dari account manager or executive
 - **Value Proposition:** Explain benefits untuk client (brand exposure, thought leadership)
 - **Time Investment:** Clear explanation of client time requirements
 - **Approval Process:** Internal client approval procedures and timelines
 
 **Initial Discussion Topics:**
+
 - Project success and business impact
 - Willingness to share results and metrics
 - Interview availability and preferred format
@@ -396,7 +411,9 @@
 ### Production Phase
 
 #### Interview Process
+
 **Stakeholder Interviews:**
+
 - **Executive Sponsor:** 30-minute interview focusing on business impact and ROI
 - **Technical Lead:** 45-minute interview covering technical challenges and solutions
 - **End Users:** 20-minute interviews about user experience and adoption
@@ -404,6 +421,7 @@
 
 **Interview Questions Template:**
 **Executive Interview:**
+
 1. "What were the primary business challenges that led you to seek a solution?"
 2. "How did these challenges impact your revenue, operations, or customer satisfaction?"
 3. "What was your experience working dengan Akordium throughout the project?"
@@ -411,6 +429,7 @@
 5. "How has this solution positioned your company for future growth?"
 
 **Technical Interview:**
+
 1. "What were the key technical limitations you faced dengan your previous system?"
 2. "How did Akordium's technical approach address your specific challenges?"
 3. "What innovative solutions or approaches were particularly valuable?"
@@ -418,6 +437,7 @@
 5. "What technical capabilities have you gained that weren't possible before?"
 
 **End User Interview:**
+
 1. "What was your workflow like before implementing the new solution?"
 2. "How has your daily work changed since the implementation?"
 3. "What features or aspects do you find most valuable?"
@@ -425,13 +445,16 @@
 5. "What advice would you give to others considering similar implementation?"
 
 #### Data Collection
+
 **Quantitative Metrics:**
+
 - **Pre-Implementation Baselines:** Historical performance data
 - **Post-Implementation Results:** Current performance metrics
 - **Comparative Analysis:** Before/after comparisons
 - **ROI Calculations:** Financial impact assessment
 
 **Qualitative Information:**
+
 - **Process Changes:** Workflow improvements and changes
 - **Cultural Impact:** Team morale and collaboration improvements
 - **Customer Feedback:** Client customer input on improvements
@@ -440,7 +463,9 @@
 ### Post-Production Phase
 
 #### Content Creation
+
 **Writing Process:**
+
 1. **Draft Creation:** Write initial case study following template
 2. **Technical Review:** Technical team reviews accuracy and completeness
 3. **Business Review:** Business team reviews messaging and positioning
@@ -448,13 +473,16 @@
 5. **Client Review:** Send to client for approval and feedback
 
 **Visual Content:**
+
 - **Client Photos:** Professional photos of team and facilities
 - **System Screenshots:** Before/after system screenshots (with permission)
 - **Data Visualizations:** Charts and graphs showing impact
 - **Architecture Diagrams:** Technical visualizations for technical audiences
 
 #### Client Approval Process
+
 **Review Steps:**
+
 1. **Initial Draft Review:** Client reviews for accuracy and completeness
 2. **Quote Approval:** Specific approval for all direct quotes
 3. **Data Verification:** Confirmation of all metrics and numbers
@@ -462,6 +490,7 @@
 5. **Usage Agreement:** Agreement on distribution and usage rights
 
 **Timeline Management:**
+
 - **Initial Draft:** Delivered within 2 weeks of interviews
 - **Client Review:** 1-2 weeks for client feedback and approval
 - **Revisions:** 1 week for incorporating feedback
@@ -472,7 +501,9 @@
 ### Distribution Strategy
 
 #### Multi-Channel Distribution
+
 **Primary Channels:**
+
 - **Website Case Studies:** Dedicated section on Akordium website
 - **Blog Posts:** Detailed breakdowns and additional insights
 - **LinkedIn Articles:** Professional audience reach and engagement
@@ -480,6 +511,7 @@
 - **Sales Presentations:** Integration into sales materials and proposals
 
 **Secondary Channels:**
+
 - **Industry Publications:** Guest posts and feature articles
 - **Customer Testimonials:** Extract quotes for various marketing materials
 - **Conference Presentations:** Speaking opportunities sharing success stories
@@ -487,7 +519,9 @@
 - **Social Media:** Visual snippets and key metrics across platforms
 
 #### Performance Metrics
+
 **Engagement Metrics:**
+
 - **Page Views:** Track website case study page views
 - **Time on Page:** Measure engagement depth
 - **Conversion Rate:** Track lead generation dari case studies
@@ -495,6 +529,7 @@
 - **Download Rates:** Track PDF downloads or contact form submissions
 
 **Business Impact Metrics:**
+
 - **Lead Quality:** Assess quality of leads generated
 - **Sales Cycle Impact:** Measure influence on sales process
 - **Deal Velocity:** Track acceleration of sales cycles
@@ -504,26 +539,32 @@
 ### Optimization Process
 
 #### A/B Testing
+
 **Content Variations:**
+
 - **Headline Testing:** Test different headlines for engagement
 - **Format Testing:** Compare different content formats (text vs. video)
 - **CTA Testing:** Test different call-to-action approaches
 - **Visual Testing:** Compare different image and layout options
 
 **Distribution Testing:**
+
 - **Channel Performance:** Test effectiveness of different distribution channels
 - **Timing Optimization:** Test optimal publishing times
 - **Audience Segmentation:** Test different audience targeting approaches
 - **Follow-up Sequences:** Test different email follow-up strategies
 
 #### Content Refresh
+
 **Update Cycle:**
+
 - **Quarterly Reviews:** Assess performance and update content
 - **Annual Updates:** Refresh metrics and add new results
 - **Client Check-ins:** Follow up with clients for updated testimonials
 - **Technical Updates:** Add information about new features or capabilities
 
 **Content Expansion:**
+
 - **Deep Dive Articles:** Create detailed articles about specific aspects
 - **Video Content:** Produce video interviews and demonstrations
 - **Webinar Series:** Develop educational content around case study
@@ -536,6 +577,7 @@
 **Media Inquiries:** media@akordium.com
 
 **Related Documentation:**
+
 - sales-deck-template.md (for incorporating case studies into sales materials)
 - brand-guidelines.md (for maintaining brand consistency in case studies)
 - social-media-guidelines.md (for promoting case studies on social platforms)

@@ -7,6 +7,7 @@
 ### Primary Objectives
 
 **Market Intelligence:**
+
 1. **Competitive Landscape Mapping:** Identify dan understand key competitors
 2. **Positioning Analysis:** Determine Akordium's competitive position
 3. **Opportunity Identification:** Uncover market gaps dan unmet needs
@@ -16,18 +17,21 @@
 ### Analysis Scope
 
 **Direct Competitors:**
+
 - Companies dengan similar product offerings
 - Targeting same customer segments
 - Competing dalam same geographic markets
 - Offering comparable value propositions
 
 **Indirect Competitors:**
+
 - Alternative solutions yang address similar problems
 - Different technology approaches to same market needs
 - Companies that could pivot into our space
 - Substitutes for our current offerings
 
 **Emerging Competitors:**
+
 - Startups dengan innovative approaches
 - Companies entering Indonesian market
 - Technology shifts that could create new competitors
@@ -47,26 +51,32 @@
 ### Competitor Identification Process
 
 #### Primary Research Methods
+
 **Market Scanning:**
+
 - **Industry Reports:** Technology adoption trends, market sizing
 - **Conference Analysis:** Speaker topics, vendor presence, attendee interests
 - **Job Postings:** Hiring patterns, technology focus, expansion plans
 - **Press Releases:** Product launches, partnerships, funding rounds
 
 **Digital Intelligence:**
+
 - **Social Media Monitoring:** Competitor announcements, customer feedback
 - **SEO Analysis:** Keyword targeting, content strategy, traffic sources
 - **App Store Analysis:** Mobile presence, user reviews, feature updates
 - **Review Platforms:** Customer feedback, pain points, satisfaction levels
 
 #### Secondary Research Methods
+
 **Industry Publications:**
+
 - **Tech Media:** Coverage patterns, expert opinions, trend analysis
 - **Business Journals:** Funding news, expansion plans, leadership changes
 - **Trade Publications:** Industry-specific insights, customer case studies
 - **Academic Research:** Emerging technologies, academic partnerships
 
 **Market Intelligence:**
+
 - **Analyst Reports:** Gartner, Forrester, IDC analyses
 - **Customer Surveys:** Market perception, brand awareness, preference
 - **Partner Networks:** Integration partner insights, market feedback
@@ -77,6 +87,7 @@
 ### Comprehensive Analysis Template
 
 #### Company Overview
+
 ```markdown
 ## [Competitor Name] Analysis
 
@@ -103,6 +114,7 @@
 ```
 
 #### Product & Service Analysis
+
 ```markdown
 ### Product Portfolio
 **Core Products:**
@@ -141,6 +153,7 @@
 ```
 
 #### Market Position Analysis
+
 ```markdown
 ### Market Share & Position
 **Market Position:**
@@ -163,6 +176,7 @@
 ```
 
 #### Strengths & Weaknesses Analysis
+
 ```markdown
 ### Competitive Advantages (Strengths)
 **Product Advantages:**
@@ -204,6 +218,7 @@
 ```
 
 #### Pricing Analysis
+
 ```markdown
 ### Pricing Strategy
 **Pricing Models:**
@@ -232,6 +247,7 @@
 ```
 
 #### Sales & Marketing Analysis
+
 ```markdown
 ### Marketing Strategy
 **Content Marketing:**
@@ -348,7 +364,8 @@
 ### Positioning Matrix
 
 #### Price-Quality Matrix
-```
+
+```text
             High Quality
                 ^
                 |
@@ -363,7 +380,8 @@
 ```
 
 #### Market Focus Matrix
-```
+
+```text
             Broad Market
                 ^
                 |
@@ -380,12 +398,14 @@
 ### Differentiation Strategy Analysis
 
 **Akordium Differentiators:**
+
 1. **Indonesian Market Focus:** Deep understanding of local market needs
 2. **Technology Stack Modernity:** Go + Next.js + PostgreSQL architecture
 3. **Product Portfolio Approach:** Four-product ecosystem strategy
 4. **Pragmatic Implementation:** Focus on practical business solutions
 
 **Competitive Response Strategies:**
+
 - **Feature Differentiation:** Unique features competitors can't easily replicate
 - **Service Excellence:** Superior customer service and support
 - **Price Leadership:** Competitive pricing strategy
@@ -396,6 +416,7 @@
 ### Key Metrics Tracking
 
 #### Market Share Metrics
+
 | Competitor | Market Share | Growth Rate | Customer Count | Revenue (Est.) |
 |------------|--------------|-------------|----------------|---------------|
 | **Akordium** | [X]% | [Y]% | [Z] | [$M] |
@@ -404,6 +425,7 @@
 | **Competitor C** | [X]% | [Y]% | [Z] | [$M] |
 
 #### Product Feature Comparison
+
 | Feature | Akordium | Competitor A | Competitor B | Competitor C |
 |---------|----------|--------------|--------------|--------------|
 | **[Feature 1]** | ✅ | ✅ | ❌ | ✅ |
@@ -412,6 +434,7 @@
 | **[Feature 4]** | ✅ | ❌ | ❌ | ✅ |
 
 #### Pricing Comparison
+
 | Tier | Akordium | Competitor A | Competitor B | Competitor C |
 |------|----------|--------------|--------------|--------------|
 | **Basic** | $X/mo | $Y/mo | $Z/mo | $W/mo |
@@ -419,6 +442,7 @@
 | **Enterprise** | Custom | $X/mo | $Y/mo | $Z/mo |
 
 #### Customer Satisfaction (Based on Public Reviews)
+
 | Competitor | Rating | Review Count | Common Praise | Common Complaints |
 |------------|--------|--------------|---------------|-------------------|
 | **Akordium** | [X]/5 | [Y] | [Praise points] | [Complaint areas] |
@@ -428,12 +452,14 @@
 ### Trend Analysis
 
 #### Technology Adoption Trends
+
 - **Cloud Migration:** [Analysis of cloud adoption in target market]
 - **Mobile-First Approach:** [Mobile strategy trends]
 - **API-First Development:** [API economy and integration trends]
 - **AI/ML Integration:** [Artificial intelligence adoption patterns]
 
 #### Market Evolution Trends
+
 - **Digital Transformation Acceleration:** [Post-COVID digital adoption]
 - **Industry-Specific Solutions:** [Vertical specialization trends]
 - **Integration Requirements:** [System integration complexity]
@@ -444,26 +470,32 @@
 ### Competitive Response Strategies
 
 #### Direct Response Strategies
+
 **Feature Competition:**
+
 - **Rapid Feature Development:** Accelerate development of competitive features
 - **Differentiation Focus:** Emphasize unique value propositions
 - **Superior Execution:** Outperform on implementation and support
 - **Price Competition:** Strategic pricing adjustments
 
 **Market Position Defense:**
+
 - **Customer Relationship Deepening:** Strengthen existing customer relationships
 - **Value Demonstration:** Better communicate ROI and business value
 - **Brand Building:** Invest in thought leadership and brand awareness
 - **Partnership Development:** Build strategic partner ecosystem
 
 #### Indirect Response Strategies
+
 **Market Expansion:**
+
 - **New Segments:** Target under-served market segments
 - **Geographic Expansion:** Enter new geographic markets
 - **Product Line Extension:** Develop complementary products
 - **Business Model Innovation:** Explore new revenue models
 
 **Innovation Leadership:**
+
 - **Technology Innovation:** Invest in emerging technologies
 - **Process Innovation:** Develop superior implementation methodologies
 - **Business Model Innovation:** Create new ways to deliver value
@@ -472,20 +504,25 @@
 ### Threat Mitigation Strategies
 
 #### Proactive Measures
+
 **Market Intelligence:**
+
 - **Continuous Monitoring:** Regular competitor analysis updates
 - **Early Warning System:** Identify competitive threats early
 - **Scenario Planning:** Prepare for various competitive scenarios
 - **Rapid Response Capability:** Ability to respond quickly to threats
 
 **Strategic Positioning:**
+
 - **Differentiation Investment:** Continuous investment in unique capabilities
 - **Customer Lock-In:** Increase switching costs for customers
 - **Barrier Creation:** Build barriers to competitive entry
 - **Partnership Network:** Build strong partner ecosystem
 
 #### Reactive Measures
+
 **Competitive Response:**
+
 - **Feature Matching:** Quickly develop competing features
 - **Pricing Adjustments:** Respond to competitive pricing moves
 - **Marketing Counter-Attack:** Address competitive messaging
@@ -496,7 +533,9 @@
 ### Analysis Cadence
 
 #### Monthly Updates
+
 **Tracking Metrics:**
+
 - Market share changes
 - New feature announcements
 - Pricing changes
@@ -506,7 +545,9 @@
 **Sources:** Social media monitoring, press releases, competitor websites, industry news
 
 #### Quarterly Deep Dives
+
 **Comprehensive Analysis:**
+
 - Full product comparison matrix updates
 - Detailed SWOT analysis refresh
 - Customer feedback analysis
@@ -516,7 +557,9 @@
 **Sources:** Customer interviews, product demonstrations, industry reports, analyst insights
 
 #### Annual Strategic Review
+
 **Strategic Assessment:**
+
 - Long-term competitive positioning analysis
 - Market evolution assessment
 - Technology trend analysis
@@ -528,26 +571,32 @@
 ### Data Collection Methods
 
 #### Primary Research
+
 **Direct Observation:**
+
 - Product demonstrations and trials
 - Customer interviews and feedback
 - Sales process analysis
 - Support interaction analysis
 
 **Market Intelligence:**
+
 - Conference attendance and networking
 - Industry event participation
 - Partner and supplier conversations
 - Regulatory and policy analysis
 
 #### Secondary Research
+
 **Public Information:**
+
 - Annual reports and financial statements
 - Press releases and media coverage
 - Social media analysis
 - Website and product documentation analysis
 
 **Third-Party Intelligence:**
+
 - Industry analyst reports
 - Market research studies
 - Customer review platforms
@@ -556,25 +605,31 @@
 ### Analysis Tools and Resources
 
 #### Digital Intelligence Tools
+
 **Competitor Monitoring:**
+
 - **SEMrush/Ahrefs:** SEO and content analysis
 - **SimilarWeb:** Traffic and engagement analysis
 - **Social Media Tools:** Hootsuite, Sprout Social for competitor tracking
 - **Google Alerts:** Automated competitor news monitoring
 
 **Market Intelligence:**
+
 - **Crunchbase:** Company funding and investment data
 - **LinkedIn Sales Navigator:** Company and employee insights
 - **Industry Publications:** Technology and business media monitoring
 - **Analyst Reports:** Gartner, Forrester, industry-specific analysis
 
 #### Internal Analysis Tools
+
 **CRM Integration:**
+
 - **Competitor Deal Tracking:** Track competitive wins and losses
 - **Customer Feedback Analysis:** Systematic competitive intelligence collection
 - **Sales Team Insights:** Structured competitor information sharing
 
 **Business Intelligence:**
+
 - **Market Share Tracking:** Automated market position monitoring
 - **Pricing Intelligence:** Competitor pricing monitoring and analysis
 - **Feature Gap Analysis:** Systematic product capability comparison
@@ -584,36 +639,45 @@
 ### Strategic Recommendations
 
 #### Short-Term Actions (0-3 Months)
+
 **Immediate Competitive Response:**
+
 1. **[Specific Action]** - [Timeline] - [Responsible Party]
 2. **[Specific Action]** - [Timeline] - [Responsible Party]
 3. **[Specific Action]** - [Timeline] - [Responsible Party]
 
 **Quick Wins:**
+
 - **Marketing Message Optimization:** Adjust positioning based on competitor weaknesses
 - **Feature Highlight:** Emphasize features where Akordium has clear advantage
 - **Pricing Strategy Review:** Competitive pricing adjustments if needed
 - **Customer Communication:** Proactively address competitive threats with existing customers
 
 #### Medium-Term Initiatives (3-12 Months)
+
 **Strategic Positioning:**
+
 1. **[Strategic Initiative]** - [Timeline] - [Investment Required]
 2. **[Strategic Initiative]** - [Timeline] - [Investment Required]
 3. **[Strategic Initiative]** - [Timeline] - [Investment Required]
 
 **Competitive Differentiation:**
+
 - **Product Enhancement:** Develop features that competitors can't easily replicate
 - **Service Excellence:** Build superior customer service and support capabilities
 - **Partnership Development:** Create strategic partnerships that increase switching costs
 - **Thought Leadership:** Establish Akordium as industry thought leader
 
 #### Long-Term Strategy (1-3 Years)
+
 **Market Leadership:**
+
 1. **[Long-term Initiative]** - [Timeline] - [Strategic Importance]
 2. **[Long-term Initiative]** - [Timeline] - [Strategic Importance]
 3. **[Long-term Initiative]** - [Timeline] - [Strategic Importance]
 
 **Sustainable Competitive Advantage:**
+
 - **Technology Innovation:** Invest in proprietary technology and R&D
 - **Ecosystem Building:** Develop comprehensive solution ecosystem
 - **Market Expansion:** Expand into new segments and geographies
@@ -622,19 +686,23 @@
 ### Implementation Roadmap
 
 #### Competitive Intelligence Program
+
 **Phase 1: Foundation (Months 1-2)**
+
 - Establish competitive intelligence framework
 - Implement monitoring tools and processes
 - Train team on competitive analysis methodology
 - Create baseline competitive landscape assessment
 
 **Phase 2: Integration (Months 3-6)**
+
 - Integrate competitive intelligence into business processes
 - Develop regular reporting cadence and formats
 - Establish decision-making frameworks using competitive insights
 - Create cross-functional competitive intelligence sharing
 
 **Phase 3: Optimization (Months 7-12)**
+
 - Refine analysis methods and tools based on usage
 - Develop predictive competitive intelligence capabilities
 - Automate routine monitoring and analysis tasks
@@ -653,11 +721,13 @@
 **Partnership Inquiries:** partners@akordium.com
 
 **Related Documents:**
+
 - brand-guidelines.md (for competitive positioning and messaging)
 - sales-deck-template.md (for competitive selling strategies)
 - content-calendar-template.md (for content differentiation strategy)
 
 **Tools & Resources:**
+
 - Competitive Intelligence Dashboard: [Link to internal dashboard]
 - Market Research Database: [Link to research repository]
 - Competitor Tracking System: [Link to monitoring tools]

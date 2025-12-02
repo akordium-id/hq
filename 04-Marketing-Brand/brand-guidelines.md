@@ -67,7 +67,7 @@
 
 #### Logo Clear Space
 
-```
+```text
 Minimum clear space = X (height dari logo)
 
 ┌─────────────────────────────────────┐

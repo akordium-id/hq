@@ -3,7 +3,9 @@
 Dokumen ini adalah panduan bagaimana **Akordium Lab** berbicara kepada dunia.
 
 ## 1. Karakter Kita (Brand Persona)
+
 Bayangkan Akordium Lab sebagai seorang **"Technical Partner yang Cerdas & Pragmatis"**.
+
 * Kita bukan korporat kaku yang membosankan.
 * Kita bukan "startup hype" yang berisik tanpa isi.
 * Kita adalah ahli teknologi yang membantu klien memecahkan masalah nyata.
@@ -11,6 +13,7 @@ Bayangkan Akordium Lab sebagai seorang **"Technical Partner yang Cerdas & Pragma
 **Kata Kunci:** Solutif, Modern, Transparan, *To-the-point*.
 
 ## 2. Gaya Bahasa (Language Style)
+
 Kita menggunakan Bahasa Indonesia yang baik, namun luwes (tidak kaku seperti surat dinas pemerintah).
 
 * **Sapaan:** Gunakan "Anda" untuk klien/umum, atau "Kamu" untuk konten edukasi yang lebih santai (Instagram Tips). Jangan gunakan "Gue/Elo".
@@ -24,19 +27,22 @@ Kita menggunakan Bahasa Indonesia yang baik, namun luwes (tidak kaku seperti sur
 | "Mohon maaf atas ketidaknyamanan yang ditimbulkan..." | "Mohon maaf, server sedang kami perbaiki. Estimasi selesai 15 menit." |
 
 ## 3. Brand Naming Convention
+
 * **Nama Perusahaan:**
-    * Formal: "Akordium Lab"
-    * Casual/Short: "Akordium"
+  * Formal: "Akordium Lab"
+  * Casual/Short: "Akordium"
 * **Penulisan Produk:**
-    * Selalu Capital Case: *Anggarin*, *WaqfWise*, *Atribuo*.
-    * Jangan tulis: anggarin, waqf-wise, Anggarin.com (kecuali merujuk URL).
+  * Selalu Capital Case: *Anggarin*, *WaqfWise*, *Atribuo*.
+  * Jangan tulis: anggarin, waqf-wise, Anggarin.com (kecuali merujuk URL).
 
 ## 4. Struktur Konten (Social Media/Blog)
+
 Setiap konten harus memiliki struktur:
-1.  **Hook:** Masalah yang *relate* dengan user.
-2.  **Insight:** Solusi atau sudut pandang baru dari kita.
-3.  **Value:** Apa manfaatnya buat mereka?
-4.  **CTA (Call to Action):** Ajak mereka bertindak (DM, Klik Link, Share).
+
+1. **Hook:** Masalah yang *relate* dengan user.
+2. **Insight:** Solusi atau sudut pandang baru dari kita.
+3. **Value:** Apa manfaatnya buat mereka?
+4. **CTA (Call to Action):** Ajak mereka bertindak (DM, Klik Link, Share).
 
 ---
 **Ingat:** Orang tidak membeli kode kita, mereka membeli solusi atas masalah mereka. Tulislah dari sudut pandang *benefit* user, bukan fitur teknis.

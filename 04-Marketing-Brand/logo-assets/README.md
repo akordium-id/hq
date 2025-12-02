@@ -4,6 +4,7 @@ Folder ini berisi aset visual resmi **Akordium Lab**.
 Pastikan selalu menggunakan file dari folder ini untuk materi promosi, proposal, atau website.
 
 ## 📂 Struktur Folder
+
 (Silakan upload file logo Anda sesuai struktur ini)
 
 ```text
@@ -38,10 +39,10 @@ Gunakan kode warna ini agar desain konsisten.
 
 ## 📏 Aturan Penggunaan Logo (Do's & Don'ts)
 
-  * ✅ **Clear Space:** Beri jarak kosong di sekeliling logo setidaknya setara ukuran ikon "A".
-  * ✅ **Kontras:** Gunakan logo putih di background gelap, dan sebaliknya.
-  * ❌ **Jangan:** Mengubah proporsi (gepeng/lebar). Tahan `Shift` saat resize\!
-  * ❌ **Jangan:** Menambahkan shadow/glow norak pada logo.
-  * ❌ **Jangan:** Mengganti warna logo selain warna resmi.
+* ✅ **Clear Space:** Beri jarak kosong di sekeliling logo setidaknya setara ukuran ikon "A".
+* ✅ **Kontras:** Gunakan logo putih di background gelap, dan sebaliknya.
+* ❌ **Jangan:** Mengubah proporsi (gepeng/lebar). Tahan `Shift` saat resize\!
+* ❌ **Jangan:** Menambahkan shadow/glow norak pada logo.
+* ❌ **Jangan:** Mengganti warna logo selain warna resmi.
 
 <!-- end list -->
