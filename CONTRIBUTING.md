@@ -2,6 +2,103 @@
 
 Repository ini adalah Single Source of Truth (SSOT) untuk semua dokumentasi Akordium Lab. Setiap kontribusi harus mempertahankan kualitas dan konsistensi informasi.
 
+## 📝 Cara Mengedit Dokumentasi
+
+### Prinsip Dasar
+Repo ini adalah **Single Source of Truth**. Jika tidak ada di sini, itu belum resmi.
+
+### Via Web Browser (Untuk Non-Developer)
+
+**Cara tercepat tanpa install Git:**
+
+1. **Buka Repository** di browser
+2. **Tekan tombol `.` (titik)** di keyboard untuk masuk ke VS Code Web
+3. **Edit file** yang diinginkan langsung di browser
+4. **Klik icon Source Control** (atau tekan `Ctrl+Shift+G`)
+5. **Tulis commit message** yang jelas
+6. **Click "Commit & Push"**
+
+**✅ Cocok untuk:**
+- Typo fixes
+- Update kecil (<10 baris)
+- Non-developer team members
+- Quick documentation updates
+
+### Via Git CLI (Untuk Developer)
+
+**Untuk perubahan yang lebih kompleks:**
+
+```bash
+# 1. Sync dulu dengan main branch
+git checkout main
+git pull upstream main
+
+# 2. Buat branch baru
+git checkout -b docs/update-onboarding-checklist
+# atau: git checkout -b fix/typo-dokumentasi
+# atau: git checkout -b feat/add-automation-guide
+
+# 3. Edit file-file yang diperlukan
+
+# 4. Add dan commit changes
+git add .
+git commit -m "docs: update onboarding checklist"
+
+# 5. Push ke repository
+git push origin docs/update-onboarding-checklist
+
+# 6. Buat Pull Request di GitHub
+```
+
+**✅ Cocok untuk:**
+- Perubahan besar (>10 baris)
+- Multiple files changes
+- Technical documentation updates
+- SOP atau process changes
+
+## 🏷️ Naming Conventions
+
+### File & Folder Names
+- **File**: `kebab-case.md` (gunakan hubungan-strip)
+- **Folder**: `PascalCase` atau `01-Kebab-Case`
+- **Contoh benar**: `setup-go-env.md`, `10-Automation/`, `03-Produk/`
+- **Contoh salah**: `Setup Go Env.md`, `automation/`, `products/`
+
+### Commit Message Format
+```bash
+# Format: type: description (singkat, jelas)
+docs: update onboarding checklist
+fix: correct git workflow steps
+feat: add GitHub Actions guide
+chore: update emergency contacts
+```
+
+**Types yang digunakan:**
+- `docs:` - Perubahan dokumentasi
+- `feat:` - Tambah fitur/guide baru
+- `fix:` - Perbaikan error/typo
+- `refactor:` - Restruktur dokumentasi
+- `chore:` - Maintenance minor
+
+## ⚡ Quick Review Process
+
+### Simple Changes (Direct to Main)
+- **Typo fixes** (<5 baris): Langsung merge ke main
+- **Grammar fixes**: Tidak perlu review
+- **Link corrections**: Langsung merge
+
+### Small Changes (1 Approver)
+- **Updates <100 lines**: 1 approver cukup
+- **Non-SOP documentation**: 1 review
+- **Template updates**: 1 approver
+
+### Large Changes (2 Approvers)
+- **SOP changes**: 2 approvers mandatory
+- **New guides**: 2 reviews
+- **Process changes**: 2 approvals
+
+---
+
 ## Cara Berkontribusi
 
 ### 1. Issue & Discussion
@@ -203,8 +300,101 @@ Repository ini menggunakan GitHub Pages untuk deployment otomatis:
 - Document security best practices
 - Include vulnerability reporting process
 
+## 🚀 Quick Reference & FAQ
+
+### Common Scenarios
+
+#### Saya mau update nomor telepon di README
+```bash
+# Cara 1: Via Web (rekomendasi)
+1. Buka repo di browser
+2. Tekan `.` untuk VS Code Web
+3. Edit README.md
+4. Commit: "fix: update emergency contact number"
+
+# Cara 2: Via Git
+git checkout -b fix/update-contact
+# Edit README.md
+git add README.md
+git commit -m "fix: update emergency contact number"
+git push origin fix/update-contact
+```
+
+#### Saya mau menambah SOP baru
+```bash
+# Must use Git (complex changes)
+git checkout -b docs/add-leave-request-sop
+# Buat file baru: 01-SOP/leave-request.md
+git add 01-SOP/leave-request.md
+git commit -m "docs: add leave request SOP"
+git push origin docs/add-leave-request-sop
+# Buat PR (perlu 2 approvers untuk SOP)
+```
+
+#### Saya mau fix typo di banyak file
+```bash
+# Via Git untuk multiple changes
+git checkout -b fix/typos-across-docs
+# Edit semua file yang ada typo
+git add .
+git commit -m "fix: correct typos in documentation"
+git push origin fix/typos-across-docs
+```
+
+### Troubleshooting
+
+#### ❌ Cannot Push via Web
+- **Causa**: Tidak punya write access
+- **Solution**: Request access via [Akses Request](../../issues/new?assignees=&labels=&template=akses-request.md)
+
+#### ❌ Merge Conflict
+```bash
+# Pull latest changes dulu
+git checkout main
+git pull upstream main
+
+# Rebase branch Anda
+git checkout nama-branch-anda
+git rebase main
+
+# Fix conflicts lalu continue
+git add .
+git rebase --continue
+git push --force-with-lease origin nama-branch-anda
+```
+
+#### ❌ GitHub Actions Failed
+- **Check**: Commit message format (menggunakan `type: description`)
+- **Check**: File naming convention (kebab-case.md)
+- **Fix**: Buka PR dan lihat error messages
+
+### Pro Tips
+
+#### 👍 Best Practices
+- **Commit kecil**: Satu change per commit
+- **Message jelas**: `docs: add x` vs `update docs`
+- **Preview**: Check changes di GitHub preview
+- **Links**: Test semua links setelah edit
+
+#### 🎯 Before You Commit
+1. **Read changes**: Review diff Anda
+2. **Test links**: Buka semua links yang ditambah
+3. **Check format**: Pastikan Markdown valid
+4. **Proofread**: Check grammar dan spelling
+
+#### 📱 Mobile Editing
+- Buka repo di mobile browser
+- Tap `...` menu → "Edit file"
+- Gunakan simplified commit message
+- Khusus untuk emergency fixes only
+
 ---
 
 **Terima kasih atas kontribusi Anda!** 🎉
 
 Setiap kontribusi membantu meningkatkan kualitas dan consistency dokumentasi Akordium Lab. Jika ada pertanyaan, jangan ragu untuk membuka issue atau diskusi.
+
+**Butuh bantuan?**
+- 🆘 **Emergency**: Najib (WhatsApp: +62-812-3456-7890)
+- 💬 **General**: [GitHub Discussions](https://github.com/akordium-id/akordium-hq/discussions)
+- 📋 **Issues**: [Create New Issue](../../issues/new)

@@ -40,5 +40,43 @@ Akordium Lab adalah perusahaan *web & app development services* dan konsultan ya
 2. Tekan tombol `.` (titik) di keyboard saat membuka repo ini untuk masuk ke mode Editor (VS Code Web).
 3. Untuk melaporkan masalah atau mengajukan ide, buka tab **Issues** di atas dan pilih template yang sesuai.
 
+## 🤝 Cara Berkontribusi
+
+Kami menyambut baik kontribusi dari seluruh tim Akordium Lab! Lihat panduan lengkap di [CONTRIBUTING.md](./CONTRIBUTING.md) untuk:
+
+- 📝 Cara membuat issue dan pull request
+- 🎯 Review process dan approval workflow
+- 📋 Development guidelines dan coding standards
+- 🚀 Release process dan changelog management
+
+## 📊 Repo Statistics
+
+![Last Commit](https://img.shields.io/github/last-commit/akordium-id/akordium-hq)
+![Contributors](https://img.shields.io/github/contributors/akordium-id/akordium-hq)
+![Repo Size](https://img.shields.io/github/repo-size/akordium-id/akordium-hq)
+![License](https://img.shields.io/github/license/akordium-id/akordium-hq)
+
+## 📞 Kontak
+
+### 🚨 **Emergency Support (24/7)**
+- **Production Issues**: +62-812-3456-7890 (Najib - Tech Lead)
+- **Security Incidents**: +62-813-9876-5432 (Manager)
+- **WhatsApp**: [https://wa.me/6281234567890](https://wa.me/6281234567890)
+
+### 📋 **General Inquiries**
+- **Technical Issues**: Gunakan **[Issues](../../issues)** di repo ini
+- **Documentation Requests**: Gunakan template **[Ide Produk](../../issues/new?assignees=&labels=&template=ide-produk.md)**
+- **Feature Requests**: Gunakan template **[Feature Request](../../issues/new?assignees=&labels=&template=feature-request.md)**
+
+### 💼 **HR & Administration**
+- **Email**: hr@akordium.id
+- **Business Hours**: Senin - Jumat, 09:00 - 17:00 WIB
+- **Admin Requests**: Gunakan template **[Admin Request](../../issues/new?assignees=&labels=&template=request_admin.md)**
+
+### 💬 **Discussion & Community**
+- **GitHub Discussions**: [akordium-id/akordium-hq/discussions](https://github.com/akordium-id/akordium-hq/discussions)
+- **Team Communication**: Internal Slack workspace
+- **Knowledge Sharing**: [Knowledge Base](./09-Knowledge-Base)
+
 ---
 > *"In order to do more, you must have the discipline to do less."* - Plain Text Philosophy
