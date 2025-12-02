@@ -74,7 +74,7 @@ Kami menyambut baik kontribusi dari seluruh tim Akordium Lab! Lihat panduan leng
 - **Admin Requests**: Gunakan template **[Admin Request](../../issues/new?assignees=&labels=&template=request_admin.md)**
 
 ### 💬 **Discussion & Community**
-- **GitHub Discussions**: [akordium-id/akordium-hq/discussions](https://github.com/akordium-id/akordium-hq/discussions)
+- **GitHub Discussions**: [akordium-id/hq/discussions](https://github.com/akordium-id/hq/discussions)
 - **Team Communication**: Internal Slack workspace
 - **Knowledge Sharing**: [Knowledge Base](./09-Knowledge-Base)
 
