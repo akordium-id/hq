@@ -21,6 +21,7 @@ Akordium Lab adalah perusahaan *web & app development services* dan konsultan ya
 * **[🎨 Marketing & Brand](./04-Marketing-Brand)**: Panduan visual dan gaya bahasa.
 * **[💰 Finance & Admin](./05-Finance-Admin)**: Template invoice, klaim reimbursement, tracking budget project, dan daftar vendor.
 * **[⚖️ Legal & Compliance](./06-Legal-Compliance)**: Template kontrak, kebijakan privasi, ToS, dan panduan GDPR compliance.
+* **[👥 HR & People](./07-HR-People)**: Proses rekrutmen, interview questions, performance review, dan training materials.
 
 ## 🛠 Cara Menggunakan Repo Ini
 
