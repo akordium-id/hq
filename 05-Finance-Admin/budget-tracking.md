@@ -18,7 +18,7 @@ Dokumen ini menjelaskan metodologi dan tools untuk tracking budget project di Ak
 
 #### **Components of Project Cost:**
 
-```
+```text
 💰 Human Resources (60-70%)
 ├── Developer Salary
 ├── Project Manager
@@ -121,7 +121,7 @@ withBuffer = 75.500.000 × 1.15 = 86.825.000
 
 ### **1. Data Collection Schedule**
 
-```
+```text
 [ Setiap Hari ] Log jam kerja dan expenses
 [ Setiap Jumat ] Weekly review dengan team
 [ Hari 1 Bulanan ] Generate monthly report
@@ -337,7 +337,7 @@ alerts:
 
 ### **Slack Commands:**
 
-```
+```text
 /budget-status [project-name] - Show current budget status
 /burn-rate [project-name] - Show weekly burn rate
 /forecast [project-name] - Show completion forecast

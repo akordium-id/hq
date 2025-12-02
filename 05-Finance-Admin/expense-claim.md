@@ -69,7 +69,7 @@ Dokumen ini menjelaskan prosedur lengkap untuk pengajuan klaim reimbursement di 
 
 ### **Step 1: Persiapan Dokumen**
 
-```
+```text
 [ 1 Hari ] Kumpulkan semua bukti pembayaran
 [ 1 Hari ] Isi Form Klaim Reimbursement
 [ 1 Hari ] Siapkan dokumen pendukung
@@ -89,7 +89,7 @@ Dokumen ini menjelaskan prosedur lengkap untuk pengajuan klaim reimbursement di 
 
 ### **Step 3: Review & Approval**
 
-```
+```text
 [ Hari 1-2 ] Finance verification
 [ Hari 2-3 ] Manager approval
 [ Hari 3-4 ] Director approval (untuk > Rp 500.000)
@@ -215,7 +215,7 @@ Dokumen ini menjelaskan prosedur lengkap untuk pengajuan klaim reimbursement di 
 
 Template untuk tracking status klaim:
 
-```
+```text
 [ ] 1. Dokumen lengkap?
 [ ] 2. Sudah disubmit?
 [ ] 3. Finance review?

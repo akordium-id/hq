@@ -1,14 +1,15 @@
 # SURAT PERJANJIAN KERJASAMA (SPK)
+
 **Jasa Pengembangan Perangkat Lunak**
 
 Perjanjian ini dibuat pada tanggal **[Tanggal]**, antara:
 
-1.  **Pihak Pertama (Developer):**
+1. **Pihak Pertama (Developer):**
     * Nama: [Nama Anda] (Owner Akordium Lab)
     * Alamat: [Alamat Anda]
     * Kontak: admin@akordium.id
 
-2.  **Pihak Kedua (Klien):**
+2. **Pihak Kedua (Klien):**
     * Nama: [Nama Klien]
     * Perusahaan: [Nama Perusahaan Klien]
     * Alamat: [Alamat Klien]
@@ -16,31 +17,39 @@ Perjanjian ini dibuat pada tanggal **[Tanggal]**, antara:
 Kedua belah pihak sepakat untuk melakukan kerjasama dengan ketentuan sebagai berikut:
 
 ## PASAL 1: LINGKUP PEKERJAAN
+
 Pihak Pertama akan mengerjakan proyek **[Nama Proyek, misal: Website E-Commerce Toko Baju]** dengan spesifikasi fitur yang terlampir pada dokumen proposal/lampiran (Scope of Work).
+
 * Fitur di luar lampiran dianggap sebagai fitur tambahan dan dikenakan biaya terpisah.
 
 ## PASAL 2: WAKTU PENGERJAAN
+
 * Mulai: [Tanggal Mulai]
 * Target Selesai: [Tanggal Selesai]
 * Keterlambatan yang disebabkan oleh lambatnya respon/data dari Pihak Kedua tidak dihitung sebagai kelalaian Developer.
 
 ## PASAL 3: BIAYA & PEMBAYARAN
+
 Total Biaya Proyek: **Rp [Total Angka]**
 
 **Skema Pembayaran:**
-1.  **Termin 1 (DP):** 50% dibayarkan sebelum pengerjaan dimulai.
-2.  **Termin 2 (Pelunasan):** 50% dibayarkan setelah demo final dan sebelum serah terima *source code*/akses penuh.
+
+1. **Termin 1 (DP):** 50% dibayarkan sebelum pengerjaan dimulai.
+2. **Termin 2 (Pelunasan):** 50% dibayarkan setelah demo final dan sebelum serah terima *source code*/akses penuh.
 
 ## PASAL 4: REVISI
-1.  Pihak Kedua berhak mengajukan revisi minor sebanyak **[Jumlah, misal: 2] kali** selama masa pengerjaan (fase Review).
-2.  Revisi minor mencakup: Perubahan teks, warna, atau layout kecil.
-3.  Revisi mayor (menambah fitur baru atau mengubah logika sistem) akan dikenakan biaya tambahan (Add-on).
+
+1. Pihak Kedua berhak mengajukan revisi minor sebanyak **[Jumlah, misal: 2] kali** selama masa pengerjaan (fase Review).
+2. Revisi minor mencakup: Perubahan teks, warna, atau layout kecil.
+3. Revisi mayor (menambah fitur baru atau mengubah logika sistem) akan dikenakan biaya tambahan (Add-on).
 
 ## PASAL 5: HAK KEKAYAAN INTELEKTUAL (HAKI)
-1.  Hak cipta kode sumber (*source code*) dan aset desain akan sepenuhnya menjadi milik Pihak Kedua **SETELAH** pelunasan pembayaran diterima 100%.
-2.  Jika terjadi pembatalan sepihak sebelum pelunasan, maka seluruh aset kode dan desain tetap menjadi hak milik Pihak Pertama.
+
+1. Hak cipta kode sumber (*source code*) dan aset desain akan sepenuhnya menjadi milik Pihak Kedua **SETELAH** pelunasan pembayaran diterima 100%.
+2. Jika terjadi pembatalan sepihak sebelum pelunasan, maka seluruh aset kode dan desain tetap menjadi hak milik Pihak Pertama.
 
 ## PASAL 6: GARANSI
+
 Pihak Pertama memberikan garansi perbaikan *bug/error* selama **[Jumlah, misal: 30] hari** setelah serah terima. Garansi tidak berlaku jika kode diubah oleh pihak lain selain Akordium Lab.
 
 ---

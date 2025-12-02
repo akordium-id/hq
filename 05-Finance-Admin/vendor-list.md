@@ -297,7 +297,7 @@ QUARTERLY AUDIT CHECKLIST
 
 ### **Critical Service Outages**
 
-```
+```text
 🔴 URGENT (Response < 2 hours)
 - Cloud Infrastructure: Oracle Cloud Support
 - Payment Processing: Midtrans 24/7 Support
