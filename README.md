@@ -24,6 +24,7 @@ Akordium Lab adalah perusahaan *web & app development services* dan konsultan ya
 * **[👥 HR & People](./07-HR-People)**: Proses rekrutmen, interview questions, performance review, dan training materials.
 * **[🚀 Project Management](./08-Project-Management)**: Template kick-off project, estimasi, sprint planning, retrospective, dan client onboarding.
 * **[📚 Knowledge Base](./09-Knowledge-Base)**: Teknologi radar, learning resources, blog ideas, presentasi, dan research notes.
+* **[🤖 Automation](./10-Automation)**: GitHub Actions library, utility scripts, dan CI/CD pipeline documentation.
 
 ## 🛠 Cara Menggunakan Repo Ini
 

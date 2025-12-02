@@ -1,0 +1,74 @@
+name: "Setup Go Environment"
+description: "Sets up Go environment with optimized caching for Akordium Lab projects"
+author: "Akordium Lab"
+branding:
+  icon: "package"
+  color: "blue"
+
+inputs:
+  go-version:
+    description: "Go version to setup"
+    required: false
+    default: "1.21"
+  cache-modules:
+    description: "Enable module caching"
+    required: false
+    default: "true"
+  cache-build-cache:
+    description: "Enable build cache"
+    required: false
+    default: "true"
+  working-directory:
+    description: "Working directory for Go project"
+    required: false
+    default: "."
+
+outputs:
+  cache-hit:
+    description: "Whether cache was hit"
+    value: ${{ steps.cache.outputs.cache-hit }}
+  go-path:
+    description: "Go installation path"
+    value: ${{ steps.setup-go.outputs.go-path }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Go
+      id: setup-go
+      uses: actions/setup-go@v4
+      with:
+        go-version: ${{ inputs.go-version }}
+
+    - name: Cache Go Modules
+      id: cache
+      if: inputs.cache-modules == 'true'
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cache/go-build
+          ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum', '**/go.mod') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
+
+    - name: Install dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: |
+        if [ -f "go.mod" ]; then
+          go mod download
+        else
+          go mod init temp
+          go mod tidy
+        fi
+
+    - name: Verify Go installation
+      shell: bash
+      run: |
+        go version
+        which go
+        go env GOPATH
+        go env GOCACHE
+        go env GOMODCACHE
