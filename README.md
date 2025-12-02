@@ -51,17 +51,17 @@ Kami menyambut baik kontribusi dari seluruh tim Akordium Lab! Lihat panduan leng
 
 ## 📊 Repo Statistics
 
-![Last Commit](https://img.shields.io/github/last-commit/akordium-id/akordium-hq)
-![Contributors](https://img.shields.io/github/contributors/akordium-id/akordium-hq)
-![Repo Size](https://img.shields.io/github/repo-size/akordium-id/akordium-hq)
-![License](https://img.shields.io/github/license/akordium-id/akordium-hq)
+![Last Commit](https://img.shields.io/github/last-commit/akordium-id/hq)
+![Contributors](https://img.shields.io/github/contributors/akordium-id/hq)
+![Repo Size](https://img.shields.io/github/repo-size/akordium-id/hq)
+![License](https://img.shields.io/github/license/akordium-id/hq)
 
 ## 📞 Kontak
 
 ### 🚨 **Emergency Support (24/7)**
-- **Production Issues**: +62-812-3456-7890 (Najib - Tech Lead)
-- **Security Incidents**: +62-813-9876-5432 (Manager)
-- **WhatsApp**: [https://wa.me/6281234567890](https://wa.me/6281234567890)
+- **Production Issues**: +62-815-9988-995 (Najib - Tech Lead)
+- **Security Incidents**: -
+- **WhatsApp**: [https://wa.me/628159988995](https://wa.me/628159988995)
 
 ### 📋 **General Inquiries**
 - **Technical Issues**: Gunakan **[Issues](../../issues)** di repo ini
