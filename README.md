@@ -25,6 +25,7 @@ Akordium Lab adalah perusahaan *web & app development services* dan konsultan ya
 * **[🚀 Project Management](./08-Project-Management)**: Template kick-off project, estimasi, sprint planning, retrospective, dan client onboarding.
 * **[📚 Knowledge Base](./09-Knowledge-Base)**: Teknologi radar, learning resources, blog ideas, presentasi, dan research notes.
 * **[🤖 Automation](./10-Automation)**: GitHub Actions library, utility scripts, dan CI/CD pipeline documentation.
+* **[📢 Content Strategy](./11-Content-Strategy)**: Framework untuk membuat 100+ konten dari 1 case study (SSoT + Content Atomization).
 
 ## 🛠 Cara Menggunakan Repo Ini
 
