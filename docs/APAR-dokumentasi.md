@@ -47,7 +47,7 @@
 
 ### Arsitektur Deployment
 
-```
+```bash
 LARAVEL CLOUD SERVER
 ├─ Frontend (Web Browser Access - Filament Admin Panel)
 ├─ Backend API REST (Laravel Routes)
@@ -69,7 +69,8 @@ DESKTOP APPS (5 Komputer - NativePHP)
 ### Data Flow
 
 **Online Mode (Desktop → Cloud):**
-```
+
+```text
 User Input → NativePHP Desktop App
            → Filament UI / Livewire Components
            → Laravel Controller (local)
@@ -80,7 +81,8 @@ User Input → NativePHP Desktop App
 ```
 
 **Offline Mode:**
-```
+
+```text
 User Input → NativePHP Desktop App
            → Filament UI / Livewire Components
            → Laravel Controller (local)
@@ -91,7 +93,8 @@ User Input → NativePHP Desktop App
 ```
 
 **Sync Process:**
-```
+
+```text
 Push: Local changes → Server API → Master DB
 Pull: Master DB updates → Local SQLite/MySQL
 Conflict Resolution: Server-priority or Last-Write-Wins
@@ -104,6 +107,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 ### MODUL 1: Master Data Management
 
 #### 1.1 Customer Management
+
 - ✅ CRUD Customer (Create, Read, Update, Delete)
 - ✅ Kategori: Perorangan, Instansi, Toko, Apotek, Puskesmas, Perusahaan
 - ✅ Customer tagging: VIP/Reguler/Tender
@@ -116,6 +120,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 8 jam  
 
 #### 1.2 Product & Service Catalog
+
 - ✅ CRUD Produk (kategori: Isi Ulang, Apar Baru, Tukar Tambah, Reparasi, O2, Evakuasi)
 - ✅ Tipe APAR: Powder, CO2, Foam
 - ✅ Size: 1kg, 3kg, 5kg, 9kg, dst
@@ -128,6 +133,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 6 jam  
 
 #### 1.3 Customer-Specific Pricing
+
 - ✅ Set harga khusus per customer per produk
 - ✅ Valid date range (contract management)
 - ✅ Auto-expire setelah periode
@@ -139,6 +145,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 6 jam  
 
 #### 1.4 Sales Person Management
+
 - ✅ CRUD Sales (nama, kontak, email)
 - ✅ Assign commission plan
 - ✅ Performance dashboard per sales:
@@ -152,6 +159,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 6 jam  
 
 #### 1.5 Commission Plan & Tiers
+
 - ✅ CRUD Commission Plan (Standard, Promo, Tender)
 - ✅ Basis perhitungan: Revenue/Margin/Count
 - ✅ Multiple tiers (max 5 per plan):
@@ -172,6 +180,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 ### MODUL 2: Sales Order & Invoicing
 
 #### 2.1 Sales Order Creation (Wizard-based)
+
 - ✅ Step 1: Customer info (pilih/tambah baru, auto-load alamat)
 - ✅ Step 2: Items (multi-select product, qty, auto-price)
   - Auto-load catalog price
@@ -197,6 +206,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 - ✅ Print preview SO
 
 **Validasi:**
+
 - ❗ Custom price > 30% discount → trigger approval
 - ❗ Total SO < Rp 50k → warning
 - ❗ Outstanding customer > credit limit → warning
@@ -205,6 +215,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 20 jam  
 
 #### 2.2 Price Approval Workflow
+
 - ✅ Queue SO custom price
 - ✅ Notification badge ke owner
 - ✅ Detail approval page (SO info, catalog vs custom, margin impact)
@@ -216,6 +227,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 8 jam  
 
 #### 2.3 Invoice Generator (Auto from SO)
+
 - ✅ Auto-generate dari SO confirmed
 - ✅ Invoice number: 0XXX/APK/AJI/MM/YYYY
 - ✅ PDF template sesuai existing invoice
@@ -235,6 +247,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 16 jam  
 
 #### 2.4 Surat Jalan Generator
+
 - ✅ Auto-generate dari SO delivering
 - ✅ SJ number: SJ-YYYY-XXXX
 - ✅ Template sesuai existing SJ
@@ -253,6 +266,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 12 jam  
 
 #### 2.5 Kwitansi/Receipt Generator
+
 - ✅ Auto-generate saat payment diterima
 - ✅ Kwitansi number: KWT-YYYY-XXXX
 - ✅ Template sesuai existing kwitansi
@@ -271,6 +285,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 ### MODUL 3: Payment Tracking & Receivables
 
 #### 3.1 Payment Recording
+
 - ✅ Form input payment:
   - Invoice selection (unpaid invoices dropdown)
   - Payment date
@@ -291,6 +306,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 12 jam  
 
 #### 3.2 Receivables Dashboard (Admin)
+
 - ✅ Summary card:
   - Total outstanding
   - Total received (bulan ini)
@@ -310,6 +326,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 8 jam  
 
 #### 3.3 Collection Management (Phase 2)
+
 - ✅ Collection task creation (reminder untuk collect)
 - ✅ Priority system (based on amount & aging)
 - ✅ Follow-up log (track conversation dengan customer)
@@ -326,6 +343,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 ### MODUL 4: Commission Management
 
 #### 4.1 Commission Calculation Engine
+
 - ✅ Auto-calculate komisi based on:
   - Sales person
   - Period (bulanan)
@@ -345,6 +363,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 12 jam  
 
 #### 4.2 Commission Report (Admin)
+
 - ✅ Monthly commission recap per sales:
   - Nama sales
   - Total omzet
@@ -362,6 +381,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 8 jam  
 
 #### 4.3 Commission Approval & Payment (Owner)
+
 - ✅ View draft commission report
 - ✅ Review total per sales
 - ✅ Approve/Reject (dengan notes)
@@ -373,6 +393,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 6 jam  
 
 #### 4.4 Commission Payment Slip (Phase 2)
+
 - ✅ Generate slip pembayaran komisi
 - ✅ Slip detail: nama sales, periode, total, tanda tangan
 - ✅ Export PDF
@@ -388,6 +409,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 ### MODUL 5: Reporting & Analytics
 
 #### 5.1 Daily/Monthly Recap Report
+
 - ✅ Otomatis generate report setiap hari/bulan
 - ✅ Report content:
   - List SO (no, customer, amount, status)
@@ -408,6 +430,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 12 jam  
 
 #### 5.2 Financial Dashboard (Owner)
+
 - ✅ Cashflow chart (daily/weekly/monthly):
   - Pemasukan (payment received)
   - Pengeluaran (opsional phase 2)
@@ -428,6 +451,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 14 hours  
 
 #### 5.3 Tax Report (PPN)
+
 - ✅ Auto-track PPN 11% per SO
 - ✅ Summary per bulan:
   - Total PPN collected (dari customer)
@@ -440,6 +464,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 8 jam  
 
 #### 5.4 Inventory Tracking (Phase 2)
+
 - ✅ Track APAR stock:
   - APAR kosong (untuk isi ulang)
   - APAR baru (untuk penjualan)
@@ -458,6 +483,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 ### MODUL 6: Document Management & Archive
 
 #### 6.1 Scan Nota / Upload Dokumen
+
 - ✅ Upload foto nota dari customer
 - ✅ Scan barcode/QR code (opsional)
 - ✅ OCR auto-extract (via Laravel package):
@@ -474,6 +500,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 10 jam  
 
 #### 6.2 Document Archive & Search
+
 - ✅ Archive semua dokumen:
   - Invoice PDF
   - Surat Jalan PDF
@@ -490,6 +517,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 8 jam  
 
 #### 6.3 Digital Signature (Phase 2)
+
 - ✅ Digital signature pada dokumen:
   - Invoice
   - Surat Jalan (penerima)
@@ -508,6 +536,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 ### MODUL 7: Offline & Sync
 
 #### 7.1 Desktop App Offline Mode (NativePHP)
+
 - ✅ Aplikasi jalan 100% tanpa internet
 - ✅ Local SQLite/MySQL database
 - ✅ All features work offline:
@@ -524,6 +553,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 16 jam  
 
 #### 7.2 Sync Engine (Background)
+
 - ✅ Auto-sync every 5 minutes (saat online)
 - ✅ Bidirectional sync:
   - **Push:** Local changes → Server
@@ -546,6 +576,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 20 jam  
 
 #### 7.3 Sync Status Dashboard
+
 - ✅ Real-time status indicator:
   - Connection status (online/offline)
   - Pending count
@@ -564,6 +595,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 8 jam  
 
 #### 7.4 Data Backup & Recovery
+
 - ✅ Auto-backup local DB (daily):
   - Time: 23:00 (default, configurable)
   - Format: ZIP
@@ -583,6 +615,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 ### MODUL 8: User & Role Management
 
 #### 8.1 User Management (Filament)
+
 - ✅ CRUD User (via Filament Admin Panel):
   - Username
   - Email
@@ -600,6 +633,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 8 jam  
 
 #### 8.2 Role-Based Access Control (Filament)
+
 - ✅ 3 Roles (via Filament Authorization):
   - **Admin:** Input SO, payment, print dokumen, input nota
   - **Owner:** View dashboard, reports, approval (custom price, komisi)
@@ -614,6 +648,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 12 jam  
 
 #### 8.3 Audit Log (Activity Log)
+
 - ✅ Track semua action:
   - Who (user)
   - What (action: create/update/delete)
@@ -628,6 +663,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 **Effort:** 10 jam  
 
 #### 8.4 Login & Authentication (Filament)
+
 - ✅ Login form (username/password) - built-in Filament
 - ✅ Session management (timeout 30 menit)
 - ✅ "Remember me" (optional)
@@ -646,21 +682,21 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 
 ### A. DEVELOPMENT COST
 
-| Modul | Fitur | Effort (jam) | Rate (Rp/jam) | Subtotal |
-|-------|-------|-------------|---------------|----------|
-| **Master Data** | Customer, Product, Pricing, Sales, Commission Plan | 34 | 500k | 17.000.000 |
-| **Sales & Invoice** | SO, Invoice, SJ, Kwitansi, Approval | 64 | 500k | 32.000.000 |
-| **Payment** | Payment recording, Receivables, Collection | 32 | 500k | 16.000.000 |
-| **Commission** | Calculation, Report, Approval, Payment | 30 | 500k | 15.000.000 |
-| **Reporting** | Daily/Monthly, Financial Dashboard, Tax, Inventory | 44 | 500k | 22.000.000 |
-| **Document Mgmt** | Scan, Archive, Signature | 26 | 500k | 13.000.000 |
-| **Offline & Sync** | Desktop app, Sync engine, Backup, Status | 50 | 500k | 25.000.000 |
-| **User & Auth** | User management, RBAC, Audit log, Login | 38 | 500k | 19.000.000 |
-| **Testing & QA** | Unit test, Integration test, UAT | 40 | 500k | 20.000.000 |
-| **Deployment & Documentation** | Setup cloud, Deploy desktop, Documentation | 20 | 500k | 10.000.000 |
-| | | **378 jam** | | **Rp 189.000.000** |
+| Modul                          | Fitur                                              | Effort (jam) | Rate (Rp/jam)  | Subtotal            |
+|--------------------------------|----------------------------------------------------|--------------|----------------|---------------------|
+| **Master Data**                | Customer, Product, Pricing, Sales, Commission Plan | 34           |  Rp 25.000.00  |  Rp 850.000,00      |
+| **Sales & Invoice**            | SO, Invoice, SJ, Kwitansi, Approval                | 64           |  Rp 25.000,00  |  Rp 1.600.000,00    |
+| **Payment**                    | Payment recording, Receivables, Collection         | 32           |  Rp 25.000,00  |  Rp 800.000,00      |
+| **Commission**                 | Calculation, Report, Approval, Payment             | 30           |  Rp 25.000,00  |  Rp 750.000,00      |
+| **Reporting**                  | Daily/Monthly, Financial Dashboard, Tax, Inventory | 44           |  Rp 25.000,00  |  Rp 1.100.000,00    |
+| **Document Mgmt**              | Scan, Archive, Signature                           | 26           |  Rp 25.000,00  |  Rp 650.000,00      |
+| **Offline & Sync**             | Desktop app, Sync engine, Backup, Status           | 50           |  Rp 25.000,00  |  Rp 1.250.000,00    |
+| **User & Auth**                | User management, RBAC, Audit log, Login            | 38           |  Rp 25.000,00  |  Rp 950.000,00      |
+| **Testing & QA**               | Unit test, Integration test, UAT                   | 40           |  Rp 25.000,00  |  Rp 1.000.000,00    |
+| **Deployment & Documentation** | Setup cloud, Deploy desktop, Documentation         | 20           |  Rp 25.000,00  |  Rp 500.000,00      |
+|                                |                                                    | **378**      |                |  **Rp 9.450.000,00**|
 
-**Total Development: Rp 189.000.000 (3 bulan)**
+**Total Development: Rp 9.450.000**
 
 ---
 
@@ -703,12 +739,12 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 
 | Category | Cost | Timeline |
 |----------|------|----------|
-| **Development** | **Rp 189.000.000** | 3 bulan (sekali) |
+| **Development** | **Rp 9.450.000** | 3 bulan (sekali) |
 | **Infrastructure (minimal setup)** | **Rp 500.000-750k/bulan** | Ongoing |
 | **Infrastructure (annual)** | **Rp 6-9.000.000** | 12 bulan |
-| **Optional: Annual support & maintenance** | **Rp 50.000.000** | Tahun 1 (optional) |
+| **Optional: Annual support & maintenance** | **Rp 24.000.000** | Tahun 1 (optional) |
 | | | |
-| **TOTAL YEAR 1** | **~Rp 239.000.000** | Incl. Dev + Infra (12 bulan) |
+| **TOTAL YEAR 1** | **~Rp 18.450.000** | Incl. Dev + Infra (12 bulan) |
 | **TOTAL YEAR 2+** | **Rp 6-9.000.000/tahun** | Infra only (maintenance minimal) |
 
 ---
@@ -731,15 +767,18 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 ### E. COST OPTIMIZATION TIPS
 
 ✅ **Leverage Laravel Cloud free tier:**
+
 - Free tier: 1 app, 1 environment, limited resources
 - Scale up as needed when traffic grows
 
 ✅ **Start minimal, scale up:**
+
 - Month 1-3: Development phase (no traffic yet) - use free tier
 - Month 4+: Live phase (~Rp 500-750k/bulan)
 - Year 2: Stable operations (~Rp 300-500k/bulan)
 
 ✅ **Laravel Cloud benefits:**
+
 - All-in-one solution (no juggling multiple services)
 - Automatic backups & scaling
 - Redis cache included
@@ -752,47 +791,48 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 
 ### Architecture Pattern: Unified Laravel Stack (Web + Desktop)
 
-```
+```bash
 ┌─────────────────────────────────────────┐
 │ CLIENT SIDE                             │
 ├─────────────────────────────────────────┤
 │ CLOUD WEB (Browser)                     │
 │ └─ Filament PHP Admin Panel             │
-│    └─ Tailwind CSS + Alpine.js/Livewire│
+│    └─ Tailwind CSS + Alpine.js/Livewire │
 │    └─ Laravel Blade Templates           │
 │                                         │
 │ DESKTOP APP (Windows Standalone)        │
-│ └─ NativePHP (Tauri-like wrapper)      │
+│ └─ NativePHP (Tauri-like wrapper)       │
 │    └─ Laravel Controllers + Views       │
-│    └─ Filament/Livewire UI (embedded)  │
-│    └─ Embedded SQLite/MySQL DB         │
+│    └─ Filament/Livewire UI (embedded)   │
+│    └─ Embedded SQLite/MySQL DB          │
 └─────────────────────────────────────────┘
         ↕ HTTP REST API
 ┌─────────────────────────────────────────┐
 │ SERVER SIDE (Laravel Cloud)             │
 ├─────────────────────────────────────────┤
 │ Backend                                 │
-│ └─ Laravel 11 (API Routes)             │
-│ └─ Controllers & Models (Eloquent)     │
-│ └─ Service Layer (Business Logic)      │
+│ └─ Laravel 11 (API Routes)              │
+│ └─ Controllers & Models (Eloquent)      │
+│ └─ Service Layer (Business Logic)       │
 │                                         │
 │ Database (Master)                       │
-│ └─ PostgreSQL (Laravel Cloud managed)  │
+│ └─ PostgreSQL (Laravel Cloud managed)   │
 │                                         │
 │ Cache/Queue                             │
-│ └─ Redis (included in Laravel Cloud)   │
+│ └─ Redis (included in Laravel Cloud)    │
 │                                         │
 │ Storage                                 │
-│ └─ S3 (AWS, included in Laravel Cloud) │
+│ └─ S3 (AWS, included in Laravel Cloud)  │
 │                                         │
 │ Scheduled Jobs                          │
-│ └─ Laravel Scheduler (reports, sync)   │
+│ └─ Laravel Scheduler (reports, sync)    │
 └─────────────────────────────────────────┘
 ```
 
 ### Frontend Stack
 
 #### Web Application (Cloud)
+
 - **Framework:** Laravel 11 + Filament Admin Panel
 - **Admin UI:** FilamentPHP (pre-built admin components)
 - **Styling:** Tailwind CSS (built-in Filament)
@@ -805,6 +845,7 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 - **Excel Export:** Laravel Excel (Maatwebsite)
 
 #### Desktop Application (Offline)
+
 - **Framework:** NativePHP (native wrapper for Laravel)
 - **Frontend:** Filament PHP + Livewire (same as web)
 - **Styling:** Tailwind CSS (same as web)
@@ -816,7 +857,8 @@ Conflict Resolution: Server-priority or Last-Write-Wins
 ### Backend Stack
 
 #### Laravel 11 Ecosystem
-```
+
+```text
 Framework:     Laravel 11 (latest LTS)
 Database ORM:  Eloquent (with relationships)
 Query Builder: Laravel Query Builder
@@ -876,6 +918,7 @@ users (id, name, email, email_verified_at, password, role, status, remember_toke
 - **Desktop Build:** NativePHP CLI
 
 #### Key Laravel Packages
+
 ```
 filament/filament - Admin panel & forms
 livewire/livewire - Real-time reactivity
@@ -981,6 +1024,7 @@ MINGGU 12: Deployment & Handover
 ## 📋 DELIVERABLES
 
 ### Code & Documentation
+
 - ✅ Laravel 11 source code (GitHub private repo)
 - ✅ API documentation (Scribe OpenAPI)
 - ✅ User guide (Filament navigation)
@@ -990,6 +1034,7 @@ MINGGU 12: Deployment & Handover
 - ✅ Deployment guide (Laravel Cloud)
 
 ### Artifacts
+
 - ✅ Web application (live on Laravel Cloud)
 - ✅ Desktop application (.exe file, 5 licenses)
 - ✅ Database (PostgreSQL + initial data)
@@ -997,6 +1042,7 @@ MINGGU 12: Deployment & Handover
 - ✅ Demo data (50 sample transactions)
 
 ### Support
+
 - ✅ 30-day post-launch support
 - ✅ Bug fixes & optimization
 - ✅ User training session (4 hours)
@@ -1023,6 +1069,7 @@ MINGGU 12: Deployment & Handover
 ## 🎯 ASUMSI & CONSTRAINTS
 
 ### Asumsi
+
 - ✅ Klien menyediakan contoh dokumen (invoice, SJ, kwitansi)
 - ✅ Klien memberikan akses contoh data (customer, product)
 - ✅ Developer memiliki Laravel 11 expertise
@@ -1030,6 +1077,7 @@ MINGGU 12: Deployment & Handover
 - ✅ Owner tersedia untuk approval testing
 
 ### Constraints
+
 - ❗ 5 users desktop → NativePHP app harus lightweight
 - ❗ Offline-first → sync logic perlu robust error handling
 - ❗ Internet unstable → queue jobs + retry logic wajib
@@ -1040,9 +1088,9 @@ MINGGU 12: Deployment & Handover
 
 ## 📞 CONTACT & SUPPORT
 
-**Developer:** [Your Name]  
-**Email:** [your.email@domain.com]  
-**Phone:** [+62-XXX-XXXX-XXXX]  
+**Developer:** Faiq Najib  
+**Email:** [faiq.najib@gmail.com]  
+**Phone:** [+62-823-3607-1367]  
 **Laravel Expertise:** Full-stack (Filament, Livewire, NativePHP)  
 **Timeline:** Available untuk development 3 bulan  
 **Support:** 30-hari post-launch, kemudian maintenance as-needed  
@@ -1051,4 +1099,4 @@ MINGGU 12: Deployment & Handover
 
 **Dokumen ini adalah living document dan akan di-update seiring perkembangan project.**
 
-*Last Updated: December 2024*
+*Last Updated: December 2025*
