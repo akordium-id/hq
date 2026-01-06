@@ -5,7 +5,7 @@
 ## 🏷️ Product Identity
 
 - **Nama Produk:** Anggarin
-- **Status:** 🚧 In Development
+- **Status:** 🔍 In Validation (Phase 0)
 - **Repo Code:** `github.com/akordium/anggarin` (Private)
 - **Live Site:** https://anggarin.com
 - **Staging:** https://staging.anggarin.com

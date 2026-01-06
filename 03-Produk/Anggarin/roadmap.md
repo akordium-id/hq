@@ -14,6 +14,48 @@
 
 ## 📅 Development Timeline
 
+### 🔍 Phase 0: Validation & Planning (Q4 2024 - Q1 2025)
+
+**Timeline:** Dec 2024 - Feb 2025 | **Status:** In Progress
+
+#### Goals
+
+- [ ] Validate product-market fit through customer research
+- [ ] Complete competitive analysis and market sizing
+- [ ] Make tech stack decision (Laravel+Next.js vs Go+SvelteKit)
+- [ ] Create landing page and acquire 100+ early signups
+- [ ] Conduct 20 customer interviews with target personas
+
+#### Validation Activities
+
+**Market Validation:**
+- [ ] Competitive analysis (Jago, Pocket, Moneyflo, Excelku)
+- [ ] TAM/SAM/SOM market sizing
+- [ ] Pricing willingness-to-pay survey
+- [ ] Partnership exploration (banks, brokers)
+
+**User Validation:**
+- [ ] Landing page creation and A/B testing
+- [ ] Customer interviews (5 fresh graduates, 10 professionals, 5 freelancers)
+- [ ] Beta user acquisition strategy
+- [ ] Usability testing with clickable prototype
+
+**Technical Validation:**
+- [ ] Go backend PoC (financial calculation engine)
+- [ ] SvelteKit vs Next.js prototype comparison
+- [ ] PostgreSQL migration strategy documentation
+- [ ] Architecture decision matrix
+
+#### Success Metrics
+
+- **Customer Interviews:** 20+ completed interviews
+- **Landing Page:** 100+ email signups
+- **Tech Decision:** Stack selected for MVP
+- **Partnerships:** 3+ banks/brokers contacted
+- **Go/No-Go Decision:** Feb 2025
+
+---
+
 ### 🥚 Phase 1: MVP Foundation (Q4 2024 - Q1 2025)
 
 **Timeline:** Dec 2024 - Mar 2025 | **Status:** In Progress
