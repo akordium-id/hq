@@ -90,7 +90,7 @@ This is **Akordium Lab HQ** - the central documentation repository for Akordium 
 - **`request_admin.md`** - For administrative requests (equipment, purchases)
 
 ### Emergency Contacts
-- **🚨 Critical Issues**: WhatsApp +62 812-3456-7890 (via config.yml contact link)
+- **🚨 Critical Issues**: WhatsApp +62 815-9988-995 (via config.yml contact link)
 - **📧 Non-urgent**: support@akordium.id
 - **💬 General Discussion**: GitHub Discussions
 

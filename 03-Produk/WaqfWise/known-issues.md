@@ -463,7 +463,7 @@ Minor UI inconsistencies across different pages:
 
 - **Knowledge Base:** https://help.waqfwise.com/kb
 - **Support Ticket:** https://support.waqfwise.com/tickets
-- **WhatsApp Support:** +62 812-3456-7890 (available 9 AM - 5 PM)
+- **WhatsApp Support:** +62 815-9988-995 (available 9 AM - 5 PM)
 - **Email Support:** support@waqfwise.com
 
 **For Developers:**

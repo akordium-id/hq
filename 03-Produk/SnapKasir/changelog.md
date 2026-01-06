@@ -390,7 +390,7 @@ Current version known issues:
 - **Documentation:** https://docs.snapkasir.com
 - **Support Portal:** support.snapkasir.com
 - **Community Forum:** forum.snapkasir.com
-- **WhatsApp Support:** +62 812-3456-7890
+- **WhatsApp Support:** +62 815-9988-995
 - **Email:** support@snapkasir.com
 
 ### Reporting Issues
@@ -405,7 +405,7 @@ Current version known issues:
 - **User Survey:** https://snapkasir.com/survey
 - **Feedback Form:** https://snapkasir.com/feedback
 - **Contact Us:** info@snapkasir.com
-- **WhatsApp Business:** +62 812-3456-7890
+- **WhatsApp Business:** +62 815-9988-995
 
 ## 📋 Release Checklist
 

@@ -79,8 +79,8 @@ assignees: ""
 
 ### **Emergency Contacts**
 **If this is a TRUE emergency (production down, security breach):**
-- **📞 Primary**: +62 812-3456-7890 (Najib - Tech Lead)
-- **📞 Secondary**: +62 813-9876-5432 (Manager)
+- **📞 Primary**: +62 823-3607-1367 (Najib - Tech Lead)
+- **📞 Secondary**: +62 815-9988-995 (Manager)
 - **📱 WhatsApp**: https://wa.me/6281234567890
 
 **For non-urgent matters, use regular channels**

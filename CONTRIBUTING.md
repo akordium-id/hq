@@ -395,6 +395,6 @@ git push --force-with-lease origin nama-branch-anda
 Setiap kontribusi membantu meningkatkan kualitas dan consistency dokumentasi Akordium Lab. Jika ada pertanyaan, jangan ragu untuk membuka issue atau diskusi.
 
 **Butuh bantuan?**
-- 🆘 **Emergency**: Najib (WhatsApp: +62-812-3456-7890)
+- 🆘 **Emergency**: Najib (WhatsApp: +62-815-9988-995)
 - 💬 **General**: [GitHub Discussions](https://github.com/akordium-id/akordium-hq/discussions)
 - 📋 **Issues**: [Create New Issue](../../issues/new)
