@@ -59,7 +59,7 @@
 - **Component Library:** **FluxUI** (Livewire component library) + Custom components dengan Tailwind CSS
 - **Design System:** Tailwind UI components dengan customization untuk WaqfWise branding
 - **FluxUI Benefits:** Pre-built components reduce development time 40-60%, consistent UI, less boilerplate code
-- **Custom Components:** Financial charts (Chart.js), Data tables (DataTables), File upload systems, Blockchain certificate templates
+- **Custom Components:** Financial charts (Chart.js), Data tables (DataTables), File upload systems, Certificate templates (PDF, optional blockchain post-MVP)
 
 **Build Tools:**
 
@@ -245,7 +245,13 @@ app/
 
 ---
 
-## 🔗 Blockchain Integration
+## 🔗 Blockchain Integration (Post-MVP Feature - Optional)
+
+**Status:** Post-MVP Enhancement (M9-M10) - **NOT Required for Core Functionality**
+
+**Note:** Blockchain integration adalah fitur opsional yang akan dikembangkan setelah MVP (M1-M7) selesai. WaqfWise berfungsi sepenuhnya tanpa blockchain. Sertifikat PDF standar tersedia di core product.
+
+---
 
 ### Platform Selection
 
@@ -802,6 +808,13 @@ class PaymentService {
 
 ---
 
-**Last Updated:** 2024-12-01
+**Last Updated:** 2026-01-06
+**Tech Stack Version:** 1.1.0-milestones (Blockchain: Post-MVP Optional)
 **Tech Lead:** Najib Zain
-**Review Date:** 2025-01-01
+**Review Date:** After M4 completion
+
+**Key Changes (v1.1.0):**
+- Marked blockchain integration as post-MVP feature (M9-M10, optional)
+- Updated component list to clarify blockchain is optional
+- Clarified WaqfWise functions fully without blockchain
+- Aligned tech stack with M1-M7 MVP scope (7 months)

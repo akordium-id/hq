@@ -173,7 +173,7 @@ Memberdayakan 677,000+ nazhir di Indonesia dengan teknologi modern untuk mengopt
 
 ---
 
-## 5. Fitur Utama (6 Core Features)
+## 5. Fitur Utama (5 Core Features)
 
 ### Feature 1: Registrasi Aset Wakaf
 
@@ -369,83 +369,7 @@ Memberdayakan 677,000+ nazhir di Indonesia dengan teknologi modern untuk mengopt
 
 ---
 
-### Feature 5: Sertifikat Digital Wakaf dengan Blockchain Record
-
-**Description:** Immutable digital certificates menggunakan public blockchain technology untuk transparency, verification, dan trust.
-
-**Blockchain Integration:**
-
-1. **Platform Choice:**
-   - **Primary:** Polygon (layer-2 Ethereum) untuk low gas fees
-   - **Alternative:** Ethereum mainnet untuk high-value certificates
-   - **Reasoning:** Polygon offers < $0.01 per transaction vs Ethereum's $5-50, making it practical untuk mass adoption
-
-2. **Smart Contract Architecture:**
-   - **Waqf Certificate Registry:** Smart contract untuk storing certificate hashes
-   - **NFT/Token System:** ERC-721 token untuk setiap waqf certificate
-   - **Ownership Tracking:** Immutable record dari certificate ownership
-   - **Transfer Events:** Log semua certificate transfers dan updates
-
-3. **Certificate Generation:**
-   - **Digital Certificate:** Professional certificate design dengan QR code
-   - **Blockchain Hash:** SHA-256 hash stored di Polygon blockchain
-   - **Metadata Storage:** Certificate metadata stored di IPFS (decentralized storage)
-   - **Wallet Integration:** Certificate linked to nazhir's crypto wallet
-
-**Verification System:**
-
-1. **QR Code Verification:**
-   - **Unique QR Code:** Every certificate has unique QR code
-   - **Public Verification:** Anyone can scan QR code untuk verify authenticity
-   - **Blockchain Explorer:** Link ke Polygon explorer untuk verification
-   - **Offline Verification:** Download certificate dengan embedded hash untuk offline verification
-
-2. **Public Transparency:**
-   - **Certificate Registry:** Public registry di blockchain explorer
-   - **Asset Details:** Asset details visible di blockchain metadata
-   - **Ownership Proof:** Immutable proof dari ownership
-   - **Anti-Fraud:** Prevent fake certificates atau double-spending
-
-**Use Cases:**
-
-1. **Wakaf Certificate Verification:**
-   - Nazhir generate certificate saat wakf asset registered
-   - Certificate stored di blockchain secara permanent
-   - Public/authorities dapat verify kapan saja
-   - Tidak bisa dipalsukan atau dimanipulasi
-
-2. **Donation Transparency:**
-   - Wakif receives blockchain certificate untuk proof of donation
-   - Certificate includes donation details (amount, date, purpose)
-   - Public verification bahwa donation valid
-   - Increased trust dan transparency
-
-3. **Regulatory Compliance:**
-   - BWI atau authorities can verify waqf certificates
-   - Immutable audit trail untuk compliance
-   - Prevent fraud atau mismanagement
-   - Streamlined reporting process
-
-**Cost Management:**
-
-1. **Gas Fee Optimization:**
-   - **Batch Processing:** Batch multiple certificates dalam single transaction untuk reduce costs
-   - **Polygon Layer-2:** Low gas fees (average Rp 50-100 per certificate)
-   - **Gas Fee Recovery:** Charge Rp 50,000 per certificate untuk recover costs (included dalam Medium/Large plans)
-
-2. **Storage Optimization:**
-   - **IPFS Storage:** Store large documents di IPFS (cheap, decentralized)
-   - **On-Chain Hash:** Store only document hash di blockchain (minimal gas cost)
-   - **Lazy Minting:** Mint certificate hanya saat requested oleh user
-
-**Implementation Phases:**
-- **Phase 1 (MVP):** Certificate generation dengan QR code (manual verification)
-- **Phase 2 (v1.1):** Polygon integration untuk blockchain storage
-- **Phase 3 (v2.0):** Advanced features (NFT, smart contracts, automated compliance)
-
----
-
-### Feature 6: Multi-Currency Support untuk Wakaf Internasional
+### Feature 5: Multi-Currency Support untuk Wakaf Internasional
 
 **Description:** Comprehensive multi-currency accounting system untuk nazhir managing international waqf atau receiving foreign donations.
 
@@ -517,7 +441,45 @@ Memberdayakan 677,000+ nazhir di Indonesia dengan teknologi modern untuk mengopt
 
 ---
 
-## 6. Future Features (Premium Only - Roadmap v1.2+)
+## 6. Future Features (Post-MVP - Roadmap v1.2+)
+
+### Blockchain Certificate System (Post-MVP - Optional Add-on)
+
+**Status:** Post-MVP Enhancement (M9-M10) - Tidak diperlukan untuk core functionality
+
+**Description:** Immutable digital certificates menggunakan public blockchain technology untuk transparency, verification, dan trust. Tersedia sebagai optional add-on dengan biaya Rp 50,000 per certificate.
+
+**Blockchain Integration:**
+
+1. **Platform Choice:**
+   - **Primary:** Polygon (layer-2 Ethereum) untuk low gas fees
+   - **Alternative:** Ethereum mainnet untuk high-value certificates
+   - **Reasoning:** Polygon offers < $0.01 per transaction vs Ethereum's $5-50
+
+2. **Smart Contract Architecture:**
+   - **Waqf Certificate Registry:** Smart contract untuk storing certificate hashes
+   - **NFT/Token System:** ERC-721 token untuk setiap waqf certificate
+   - **Ownership Tracking:** Immutable record dari certificate ownership
+
+3. **Certificate Generation:**
+   - **Digital Certificate:** Professional certificate design dengan QR code
+   - **Blockchain Hash:** SHA-256 hash stored di Polygon blockchain
+   - **Metadata Storage:** Certificate metadata stored di IPFS
+
+**Verification System:**
+- **QR Code Verification:** Unique QR code untuk setiap certificate
+- **Public Verification:** Anyone can scan QR code untuk verify authenticity
+- **Blockchain Explorer:** Link ke Polygon explorer untuk verification
+- **Anti-Fraud:** Prevent fake certificates atau double-spending
+
+**Cost Management:**
+- **Gas Fees:** Rp 50-100 per certificate (Polygon)
+- **Gas Fee Recovery:** Charge Rp 50,000 per certificate (optional add-on)
+- **Batch Processing:** Reduce costs dengan batch issuance
+
+**Note:** WaqfWise berfungsi penuh tanpa blockchain. Sertifikat PDF standar tersedia di core product.
+
+---
 
 ### AI-Powered Features
 
@@ -608,30 +570,41 @@ Memberdayakan 677,000+ nazhir di Indonesia dengan teknologi modern untuk mengopt
 ### Competitive Advantages
 
 **1. Waqf-Specific Features:**
-- PSAK 109 compliant reporting templates
-- BWI standard reporting
+- PSAK 109 compliant reporting templates (one-click BWI reports)
+- BWI standard reporting (validated templates)
 - Wakf-specific terminology dan workflows
 - Sharia-compliant by design
+- *Competitors: Excel (manual), generic accounting (not PSAK 109 specific)*
 
-**2. Technology Leadership:**
-- **First** dengan blockchain certificate verification di Indonesia
-- Multi-currency support untuk international waqf
+**2. Technology & User Experience:**
 - Modern tech stack (TALL Stack, Livewire, FluxUI)
+- Intuitive UI designed untuk non-accountants
+- Bahasa Indonesia interface (no language barrier)
+- Mobile-responsive design
 - API-first design untuk integrations
+- *Competitors: Excel (steep learning curve), enterprise software (complex, English-only)*
 
-**3. Accessibility & Pricing:**
+**3. Public Transparency Portal:**
+- Real-time donor dashboards untuk transparency
+- Aggregate financial transparency (privacy-safe)
+- Impact metrics visualization
+- Social sharing capabilities
+- *Competitors: Excel (no public access), accounting software (private only)*
+
+**4. Sharia Payment Integration:**
+- BSI and BNI Syariah direct integration
+- Recurring donations support
+- Sharia compliance badges
+- Multiple payment methods (VA, e-wallets)
+- *Competitors: Generic software (no sharia gateways), Excel (manual payments)*
+
+**5. Accessibility & Pricing:**
 - Free Basic tier untuk market penetration
 - Affordable Premium tiers (Rp 500K-5M/month vs competitors Rp 2-10M/month)
-- Bahasa Indonesia interface (no language barrier)
-- Mobile-first design
+- Freemium model dengan clear upgrade path
+- *Competitors: Custom ERP (Rp 500M+), QuickBooks (Rp 500K-2M/month)*
 
-**4. Trust & Transparency:**
-- Blockchain transparency untuk immutable records
-- Public donor portal untuk accountability
-- Open Source Basic tier (build trust)
-- Comprehensive audit trail
-
-**5. Local Expertise:**
+**6. Local Expertise:**
 - Deep understanding dari Indonesian waqf regulations
 - Partnership opportunities dengan BWI, Kemenag, MUI
 - Local payment gateway integration (BSI, BNI Syariah)
@@ -650,7 +623,7 @@ Memberdayakan 677,000+ nazhir di Indonesia dengan teknologi modern untuk mengopt
 - **Enterprise (custom):** Rp 10-50M/month
 
 **Secondary Revenue:**
-- **Blockchain Certificate Fees:** Rp 50,000 per certificate (gas fee recovery)
+- **Blockchain Certificate Fees:** Rp 50,000 per certificate (optional add-on, post-MVP)
 - **Training Services:** Rp 5,000,000 per session
 - **Data Migration:** Rp 2,000,000 per 100 assets
 - **White-Label Licensing:** 2× base price
@@ -674,9 +647,9 @@ Memberdayakan 677,000+ nazhir di Indonesia dengan teknologi modern untuk mengopt
 **Upsell Triggers:**
 - Asset count limit (approaching 10 assets → upgrade to Small)
 - Need BWI compliance reports (upgrade to Medium)
-- Need blockchain certificates (upgrade to Medium)
 - Need multi-currency (upgrade to Medium)
 - Need advanced features (upgrade to Large)
+- Want blockchain certificates (optional add-on - any tier)
 
 **Retention Strategies:**
 - Annual pricing discount (17% savings)
@@ -712,7 +685,7 @@ Memberdayakan 677,000+ nazhir di Indonesia dengan teknologi modern untuk mengopt
 - **Asset Under Management (AUM):**
   - 1,000+ waqf assets registered
   - Rp 10+ Milyar total asset value
-  - 10,000+ blockchain certificates issued
+  - 100% BWI compliance rate (PSAK 109)
 
 - **Customer Metrics:**
   - Rp 1M customer acquisition cost (CAC)
@@ -767,8 +740,8 @@ Memberdayakan 677,000+ nazhir di Indonesia dengan teknologi modern untuk mengopt
 - Documentation dan guides
 
 **What Stays Proprietary:**
-- Premium features (blockchain certificates, BWI compliance templates)
-- Advanced analytics algorithms
+- Premium features (BWI compliance templates, advanced analytics)
+- Blockchain integration (optional post-MVP add-on)
 - API integrations (payment gateways, Kemenag database)
 - Branding dan design assets
 
@@ -782,11 +755,11 @@ Memberdayakan 677,000+ nazhir di Indonesia dengan teknologi modern untuk mengopt
 ### Premium Tier: Proprietary License
 
 **Proprietary Features:**
-- **Blockchain Integration:** Smart contract code, certificate generation
 - **BWI Compliance Templates:** Proprietary report templates
 - **Advanced Analytics:** Proprietary algorithms dan models
 - **API Access:** Rate-limited API access dengan authentication
 - **Premium Support:** Professional support services
+- **Blockchain Integration (Optional):** Post-MVP add-on, Smart contract code, certificate generation
 
 **Licensing Model:**
 - Source available untuk review (transparency)
@@ -802,43 +775,41 @@ Memberdayakan 677,000+ nazhir di Indonesia dengan teknologi modern untuk mengopt
 
 ---
 
-## 11. Development Phases
+## 11. Development Phases (M1-M10 Milestones)
 
-### Phase 1: MVP Foundation (Q4 2024 - Q1 2025)
-- [ ] Core user authentication dan multi-role access
-- [ ] Asset registration (tanah, bangunan, uang, saham)
-- [ ] Donor (Wakif) management
-- [ ] Basic financial recording (PSAK 109 compliant)
-- [ ] Simple reporting (neraca, arus kas)
-- [ ] Document management system
+### Phase 1: MVP Foundation (M1-M4) - 16 weeks
+- [ ] M1: Core Infrastructure & Authentication
+- [ ] M2: Asset Registration System (tanah, bangunan, uang, saham)
+- [ ] M3: Donor Management & Financial Recording (PSAK 109 compliant)
+- [ ] M4: BWI Compliance & Advanced Reporting
+- **🎉 M4 = MVP Complete** (Core features + compliance)
 
-### Phase 2: Premium Features (Q2 2025 - Q3 2025)
-- [ ] BWI compliance report templates
-- [ ] Blockchain certificate generation (Polygon integration)
-- [ ] Multi-currency support
-- [ ] Advanced analytics dashboard
-- [ ] Public transparency portal
-- [ ] Payment gateway integration (Midtrans, BSI, BNI Syariah)
+### Phase 2: Premium Features (M5-M7) - 12 weeks
+- [ ] M5: Sharia Payment Gateway Integration (Midtrans, BSI, BNI Syariah)
+- [ ] M6: Multi-Currency Support
+- [ ] M7: Public Transparency Portal
+- **🎉 M7 = Premium MVP Complete** (All core features)
 
-### Phase 3: Scale & Optimize (Q4 2025 - Q2 2026)
-- [ ] Mobile apps (iOS & Android)
-- [ ] API ecosystem dan webhooks
-- [ ] Advanced automation features
-- [ ] Enterprise features (SSO, custom integrations)
-- [ ] White-label solution
+### Phase 3: Mobile Optimization (M8) - 4 weeks
+- [ ] M8: Mobile Responsive & Performance (PWA, NOT native apps)
 
-### Phase 4: Innovation & AI (H2 2026+)
-- [ ] AI-powered asset valuation
-- [ ] Predictive analytics
-- [ ] Smart contract automation
-- [ ] DeFi integration (syariah-compliant)
-- [ ] International expansion
+### Phase 4: Post-MVP Enhancements (M9-M10) - 20 weeks
+- [ ] M9: Blockchain Certificate System (OPTIONAL - Post-MVP)
+- [ ] M10: Advanced Features & Scale (API, webhooks, multi-institution)
+
+**Timeline:** 7 months to MVP (M1-M7), 12 months full roadmap (M1-M10)
 
 ---
 
 **Last Updated:** 2026-01-06
-**Product Spec Version:** 1.0.0-concept
+**Product Spec Version:** 1.1.0-strategy (MVP Scope: M1-M7, Blockchain: Post-MVP)
 **Maintainer:** Najib - Akordium Lab
+
+**Key Changes (v1.1.0):**
+- Repositioned blockchain from core feature to post-MVP (M9-M10)
+- Updated MVP scope to M1-M7 (7 months, realistic for one developer)
+- Restructured competitive positioning to 4-pillar strategy (PSAK 109, Transparency, UX, Sharia Payments)
+- Removed blockchain from Premium tiers (now optional add-on)
 
 **Next Steps:**
 1. Customer validation: Interview 20-50 nazhir untuk validate problem dan pricing

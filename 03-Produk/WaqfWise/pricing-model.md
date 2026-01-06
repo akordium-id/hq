@@ -95,7 +95,7 @@ Dokumen ini menjelaskan secara detail model pricing WaqfWise.com. Kami menggunak
 
 **Restrictions:**
 - Tidak bisa menggunakan "WaqfWise" branding untuk commercial offerings
-- Premium features (blockchain, BWI templates) tetap proprietary
+- Premium features (BWI templates, advanced analytics) tetap proprietary
 - No official support dari WaqfWise team
 
 ---
@@ -142,37 +142,31 @@ Dokumen ini menjelaskan secara detail model pricing WaqfWise.com. Kami menggunak
 - ✅ Audit trail otomatis untuk compliance
 - ✅ Regulatory update notifications
 
-**2. Blockchain Certificates**
-- ✅ Digital waqf certificates dengan blockchain records
-- ✅ Immutable verification via public blockchain (Ethereum/Polygon)
-- ✅ QR code untuk certificate verification
-- ✅ Smart contract registry untuk waqf assets
-
-**3. Multi-Currency Support**
+**2. Multi-Currency Support**
 - ✅ Multi-currency accounting (IDR, USD, SGD, MYR, EUR)
 - ✅ Automatic exchange rate integration
 - ✅ Consolidated multi-currency financial reports
 - ✅ Cross-border waqf management
 
-**4. Advanced Analytics**
+**3. Advanced Analytics**
 - ✅ Asset performance analytics
 - ✅ Donor trends dan insights
 - ✅ Financial forecasting
 - ✅ Custom report builder
 
-**5. Automation Features**
+**4. Automation Features**
 - ✅ Automatic recurring donation processing
 - ✅ Scheduled report generation
 - ✅ Payment reconciliation automation
 - ✅ Email/SMS notification workflows
 
-**6. Priority Support**
+**5. Priority Support**
 - ✅ Email support (response <24 hours)
 - ✅ WhatsApp support untuk critical issues
 - ✅ Onboarding session (1x setup training)
 - ✅ Dedicated account manager (Large plan)
 
-**7. API Access**
+**6. API Access**
 - ✅ RESTful API access
 - ✅ Webhook support
 - ✅ Developer documentation
@@ -249,10 +243,11 @@ Dokumen ini menjelaskan secara detail model pricing WaqfWise.com. Kami menggunak
 
 ### Paid Add-Ons
 
-**1. Blockchain Certificate Gas Fee Recovery**
+**1. Blockchain Certificate Gas Fee Recovery (Post-MVP - Optional Add-On)**
 - **Price:** Rp 50,000 per certificate issued
 - **Purpose:** Recover gas fee costs untuk Ethereum/Polygon transactions
-- **Note:** Included di Medium dan Large plans (first 100 certificates/month free)
+- **Status:** Post-MVP feature (M9-M10) - optional add-on, tidak required untuk core functionality
+- **Note:** Available untuk semua plans sebagai add-on
 
 **2. Custom Training Session**
 - **Price:** Rp 5,000,000 per session (3 hours, online)
@@ -334,9 +329,10 @@ Dokumen ini menjelaskan secara detail model pricing WaqfWise.com. Kami menggunak
 **Fixed Costs (Monthly):**
 - Infrastructure (Oracle Cloud + Coolify): Rp 1,500,000
 - Software licenses (Sentry, SendGrid, etc.): Rp 1,000,000
-- Blockchain gas fees (estimated): Rp 500,000
 - Domain & SSL: Rp 100,000
-- **Total Fixed Costs:** Rp 3,100,000/month
+- **Total Fixed Costs:** Rp 2,600,000/month
+
+**Note:** Blockchain gas fees (post-MVP) charged as customer add-on (Rp 50,000 per certificate)
 
 **Variable Costs (Per Customer):**
 - Support time: Rp 50,000/month per customer (estimated)
@@ -411,7 +407,7 @@ Break-Even Volume = Fixed Costs / Contribution Margin
 **3. Competitive Positioning:**
 - Most competitors charge expensive flat fees (if they exist)
 - WaqfWise offers affordable entry point with free tier
-- Premium features (blockchain, BWI compliance) are unique differentiators
+- Premium features (BWI compliance automation, public transparency portal, sharia payments) are unique differentiators
 
 **4. Social Impact:**
 - Free tier supports digitalisasi wakf di semua economic levels
@@ -489,7 +485,7 @@ This creates perception yang affordable ("hanya Rp 500K!") meskipun average pric
 ❌ "Harga Rp 2,000,000/bulan"
 ✅ "Hemat 40+ jam per bulan = Rp 4,000,000+ nilai waktu saved"
 ✅ "PSAK 109 compliant = Avoid jutaan rupiah denda regulatory"
-✅ "Blockchain transparency = Increased donor trust, more donations"
+✅ "Public transparency portal = Increased donor trust, more donations"
 ```
 
 ### Social Proof
@@ -568,7 +564,7 @@ A: Tidak ada. Month-to-month payment, cancel anytime. Tapi kami sarankan annual 
 A: System akan notify dan memberikan option untuk upgrade plan atau remove old assets. Grace period 30 days sebelum automatic upgrade.
 
 **Q: Apakah ada additional fee untuk blockchain certificates?**
-A: Rp 50,000 per certificate untuk gas fee recovery. Medium dan Large plans include 100 certificates/month free.
+A: Rp 50,000 per certificate untuk gas fee recovery (Post-MVP optional add-on). Blockchain certificates adalah fitur tambahan yang tidak diperlukan untuk core functionality. WaqfWise berfungsi penuh tanpa blockchain.
 
 **Q: Apakah support included dalam pricing?**
 A: Yes. Email support (response <24 hours) included. Priority support (WhatsApp/Phone) available untuk Medium dan Large plans.
@@ -625,7 +621,14 @@ A: Ya, 30-day free trial untuk semua Premium plans. No credit card required.
 ---
 
 **Last Updated:** 2026-01-06
-**Pricing Model Version:** 1.0.0
+**Pricing Model Version:** 1.1.0-strategy (Blockchain: Post-MVP Optional)
 **Maintainer:** Najib - Akordium Lab
+
+**Key Changes (v1.1.0):**
+- Removed blockchain certificates from Premium tiers (now optional add-on)
+- Repositioned blockchain as post-MVP feature (M9-M10)
+- Updated value proposition to emphasize BWI compliance automation dan public transparency
+- Removed blockchain gas fees dari fixed costs (now charged as add-on)
+- Updated competitive positioning to 4-pillar strategy
 
 **Note:** Pricing model ini theoretical dan belum divalidasi dengan customers. Disarankan untuk melakukan customer research sebelum finalizing pricing. A/B testing recommended setelah launch untuk optimize pricing.

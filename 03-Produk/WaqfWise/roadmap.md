@@ -12,222 +12,377 @@
 
 ---
 
-## 📅 Development Timeline
+## 📅 Development Timeline (M1-M10 Milestones)
 
-### 🥚 Phase 1: MVP Foundation (Q4 2024 - Q1 2025)
+### 🥚 Phase 1: MVP Foundation (M1-M4) - 16 weeks
 
-**Timeline:** Dec 2024 - Mar 2025 | **Status:** In Progress
-
-#### Goals
-
-- [ ] Meluncurkan platform manajemen wakaf dasar dengan freemium model
-- [ ] Akuisisi 20+ pilot nazhir institutions (50% free tier, 50% premium)
-- [ ] Validasi product-market fit dengan 6 core features
-- [ ] Establish basic compliance dengan PSAK 109 dan BWI standards
-
-#### Features
-
-**Core Nazhir Features:**
-
-- [ ] **User Management:** Multi-role authentication (Super Admin, Nazhir, Staff) - *Priority: High*
-- [ ] **Asset Registration:** Database tanah, bangunan, uang, saham wakaf dengan GPS mapping - *Priority: High*
-- [ ] **Donor Management (Wakif):** CRUD donor profiles dan donation history - *Priority: High*
-- [ ] **Basic Reporting:** Laporan sederhana (neraca, arus kas) - *Priority: Medium*
-
-**Financial Features:**
-
-- [ ] **Donation Recording:** Manual dan online donation tracking - *Priority: High*
-- [ ] **Basic Accounting:** Simple double-entry bookkeeping - *Priority: Medium*
-- [ ] **Bank Integration:** Connection ke rekening bank nazhir - *Priority: Medium*
-
-**Compliance Features:**
-
-- [ ] **Wakaf Certificate:** PDF certificate generation otomatis (Basic tier: PDF only, Premium: Blockchain) - *Priority: High*
-- [ ] **BWI Report Templates:** Automated BWI-standard reports - *Priority: High*
-- [ ] **PSAK 109 Accounting:** Double-entry bookkeeping compliant dengan PSAK 109 - *Priority: High*
-- [ ] **Basic Audit Trail:** Activity logging untuk compliance - *Priority: Medium*
-
-**Freemium Model:**
-
-- [ ] **Basic Tier (Free):** 10 assets max, basic reporting, community support, MIT license - *Priority: High*
-- [ ] **Premium Tier (Paid):** Unlimited assets, BWI templates, blockchain certificates, priority support - *Priority: High*
-- [ ] **Subscription Management:** Stripe/PayPal payment processing untuk subscriptions - *Priority: Medium*
-
-#### Technical Goals
-
-- [ ] **Performance:** Load time < 4 seconds untuk dashboard
-- [ ] **Security:** Basic security measures (auth, input validation, encryption)
-- [ ] **Scalability:** Support 100+ concurrent users
-- [ ] **Testing:** 80% code coverage
-- [ ] **UI Framework:** Implement FluxUI component library untuk faster development - *Priority: Medium*
-
-#### Success Metrics
-
-- **Launch:** Maret 2025
-- **Pilot Nazhir:** 20+ active institutions
-- **User Retention (30 days):** 70%
-- **Asset Under Management:** IDR 1+ Milyar
-- **Monthly Active Users:** 50+
+**Timeline:** Weeks 1-16 | **Status:** Ready to Start
 
 ---
 
-### 🚀 Phase 2: Blockchain, Sharia Payments & Market Validation (Q2-Q3 2025)
+#### **M1: Core Infrastructure & Authentication** (Weeks 1-4)
 
-**Timeline:** Apr 2025 - Sep 2025 | **Status:** Planning
+**Objective:** Establish foundation with multi-user authentication
 
-#### Goals
+**Technical Deliverables:**
+- [ ] Laravel 10 + PostgreSQL 15 project setup
+- [ ] Multi-tenant institution schema (institutions, users, roles)
+- [ ] Laravel Sanctum authentication dengan role-based access
+- [ ] 4 roles: Super Admin, Nazhir, Staff, Viewer
+- [ ] Basic FluxUI layout components
+- [ ] Admin approval workflow untuk institution registration
 
-- [ ] Scale ke 100+ nazhir institutions
-- [ ] Launch blockchain certificate system (key differentiator)
-- [ ] Integrate sharia-compliant payment gateways (BSI, BNI Syariah)
-- [ ] Improve user experience dan mobile support
-- [ ] Establish public transparency portal
+**Tech Stack:**
+- Laravel: `laravel/sanctum`, `spatie/laravel-permission`
+- FluxUI: `<flux:layout>`, `<flux:nav>`, `<flux:modal>`
+- Database: Multi-tenant dengan `institution_id` FKs
+- Testing: Pest dengan 80% coverage target
 
-#### Features
+**Success Criteria:**
+- [ ] User can register institution dengan document upload
+- [ ] Admin approval workflow functional
+- [ ] Multi-user role assignment works
+- [ ] Session timeout dan password reset operational
 
-**🔗 Blockchain Certificate System (NEW):**
+**Complexity:** Low | **Dependencies:** None
 
-- [ ] **IPFS Integration:** Store certificate metadata di decentralized storage - *Priority: High*
-- [ ] **Smart Contract Deployment:** ERC-721 NFT contract di Polygon blockchain - *Priority: High*
-- [ ] **Certificate Issuance:** Generate immutable blockchain certificates - *Priority: High*
-- [ ] **QR Code Verification:** Scan to verify certificate authenticity - *Priority: High*
-- [ ] **Batch Issuance:** Gas optimization untuk multiple certificates - *Priority: Medium*
-- [ ] **Gas Fee Recovery:** Charge Rp 50,000 per certificate - *Priority: Medium*
+---
 
-**🕌 Sharia-Compliant Payment Gateways (NEW):**
+#### **M2: Waqf Asset Registration System** (Weeks 5-8)
 
-- [ ] **BSI Integration:** Bank Syaria Indonesia payment methods (VA, Mobile, Auto-Debit) - *Priority: High*
-- [ ] **BNI Syariah Integration:** Alternative sharia payment gateway - *Priority: Medium*
-- [ ] **Multi-Gateway Router:** Smart routing based on donor preference - *Priority: Medium*
-- [ ] **Sharia Compliance Badge:** Display syaria certification untuk payments - *Priority: High*
-- [ ] **Midtrans Integration:** Online donation processing (general) - *Priority: High*
-- [ ] **Recurring Donations:** Monthly auto-debit for donors - *Priority: High*
+**Objective:** CRUD untuk semua 4 waqf asset types
 
-**Enhanced Financial Management:**
+**Technical Deliverables:**
+- [ ] Asset forms: tanah, bangunan, wakaf uang, saham
+- [ ] Document upload (Cloudflare R2 integration)
+- [ ] GPS mapping (Google Maps API)
+- [ ] Asset categorization dengan custom tags
+- [ ] Asset status workflow (Active, Under Development, Dispute, Inactive)
+- [ ] Search dan filtering
 
-- [ ] **Advanced Accounting:** Full PSAK 109 compliance modules - *Priority: High*
-- [ ] **BWI Report Templates:** One-click BWI standard report generation - *Priority: High*
-- [ ] **Asset Valuation:** Automated property valuation integration - *Priority: Medium*
-- [ ] **Multi-Currency Support:** Support untuk 10 currencies (IDR, USD, SGD, MYR, EUR, SAR, AED, KWD, JPY, CNY) - *Priority: Medium*
-- [ ] **Exchange Rate Sync:** Daily automatic exchange rate updates - *Priority: Medium*
+**Tech Stack:**
+- Laravel: `spatie/laravel-medialibrary` untuk uploads
+- FluxUI: `<flux:form>`, `<flux:input>`, `<flux:select>`, `<flux:textarea>`
+- Alpine.js untuk dynamic form fields
+- Database: JSONB columns untuk flexible metadata
+- Maps: Google Maps JavaScript API
 
-**📊 Public Transparency Portal (NEW):**
+**Success Criteria:**
+- [ ] All 4 asset types registerable dengan appropriate fields
+- [ ] Document upload works (PDF/images, max 10MB)
+- [ ] GPS coordinates captured correctly
+- [ ] Asset list view dengan search/filter functional
 
-- [ ] **Public Dashboard:** waqfwise.com/public/{institution_slug} - *Priority: High*
-- [ ] **Asset Transparency:** Display total assets, breakdown by type (aggregate data only) - *Priority: High*
-- [ ] **Financial Transparency:** Donations vs disbursements, program funding - *Priority: High*
-- [ ] **Real-Time Updates:** Livewire polling untuk live data - *Priority: Medium*
-- [ ] **Mobile Optimization:** Responsive design untuk mobile donors - *Priority: High*
-- [ ] **Social Sharing:** Share dashboard link ke social media - *Priority: Low*
+**Complexity:** Medium | **Dependencies:** M1
 
-**User Experience Enhancements:**
+---
 
-- [ ] **Mobile Responsive Design:** Full mobile optimization - *Priority: High*
-- [ ] **FluxUI Components:** Implement pre-built UI components untuk consistency - *Priority: Medium*
-- [ ] **Dashboard Improvements:** Advanced analytics dan insights - *Priority: Medium*
-- [ ] **Bulk Operations:** Mass data import/export capabilities - *Priority: Medium*
-- [ ] **User Onboarding:** Guided setup process untuk new nazhir - *Priority: High*
+#### **M3: Donor Management & Financial Recording** (Weeks 9-12)
 
-**Communication Features:**
+**Objective:** Track donors dan manual financial transactions
 
-- [ ] **Email Notifications:** Automated donor receipts dan updates - *Priority: High*
-- [ ] **Donor Portal:** Self-service portal untuk Wakif - *Priority: Medium*
-- [ ] **Annual Reports:** Automated annual report generation - *Priority: Low*
+**Technical Deliverables:**
+- [ ] Donor profile CRUD (individual, corporate, recurring)
+- [ ] Manual donation recording (cash, bank transfer)
+- [ ] Double-entry bookkeeping engine
+- [ ] PSAK 109 compliant chart of accounts
+- [ ] Journal entry system dengan auto debit/credit
+- [ ] Bank reconciliation interface
+- [ ] PDF receipt generation
 
-#### Success Metrics
+**Tech Stack:**
+- Laravel: `barryvdh/laravel-dompdf` untuk PDFs
+- Database: `accounts`, `journal_entries`, `journal_entry_lines` tables
+- Financial Engine: Custom service class untuk PSAK 109 validation
+- PDF: Blade templates dengan dompdf
 
-- **Active Nazhir:** 100+ institutions (target: 50 free, 50 premium)
+**Success Criteria:**
+- [ ] Donor profiles dengan segmentation work
+- [ ] Manual donations generate proper journal entries
+- [ ] Trial balance generates correctly
+- [ ] Balance Sheet dan Income Statement export ke PDF
+- [ ] Bank reconciliation matches internal vs bank statements
+
+**Complexity:** High | **Dependencies:** M2
+
+---
+
+#### **M4: BWI Compliance & Advanced Reporting** (Weeks 13-16)
+
+**Objective:** Automated regulatory reporting (MVP capstone)
+
+**Technical Deliverables:**
+- [ ] BWI standard report templates (Laporan Aset, Laporan Keuangan, Laporan Pemanfaatan)
+- [ ] One-click BWI report generation
+- [ ] Automated journal entry rules engine
+- [ ] Asset depreciation calculation
+- [ ] Period closing procedures
+- [ ] Advanced analytics (asset trends, donor retention)
+- [ ] Report scheduling dan email automation
+
+**Tech Stack:**
+- Laravel: `laravel-scheduler` untuk recurring reports
+- Reporting: Custom report builder dengan Blade templates
+- PDF: Advanced layouts dengan tables dan charts
+- Charts: Chart.js integration
+- Email: SendGrid dynamic templates
+
+**Success Criteria:**
+- [ ] BWI reports match official templates (validated)
+- [ ] Journal entries auto-generate untuk common transactions
+- [ ] Asset depreciation calculates correctly
+- [ ] Users can schedule monthly reports via email
+- [ ] Trial balance meets PSAK 109 requirements
+
+**Complexity:** High | **Dependencies:** M3
+
+**🎉 M4 = MVP COMPLETE (Core features + compliance)**
+
+**Phase 1 Success Metrics:**
+- **Launch:** 16 weeks
+- **Pilot Nazhir:** 20+ beta institutions
+- **User Retention (30 days):** 70%
+- **Asset Under Management:** IDR 1+ Milyar
+- **Monthly Active Users:** 50+
+- **BWI Compliance:** 100% PSAK 109 compliant
+
+---
+
+### 🚀 Phase 2: Premium Features (M5-M7) - 12 weeks
+
+**Timeline:** Weeks 17-28 | **Status:** Planning
+
+---
+
+#### **M5: Sharia Payment Gateway Integration** (Weeks 17-20)
+
+**Objective:** Online donation processing
+
+**Technical Deliverables:**
+- [ ] Midtrans integration (VA, GoPay, OVO, DANA, Credit Cards)
+- [ ] BSI (Bank Syaria Indonesia) API integration
+- [ ] BSI Virtual Account generation
+- [ ] Payment webhook handling dan reconciliation
+- [ ] Recurring donation setup
+- [ ] Multi-gateway payment router
+- [ ] Donation receipt automation
+
+**Tech Stack:**
+- Midtrans PHP SDK
+- BSI API client (custom Guzzle wrapper)
+- Laravel queues untuk async processing
+- SendGrid untuk payment confirmations
+- Database: `payments`, `payment_webhooks`, `recurring_donations`
+
+**Success Criteria:**
+- [ ] Midtrans payments work (VA, e-wallets)
+- [ ] BSI VA generation dan reconciliation
+- [ ] Payment webhooks 95%+ success rate
+- [ ] Recurring donations auto-charge monthly
+- [ ] Donation receipts email instantly
+
+**Complexity:** High | **Dependencies:** M3
+
+---
+
+#### **M6: Multi-Currency Support** (Weeks 21-24)
+
+**Objective:** International waqf dengan multi-currency accounting
+
+**Technical Deliverables:**
+- [ ] 10 currency support (IDR, USD, SGD, MYR, EUR, SAR, AED, KWD, JPY, CNY)
+- [ ] Exchange rate API integration (Bank Indonesia + fixer.io)
+- [ ] Daily exchange rate sync
+- [ ] Multi-currency financial reports
+- [ ] Currency conversion calculations
+- [ ] Historical exchange rate tracking
+
+**Tech Stack:**
+- Bank Indonesia API
+- fixer.io untuk backup rates
+- Laravel console commands untuk daily sync
+- Redis untuk exchange rate caching (24-hour TTL)
+- Database: `exchange_rates` table
+
+**Success Criteria:**
+- [ ] Assets recordable in 10 currencies
+- [ ] Exchange rates sync daily automatically
+- [ ] Multi-currency trial balance functional
+- [ ] Foreign donations process in original currency
+- [ ] Historical rates preserved untuk accurate reporting
+
+**Complexity:** Medium | **Dependencies:** M3
+
+---
+
+#### **M7: Public Transparency Portal** (Weeks 25-28)
+
+**Objective:** Donor-facing dashboard untuk trust dan transparency
+
+**Technical Deliverables:**
+- [ ] Public dashboard route (`/public/{institution_slug}`)
+- [ ] Asset transparency (aggregate data only)
+- [ ] Financial transparency (donations vs disbursements)
+- [ ] Program funding breakdown
+- [ ] Impact metrics visualization
+- [ ] Privacy controls (exclude sensitive data)
+- [ ] Real-time updates (Livewire polling)
+- [ ] Social sharing integration
+- [ ] Mobile-responsive public UI
+
+**Tech Stack:**
+- Public routes without auth
+- Livewire real-time polling
+- Chart.js untuk visualizations
+- Redis untuk fast dashboard loading
+- SEO: Meta tags dan Open Graph
+- FluxUI custom public components
+
+**Success Criteria:**
+- [ ] Public dashboard loads < 2 seconds
+- [ ] Asset/financial data displays accurately (aggregate only)
+- [ ] Privacy controls prevent sensitive data leaks
+- [ ] Mobile-responsive design
+- [ ] Social sharing preview cards work
+- [ ] Real-time updates (5-second polling)
+
+**Complexity:** Medium | **Dependencies:** M4
+
+**🎉 M7 = PREMIUM MVP COMPLETE (All core features)**
+
+**Phase 2 Success Metrics:**
+- **Active Nazhir:** 100+ institutions (50 free, 50 premium)
 - **Asset Under Management:** IDR 10+ Milyar
 - **Monthly Donations:** IDR 500+ Juta
-- **Blockchain Certificates Issued:** 5,000+ certificates
-- **Certificate Verification Rate:** 95% successful verification
 - **Sharia Payment Gateway Adoption:** 60% dari donations via BSI/BNI Syariah
 - **Freemium Conversion Rate:** 15% free-to-paid conversion
-- **User Satisfaction:** 4.5/5 rating dari surveys
+- **User Satisfaction:** 4.5/5 rating
 - **Performance:** Load time < 3 seconds
 - **Public Dashboard Views:** 10,000+ unique visitors/month
 
 ---
 
-### 🏆 Phase 3: Growth, AI & Ecosystem Integration (Q4 2025 - Q2 2026)
+### 📱 Phase 3: Mobile Optimization (M8) - 4 weeks
 
-**Timeline:** Oct 2025 - Jun 2026 | **Status:** Future Planning
+**Timeline:** Weeks 29-32 | **Status:** Future
 
-#### Goals
+---
 
-- [ ] Scale ke 500+ nazhir institutions
-- [ ] Optimize freemium conversion funnel (target: 20% conversion)
-- [ ] Build ecosystem partnerships
-- [ ] Expand ke enterprise features dengan advanced AI
-- [ ] Grow MRR ke IDR 100+ Juta/bulan
+#### **M8: Mobile Responsive & Performance** (Weeks 29-32)
 
-#### Features
+**Objective:** Optimize untuk mobile devices (NOT native apps)
 
-**Business Intelligence & AI Analytics:**
+**Technical Deliverables:**
+- [ ] Full mobile-responsive UI audit dan optimization
+- [ ] Touch-friendly interface components
+- [ ] Offline PWA capabilities (service worker)
+- [ ] Mobile-specific UX patterns
+- [ ] Performance optimization (lazy loading, code splitting)
+- [ ] Push notification support (web push)
+- [ ] Responsive dashboard layouts
 
-- [ ] **Advanced Analytics Dashboard:** Predictive analytics dan trends - *Priority: High*
-- [ ] **AI-Powered Insights:** Predictive asset growth analysis, donor retention prediction - *Priority: Medium*
-- [ ] **Benchmarking:** Industry comparison dan best practices - *Priority: Medium*
-- [ ] **Custom Reports:** Drag-and-drop report builder - *Priority: Medium*
-- [ ] **Data Export:** Multiple format exports (Excel, PDF, CSV) - *Priority: High*
+**Tech Stack:**
+- Tailwind CSS responsive utilities
+- PWA: Laravel PWA package atau custom service worker
+- Web Push: Laravel Web Push notifications
+- Performance: Laravel Vite optimizations
 
-**Enterprise Features:**
+**Success Criteria:**
+- [ ] 100% mobile-responsive pages
+- [ ] PWA installable on mobile devices
+- [ ] Page load < 3 seconds on 4G mobile
+- [ ] Touch targets minimum 44x44 pixels
+- [ ] Web push notifications functional
 
-- [ ] **Multi-institution Support:** Manage multiple nazhir accounts - *Priority: High*
-- [ ] **Advanced User Permissions:** Granular access control - *Priority: High*
-- [ ] **API Access:** RESTful API untuk third-party integrations - *Priority: Medium*
-- [ ] **White-labeling:** Custom branding untuk enterprise clients - *Priority: Medium*
+**Complexity:** Medium | **Dependencies:** M7
 
-**Enhanced Blockchain Features:**
+**Phase 3 Success Metrics:**
+- **Mobile Traffic:** 50%+ dari total traffic
+- **PWA Installations:** 1,000+ active installs
+- **Mobile Performance:** < 3s load time on 4G
+- **Push Notification Delivery:** 95%+ success rate
 
-- [ ] **Smart Contract Upgrades:** Proxy pattern untuk contract improvements - *Priority: Medium*
-- [ ] **Certificate Transfer:** Transfer ownership antar nazhir institutions - *Priority: Low*
-- [ ] **Gas Optimization:** Layer-2 scaling solutions - *Priority: Medium*
-- [ ] **Blockchain Analytics:** Track certificate issuance trends - *Priority: Low*
+---
 
-**Ecosystem Integration:**
+### 🔗 Phase 4: Post-MVP Enhancements (M9-M10) - 20 weeks
 
-- [ ] **BSI/BNI Syariah API:** Direct API integration untuk corporate accounts - *Priority: High*
-- [ ] **Property Management Integration:** Integration dengan property platforms - *Priority: Medium*
-- [ ] **Kemenag Integration:** Direct submission ke Kementerian Agama database - *Priority: High*
-- [ ] **Muamalat Bank:** Additional sharia payment gateway - *Priority: Low*
+**Timeline:** Weeks 33-52 | **Status:** Future Planning
 
-**Mobile Application:**
+---
 
-- [ ] **Native Mobile Apps:** iOS dan Android applications - *Priority: High*
-- [ ] **Offline Support:** Basic offline functionality - *Priority: Medium*
-- [ ] **Push Notifications:** Real-time updates dan alerts - *Priority: High*
-- [ ] **Biometric Authentication:** Secure login methods - *Priority: Medium*
-- [ ] **QR Code Scanner:** Mobile certificate verification - *Priority: High*
+#### **M9: Blockchain Certificate System** (Weeks 33-40) - **OPTIONAL**
 
-#### Success Metrics
+**Objective:** Immutable blockchain certificates (OPTIONAL - Post-MVP)
 
+**Technical Deliverables:**
+- [ ] IPFS integration (Pinata API)
+- [ ] Polygon smart contract deployment (ERC-721)
+- [ ] Certificate issuance workflow
+- [ ] QR code generation dengan blockchain explorer links
+- [ ] Certificate verification page
+- [ ] Gas fee estimation dan recovery (Rp 50,000/certificate)
+- [ ] Batch issuance untuk gas optimization
+
+**Tech Stack:**
+- Polygon (MATIC) blockchain
+- Solidity ^0.8.0, Hardhat
+- Web3.php untuk blockchain interaction
+- IPFS/Pinata untuk metadata
+- Ethers.js v6 untuk wallet connection
+
+**Success Criteria:**
+- [ ] Smart contract deployed on Polygon
+- [ ] Certificate issuance < 30 seconds
+- [ ] QR verification works 95%+ of time
+- [ ] Gas fees stay under Rp 100 per certificate
+- [ ] Batch issuance reduces gas by 50%+
+
+**Complexity:** High | **Dependencies:** M2
+
+**Note:** This milestone is completely optional dan can be deferred indefinitely. WaqfWise functions fully without blockchain.
+
+---
+
+#### **M10: Advanced Features & Scale** (Weeks 41-52)
+
+**Objective:** Enterprise features, optimization
+
+**Technical Deliverables:**
+- [ ] API access untuk third-party integrations
+- [ ] Webhook system untuk real-time sync
+- [ ] Multi-institution management
+- [ ] Advanced analytics dashboard
+- [ ] Database read replicas untuk reporting
+- [ ] White-label solution (custom branding)
+- [ ] Advanced user permissions (granular ACL)
+
+**Tech Stack:**
+- Laravel API Resources dengan rate limiting
+- Symfony Webhook library
+- PostgreSQL read replicas dengan pgBouncer
+- Redis clustering
+- Sentry untuk monitoring
+
+**Success Criteria:**
+- [ ] API handles 10K+ requests/day
+- [ ] Webhooks deliver 99%+ reliability
+- [ ] Read replicas reduce report time by 70%
+- [ ] White-label deployed untuk 5+ customers
+
+**Complexity:** High | **Dependencies:** All previous
+
+**Phase 4 Success Metrics:**
 - **Active Nazhir:** 500+ institutions
 - **Asset Under Management:** IDR 100+ Milyar
 - **Revenue:** IDR 50+ Juta/bulan dari subscriptions
 - **Enterprise Customers:** 20+ large institutions
 - **API Usage:** 1M+ API calls/month
+- **Blockchain Certificates (Optional):** 10,000+ certificates issued
+- **Certificate Verification Rate:** 95%+ success
 
 ---
 
-### 🌟 Phase 4: Market Leadership & Innovation (H2 2026+)
-
-**Timeline:** Jul 2026+ | **Status:** Future Planning
-
-#### Goals
-
-- [ ] Become market leader di Indonesian waqf management
-- [ ] Expand ke regional markets (Southeast Asia)
-- [ ] Introduce AI-powered insights
-- [ ] Build blockchain-based transparency
-
-#### Future Features (Exploratory)
-
-- [ ] **AI-Powered Insights:** Predictive asset growth analysis
-- [ ] **Blockchain Integration:** Immutable transaction records
-- [ ] **Smart Contracts:** Automated distribution processes
-- [ ] **International Expansion:** Multi-country compliance
-- [ ] **Digital Asset Wakaf:** Cryptocurrency waqf management
+**Total Timeline:** 7 months ke MVP (M1-M7), 12 months full roadmap (M1-M10)
 
 ---
 
@@ -253,31 +408,40 @@
 
 ## 🔄 Release Schedule
 
-### Current Sprint ([Sprint 4])
+### Current Milestone (M1: Foundation)
 
-**Timeline:** Dec 1 - Dec 15, 2024
+**Timeline:** Weeks 1-4 (4 weeks)
 
-**Focus:** User Authentication & Asset Registration Core
+**Focus:** Core Infrastructure & Multi-User Authentication
 
-**Features:**
+**Deliverables:**
 
 - [ ] **Multi-role Authentication:** User management system
-- [ ] **Waqf Asset Registration:** Basic CRUD untuk aset wakaf
-- [ ] **Dashboard UI:** Main dashboard dengan asset overview
-- [ ] **Database Schema:** Core data models implementation
+- [ ] **Institution Schema:** Multi-tenant database structure
+- [ ] **FluxUI Layout:** Basic admin dashboard
+- [ ] **Admin Approval Workflow:** Institution registration approval
 
-**Upcoming Sprints:**
+**Upcoming Milestones:**
 
-- **Sprint 5:** Donor Management & Basic Reporting
-- **Sprint 6:** Financial Recording & Certificate Generation
-- **Sprint 7:** Compliance Features & Testing
+- **M2 (Weeks 5-8):** Waqf Asset Registration System
+- **M3 (Weeks 9-12):** Donor Management & Financial Recording
+- **M4 (Weeks 13-16):** BWI Compliance & Advanced Reporting [🎉 MVP Complete]
+- **M5 (Weeks 17-20):** Sharia Payment Gateway Integration
+- **M6 (Weeks 21-24):** Multi-Currency Support
+- **M7 (Weeks 25-28):** Public Transparency Portal [🎉 Premium MVP Complete]
+- **M8 (Weeks 29-32):** Mobile Responsive & Performance
+- **M9 (Weeks 33-40):** Blockchain Certificate System (OPTIONAL)
+- **M10 (Weeks 41-52):** Advanced Features & Scale
 
 ---
 
 ## 📈 Success Metrics & KPIs
 
-### Product Metrics
+### Product Metrics (Year 1)
 
+- **M4 (MVP Launch):** 20+ beta nazhir institutions
+- **M7 (Premium MVP):** 100+ total institutions (70 free, 30 premium)
+- **M10 (Scale):** 500+ institutions
 - **Nazhir Acquisition:** New nazhir institutions per month
 - **User Engagement:** Daily/Monthly active nazhir users
 - **Retention Rate:** 30/60/90 day retention untuk institutions
@@ -286,28 +450,23 @@
 ### Business Metrics
 
 - **Asset Under Management (AUM):** Total value of managed waqf assets
+  - **M4:** IDR 1+ Milyar
+  - **M7:** IDR 10+ Milyar
+  - **M10:** IDR 100+ Milyar
 - **Monthly Recurring Revenue (MRR):** Subscription income
+  - **M7:** Rp 155K MRR target
+  - **M10:** Rp 1M+ MRR with enterprise tier
 - **Customer Lifetime Value (CLV):** Average value per nazhir institution
 - **Customer Acquisition Cost (CAC):** Marketing spend per new nazhir
 
 ### Compliance Metrics
 
-- **PSAK 109 Compliance Score:** Audit compliance percentage
+- **PSAK 109 Compliance Score:** Audit compliance percentage (target: 100%)
 - **BWI Report Accuracy:** 100% BWI standard report compliance
-- **Blockchain Certificate Verification:** 95% successful verification rate
-- **Sharia Payment Gateway Adoption:** 60% dari total donations via BSI/BNI Syariah
 - **Regulatory Reporting:** 100% on-time regulatory submissions
 - **Audit Trail Completeness:** 100% activity logging
 - **Data Accuracy:** Financial data accuracy rate
-- **Freemium Conversion Rate:** 15% free-to-paid conversion (Phase 2), 20% (Phase 3)
-
-### Blockchain Metrics
-
-- **Certificates Issued:** Total blockchain certificates minted
-- **Verification Success Rate:** 95%+ successful QR code scans
-- **Gas Fee Efficiency:** Average Rp 50-100 per certificate
-- **Smart Contract Security:** Third-party audit completed
-- **IPFS Storage Success:** 99.9% uptime untuk certificate metadata
+- **Freemium Conversion Rate:** 15% free-to-paid conversion (M7), 20% (M10)
 
 ### Technical Metrics
 
@@ -315,6 +474,15 @@
 - **Reliability:** 99.5% uptime SLA
 - **Scalability:** Support 1000+ concurrent users
 - **Security:** Zero critical security incidents
+- **Test Coverage:** 80% code coverage target
+
+### Blockchain Metrics (Optional - M9-M10)
+
+- **Certificates Issued:** Total blockchain certificates minted
+- **Verification Success Rate:** 95%+ successful QR code scans
+- **Gas Fee Efficiency:** Average Rp 50-100 per certificate
+- **Smart Contract Security:** Third-party audit completed
+- **IPFS Storage Success:** 99.9% uptime untuk certificate metadata
 
 ---
 
@@ -401,6 +569,14 @@
 ---
 
 **Last Updated:** 2026-01-06
-**Next Review Date:** 2025-04-01
-**Owner:** Product Team (WaqfWise)
-**Reviewers:** Development Team, Islamic Scholars, Compliance Experts, Blockchain Specialists
+**Roadmap Version:** 2.0.0-milestones (M1-M10 Structure)
+**Next Review Date:** After M4 completion
+**Owner:** Najib (Lead Developer & Product Owner)
+**Reviewers:** Development Team, Islamic Scholars, Compliance Experts
+
+**Key Changes (v2.0.0):**
+- Restructured from 4-phase roadmap to 10 technical milestones (M1-M10)
+- Moved blockchain from Phase 2 to M9-M10 (post-MVP, optional)
+- Updated MVP scope to M1-M7 (7 months, realistic for one developer)
+- Added detailed technical deliverables per milestone
+- Repositioned mobile strategy to responsive/PWA (not native apps)

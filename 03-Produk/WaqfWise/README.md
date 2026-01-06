@@ -13,9 +13,9 @@
 
 ## 📋 Quick Overview
 
-**Tagline:** Sistem Manajemen Wakaf Terpercaya & Transparan
+**Tagline:** Sistem Manajemen Wakaf dengan PSAK 109 Compliance & Transparansi Publik
 
-**Deskripsi Singkat:** Platform SaaS freemium yang membantu lembaga Nazhir (pengelola wakaf) mengelola aset wakaf, melaporkan donatur (Wakif), menyalurkan manfaat wakaf, dan mengeluarkan sertifikat blockchain yang immutable. Terintegrasi dengan BWI (Badan Wakaf Indonesia) dan sesuai standar PSAK 109.
+**Deskripsi Singkat:** Platform SaaS freemium yang membantu lembaga Nazhir (pengelola wakaf) mengelola aset wakaf, melaporkan donatur (Wakif), menyalurkan manfaat wakaf, dan menghasilkan laporan BWI otomatis. Terintegrasi dengan BWI (Badan Wakaf Indonesia) dan sesuai standar PSAK 109.
 
 **Target Market:**
 
@@ -24,20 +24,22 @@
 - **Tertiary:** Lembaga pendidikan Islam (pesantren, universitas Islam)
 - **Quaternary:** International waqf institutions (multi-currency support)
 
-**6 Fitur Utama:**
+**5 Fitur Utama:**
 
 1. **Registrasi Aset Wakaf** - Tanah, bangunan, uang (cash waqf), saham dengan document upload & GPS mapping
 2. **Tracking Pemanfaatan & Distribusi** - Beneficiary management, distribution tracking, impact measurement
 3. **Laporan Keuangan BWI** - PSAK 109 compliant accounting, automated report generation
 4. **Portal Transparansi Publik** - Public dashboard untuk donors, asset & financial transparency
-5. **Sertifikat Blockchain** - Immutable certificate verification via Polygon (ERC-721 NFT)
-6. **Multi-Currency Support** - Wakaf internasional dengan IDR, USD, SGD, MYR, EUR, SAR, AED, KWD, JPY, CNY
+5. **Multi-Currency Support** - Wakaf internasional dengan IDR, USD, SGD, MYR, EUR, SAR, AED, KWD, JPY, CNY
+
+**Fitur Tambahan (Post-MVP):**
+
+- **Sertifikat Blockchain** (Optional) - Immutable certificate verification via Polygon (ERC-721 NFT) - Tersedia sebagai add-on premium
 
 **Problem yang Diselesaikan:**
 - Manual waqf management (Excel, kertas) - tidak transparan dan error-prone
 - Lack of transparency untuk wakif (donors) - tidak tahu bagaimana wakaf digunakan
 - Difficulty complying dengan BWI reporting standards - complex PSAK 109 requirements
-- No immutable proof of waqf certificates - mudah dipalsukan
 - Managing international waqf - multi-currency challenges dan exchange rate volatility
 
 ## 🛠 Tech Stack
@@ -69,12 +71,12 @@
   - **Midtrans** - General online donations (GoPay, OVO, DANA, Credit Cards)
   - **Bank Syaria Indonesia (BSI)** - Primary sharia payment (VA, Mobile, Auto-Debit)
   - **BNI Syariah** - Alternative sharia payment (DPSN certified)
-- **Blockchain:**
+- **Post-MVP Blockchain Services (Optional):**
   - **Polygon (MATIC)** - Layer-2 Ethereum untuk certificate NFTs (ERC-721)
   - **IPFS/Pinata** - Decentralized storage untuk certificate metadata
   - **Infura/Alchemy** - Blockchain node providers
 - **Email:** SendGrid
-- **Storage:** Cloudflare R2 + IPFS (decentralized)
+- **Storage:** Cloudflare R2
 - **Analytics:** Google Analytics + Custom Analytics
 
 ## 💻 Local Development Setup
@@ -250,10 +252,9 @@ php artisan test --watch
 - [ ] **Total Wakaf Assets Managed:** Target IDR 100+ Milyar (Year 1)
 - [ ] **Monthly Donations:** Target growth 20% month-over-month
 - [ ] **User Engagement:** 80% monthly active users
-- [ ] **Blockchain Certificates Issued:** Target 10,000+ certificates (Year 1)
-- [ ] **Certificate Verification Rate:** Target 95% verification success rate
 - [ ] **Multi-Currency Transactions:** Target 10+ currencies supported by Year 2
 - [ ] **Freemium Conversion:** Target 10-15% free-to-paid conversion rate
+- [ ] **BWI Compliance Rate:** 100% PSAK 109 compliant reports (Year 1)
 
 ### Technical Metrics
 
@@ -354,11 +355,13 @@ Lihat [changelog.md](./changelog.md) untuk riwayat perubahan WaqfWise.
 
 Lihat [known-issues.md](./known-issues.md) untuk daftar bug dan limitation yang diketahui.
 
-## 🔗 Blockchain Integration
+## 🔗 Blockchain Integration (Post-MVP Feature)
 
-### Immutable Certificates
+### Immutable Certificates (Optional Add-on)
 
-**Why Blockchain:**
+**Status:** Post-MVP Enhancement (M9-M10) - Tidak diperlukan untuk core functionality
+
+**Why Blockchain (Optional):**
 - **Transparency:** Public verification untuk certificate authenticity
 - **Trust:** Immutable proof yang certificate tidak dipalsukan
 - **Accessibility:** Anyone can verify via blockchain explorer (Polygonscan)
@@ -376,11 +379,18 @@ Lihat [known-issues.md](./known-issues.md) untuk daftar bug dan limitation yang 
 - **Environment:** 99.9% more energy-efficient than Ethereum proof-of-work
 - **Cost Recovery:** Charge Rp 50,000 per certificate → Rp 49,900 margin
 
+**Note:** Blockchain certificates are optional add-ons. WaqfWise berfungsi penuh tanpa blockchain.
+
 ---
 
 **Last Updated:** 2026-01-06
-**Version:** 0.3.0-alpha
+**Version:** 0.5.0-alpha (MVP Scope: M1-M7 - 7 months)
 **Maintainer:** Najib Zain (Lead Developer)
+
+**MVP Timeline:**
+- **M4 (16 weeks):** MVP Complete - Core features + BWI compliance
+- **M7 (28 weeks):** Premium MVP - Payments, multi-currency, public portal
+- **M9-M10:** Post-MVP enhancements - Blockchain (optional), advanced features
 
 ## 💰 Pricing & Licensing
 
@@ -398,9 +408,10 @@ Lihat [known-issues.md](./known-issues.md) untuk daftar bug dan limitation yang 
 - **Medium Plan:** Rp 2,000,000/month (up to 200 assets)
 - **Large Plan:** Rp 5,000,000/month (unlimited assets)
 - **License:** Proprietary (source available tapi requires subscription)
-- **Features:** BWI reporting templates, blockchain certificates, multi-currency, advanced analytics
+- **Features:** BWI reporting templates, multi-currency, advanced analytics, public transparency portal
 - **Support:** Priority email & WhatsApp
 - **Discount:** 2 months free (17% discount) jika bayar tahunan
+- **Optional Add-on:** Blockchain certificates (Rp 50,000 per certificate)
 
 **Enterprise Plan (Custom Pricing):**
 - **Pricing:** Rp 10-50M/month

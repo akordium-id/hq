@@ -369,7 +369,13 @@
 
 ---
 
-### Epic 6: Blockchain Certificate Management
+### Epic 6: Blockchain Certificate Management (POST-MVP - Future Enhancement)
+
+**Status:** Post-MVP Feature (M9-M10) - NOT required for core functionality
+
+**Note:** Epic ini akan dikembangkan setelah MVP selesai (M1-M7). WaqfWise berfungsi sepenuhnya tanpa blockchain certificates.
+
+---
 
 #### User Story 6.1: Generate Blockchain Certificates
 
@@ -400,7 +406,9 @@
 - Gas fee estimation system
 - Batch certificate issuance (gas optimization)
 
-**Priority:** High | **Estimated Effort:** 21 story points | **Sprint:** 6
+**Priority:** High | **Estimated Effort:** 21 story points | **Sprint:** 25+ (Post-MVP)
+
+---
 
 #### User Story 6.2: Verify Blockchain Certificates
 
@@ -429,7 +437,7 @@
 - Mobile-responsive verification UI
 - Caching untuk verified certificates
 
-**Priority:** High | **Estimated Effort:** 13 story points | **Sprint:** 6
+**Priority:** High | **Estimated Effort:** 13 story points | **Sprint:** 25+ (Post-MVP)
 
 ---
 
@@ -879,7 +887,14 @@
 
 ---
 
-**Last Updated:** 2024-12-01
-**Next Review Date:** 2025-01-01
-**Product Owner:** Product Team (WaqfWise)
-**Development Team:** Backend Team, Frontend Team, QA Team
+**Last Updated:** 2026-01-06
+**User Stories Version:** 1.1.0-milestones (Blockchain: Post-MVP)
+**Next Review Date:** After M4 completion
+**Product Owner:** Najib (Lead Developer & Product Owner)
+**Development Team:** Backend Team
+
+**Key Changes (v1.1.0):**
+- Marked Epic 6 (Blockchain Certificate Management) as Post-MVP feature
+- Moved blockchain user stories from Sprint 6 to Sprint 25+ (post-MVP)
+- Aligned sprint assignments with M1-M7 MVP scope
+- Clarified WaqfWise functions fully without blockchain
