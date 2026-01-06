@@ -495,7 +495,190 @@ vs Notion: "Kami specialized untuk feedback management, out-of-the-box"
 
 ---
 
-## 12. Notes & Design Decisions
+## 13. Market Validation Strategy ⭐
+
+**Philosophy:** Validate demand before heavy investment in development.
+
+### Phase 1: Pre-Build Validation (Week 1-2)
+
+**1. Landing Page Test**
+- Create simple landing page dengan waitlist signup
+- Share in: "Indonesia SaaS Founders" FB, "ID Startup Chat" Telegram, LinkedIn
+- **Success Criteria:** 50+ email signups = PROCEED
+- **Failure Criteria:** < 20 signups = RECONSIDER PRODUCT
+
+**2. Problem Discovery Interviews**
+- Interview 10 Indonesian SaaS founders (Series A ke bawah)
+- Ask: "How do you currently manage user feedback?"
+- Don't mention Katauser initially - understand pain first
+- **Success Criteria:** 4/5 confirm "feedback management is major pain"
+- **Failure Criteria:** 3/5 say "Google Sheets works fine" = RECONSIDER
+
+**3. Competitive Analysis**
+- Sign up for UserJot free trial
+- Use for 1 week dengan real feedback
+- Document: What sucks? What's missing?
+
+**Go/No-Go Decision (End of Week 2):**
+- ✅ **GO:** 50+ waitlist AND 4/5 pain confirmation
+- ❌ **NO GO:** < 20 waitlist OR < 3/5 pain confirmation
+
+### Phase 2: Build-Measure-Learn (Weeks 3-12)
+
+**Weekly Validation Checkpoints:**
+- Week 3: Share wireframes dengan 10 target users - do they "get it"?
+- Week 6: Alpha version dengan 5 friendly users - can they use it without help?
+- Week 9: Beta dengan 10 users - do they return next week?
+- Week 12: Ask beta users: "Would you pay Rp 299k/month for this?"
+
+### Phase 3: Post-Launch PMF Validation (Month 3-6)
+
+**Sean Ellis Test (Month 3 & 6):**
+- Survey 40 active users: "How would you feel if Katauser disappeared?"
+- **PMF Score:** % who say "very disappointed"
+- **> 40%:** Strong PMF → Scale aggressively
+- **25-40%:** Moderate PMF → Iterate on positioning
+- **< 25%:** Weak PMF → Pivot or persevere
+
+**Key Metrics to Track Weekly:**
+- Weekly Active Users (WAU)
+- Week 1, Week 4, Week 12 cohort retention
+- Free → Paid conversion rate
+- Net Promoter Score (NPS)
+- Sean Ellis Test Score (monthly)
+
+**Go/No-Go Gates:**
+- **Month 3:** Sean Ellis > 40%? → Proceed to public launch
+- **Month 6:** 25 paying customers + Sean Ellis > 40%? → Scale features
+- **If PMF not achieved:** Iterate on value proposition, don't invest in advanced features
+
+---
+
+## 14. Risk Mitigation Plan
+
+### Risk 1: Market Validation Fails (Primary Concern) 🔴
+
+**Probability:** Medium | **Impact:** Critical
+
+**Mitigation Strategy:**
+1. **Pre-build validation** (Week 1-2) kills bad ideas early with minimal investment
+2. **Beta testing** (Month 1) validates before public launch
+3. **Monthly PMF surveys** track market fit continuously
+4. **Pivot option:** If SaaS market doesn't work, pivot to e-commerce (Milestone 8)
+
+**Exit Strategy:**
+If Month 6 shows < 10 paying customers:
+1. Reinterview customers: Why aren't you paying?
+2. Test pricing: Is Rp 299k too high? Try Rp 99k
+3. Test positioning: Is problem not painful enough?
+4. **Final option:** Open-source Katauser, use as portfolio piece, learn from it
+
+### Risk 2: Solo Founder Burnout
+
+**Probability:** Medium | **Impact:** High
+
+**Mitigation Strategy:**
+- Hire part-time developer (Month 3): Frontend dev for UI, you focus on backend
+- Customer support automation: FAQ, chatbot, canned responses
+- Scope creep prevention: Strict milestone boundaries, say "no" to feature requests
+- Community building: Empower users to help each other (Katauser Users Telegram group)
+- **Critical:** Take 1 day off per week, no exceptions
+
+### Risk 3: Competitor Response
+
+**Probability:** Low | **Impact:** Medium
+
+**Scenario:** UserJot launches Indonesian version at lower price
+
+**Mitigation Strategy:**
+- First-mover advantage: Capture market share before they respond
+- Telegram Bot moat: UserJot can't easily replicate (Western-centric, not focus on Indo)
+- Community relationships: Deep connections in Indonesian SaaS ecosystem
+- Product superiority: Simpler, faster, better UX (no enterprise bloat)
+- **Response time:** If they copy, differentiate further dengan integrations (Tokopedia, Shopee)
+
+### Risk 4: Tanstack Start Ecosystem Too Small
+
+**Probability:** Low | **Impact:** Medium
+
+**Mitigation Strategy:**
+- Fallback to Next.js: If Tanstack Start lacks libraries, switch in Month 2
+- Use stable components: React Query, Zod, Tailwind (work everywhere)
+- Monitor ecosystem: Weekly check on Tanstack Start GitHub issues
+
+**Decision Point:** End of Month 2 - if > 10 blocking issues, switch to Next.js
+
+### Risk 5: Low Free-to-Paid Conversion
+
+**Probability:** Medium | **Impact:** High
+
+**Mitigation Strategy:**
+- Pricing experiments (Milestone 4): Test Rp 199k, Rp 299k, Rp 399k
+- Value communication: Clearly show premium benefits on pricing page
+- Upgrade triggers: Email when users hit 80% of free limits
+- Annual discount: 2 months free (17% discount) untuk higher LTV
+- Exit intent popups: Offer 20% discount when users leave pricing page
+
+**Target:** 10% free-to-paid conversion (industry average for SaaS)
+
+### Risk 6: Churn Rate Too High
+
+**Probability:** Medium | **Impact:** High
+
+**Mitigation Strategy:**
+- Proactive customer success: Email new customers after 7 days, offer help
+- Onboarding improvement: Tutorial videos, in-app guides
+- Community building: Peer support reduces support burden
+- Feature requests: Public roadmap shows users you're listening
+- **Target:** < 5% monthly churn rate (healthy untuk SaaS)
+
+---
+
+## 15. Exit Strategy
+
+**Philosophy:** Know when to pivot, persevere, or stop.
+
+### Scenarios and Responses
+
+**Scenario A: Strong PMF (Month 6: Sean Ellis > 40%, 25+ customers)**
+- **Action:** Scale aggressively, hire part-time developer, invest in features
+- **Goal:** Reach 50 customers by Year 1, profitable business
+
+**Scenario B: Moderate PMF (Month 6: Sean Ellis 25-40%, 10-25 customers)**
+- **Action:** Iterate on positioning and pricing
+- **Experiments:**
+  - Test lower price point (Rp 99k-199k)
+  - Test different positioning (focus on Telegram? focus on simplicity?)
+  - Double down on what's working (if e-commerce integrations popular, pivot to that)
+- **Timeline:** 3 more months to improve PMF, then re-evaluate
+
+**Scenario C: Weak PMF (Month 6: Sean Ellis < 25%, < 10 customers)**
+- **Action:** Pivot or stop
+- **Pivot Options:**
+  1. **Pivot to e-commerce:** Tokopedia/Shopee sellers need unified review management (Milestone 8)
+  2. **Pivot to agency market:** White-label solution untuk digital agencies
+  3. **Open-source:** Make Katauser open-source, build reputation, monetize via hosting/support
+- **Stop Criteria:** If Month 9 still shows < 10 customers, discontinue project
+
+### Learning Outcomes (Regardless of Success/Failure)
+
+**If Katauser succeeds:**
+- Validate Indonesian SaaS market appetite untuk affordable tools
+- Build profitable SaaS business (Rp 15M+ MRR)
+- Learn Go + Tanstack Start in production
+- Build network in Indonesian tech community
+
+**If Katauser fails:**
+- Learn about product-market fit validation
+- Build portfolio piece (Go + Tanstack Start)
+- Write "post-mortem" blog post (builds credibility)
+- Apply lessons to next project
+
+**Net outcome:** Valuable learning experience regardless of commercial success
+
+---
+
+## 16. Notes & Design Decisions
 
 ### Why Go + Tanstack Start?
 

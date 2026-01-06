@@ -5,7 +5,7 @@
 ## 🏷️ Product Identity
 
 - **Nama Produk:** Katauser
-- **Status:** 🥚 Concept (Idea Phase)
+- **Status:** 🧪 Validation Phase (Pre-Build Validation)
 - **Repo Code:** `github.com/akordium/katauser` (Not created yet)
 - **Live Site:** https://katauser.com (Planned)
 - **Staging:** https://staging.katauser.com (Planned)
@@ -214,6 +214,25 @@ npm run test:e2e
 - [ ] **Feedbacks Collected:** Target 50,000+ feedbacks di year 1
 - [ ] **User Engagement:** DAU/MAU ratio > 20%
 
+### Product-Market Fit Metrics ⭐
+
+**Current Status:** Pre-Validation Phase
+
+- [ ] **Sean Ellis Test Score:** Target > 40% (Month 3 & 6)
+  - Question: "How would you feel if Katauser disappeared tomorrow?"
+  - Very disappointed / Somewhat disappointed / Not disappointed
+- [ ] **Pre-Validation Waitlist:** Target 50+ signups (Week 1-2)
+- [ ] **Beta User PMF:** Target 5/10 say "I would pay" (Month 3)
+- [ ] **Net Promoter Score (NPS):** Target > 40
+- [ ] **Week 1 Retention:** Target > 40%
+- [ ] **Week 4 Retention:** Target > 30%
+- [ ] **Week 12 Retention:** Target > 20%
+- [ ] **Free → Paid Conversion:** Target 10% (industry average)
+
+**Go/No-Go Gates:**
+- **Month 3:** Sean Ellis > 40% → Proceed to public launch
+- **Month 6:** 25 paying customers + Sean Ellis > 40% → Scale features
+
 ### Technical Metrics
 
 - [ ] **Response Time:** < 300ms average API response
@@ -358,5 +377,6 @@ vs UserJot ($15-79/month ≈ Rp 240rb - 1.2 juta):
 ---
 
 **Last Updated:** 2026-01-06
-**Version:** 0.1.0-concept
+**Version:** 0.2.0-validation
+**Status:** 🧪 Validation Phase - Pre-build market validation
 **Maintainer:** Najib - Akordium Lab

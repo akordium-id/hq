@@ -1,28 +1,66 @@
 # 💬 Katauser - Product Roadmap
 
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Last Updated:** 2026-01-06
-**Status:** Planning Phase
+**Status:** Validation Phase 🧪
 
 ---
 
 ## 📋 Roadmap Overview
 
-Roadmap ini menggambarkan rencana pengembangan **Katauser** dari konsep hingga produk matang. Fokus utama adalah MVP (Minimum Viable Product) yang bisa diluncurkan ke pasar Indonesian dalam 12-16 minggu.
+Roadmap ini menggambarkan rencana pengembangan **Katauser** dari konsep hingga produk matang. Fokus utama adalah **validasi product-market fit** sebelum investasi berat di fitur lanjut.
 
 ### Development Philosophy
 
-**"Progressive Enhancement"**
-- Mulai dengan core features yang paling valuable
-- Validasi dengan real users segera mungkin
-- Iterate berdasarkan feedback
-- Tidak over-engineer untuk use cases yang belum ada
+**"Validate First, Build Second"** ⭐
+- Pre-build validation: Landing page + problem interviews (Week 1-2)
+- Minimum Viable Product: 12 weeks untuk core features
+- Iteration berdasarkan user feedback
+- Go/No-Go decisions di Month 3 dan Month 6 berdasarkan PMF metrics
 
 ### Success Criteria
 
-- **MVP Launch:** 3 core features working, 10 beta users active
-- **Product-Market Fit:** 25 paying customers, < 5% churn rate
+- **Pre-Validation:** 50+ waitlist signups, 4/5 founders confirm pain point
+- **MVP Launch:** 10 beta users active, 5+ say "I would pay"
+- **Product-Market Fit (Month 6):** Sean Ellis Test > 40%, 25 paying customers
 - **Year 1 Target:** 50 paying customers, Rp 15M+ MRR
+
+---
+
+## 🧪 Phase 0: Pre-Validation (Week 1-2) **CRITICAL**
+
+**Goal:** Validasi demand sebelum memulai development
+
+### Validation Experiments
+
+**1. Landing Page Test (Days 1-3)**
+- [ ] Create simple landing page: "Katauser - Feedback Management untuk Indonesian SaaS"
+- [ ] Add waitlist form: "Join early access"
+- [ ] Share di communities:
+  - [ ] "Indonesia SaaS Founders" Facebook Group
+  - [ ] "ID Startup Chat" Telegram group
+  - [ ] LinkedIn (Indonesian SaaS founders)
+- [ ] **Success Criteria:** 50+ email signups
+- [ ] **Failure Criteria:** < 20 signups → RECONSIDER PRODUCT
+
+**2. Problem Discovery Interviews (Days 4-10)**
+- [ ] Identify 10 Indonesian SaaS founders (Series A ke bawah)
+- [ ] Schedule 30-min problem interviews
+- [ ] Ask: "How do you currently manage user feedback?"
+- [ ] Document pain points dengan existing tools
+- [ ] Test pricing: "Would you pay Rp 299k/month untuk solve this?"
+- [ ] **Success Criteria:** 4/5 confirm "feedback management is major pain"
+- [ ] **Failure Criteria:** 3/5 say "Google Sheets works fine" → RECONSIDER
+
+**3. Competitive Analysis (Days 11-14)**
+- [ ] Sign up for UserJot free trial
+- [ ] Use untuk 1 week dengan real feedback
+- [ ] Identify: What sucks? What's missing?
+- [ ] Document differentiation opportunities
+
+**Go/No-Go Decision (End of Week 2):**
+- ✅ **GO:** 50+ waitlist AND 4/5 pain confirmation → Proceed to Milestone 1
+- ❌ **NO GO:** < 20 waitlist OR < 3/5 pain confirmation → Pivot or stop
 
 ---
 
@@ -177,28 +215,64 @@ Roadmap ini menggambarkan rencana pengembangan **Katauser** dari konsep hingga p
 
 ---
 
-## 🧪 Milestone 2: Beta Testing & Iteration (Weeks 13-16)
+## 🧪 Milestone 2: Beta Testing & PMF Validation (Weeks 13-16) ⭐
 
-**Goal:** Validate product-market fit, fix bugs, gather feedback
+**Goal:** **CRITICAL PMF VALIDATION** - Determine if product-market fit exists
 
-**Activities:**
+### Activities
+
+**User Engagement:**
 - [ ] Beta users actively using platform (target: 50+ feedbacks submitted)
 - [ ] Weekly feedback sessions via Google Meet
 - [ ] Bug triage dan hotfixes within 24 hours
 - [ ] Feature request prioritization
 - [ ] UX improvements based on user feedback
 
-**Deliverables:**
+**PMF Validation Experiments:**
+- [ ] **Sean Ellis Test** (Week 16): Survey 10 beta users
+  - Question: "How would you feel if Katauser disappeared tomorrow?"
+  - (a) Very disappointed (b) Somewhat disappointed (c) Not disappointed
+- [ ] **Payment Intent Test:** Add working "Upgrade" button (Rp 0 for beta)
+  - Track: How many users click upgrade?
+  - Target: 7/10 users show interest
+- [ ] **Qualitative Interviews:** 1-on-1 calls dengan each beta user
+  - Ask: "What would make you pay Rp 299k/month?"
+  - Ask: "Would you recommend Katauser to other founders? Why?"
+- [ ] **NPS Survey:** Net Promoter Score
+  - Question: "How likely are you to recommend Katauser (0-10)?"
+  - Target: NPS > 40
+
+### Deliverables
+
+**Product:**
 - [ ] List of confirmed bugs (prioritized: P0, P1, P2)
 - [ ] List of feature requests (prioritized by demand)
 - [ ] Improved onboarding flow (if needed)
 - [ ] Updated documentation based on user questions
 
-**Success Criteria:**
-- 10 beta users still active (80% retention)
-- Average NPS score > 40
-- < 5 critical bugs remaining
-- Clear v1.1 feature list
+**PMF Metrics:**
+- [ ] Sean Ellis Test Score documented
+- [ ] NPS Score documented
+- [ ] Payment Intent rate documented
+- [ ] User quotes/feedback testimonials collected
+
+### Go/No-Go Gate (End of Month 3/Week 16) 🚨
+
+**GO Criteria (Must meet ALL):**
+- ✅ 10 beta users still active (80% retention)
+- ✅ **Sean Ellis Score > 40%** (4+ users say "very disappointed")
+- ✅ **5+ users explicitly say "I would pay Rp 299k/month"**
+- ✅ Average NPS score > 40
+- ✅ < 5 critical bugs remaining
+
+**NO GO (If ANY):**
+- ❌ Sean Ellis Score < 40% → Iterate on value proposition, relaunch beta
+- ❌ Payment intent < 3/10 users → Reconsider pricing or problem importance
+- ❌ Retention < 50% → Major UX/value prop problem
+
+**Decision:**
+- If GO → Proceed to Milestone 3 (Public Launch)
+- If NO GO → Iterate 4 more weeks, re-test PMF metrics
 
 ---
 
@@ -238,11 +312,11 @@ Roadmap ini menggambarkan rencana pengembangan **Katauser** dari konsep hingga p
 
 ---
 
-## 📈 Milestone 4: v1.1 Features (Month 2-3)
+## 📈 Milestone 4: v1.1 Features & Pricing Validation (Month 2-3)
 
-**Goal:** Improve retention, increase engagement
+**Goal:** Improve retention, increase engagement, **validate optimal price point**
 
-**Features to Add:**
+### Features to Add
 
 **Email Notifications:**
 - [ ] New feedback submitted notification
@@ -276,16 +350,42 @@ Roadmap ini menggambarkan rencana pengembangan **Katauser** dari konsep hingga p
 - [ ] Autocomplete dropdown saat typing @
 - [ ] Link to user profile
 
+### Pricing Validation Experiments ⭐
+
+**A/B Price Testing:**
+- [ ] Test 3 price points: Rp 199k, Rp 299k, Rp 399k
+- [ ] Rotate pricing options untuk new visitors
+- [ ] Track conversion funnel: Visit pricing → Click upgrade → Complete payment
+- [ ] **Goal:** Identify optimal price point (maximize revenue × conversion)
+
+**Annual vs Monthly Testing:**
+- [ ] A/B test presentation: Default show monthly vs default show annual
+- [ ] Track: Which presentation drives higher annual conversion?
+- [ ] Annual discount: 2 months free (Rp 2,990,000/year vs Rp 3,588,000)
+
+**Exit Intent Popups:**
+- [ ] When user leaves pricing page, show: "Not ready to commit? Get 20% off"
+- [ ] Test discount amounts: 10%, 20%, 30%
+- [ ] Track: Does discount increase conversion or reduce perceived value?
+
 **Success Criteria:**
 - DAU/MAU ratio increases from 15% → 25%
 - Day 30 retention improves from 15% → 25%
 - Average session duration increases from 3 min → 5 min
+- **Identify winning price point** (highest conversion × revenue combo)
 
 ---
 
 ## 🔔 Milestone 5: Advanced Features (Month 4-5)
 
 **Goal:** Differentiate dari competitors, increase premium conversions
+
+**Feature Priority Decision Point (End of Month 3):**
+Survey users: "Which feature would make you upgrade to Premium?"
+- **If 40%+ say Telegram Bot:** Prioritize Telegram Bot (P0)
+- **If users rarely mention Telegram:** Prioritize Search/Categorization (P0)
+
+### Features to Build (Priority-Based)
 
 **Telegram Bot Integration** ⭐ (High Priority untuk Indonesian Market):
 - [ ] Create Telegram Bot (@KatauserBot)
@@ -328,7 +428,22 @@ Roadmap ini menggambarkan rencana pengembangan **Katauser** dari konsep hingga p
 
 ## 🤖 Milestone 6-10: Future Growth (Month 6+)
 
-### Milestone 6: v2.0 - AI-Powered Features (Month 6-8)
+### Milestone 6: v2.0 - AI-Powered Features (Month 6-8) ⚠️ **CONDITIONAL**
+
+**Go/No-Go Gate (End of Month 6):**
+**Proceed ONLY if Milestone 5 achieved:**
+- ✅ 25 paying customers
+- ✅ Sean Ellis Test > 40% (Month 6 resurvey)
+- ✅ < 5% churn rate
+- ✅ 40% DAU/MAU ratio
+
+**If PMF NOT achieved:**
+- Build simpler features instead (more templates, better onboarding)
+- Focus on customer success (reduce churn, increase engagement)
+- Double down on Telegram Bot if that's working
+- **DO NOT invest in AI features yet**
+
+**If GO, Build AI Features:**
 
 **AI Duplicate Detection:**
 - [ ] Train ML model untuk detect similar feedbacks
@@ -363,7 +478,28 @@ Roadmap ini menggambarkan rencana pengembangan **Katauser** dari konsep hingga p
 - 20% of customers use in-app widget
 - 15% of premium customers use private boards
 
-### Milestone 7: Enterprise Features (Month 9-10)
+### Milestone 7: Enterprise Features (Month 9-10) ⚠️ **CONSIDER DELAYING**
+
+**Risk Assessment:**
+- Enterprise sales require 3-6 month sales cycles
+- Demands dedicated salesperson (you're solo/part-time)
+- Custom support SLAs and compliance requirements
+- May distract from SME market focus
+
+**Recommendation:**
+**DELAY to Month 12-15 unless:**
+- ✅ You have 100+ SME customers first
+- ✅ Inbound enterprise requests (you didn't chase them)
+- ✅ Hire dedicated salesperson
+- ✅ Sustainable cash flow dari SME segment
+
+**Alternative Focus (Month 9-10):**
+- Self-service onboarding improvements
+- Documentation and tutorials
+- Customer success automation (email sequences, in-app guides)
+- Community building (Katauser Users Telegram group)
+
+**If Proceeding with Enterprise Features:**
 
 **Single Sign-On (SSO):**
 - [ ] SAML 2.0 integration
@@ -421,7 +557,40 @@ Roadmap ini menggambarkan rencana pengembangan **Katauser** dari konsep hingga p
 - 10,000+ reviews imported
 - E-commerce revenue: Rp 5M+/month
 
-### Milestone 9: Mobile Apps (Month 13-15)
+### Milestone 9: Mobile Strategy (Month 13-15) ⚠️ **PWA RECOMMENDED**
+
+**Risk Assessment:**
+- Native mobile dev = 2× effort (iOS + Android separate codebases)
+- B2B product: Most SaaS founders manage feedback dari desktop
+- High maintenance burden: App store updates, OS changes, device fragmentation
+- Expensive: iOS dev requires Mac, App Store $99/year
+
+**Recommendation: Progressive Web App (PWA) First** ⭐
+
+**Why PWA:**
+- 20% of effort vs native apps
+- Works on iOS and Android (single codebase)
+- Can be "installed" to home screen
+- Push notifications supported
+- No App Store approval process
+- Instant updates (no review process)
+- Easier to maintain (one codebase)
+
+**PWA Features:**
+- [ ] Service worker untuk offline support
+- [ ] Add to home screen prompt
+- [ ] Push notifications (Web Push API)
+- [ ] Responsive design (mobile-first)
+- [ ] Biometric authentication (WebAuthn)
+- [ ] Install checklist and tutorial
+
+**Native Apps (Conditional - Only If):**
+- [ ] > 50% of users access dari mobile
+- [ ] Users explicitly request native app
+- [ ] You have dedicated mobile developer
+- [ ] Sustainable revenue to justify investment
+
+**If Building Native:**
 
 **iOS App:**
 - [ ] Native iOS app (Swift)
@@ -435,15 +604,11 @@ Roadmap ini menggambarkan rencana pengembangan **Katauser** dari konsep hingga p
 - [ ] Offline mode (read feedbacks)
 - [ ] Biometric authentication (Fingerprint)
 
-**Cross-Platform Alternative (if native too expensive):**
-- [ ] React Native app
-- [ ] Flutter app
-- [ ] Progressive Web App (PWA)
-
 **Success Criteria:**
-- 1,000+ mobile app downloads
+- 1,000+ PWA installs OR native app downloads
 - 30%+ mobile DAU
-- App Store rating: 4.5+ stars
+- PWA: 75%+ "add to home screen" rate
+- Native (if built): App Store rating 4.5+ stars
 
 ### Milestone 10: Ecosystem & Platform (Month 16+)
 
