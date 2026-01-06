@@ -1,582 +1,678 @@
-# 💬 Katauser - Technical Architecture
+# 🛠️ Tech Stack - Katauser
 
-**Version:** 1.0.0
-**Last Updated:** 2026-01-06
-**Status:** Architecture Planning Phase
+> Technical Architecture & Implementation Details
 
----
-
-## 🏗️ Architecture Overview
-
-Katauser menggunakan **modern Go backend** dengan **React-based SSR frontend**, following Akordium Lab's migration strategy dari PHP/MySQL ke Go/PostgreSQL.
-
-### High-Level Architecture
+## 📐 Architecture Overview
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                         Users                               │
-│  (SaaS Founders, Product Managers, Agencies, E-commerce)    │
-└────────────────────────┬────────────────────────────────────┘
-                         │
-                         ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   Cloudflare CDN                            │
-│              (SSL, DDoS Protection, Caching)                │
-└────────────────────────┬────────────────────────────────────┘
-                         │
-                         ▼
-┌─────────────────────────────────────────────────────────────┐
-│              Frontend: Tanstack Start                        │
-│          (React SSR, Tailwind CSS, Tanstack Query)          │
-└────────────────────────┬────────────────────────────────────┘
-                         │ HTTP/REST
-                         ▼
-┌─────────────────────────────────────────────────────────────┐
-│               Backend: Go (Gin Framework)                    │
-│         (JWT Auth, API Controllers, Services Layer)          │
-└─────┬───────────────┬───────────────┬───────────────────────┘
-      │               │               │
-      ▼               ▼               ▼
-┌───────────┐  ┌───────────┐  ┌─────────────┐
-│PostgreSQL │  │  Redis   │  │ Midtrans API│
-│ (Primary) │  │ (Cache)  │  │ (Payments)  │
-└───────────┘  └───────────┘  └─────────────┘
+│                         Client Layer                         │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │    Browser   │  │ Telegram Bot │  │    Email     │      │
+│  │ (Tanstack    │  │   (Bot API)  │  │  (SendGrid)  │      │
+│  │   Start)     │  │              │  │              │      │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘      │
+│         │                  │                  │              │
+│         └──────────────────┼──────────────────┘              │
+│                            │                                 │
+├────────────────────────────┼─────────────────────────────────┤
+│                         CDN Layer                            │
+│  ┌────────────────────────────────────────────────────┐     │
+│  │           Cloudflare (SSL + DDoS Protection)       │     │
+│  └────────────────────────┬───────────────────────────┘     │
+│                           │                                 │
+├───────────────────────────┼─────────────────────────────────┤
+│                    Application Layer                        │
+│  ┌────────────────────────────────────────────────────┐     │
+│  │              Load Balancer (Nginx)                 │     │
+│  └────────────────────────┬───────────────────────────┘     │
+│                           │                                 │
+│           ┌───────────────┴───────────────┐                 │
+│           │                               │                 │
+│  ┌────────┴─────────┐          ┌─────────┴────────┐         │
+│  │  Frontend Server │          │  Backend Server  │         │
+│  │ (Tanstack Start) │          │      (Go API)    │         │
+│  │    - SSR/SSG     │          │   - REST API     │         │
+│  │    - React 18    │          │   - JWT Auth     │         │
+│  └────────┬─────────┘          └─────────┬────────┘         │
+│           │                               │                  │
+├───────────┼───────────────────────────────┼──────────────────┤
+│           │         Data Layer            │                  │
+│  ┌────────┴────────┐          ┌──────────┴────────┐         │
+│  │  Redis Cache    │          │   PostgreSQL DB    │         │
+│  │  - Sessions     │          │   - Primary Data   │         │
+│  │  - Rate Limit   │          │   - Relationships  │         │
+│  └─────────────────┘          └───────────────────┘         │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
 ```
+
+## 🎯 Technology Choices
+
+### Frontend: Tanstack Start
+
+**Why Tanstack Start?**
+- Modern React framework with first-class TypeScript support
+- Built-in file-based routing (similar to Next.js)
+- Server-side rendering (SSR) untuk SEO
+- Static site generation (SSG) untuk performance
+- Tanstack Query (React Query) untuk server state management
+- Better developer experience than Next.js for our use case
+
+**Tech Details:**
+```typescript
+// File structure
+app/
+├── routes/
+│   ├── index.tsx           # Homepage/landing page
+│  ── boards/
+│   │   ├── $boardId.tsx    # Public feedback board
+│   │   └── index.tsx       # Board listing
+│   ├── roadmap.tsx         # Public roadmap
+│   ├── auth/
+│   │   ├── login.tsx
+│   │   └── register.tsx
+│   └── dashboard/
+│       ├── index.tsx       # Admin dashboard
+│       ├── settings.tsx
+│       └── boards/
+│           ├── new.tsx
+│           └── $boardId.tsx
+├── components/
+│   ├── feedback-board/
+│   ├── feedback-card/
+│   ├── roadmap/
+│   └── ui/                 # Reusable UI components
+└── lib/
+    ├── api.ts              # API client
+    ├── auth.ts             # Authentication utilities
+    └── utils.ts
+```
+
+**Key Libraries:**
+- **UI:** Tailwind CSS + Headless UI + Heroicons
+- **State:** Tanstack Query (React Query) + Zustand (client state)
+- **Forms:** React Hook Form + Zod (validation)
+- **Charts:** Recharts (analytics dashboard)
+- **Markdown:** React Markdown (feedback descriptions, changelog)
 
 ---
 
-## 🖥️ Backend Stack
-
-### Framework & Language
-
-**Go (Golang) 1.21+**
+### Backend: Go 1.21+
 
 **Why Go?**
-- ✅ **High Performance:** Compiled language, fast execution (critical untuk voting system dengan high concurrency)
-- ✅ **Concurrency:** Goroutines untuk handle multiple requests efficiently
-- ✅ **Type Safety:** Catch errors at compile time, reduce runtime bugs
-- ✅ **Standard Library:** Rich built-in libraries (HTTP, JSON, crypto)
-- ✅ **Company Strategy:** Aligns dengan Akordium's PHP-to-Go migration
+- Performance dan concurrency untuk real-time features
+- Type safety dan compile-time error checking
+- Standard library yang comprehensive (bukan perlu banyak dependencies)
+- Easy deployment (single binary)
+- Good ecosystem untuk web frameworks
 
-**Web Framework:** Gin
-- Fast HTTP framework (10x faster than Express.js)
-- Middleware support (auth, CORS, logging)
-- JSON validation dan binding
-- Route grouping untuk versioning (`/api/v1/`)
+**Framework Options:**
 
-### Project Structure (Standard Go Layout)
-
-```
-katauser-backend/
-├── cmd/
-│   └── api/
-│       └── main.go              # Entry point
-├── internal/
-│   ├── config/
-│   │   └── config.go            # Viper configuration
-│   ├── handlers/
-│   │   ├── auth.go              # Authentication endpoints
-│   │   ├── boards.go            # Board CRUD
-│   │   ├── feedback.go          # Feedback submission
-│   │   ├── votes.go             # Voting system
-│   │   ├── roadmap.go           # Roadmap sync
-│   │   └── changelog.go         # Changelog generator
-│   ├── models/
-│   │   ├── user.go
-│   │   ├── board.go
-│   │   ├── feedback.go
-│   │   └── vote.go
-│   ├── repositories/
-│   │   ├── user_repository.go
-│   │   ├── board_repository.go
-│   │   └── feedback_repository.go
-│   ├── services/
-│   │   ├── auth_service.go
-│   │   ├── board_service.go
-│   │   └── vote_service.go
-│   └── middleware/
-│       ├── auth.go
-│       ├── cors.go
-│       └── ratelimit.go
-├── migrations/
-│   └── *.sql                    # Database migrations
-├── pkg/
-│   └── utils/
-│       ├── validator.go
-│       └── slugify.go
-└── go.mod
-```
-
-### Key Go Libraries
-
+#### Option 1: Echo (Recommended)
 ```go
-module github.com/akordium/katauser-backend
+// Pros:
+- Minimalist dan fast
+- Good middleware ecosystem
+- Easy routing
+- Clean API design
 
-go 1.21
-
-require (
-    github.com/gin-gonic/gin v1.9.1              // HTTP framework
-    github.com/golang-jwt/jwt/v5 v5.0.0         // JWT authentication
-    github.com/lib/pq v1.10.9                    // PostgreSQL driver
-    github.com/go-redis/redis/v8 v8.11.5         // Caching layer
-    github.com/google/uuid v1.3.0                // UUID generation
-    github.com/spf13/viper v1.16.0               // Configuration
-    github.com/go-playground/validator/v10       // Validation
-    gorm.io/gorm v1.25.4                         // ORM (optional)
-    gorm.io/driver/postgres v1.5.2               // PostgreSQL driver for GORM
-    golang.org/x/crypto v0.14.0                  // bcrypt hashing
-)
+// Cons:
+- Less built-in features than Gin
 ```
 
-### Authentication & Authorization
+#### Option 2: Gin
+```go
+// Pros:
+- Most popular Go web framework
+- Fast performance
+- Large community
 
-**JWT (JSON Web Tokens)**
+// Cons:
+- More opinionated
+- Struct binding could be better
+```
 
-- **Access Token:** 7 days expiration
-- **Refresh Token:** Not implemented (simple JWT enough untuk MVP)
-- **Secret Key:** Environment variable (`JWT_SECRET`)
-- **Algorithm:** HS256 (HMAC-SHA256)
+#### Option 3: Fiber
+```go
+// Pros:
+- Express.js-like API (familiar for Node.js developers)
+- Built-in WebSocket support
+- Fast
+
+// Cons:
+- Less mature than Echo/Gin
+```
+
+**Recommendation:** Start with **Echo** untuk balance of simplicity, performance, dan ecosystem.
+
+**Project Structure:**
+```
+backend/
+├── cmd/
+│   ├── server/
+│   │   └── main.go              # Application entry point
+│   ├── migrate/
+│   │   └── main.go              # Database migrations
+│   └── seed/
+│       └── main.go              # Seed data
+├── internal/
+│   ├── config/                  # Configuration
+│   ├── models/                  # Database models
+│   ├── handlers/                # HTTP handlers
+│   │   ├── auth.go
+│   │   ├── feedback.go
+│   │   ├── boards.go
+│   │   └── telegram.go
+│   ├── services/                # Business logic
+│   │   ├── auth_service.go
+│   │   ├── feedback_service.go
+│   │   └── telegram_service.go
+│   ├── middleware/              # Middleware
+│   │   ├── auth.go
+│   │   ├── cors.go
+│   │   └── rate_limit.go
+│   └── repository/              # Database access
+│       ├── feedback_repo.go
+│       └── user_repo.go
+├── pkg/                         # Public libraries
+│   ├── database/
+│   └── logger/
+└── migrations/                  # SQL migration files
+```
+
+---
+
+### Database: PostgreSQL 15
+
+**Why PostgreSQL?**
+- ACID compliance untuk data integrity
+- Powerful JSON support (flexible schema untuk metadata)
+- Full-text search (untuk search feedback)
+- Excellent performance di read-heavy workloads
+- Great tooling (pgAdmin, psql, etc.)
+- Company standard (Oracle Cloud + Coolify support)
+
+**Schema Design (Draft):**
+
+```sql
+-- Users table
+CREATE TABLE users (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    full_name VARCHAR(255),
+    avatar_url TEXT,
+    role VARCHAR(50) DEFAULT 'user', -- 'admin', 'moderator', 'user'
+    subscription_tier VARCHAR(50) DEFAULT 'free', -- 'free', 'premium', 'enterprise'
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Boards table
+CREATE TABLE boards (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    owner_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    name VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) UNIQUE NOT NULL,
+    description TEXT,
+    is_public BOOLEAN DEFAULT true,
+    custom_domain VARCHAR(255), -- For white-label
+    branding_options JSONB, -- Custom logo, colors, etc.
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Feedback table
+CREATE TABLE feedback (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    board_id UUID REFERENCES boards(id) ON DELETE CASCADE,
+    user_id UUID REFERENCES users(id) ON DELETE SET NULL, -- Nullable untuk anonymous
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    status VARCHAR(50) DEFAULT 'requested', -- 'requested', 'planned', 'in_progress', 'completed', 'declined'
+    category VARCHAR(100),
+    tags TEXT[], -- Array of tags
+    vote_count INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Votes table
+CREATE TABLE votes (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    feedback_id UUID REFERENCES feedback(id) ON DELETE CASCADE,
+    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    vote_type SMALLINT DEFAULT 1, -- 1 for upvote, -1 for downvote
+    created_at TIMESTAMP DEFAULT NOW(),
+    UNIQUE(feedback_id, user_id)
+);
+
+-- Comments table
+CREATE TABLE comments (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    feedback_id UUID REFERENCES feedback(id) ON DELETE CASCADE,
+    user_id UUID REFERENCES users(id) ON DELETE SET NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Telegram subscriptions table
+CREATE TABLE telegram_subscriptions (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    board_id UUID REFERENCES boards(id) ON DELETE CASCADE,
+    chat_id BIGINT NOT NULL, -- Telegram chat ID
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Indexes untuk performance
+CREATE INDEX idx_feedback_board_id ON feedback(board_id);
+CREATE INDEX idx_feedback_status ON feedback(status);
+CREATE INDEX idx_feedback_created_at ON feedback(created_at DESC);
+CREATE INDEX idx_votes_feedback_id ON votes(feedback_id);
+CREATE INDEX idx_votes_user_id ON votes(user_id);
+
+-- Full-text search index
+CREATE INDEX idx_feedback_fulltext ON feedback USING gin(
+    to_tsvector('english', title || ' ' || COALESCE(description, ''))
+);
+```
+
+---
+
+### Telegram Bot Integration
+
+**Tech Stack:**
+- **Library:** `github.com/go-telegram-bot-api/telegram-bot-api/v5`
+- **Webhook:** Receive updates via HTTPS webhook
+- **Hosting:** Same backend server, dedicated `/telegram` endpoint
+
+**Features:**
+1. **Submit Feedback via Telegram**
+   - User sends message to bot
+   - Bot prompts untuk board selection (jika multiple)
+   - Bot posts feedback ke selected board
+   - Returns link ke feedback untuk voting
+
+2. **Notifications**
+   - Notify user ketika feedback status changes
+   - Notify user ketika ada reply ke comment
+   - Daily/weekly digest options
+
+3. **Board Integration**
+   - Connect bot ke specific board
+   - Bot posts new feedback ke Telegram channel/group
+   - Allow voting directly from Telegram (inline buttons)
 
 **Implementation:**
 ```go
-type Claims struct {
-    UserID string `json:"user_id"`
-    Email  string `json:"email"`
-    jwt.RegisteredClaims
-}
-
-// Generate token
-func GenerateToken(user *User) (string, error) {
-    claims := Claims{
-        UserID: user.ID,
-        Email:  user.Email,
-        RegisteredClaims: jwt.RegisteredClaims{
-            ExpiresAt: jwt.NewNumericDate(time.Now().Add(7 * 24 * time.Hour)),
-        },
+// Webhook handler
+func HandleTelegramUpdate(c echo.Context) error {
+    var update tgbotapi.Update
+    if err := c.Bind(&update); err != nil {
+        return err
     }
-    token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-    return token.SignedString([]byte(os.Getenv("JWT_SECRET")))
+
+    if update.Message != nil {
+        // Handle new message
+        go processMessage(update.Message)
+    } else if update.CallbackQuery != nil {
+        // Handle inline button click
+        go processCallback(update.CallbackQuery)
+    }
+
+    return c.NoContent(http.StatusOK)
 }
 ```
 
-**Authorization Model:**
-- **Board Owner:** Full CRUD access ke their boards
-- **Authenticated Users:** Can submit feedback, vote, comment
-- **Anonymous Users:** Can view public boards, submit feedback (dengan email), vote (IP-based)
-- **Premium Users:** Custom branding, private boards, Telegram notifications
-
-### API Design
-
-**RESTful API Structure:**
-
-```
-/api/v1/
-├── auth/
-│   ├── POST   /register        # Register new user
-│   ├── POST   /login           # Login & get JWT token
-│   └── GET    /me              # Get current user profile
-├── boards/
-│   ├── GET    /                # List public boards
-│   ├── POST   /                # Create board (auth required)
-│   ├── GET    /:slug           # Get board by slug (public)
-│   ├── PUT    /:id             # Update board (owner only)
-│   └── DELETE /:id             # Delete board (owner only)
-├── feedbacks/
-│   ├── POST   /boards/:slug/feedbacks  # Submit feedback
-│   ├── GET    /boards/:slug/feedbacks  # List feedbacks
-│   ├── PUT    /:id             # Update feedback (owner only)
-│   └── DELETE /:id             # Delete feedback (owner only)
-├── votes/
-│   ├── POST   /feedbacks/:id/vote      # Vote on feedback
-│   └── DELETE /feedbacks/:id/vote      # Remove vote
-├── roadmap/
-│   ├── GET    /boards/:slug/roadmap    # Get roadmap
-│   ├── POST   /boards/:slug/roadmap    # Create roadmap item
-│   └── PUT    /:id             # Update roadmap status
-└── changelog/
-    ├── GET    /boards/:slug/changelog  # Get changelog
-    └── POST   /generate        # Generate from completed items
-```
-
 ---
 
-## 🌐 Frontend Stack
+### Infrastructure
 
-### Framework: Tanstack Start
-
-**Why Tanstack Start over Next.js?**
-
-1. **Type Safety:** End-to-end TypeScript type safety
-2. **Debugging:** Integrated DevTools untuk route debugging
-3. **Modular:** Use only what you need (smaller bundle)
-4. **Future-Proof:** TanStack ecosystem growing rapidly
-5. **Streaming:** Progressive page loading (better UX)
-
-**Reference:** [TanStack Start Documentation](https://tanstack.com/start/latest)
-
-### Project Structure
-
-```
-katauser-frontend/
-├── app/
-│   ├── routes/
-│   │   ├── index.tsx                  # Landing page
-│   │   ├── auth.login.tsx             # Login page
-│   │   ├── auth.register.tsx          # Register page
-│   │   ├── dashboard.index.tsx        # User dashboard
-│   │   ├── boards.$slug.tsx           # Public board view
-│   │   ├── boards.create.tsx          # Create board
-│   │   └── boards.$slug.edit.tsx      # Board settings
-│   ├── components/
-│   │   ├── common/
-│   │   │   ├── Button.tsx
-│   │   │   ├── Input.tsx
-│   │   │   └── Modal.tsx
-│   │   ├── board/
-│   │   │   ├── FeedbackList.tsx
-│   │   │   ├── FeedbackCard.tsx
-│   │   │   ├── VoteButton.tsx
-│   │   │   └── AddFeedbackForm.tsx
-│   │   ├── roadmap/
-│   │   │   ├── RoadmapView.tsx
-│   │   │   └── RoadmapItem.tsx
-│   │   └── changelog/
-│   │       ├── ChangelogList.tsx
-│   │       └── ChangelogEntry.tsx
-│   ├── hooks/
-│   │   ├── useAuth.ts                 # Authentication hook
-│   │   ├── useBoard.ts                # Board data fetching
-│   │   └── useVote.ts                 # Vote mutation
-│   └── utils/
-│       ├── validation.ts              # Zod schemas
-│       └── formatting.ts
-├── public/
-└── package.json
-```
-
-### Key Dependencies
-
-```json
-{
-  "dependencies": {
-    "@tanstack/start": "^1.0.0",
-    "@tanstack/react-query": "^5.0.0",
-    "@tanstack/react-router": "^1.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "typescript": "^5.2.0",
-    "tailwindcss": "^3.3.0",
-    "zod": "^3.22.0",
-    "react-hook-form": "^7.47.0",
-    "lucide-react": "^0.288.0",
-    "clsx": "^2.0.0",
-    "date-fns": "^2.30.0"
-  }
-}
-```
-
-### State Management
-
-**Tanstack Query (React Query)**
-- Server state management (API calls)
-- Caching, refetching, optimistic updates
-- Loading dan error states otomatis
-
-**Local State:** React useState/useContext
-- Form inputs
-- Modal open/close
-- UI states (dropdowns, tabs)
-
----
-
-## 🗄️ Database Design
-
-### PostgreSQL 15
-
-**Why PostgreSQL?**
-- ✅ Akordium's standard database (migrating dari MySQL)
-- ✅ JSONB support untuk flexible data (custom branding)
-- ✅ Reliable, battle-tested, ACID compliant
-- ✅ Full-text search capabilities
-- ✅ Excellent indexing options
-
-### High-Level Schema
-
-```sql
--- Core Tables (MVP)
-users             -- User accounts
-boards            -- Feedback boards
-feedbacks         -- User feedbacks
-votes             -- Voting system
-comments          -- Feedback comments
-roadmap_items     -- Roadmap synchronization
-changelogs        -- Changelog entries
-
--- Future Tables (v2.0+)
-categories        -- Feedback categorization
-notifications     -- Email/Telegram notifications
-integrations      -- Telegram, WhatsApp, e-commerce
-```
-
-**Key Concepts:**
-- **Multi-tenancy:** All data scoped to `board_id`
-- **Anonymous Support:** Optional `user_id` dalam feedbacks
-- **Denormalization:** `vote_count` di feedbacks table (performance)
-- **Audit Trail:** `created_at`, `updated_at` timestamps
-
-**Note:** Detailed database schema (field definitions, indexes, constraints) akan dibuat saat development phase. Ini adalah high-level overview untuk product planning.
-
----
-
-## 🚀 Infrastructure Stack
-
-### Hosting: Oracle Cloud Infrastructure (OCI)
-
-**Instance Type:** VM.Standard.A1.Flex
-- **CPU:** 1-4 OCPU (configurable)
-- **RAM:** 1-24 GB (configurable)
-- **Storage:** 50 GB NVMe SSD
-- **Cost:** ~Rp 300,000-500,000/month (Always Free tier available)
+#### Hosting: Oracle Cloud Infrastructure
 
 **Why Oracle Cloud?**
-- ✅ Akordium's standard infrastructure
-- ✅ Cost-effective vs AWS/GCP
-- ✅ Indonesia region (Jakarta) available
-- ✅ Always Free tier untuk testing
+- Company standard (existing infrastructure)
+- Generous free tier (Always Free)
+- Good performance untuk price
+- PostgreSQL database service available
+- Singapore region (low latency ke Indonesia)
 
-### Deployment: Coolify
+**Services:**
+- **Compute:** VM.Standard.E2.1.micro (Free tier) atau E2.1.small untuk production
+- **Database:** Oracle Base Database Service (PostgreSQL)
+- **Storage:** Object Storage untuk file uploads (avatars, attachments)
+- **Load Balancer:** OCI Load Balancer (optional untuk scaling)
+
+#### Deployment: Coolify
 
 **Why Coolify?**
-- ✅ Self-hosted PaaS (Heroku alternative)
-- ✅ No vendor lock-in
-- ✅ Supports Docker, Node.js, Go, static sites
-- ✅ Automatic SSL via Let's Encrypt
-- ✅ Easy rollback & scaling
+- Self-hosted PaaS (full control)
+- Supports Go + PostgreSQL
+- Automatic SSL via Let's Encrypt
+- Easy deployment dari GitHub
+- Built-in monitoring dan logging
+- Company standard deployment platform
 
 **Deployment Workflow:**
 ```yaml
 # coolify.yaml
-version: "1.0"
 services:
-  backend:
-    type: "golang"
-    build_command: "go build -o bin/api cmd/api/main.go"
-    start_command: "./bin/api"
-    environment:
-      - DB_HOST=${DB_HOST}
-      - JWT_SECRET=${JWT_SECRET}
+  - type: rails # Supports Go as well
+    name: katauser-api
+    repo: https://github.com/akordium/katauser
+    branch: main
+    build_command: go build -o main ./cmd/server
+    start_command: ./main
+    env:
+      - DATABASE_URL
+      - JWT_SECRET
+      - TELEGRAM_BOT_TOKEN
 
-  frontend:
-    type: "node"
-    build_command: "npm run build"
-    start_command: "npm run start"
-    environment:
-      - VITE_API_URL=${VITE_API_URL}
+  - type: static
+    name: katauser-frontend
+    repo: https://github.com/akordium/katauser
+    branch: main
+    build_command: pnpm build
+    output_directory: frontend/dist
 ```
 
-### CDN & Security: Cloudflare
+#### CDN: Cloudflare
 
 **Features:**
-- **CDN:** Static asset caching (JS, CSS, images)
-- **SSL:** TLS 1.3 encryption (automatic)
-- **DDoS Protection:** Mitigation layer
-- **Firewall:** WAF rules untuk SQL injection, XSS protection
-- **DNS:** Managed DNS services
+- SSL/TLS termination
+- DDoS protection
+- Caching untuk static assets
+- Web Application Firewall (WAF)
+- Page Rules untuk routing
 
 ---
 
-## 💳 Payment Integration
+## 🔒 Security Architecture
 
-### Midtrans (Indonesian Payment Gateway)
+### Authentication & Authorization
 
-**Supported Payment Methods:**
-- **GoPay:** QRIS payment (most popular e-wallet)
-- **OVO:** E-wallet
-- **Dana:** E-wallet
-- **Bank Transfer:** Virtual Account (Mandiri, BCA, BNI, BRI)
-- **Credit Card:** Visa, Mastercard
+**JWT (JSON Web Tokens):**
+```
+Access Token: 15 minutes expiration
+Refresh Token: 7 days expiration
+```
 
-**Integration Flow:**
-1. User click "Upgrade ke Premium"
-2. Frontend call backend API: `POST /api/v1/payments/create`
-3. Backend create payment di Midtrans API
-4. Midtrans return redirect URL
-5. User redirect ke Midtrans payment page
-6. User complete payment
-7. Midtrans send webhook ke backend: `POST /api/v1/payments/webhook`
-8. Backend verify signature dan upgrade user ke premium
+**Implementation:**
+```go
+// Generate JWT pair
+func GenerateTokenPair(user User) (accessToken, refreshToken string, err error) {
+    // Access token
+    accessToken, err = jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+        "user_id": user.ID,
+        "role":    user.Role,
+        "exp":     time.Now().Add(15 * time.Minute).Unix(),
+    }).SignedString([]byte(os.Getenv("JWT_SECRET")))
 
-**Transaction Fees:** 2-3% (tergantung payment method)
+    // Refresh token (stored in HTTP-only cookie)
+    refreshToken, err = jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+        "user_id": user.ID,
+        "exp":     time.Now().Add(7 * 24 * time.Hour).Unix(),
+    }).SignedString([]byte(os.Getenv("JWT_SECRET")))
+
+    return
+}
+```
+
+**Role-Based Access Control (RBAC):**
+```
+Roles:
+- admin: Full access to all boards (superuser)
+- moderator: Manage specific boards (assigned by board owner)
+- user: Submit feedback, vote, comment on public boards
+- anonymous: View public boards only (no voting/commenting)
+
+Permissions:
+- create_board: Premium & Enterprise only
+- unlimited_boards: Premium & Enterprise only
+- private_boards: Premium & Enterprise only
+- white_label: Enterprise only
+```
+
+### Rate Limiting
+
+**Strategy:** Token bucket algorithm via Redis
+
+```
+Limits:
+- Anonymous: 10 requests/minute
+- Authenticated: 60 requests/minute
+- Premium: 120 requests/minute
+- Webhook endpoints: 1000 requests/hour
+```
+
+**Implementation:**
+```go
+func RateLimitMiddleware(limit int, window time.Duration) echo.MiddlewareFunc {
+    return func(next echo.HandlerFunc) echo.HandlerFunc {
+        return func(c echo.Context) error {
+            key := c.RealIP()
+            // Check Redis for request count
+            // If over limit, return 429 Too Many Requests
+            return next(c)
+        }
+    }
+}
+```
+
+### Data Encryption
+
+- **At Rest:** PostgreSQL encryption (managed by Oracle Cloud)
+- **In Transit:** TLS 1.3 untuk semua connections
+- **Password:** bcrypt dengan cost factor 12
 
 ---
 
 ## 📊 Monitoring & Observability
 
-### Error Tracking: Sentry
+### Application Monitoring
 
-**Features:**
-- Real-time error tracking
-- Stack traces dan breadcrumbs
-- Performance monitoring
-- Release tracking
-
-### Analytics: Google Analytics 4
+**Sentry Integration:**
+```go
+// Initialize Sentry
+func InitSentry() {
+    err := sentry.Init(sentry.ClientOptions{
+        Dsn:              os.Getenv("SENTRY_DSN"),
+        Environment:      os.Getenv("ENV"),
+        TracesSampleRate: 1.0,
+    })
+    if err != nil {
+        log.Fatalf("Sentry initialization failed: %v", err)
+    }
+}
+```
 
 **Metrics to Track:**
-- Page views (landing, board views)
-- User engagement (feedback submissions, votes)
-- Conversion funnels (signup → upgrade)
-- Retention (DAU, MAU, DAU/MAU ratio)
+- API response times (p50, p95, p99)
+- Error rates by endpoint
+- Database query performance
+- Telegram bot latency
+- User engagement (votes, comments, submissions)
 
-### Uptime Monitoring: UptimeRobot
+### Logging
 
-**Checks:**
-- HTTP endpoint monitoring (5-minute intervals)
-- Keyword monitoring (check "API is healthy")
-- SSL certificate monitoring
-- Response time tracking
+**Structured Logging dengan zerolog:**
+```go
+// Example usage
+log.Info().
+    Str("user_id", userID).
+    Str("action", "create_feedback").
+    Int("feedback_id", feedbackID).
+    Msg("Feedback created successfully")
+```
 
----
-
-## 🔒 Security Measures
-
-### Application Security
-
-- **Authentication:** JWT tokens dengan 7-day expiration
-- **Password Hashing:** bcrypt dengan cost factor 12
-- **Rate Limiting:** 100 requests/minute per IP (Gin middleware)
-- **Input Validation:** Zod schemas (frontend) + validator library (backend)
-- **SQL Injection:** Parameterized queries (GORM/sqlc)
-- **XSS Protection:** Input sanitization, CSP headers
-- **CSRF Protection:** Token-based untuk state-changing operations
-
-### Infrastructure Security
-
-- **HTTPS:** TLS 1.3 via Cloudflare
-- **Firewall:** Cloudflare WAF rules
-- **Database:** PostgreSQL connections encrypted
-- **Secrets Management:** Environment variables (no hardcoded secrets)
-- **Backups:** Daily automated backups (pg_dump)
+**Log Levels:**
+- Debug: Development only
+- Info: Important events (user actions, system events)
+- Warn: Degraded performance (but not failure)
+- Error: Errors that need attention
+- Fatal: Application crashes
 
 ---
 
-## 🚀 Deployment Strategy
+## 🚀 Performance Optimization
 
-### Environments
+### Caching Strategy
 
-**Development:**
-- Local machine (PostgreSQL, Redis locally)
-- Hot reload: `air` untuk Go, `npm run dev` untuk Tanstack Start
+**Redis Caching:**
+```
+Cache Keys:
+- board:{board_id}:feedback       - List of feedback (5 min TTL)
+- board:{board_id}:stats          - Board statistics (10 min TTL)
+- user:{user_id}:permissions      - User permissions (1 hour TTL)
+- feedback:{feedback_id}:votes    - Vote count (5 min TTL)
+```
 
-**Staging:**
-- Oracle Cloud VM (smaller instance)
-- Automatic deployment dari `develop` branch
-- Used untuk testing dengan beta users
+**Cache Invalidation:**
+- Write-through cache untuk critical data
+- Cache invalidation on update/delete
+- TTL-based expiration untuk less critical data
 
-**Production:**
-- Oracle Cloud VM (larger instance, auto-scaling)
-- Automatic deployment dari `main` branch
-- Blue-green deployment (zero downtime)
+### Database Optimization
 
-### CI/CD Pipeline
+**Connection Pooling:**
+```go
+// Set connection pool
+db.SetMaxOpenConns(25)
+db.SetMaxIdleConns(25)
+db.SetConnMaxLifetime(5 * time.Minute)
+```
 
-**GitHub Actions:**
+**Query Optimization:**
+- Use indexes untuk frequently queried columns
+- Avoid N+1 queries dengan JOIN atau preloading
+- Pagination untuk large datasets
+- Read replicas untuk scaling reads (future)
 
+### Frontend Performance
+
+**Tanstack Start Optimizations:**
+- Static generation (SSG) untuk public boards
+- Server-side rendering (SSR) untuk authenticated pages
+- Image optimization dengan next/image equivalent
+- Code splitting (lazy loading routes)
+- Prefetching untuk faster navigation
+
+---
+
+## 🔄 Development Workflow
+
+### Local Development
+
+**Docker Compose Setup:**
 ```yaml
-name: Test & Deploy
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: katauser_dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
-on:
-  push:
-    branches: [main, develop]
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: '1.21'
-      - name: Run tests
-        run: go test ./... -cover
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      DB_HOST: postgres
+      REDIS_HOST: redis
 
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - name: Deploy to Coolify
-        run: |
-          curl -X POST $COOLIFY_DEPLOY_WEBHOOK
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+```
+
+### Testing Strategy
+
+**Backend Tests (Go):**
+```go
+// Unit test example
+func TestCreateFeedback(t *testing.T) {
+    // Setup test database
+    db := setupTestDB()
+    defer db.Close()
+
+    // Create test service
+    service := NewFeedbackService(db)
+
+    // Test case
+    feedback, err := service.CreateFeedback(context.Background(), CreateFeedbackRequest{
+        Title:       "Test Feedback",
+        Description: "This is a test",
+        BoardID:     testBoardID,
+    })
+
+    assert.NoError(t, err)
+    assert.Equal(t, "Test Feedback", feedback.Title)
+}
+```
+
+**Frontend Tests (Vitest):**
+```typescript
+// Component test
+describe('FeedbackCard', () => {
+    it('renders feedback title and description', () => {
+        render(<FeedbackCard feedback={mockFeedback} />)
+        expect(screen.getByText('Test Feedback')).toBeInTheDocument()
+    })
+})
 ```
 
 ---
 
-## 📈 Performance Targets
+## 📦 Deployment Checklist
 
-### Backend Performance
+### Pre-Deployment
+- [ ] Run all tests (`go test ./...`, `pnpm test`)
+- [ ] Build production binaries (`go build -o main`)
+- [ ] Build frontend bundle (`pnpm build`)
+- [ ] Run database migrations
+- [ ] Set environment variables
+- [ ] Configure SSL certificates
+- [ ] Setup monitoring (Sentry DSN)
+- [ ] Backup database
 
-- **API Response Time:** < 300ms (p95)
-- **Database Query Time:** < 100ms (p95)
-- **Concurrent Users:** 1000+ on single VM
-- **Throughput:** 10,000 requests/minute
-
-### Frontend Performance
-
-- **Page Load Time:** < 3 seconds (3G connection)
-- **Time to Interactive:** < 5 seconds
-- **Lighthouse Score:** 85+ (Performance, Accessibility, Best Practices)
-- **Bundle Size:** < 200KB (gzipped)
-
----
-
-## 🔮 Future Architecture Considerations
-
-### Scalability (Year 2+)
-
-**If traffic > 10,000 concurrent users:**
-- Add database read replicas (PostgreSQL streaming replication)
-- Implement Redis Cluster (distributed caching)
-- Add message queue (RabbitMQ/Redis Pub/Sub) untuk async tasks
-- Microservices decomposition (separate voting service, notification service)
-
-**If single database becomes bottleneck:**
-- Database sharding by `board_id`
-- Partition large tables (feedbacks, votes) by date
-- Implement connection pooling (PgBouncer)
-
-### Real-Time Features (v2.0+)
-
-**WebSocket Implementation:**
-- Gorilla WebSocket (Go backend)
-- Socket.IO client (TypeScript)
-- Redis Pub/Sub untuk multi-server support
-
-**Use Cases:**
-- Live vote count updates
-- Real-time new feedback notifications
-- Collaborative roadmap editing
+### Post-Deployment
+- [ ] Verify API health (`/health` endpoint)
+- [ ] Test critical user flows
+- [ ] Check error logs
+- [ ] Monitor database connections
+- [ ] Test Telegram bot webhook
+- [ ] Verify email delivery
+- [ ] Check CDN caching
 
 ---
 
-## 📚 Development Resources
-
-### Documentation
-
-- [Go Documentation](https://golang.org/doc/)
-- [Gin Web Framework](https://gin-gonic.com/docs/)
-- [TanStack Start](https://tanstack.com/start/latest)
-- [PostgreSQL 15 Docs](https://www.postgresql.org/docs/15/)
-- [Midtrans Documentation](https://docs.midtrans.com/)
-
-### Best Practices
-
-- [Effective Go](https://go.dev/doc/effective_go)
-- [TanStack Query Best Practices](https://tanstack.com/query/latest/docs/framework/react/overview)
-- [PostgreSQL Performance Tuning](https://wiki.postgresql.org/wiki/Performance_Optimization)
-
----
-
-**Document Status:** ✅ Ready for Development
-**Next Step:** Detailed implementation planning (database schema, API specifications)
+**Last Updated:** 2026-01-06
+**Version:** 0.1.0-architecture
+**Status:** Draft - Awaiting Validation
+**Next Steps:**
+- Finalize Go framework selection (Echo vs Gin vs Fiber)
+- Design Telegram Bot API flow
+- Create detailed database migration plan
+- Setup development environment

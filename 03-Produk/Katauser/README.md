@@ -1,60 +1,94 @@
 # 💬 Katauser
 
-> Bantu Dengar Suara Penggunamu - Feedback Management Platform untuk SaaS Indonesia
+> Platform Manajemen Feedback - Kelola Feedback User dengan Efisien & Berbahasa Indonesia
 
 ## 🏷️ Product Identity
 
 - **Nama Produk:** Katauser
-- **Status:** 🧪 Validation Phase (Pre-Build Validation)
-- **Repo Code:** `github.com/akordium/katauser` (Not created yet)
-- **Live Site:** https://katauser.com (Planned)
-- **Staging:** https://staging.katauser.com (Planned)
-- **Project Management:** [Link ke GitHub Project Board]
+- **Status:** 🥚 Concept / Validasi
+- **Repo Code:** `github.com/akordium/katauser` (Pending)
+- **Live Site:** https://katauser.com (Pending)
+- **Staging:** https://staging.katauser.com (Pending)
+- **Project Management:** Beads Issue `hq-qi6`
 
 ## 📋 Quick Overview
 
-**Tagline:** Bantu Dengar Suara Penggunamu
+**Tagline:** Platform Manajemen Feedback dengan Bahasa Indonesia & Integrasi Telegram
 
-**Deskripsi Singkat:** Platform manajemen feedback untuk produk dan merk yang membantu SaaS Indonesia, startup, dan digital agency mengumpulkan, mengelola, dan memprioritaskan masukan dari pengguna dengan harga yang terjangkau. Alternatif UserJot yang lebih hemat dan disesuaikan untuk pasar Indonesia.
+**Deskripsi Singkat:** Platform manajemen feedback yang memungkinkan SaaS companies dan digital startups mengumpulkan, mengorganisir, dan memprioritaskan feedback dari pengguna dengan fitur public board, voting system, dan roadmap otomatis. Dibuat khusus untuk pasar Indonesia dengan integrasi Telegram Bot dan UI/UX berbahasa Indonesia.
 
 **Target Market:**
 
-- **SaaS Companies Indonesia** (Series A ke bawah) yang membutuhkan sistem feedback terstruktur
-- **Digital Agencies** yang mengelola feedback untuk klien multiple
-- **Startups Indonesia** yang ingin validasi ide dan fitur dengan user base
-- **E-commerce Sellers** (Tokopedia, Shopee, TikTok Shop) yang need product feedback
+- SaaS companies Indonesia (early to growth stage)
+- Digital agencies dengan banyak produk klien
+- Startups yang membutuhkan feedback management system
+- Product managers dan founders startup Indonesia
 
-**Problem yang Diselesaikan:** Tools seperti UserJot dan Canny terlalu mahal ($15-79/bulan atau sekitar Rp 240rb - 1.2 juta/bulan) untuk startup Indonesia. Banyak perusahaan mengelola feedback manual via email, WhatsApp, atau spreadsheet yang tidak efisien dan sulit dilacak.
+**Problem yang Diselesaikan:** Difficulty dalam mengelola feedback dari berbagai channel (email, WhatsApp, social media) menjadi satu sistem terpusat. Tools internasional seperti UserJot/Canny mahal dan tidak mendukung Bahasa Indonesia. Spreadsheet dan manual tracking tidak scalable dan tidak transparan ke users.
 
-## 🛠 Tech Stack
+## 🎯 MVP Features (Fase 1)
+
+### Core Features
+
+1. **Public Feedback Board dengan Voting System**
+   - Board publik untuk collect feedback dari users
+   - Upvote/downvote system untuk prioritization
+   - Comment dan discussion threads
+   - Status tracking (requested, planned, in progress, completed)
+
+2. **Roadmap Otomatis**
+   - Roadmap publik yang sync dengan feedback status
+   - Auto-update ketika feedback status berubah
+   - Visual timeline untuk upcoming features
+   - Filter berdasarkan category/tags
+
+### Competitive Edge (MVP Only)
+
+1. **Full Bahasa Indonesia Localization**
+   - Seluruh UI/UX dalam Bahasa Indonesia
+   - Bukan sekadar Google Translate, tapi natural Indonesian phrasing
+   - Contextual help dan documentation dalam Bahasa Indonesia
+
+2. **Telegram Bot Integration**
+   - Users bisa submit feedback via Telegram bot
+   - Notifications untuk update status via Telegram
+   - Channel/Group integration untuk public feedback boards
+   - Telegram sebagai favorite communication channel komunitas Indo
+
+3. **Competitive Pricing**
+   - Target: 30-40% lebih murah dari UserJot ($29 → $19-21)
+   - Freemium model dengan generous free tier
+   - Pricing dalam IDR untuk market Indonesia
+
+## 🛠️ Tech Stack
 
 ### Backend
 
-- **Framework/Language:** Go (Golang) 1.21+ - API Only
+- **Framework/Language:** Go 1.21+ (Golang)
 - **Database:** PostgreSQL 15
-- **API:** RESTful API dengan JWT authentication
-- **Web Framework:** Gin
+- **API:** RESTful API
+- **ORM:** GORM atau sqlx (TBD)
 
 ### Frontend
 
 - **Framework:** Tanstack Start (React-based SSR framework)
+- **Language:** TypeScript (Strict mode)
 - **Styling:** Tailwind CSS
 - **State Management:** Tanstack Query (React Query)
-- **Type Safety:** TypeScript 5.2+ (strict mode)
+- **Forms:** React Hook Form + Zod validation
 
 ### Infrastructure
 
-- **Hosting:** Oracle Cloud Infrastructure - VM.Standard.A1.Flex
+- **Hosting:** Oracle Cloud Infrastructure
 - **Deployment:** Coolify (PaaS)
 - **CDN:** Cloudflare
-- **Monitoring:** Sentry + Custom Dashboard
+- **Monitoring:** Sentry
 
 ### Third-party Services
 
-- **Payment:** Midtrans (GoPay, OVO, Dana, Bank Transfer, Credit Card)
-- **Email:** SendGrid (planned)
-- **Storage:** Cloudflare R2 (planned)
-- **Analytics:** Google Analytics 4
+- **Email:** SendGrid / Resend
+- **Analytics:** Google Analytics 4 / Plausible
+- **Telegram:** Telegram Bot API
 
 ## 💻 Local Development Setup
 
@@ -62,8 +96,9 @@
 
 - [ ] Go 1.21+
 - [ ] PostgreSQL 15
-- [ ] Node.js 18+
-- [ ] npm/yarn/pnpm
+- [ ] Node.js 20+ (untuk Tanstack Start)
+- [ ] pnpm/npm
+- [ ] Docker & Docker Compose (optional)
 
 ### Installation Steps
 
@@ -80,27 +115,28 @@
    cd backend
    go mod download
    cp .env.example .env
-   # Edit .env file dengan konfigurasi lokal
-   go run cmd/api/main.go
+   # Setup database connection di .env
+   go run cmd/migrate/main.go
+   go run cmd/seed/main.go
    ```
 
 3. **Frontend Setup**
 
    ```bash
    cd frontend
-   npm install
+   pnpm install
    cp .env.example .env.local
-   npm run dev
+   # Setup API URL di .env.local
    ```
 
 4. **Environment Configuration**
 
    ```bash
    # Backend .env
-   DB_HOST=127.0.0.1
+   DB_HOST=localhost
    DB_PORT=5432
    DB_DATABASE=katauser_dev
-   DB_USERNAME=postgres
+   DB_USER=postgres
    DB_PASSWORD=password
    JWT_SECRET=your-secret-key
 
@@ -112,57 +148,38 @@
 
    ```bash
    # Terminal 1: Backend
-   cd backend && go run cmd/api/main.go
+   cd backend && go run cmd/server/main.go
 
    # Terminal 2: Frontend
-   cd frontend && npm run dev
+   cd frontend && pnpm dev
    ```
 
-6. **Aplikasi berjalan di:**
+6. **Katauser berjalan di:**
    - Frontend: http://localhost:3000
    - Backend API: http://localhost:8080
-
-### Development Commands
-
-```bash
-# Backend Testing
-cd backend && go test ./...
-
-# Frontend Testing
-npm run test
-
-# Linting (Frontend)
-npm run lint
-
-# Backend Build
-go build -o bin/api cmd/api/main.go
-
-# Frontend Build
-npm run build
-```
 
 ## 🧪 Testing
 
 ### Test Suite
 
-- **Framework:** Go testing + Vitest (TypeScript)
-- **Coverage Target:** 80% (MVP), 90% (Production)
+- **Framework:** Go testing (native) + Vitest (TypeScript)
+- **Coverage Target:** 80%
 - **Test Types:**
-  - Unit Tests: Services, repositories, utilities
-  - Integration Tests: API endpoints
+  - Unit Tests: API handlers, business logic, utilities
+  - Integration Tests: API endpoints, database operations
   - E2E Tests: Critical user journeys dengan Playwright
 
 ### Running Tests
 
 ```bash
 # Backend Tests
-go test ./... -cover
+cd backend && go test ./...
 
 # Frontend Tests
-npm run test
+pnpm test
 
 # E2E Tests
-npm run test:e2e
+pnpm test:e2e
 ```
 
 ## 🚢 Deployment
@@ -176,150 +193,159 @@ npm run test:e2e
 ### Deployment Process
 
 1. **Automatic Deployment** (via Coolify)
-   - Push ke `main` → deploy ke production
-   - Push ke `develop` → deploy ke staging
+   - Frontend: Push ke `main` → deploy ke production
+   - Backend: Push ke `main` → deploy ke production
+   - Staging: Push ke `develop` → deploy ke staging
 
 2. **Manual Deployment** (jika perlu)
 
    ```bash
    # Frontend
-   npm run build
-   npm run deploy
+   pnpm build
+   pnpm deploy
 
    # Backend
-   go build -o bin/api cmd/api/main.go
-   ./bin/api
+   go build -o main ./cmd/server
+   ./main
    ```
-
-### Environment Variables
-
-**Required Backend Variables:**
-
-- `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`
-- `JWT_SECRET`, `MIDTRANS_SERVER_KEY`
-
-**Required Frontend Variables:**
-
-- `VITE_API_URL`, `VITE_MIDTRANS_CLIENT_KEY`
-
-**Secret Management:** Semua secrets stored di environment variables, tidak ada hardcoded secrets.
 
 ## 📊 Key Metrics & Monitoring
 
 ### Business Metrics
 
-- [ ] **Active Users:** Target 5,000+ signups di year 1
-- [ ] **Paying Customers:** Target 50 customers di year 1
-- [ ] **Boards Created:** Target 500+ boards di year 1
-- [ ] **Feedbacks Collected:** Target 50,000+ feedbacks di year 1
-- [ ] **User Engagement:** DAU/MAU ratio > 20%
-
-### Product-Market Fit Metrics ⭐
-
-**Current Status:** Pre-Validation Phase
-
-- [ ] **Sean Ellis Test Score:** Target > 40% (Month 3 & 6)
-  - Question: "How would you feel if Katauser disappeared tomorrow?"
-  - Very disappointed / Somewhat disappointed / Not disappointed
-- [ ] **Pre-Validation Waitlist:** Target 50+ signups (Week 1-2)
-- [ ] **Beta User PMF:** Target 5/10 say "I would pay" (Month 3)
-- [ ] **Net Promoter Score (NPS):** Target > 40
-- [ ] **Week 1 Retention:** Target > 40%
-- [ ] **Week 4 Retention:** Target > 30%
-- [ ] **Week 12 Retention:** Target > 20%
-- [ ] **Free → Paid Conversion:** Target 10% (industry average)
-
-**Go/No-Go Gates:**
-- **Month 3:** Sean Ellis > 40% → Proceed to public launch
-- **Month 6:** 25 paying customers + Sean Ellis > 40% → Scale features
+- [ ] **Active Boards:** Target 100+ active feedback boards
+- [ ] **Feedback Submitted:** Target 1,000+ feedback per month
+- [ ] **User Engagement:** Average 10+ votes per feedback
+- [ ] **Conversion Rate:** 5% free to paid conversion
 
 ### Technical Metrics
 
-- [ ] **Response Time:** < 300ms average API response
+- [ ] **Response Time:** < 200ms average API response
 - [ ] **Uptime:** 99.9% uptime SLA
-- [ ] **Error Rate:** < 0.5% error rate
-- [ ] **Page Load Speed:** < 3 seconds LCP (3G connection)
-- [ **Mobile Performance:** 85+ Lighthouse score
+- [ ] **Page Load Speed:** < 2 seconds LCP
+- [ ] **Bot Response Time:** < 500ms Telegram bot response
 
 ### Monitoring Setup
 
 - **Error Tracking:** Sentry dengan performance monitoring
-- **Analytics:** Google Analytics 4
+- **Analytics:** Google Analytics 4 / Plausible (privacy-friendly)
 - **Uptime Monitoring:** Cloudflare + custom health checks
-- **Business Metrics:** Custom dashboard dengan feedback KPIs
+- **Business Metrics:** Custom dashboard di admin panel
 
 ## 🔐 Security
 
 ### Security Measures
 
-- [ ] **Authentication:** JWT tokens dengan 7-day expiration
-- [ ] **Authorization:** Role-based access (Free vs Premium users)
-- [ ] **API Security:** Rate limiting (100 req/min), CORS, input validation
-- [ ] **Password Hashing:** bcrypt dengan cost factor 12
-- [ ] **HTTPS:** TLS 1.3 via Cloudflare
+- [ ] **Authentication:** JWT tokens dengan refresh mechanism
+- [ ] **Authorization:** Role-based access (Admin, Moderator, User)
+- [ ] **Rate Limiting:** API rate limiting untuk prevent abuse
+- [ ] **Input Validation:** Strict validation untuk semua inputs
+- [ ] **XSS Protection:** Content Security Policy (CSP)
+- [ ] **SQL Injection:** Parameterized queries via ORM
 
 ### Security Checklist
 
-- [x] HTTPS enabled via Cloudflare SSL
-- [x] Environment variables secured
-- [x] Database connections encrypted
-- [x] User passwords hashed dengan bcrypt
-- [x] API rate limiting implemented
-- [x] CORS properly configured
+- [x] HTTPS enabled dengan Cloudflare SSL
+- [ ] Environment variables secured
+- [ ] Database connections encrypted
+- [ ] User passwords hashed dengan bcrypt
+- [ ] API rate limiting implemented
 - [ ] Input validation untuk semua API endpoints
-- [ ] SQL injection prevention dengan parameterized queries
 
-## 📚 Documentation
+## 💰 Business Model
 
-### Internal Documentation
+### Freemium Model
 
-- **Product Specs:** [product-spec.md](./product-spec.md) - Fitur dan monetisasi
-- **User Stories:** [user-stories.md](./user-stories.md) - Personas dan requirements
-- **Technical Architecture:** [tech-stack.md](./tech-stack.md) - Tech stack details
-- **Roadmap:** [roadmap.md](./roadmap.md) - Development milestones
+**Free Features:**
 
-### User Documentation
+- 1 public feedback board
+- Up to 50 feedback per month
+- Basic voting system
+- Public roadmap view
+- Community support
 
-- **User Guide:** (Coming soon)
-- **FAQ:** (Coming soon)
-- **Video Tutorials:** (Coming soon)
+**Premium Features (IDR 249,000/bulan atau IDR 2,490,000/tahun - 20% diskon):**
+
+- Unlimited feedback boards (public & private)
+- Unlimited feedback submissions
+- Custom branding (white-label option)
+- Telegram Bot integration
+- Email forwarding & notifications
+- Advanced analytics & insights
+- Remove Katauser branding
+- Priority support
+- Custom domain (CNAME)
+- Export data (CSV, JSON)
+- SSO (Single Sign-On) untuk team
+- API access
+
+**Enterprise (Custom Pricing):**
+
+- Everything in Premium
+- Unlimited team members
+- Advanced permissions & roles
+- Custom integrations
+- Dedicated account manager
+- SLA guarantee
+- On-premise/self-hosted option
+
+### Revenue Streams
+
+- **Subscription Revenue:** 85% dari total revenue (Freemium conversion)
+- **Enterprise Plans:** 10% dari total revenue
+- **White-Label Solutions:** 5% dari total revenue
 
 ## 🤝 Team & Roles
 
 ### Development Team
 
-- **Tech Lead:** Najib (Backend Architecture & API Design)
-- **Frontend Developer:** (To be hired)
-- **Backend Developer:** (To be hired)
-- **DevOps Engineer:** (To be determined)
+- **Tech Lead:** Najib (Go Architecture & API Design)
+- **Frontend Developer:** TBD (Tanstack Start & User Experience)
+- **Backend Developer:** Najib (Go API & Database)
+- **DevOps Engineer:** Najib (Infrastructure & Deployment via Coolify)
 
 ### External Stakeholders
 
 - **Product Owner:** Najib (Product Strategy & User Experience)
-- **UI/UX Designer:** (To be hired)
-- **QA Engineer:** (To be determined)
+- **UI/UX Designer:** TBD (Design System & User Interface)
+- **QA Engineer:** TBD (Testing & Quality Assurance)
+- **Marketing:** TBD (Go-to-market strategy & community building)
+
+## 📚 Documentation
+
+### Internal Documentation
+
+- **Technical Specs:** [tech-stack.md](./tech-stack.md)
+- **User Stories:** [user-stories.md](./user-stories.md)
+- **Competitor Analysis:** [competitor-analysis.md](./competitor-analysis.md)
+- **Roadmap:** [roadmap.md](./roadmap.md)
+
+### User Documentation
+
+- **User Guide:** TBD
+- **FAQ:** TBD
+- **Video Tutorials:** TBD (Bahasa Indonesia)
+- **Telegram Bot Guide:** TBD
 
 ## 🆘 Support & Troubleshooting
 
 ### Common Issues
 
-1. **Backend API connection failed**
-   - Solution: Check API URL di frontend .env.local, ensure backend running
+1. **Telegram bot tidak merespon**
+   - Solution: Check bot token, verify webhook URL, check rate limits
 
-2. **JWT Token expired**
-   - Solution: Re-login, token valid untuk 7 days
+2. **Feedback tidak muncul di board**
+   - Solution: Check moderation settings, verify spam filters, refresh board
 
-3. **Database migration failed**
-   - Solution: Check PostgreSQL connection, ensure database exists
-
-4. **Feedback submission failed**
-   - Solution: Check board visibility settings, ensure board is public
+3. **Roadmap tidak sync**
+   - Solution: Check feedback status, manual sync available di admin panel
 
 ### Getting Help
 
 - **Email:** support@katauser.com
-- **GitHub Issues:** https://github.com/akordium/katauser/issues
-- **Documentation:** [link ke troubleshooting guide]
+- **Telegram:** @katauser_support
+- **Documentation:** [link ke help center]
+- **Status Page:** https://status.katauser.com
 
 ## 📈 Roadmap
 
@@ -333,50 +359,9 @@ Lihat [changelog.md](./changelog.md) untuk riwayat perubahan Katauser.
 
 Lihat [known-issues.md](./known-issues.md) untuk daftar bug dan limitation yang diketahui.
 
-## 🎯 Business Model
-
-### Freemium Model
-
-**Free Features:**
-
-- 3 boards maximum
-- 1,000 users/feedbacks combined
-- Public boards only
-- Basic branding (Katauser logo shown)
-- Feedback submission & voting
-- Roadmap synchronization
-- Changelog generator
-
-**Premium Features (IDR 299,000/bulan):**
-
-- Unlimited boards
-- Unlimited users and feedbacks
-- Private boards (password-protected)
-- Custom domain (e.g., feedback.yourcompany.com)
-- Custom branding (remove Katauser logo, custom colors)
-- Telegram Bot integration (coming in v2.0)
-- WhatsApp notifications (coming in v2.0)
-- Priority email support
-
-**Annual Discount:**
-- 2 months free if paid annually (Rp 2,990,000/year)
-
-### Target Revenue Streams
-
-- **Subscription Revenue:** 100% dari total revenue
-- **Year 1 Goal:** 50 paying customers × Rp 299,000 = Rp 14,950,000/month MRR
-
-### Competitive Advantage
-
-vs UserJot ($15-79/month ≈ Rp 240rb - 1.2 juta):
-- **Price:** 50-80% lebih murah (Rp 299k vs Rp 1.2 juta)
-- **Localization:** Full Bahasa Indonesia support
-- **Integrations:** Telegram Bot (Indonesian tech communities' favorite)
-- **Market Focus:** Designed specifically for Indonesian SaaS ecosystem
-
 ---
 
 **Last Updated:** 2026-01-06
-**Version:** 0.2.0-validation
-**Status:** 🧪 Validation Phase - Pre-build market validation
-**Maintainer:** Najib - Akordium Lab
+**Version:** 0.1.0-concept
+**Maintainer:** Katauser Development Team
+**License:** Proprietary - All Rights Reserved
