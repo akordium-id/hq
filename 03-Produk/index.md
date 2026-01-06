@@ -12,6 +12,7 @@
 | [**Anggarin**](./Anggarin/) | 🚀 Development | Personal Finance | [README](./Anggarin/README.md) • [Roadmap](./Anggarin/roadmap.md) • [User Stories](./Anggarin/user-stories.md) |
 | [**WaqfWise**](./WaqfWise/) | 🥈 Beta | Islamic Fintech | [README](./WaqfWise/README.md) • [Roadmap](./WaqfWise/roadmap.md) • [Tech Stack](./WaqfWise/tech-stack.md) |
 | [**Atribuo**](./Atribuo/) | 🥚 Concept | Gamification | [README](./Atribuo/README.md) • [Roadmap](./Atribuo/roadmap.md) • [User Stories](./Atribuo/user-stories.md) |
+| [**Katauser**](./Katauser/) | 🥚 Concept | SaaS Tools | [README](./Katauser/README.md) • [Roadmap](./Katauser/roadmap.md) • [Product Spec](./Katauser/product-spec.md) |
 
 ## 📊 Portfolio Overview
 
@@ -37,8 +38,9 @@ gantt
 
 | Technology | Usage | Products | Benefits |
 |------------|-------|----------|----------|
-| **Go 1.21+** | Backend | All | Performance, Concurrency, Simplicity |
-| **Next.js 14** | Frontend | All | Performance, Developer Experience, SEO |
+| **Go 1.21+** | Backend | SnapKasir, Atribuo, Katauser | Performance, Concurrency, Simplicity |
+| **Next.js 14** | Frontend | SnapKasir, Anggarin, Atribuo | Performance, Developer Experience, SEO |
+| **Tanstack Start** | Frontend | Katauser | Type Safety, Modularity, Future-Proof |
 | **PostgreSQL 15** | Database | All | Reliability, Features, Ecosystem |
 | **React Native** | Mobile | SnapKasir | Code Reuse, Performance, Ecosystem |
 | **Docker** | Containerization | All | Consistency, Portability, Scalability |
@@ -106,17 +108,33 @@ gantt
 - [📝 Changelog](./SnapKasir/changelog.md) - Production releases
 - [🐛 Known Issues](./SnapKasir/known-issues.md) - Issue resolution
 
+### 💬 Katauser - Feedback Management Platform
+
+**Focus:** Affordable feedback management untuk SaaS Indonesia
+**Target:** Indonesian SaaS companies, digital agencies, startups
+**Key Features:** Public feedback boards, Voting system, Roadmap sync, Changelog generator, Telegram Bot integration
+
+📂 **Dokumen Lengkap:**
+
+- [📖 README](./Katauser/README.md) - Product overview dan tech stack
+- [📋 Product Spec](./Katauser/product-spec.md) - Fitur dan monetisasi
+- [🗺️ Roadmap](./Katauser/roadmap.md) - 10-milestone development plan
+- [👥 User Stories](./Katauser/user-stories.md) - Personas dan requirements
+- [⚙️ Tech Stack](./Katauser/tech-stack.md) - Technical architecture
+- [📝 Changelog](./Katauser/changelog.md) - Version history
+- [🐛 Known Issues](./Katauser/known-issues.md) - Risk assessment dan limitations
+
 ## 📈 Key Metrics Dashboard
 
 ### Current Status (December 2024)
 
-| Metric | SnapKasir | Anggarin | WaqfWise | Atribuo |
-|--------|-----------|----------|----------|---------|
-| **Development** | 90% | 60% | 70% | 10% |
-| **Market Ready** | ✅ Production | 🚧 Beta | 🚧 Beta | 🥈 Concept |
-| **Team Size** | 8 developers | 6 developers | 5 developers | 3 developers |
-| **Target Users** | 10K+ stores | 100K+ users | 50K+ institutions | 500K+ users |
-| **Revenue Model** | SaaS + Fees | Freemium | Freemium | Freemium |
+| Metric | SnapKasir | Anggarin | WaqfWise | Atribuo | Katauser |
+|--------|-----------|----------|----------|---------|----------|
+| **Development** | 90% | 60% | 70% | 10% | 0% |
+| **Market Ready** | ✅ Production | 🚧 Beta | 🚧 Beta | 🥈 Concept | 🥈 Concept |
+| **Team Size** | 8 developers | 6 developers | 5 developers | 3 developers | 1 developer |
+| **Target Users** | 10K+ stores | 100K+ users | 50K+ institutions | 500K+ users | 5K+ users |
+| **Revenue Model** | SaaS + Fees | Freemium | Freemium | Freemium | Freemium |
 
 ### 2025 Targets
 
@@ -125,7 +143,7 @@ gantt
 | **Total MAU** | 50K+ | 200K+ | 500K+ | 1M+ |
 | **Revenue** | IDR 100M | IDR 500M | IDR 2B | IDR 5B |
 | **Team Size** | 30+ | 35+ | 40+ | 50+ |
-| **Products** | 4 active | 4 scaling | 4 integrated | 4 expanding |
+| **Products** | 5 active | 5 scaling | 5 integrated | 5 expanding |
 
 ## 🔄 Development Standards
 
@@ -173,6 +191,7 @@ flowchart TD
 | **Personal Finance** | Anggarin | AI-powered insights, millennials focus |
 | **Islamic Fintech** | WaqfWise | Sharia compliance, blockchain transparency |
 | **Personal Gamification** | Atribuo | RPG-style visualization, social features |
+| **Feedback Management** | Katauser | Affordable (Rp 299k vs UserJot $15-79), Telegram integration, Bahasa Indonesia |
 
 ### Technology Advantages
 
@@ -190,6 +209,7 @@ flowchart TD
 2. **Launch Anggarin** - Personal finance market entry
 3. **Complete WaqfWise** - Islamic fintech leadership
 4. **Validate Atribuo** - Gamification market testing
+5. **Develop Katauser** - Feedback management platform for Indonesian SaaS
 
 ### 2026 Expansion Plans
 
