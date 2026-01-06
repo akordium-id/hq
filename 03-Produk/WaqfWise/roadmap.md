@@ -20,17 +20,17 @@
 
 #### Goals
 
-- [ ] Meluncurkan platform manajemen wakaf dasar
-- [ ] Akuisisi 20+ pilot nazhir institutions
-- [ ] Validasi product-market fit
-- [ ] Establish basic compliance dengan PSAK 109
+- [ ] Meluncurkan platform manajemen wakaf dasar dengan freemium model
+- [ ] Akuisisi 20+ pilot nazhir institutions (50% free tier, 50% premium)
+- [ ] Validasi product-market fit dengan 6 core features
+- [ ] Establish basic compliance dengan PSAK 109 dan BWI standards
 
 #### Features
 
 **Core Nazhir Features:**
 
 - [ ] **User Management:** Multi-role authentication (Super Admin, Nazhir, Staff) - *Priority: High*
-- [ ] **Asset Registration:** Database tanah, bangunan, uang, saham wakaf - *Priority: High*
+- [ ] **Asset Registration:** Database tanah, bangunan, uang, saham wakaf dengan GPS mapping - *Priority: High*
 - [ ] **Donor Management (Wakif):** CRUD donor profiles dan donation history - *Priority: High*
 - [ ] **Basic Reporting:** Laporan sederhana (neraca, arus kas) - *Priority: Medium*
 
@@ -42,9 +42,16 @@
 
 **Compliance Features:**
 
-- [ ] **Wakaf Certificate:** PDF certificate generation otomatis - *Priority: High*
+- [ ] **Wakaf Certificate:** PDF certificate generation otomatis (Basic tier: PDF only, Premium: Blockchain) - *Priority: High*
+- [ ] **BWI Report Templates:** Automated BWI-standard reports - *Priority: High*
+- [ ] **PSAK 109 Accounting:** Double-entry bookkeeping compliant dengan PSAK 109 - *Priority: High*
 - [ ] **Basic Audit Trail:** Activity logging untuk compliance - *Priority: Medium*
-- [ ] **Regulatory Reporting:** Basic reports untuk Kementerian Agama - *Priority: Low*
+
+**Freemium Model:**
+
+- [ ] **Basic Tier (Free):** 10 assets max, basic reporting, community support, MIT license - *Priority: High*
+- [ ] **Premium Tier (Paid):** Unlimited assets, BWI templates, blockchain certificates, priority support - *Priority: High*
+- [ ] **Subscription Management:** Stripe/PayPal payment processing untuk subscriptions - *Priority: Medium*
 
 #### Technical Goals
 
@@ -52,6 +59,7 @@
 - [ ] **Security:** Basic security measures (auth, input validation, encryption)
 - [ ] **Scalability:** Support 100+ concurrent users
 - [ ] **Testing:** 80% code coverage
+- [ ] **UI Framework:** Implement FluxUI component library untuk faster development - *Priority: Medium*
 
 #### Success Metrics
 
@@ -63,36 +71,59 @@
 
 ---
 
-### 🚀 Phase 2: Feature Expansion & Market Validation (Q2-Q3 2025)
+### 🚀 Phase 2: Blockchain, Sharia Payments & Market Validation (Q2-Q3 2025)
 
 **Timeline:** Apr 2025 - Sep 2025 | **Status:** Planning
 
 #### Goals
 
 - [ ] Scale ke 100+ nazhir institutions
-- [ ] Introduce advanced financial features
+- [ ] Launch blockchain certificate system (key differentiator)
+- [ ] Integrate sharia-compliant payment gateways (BSI, BNI Syariah)
 - [ ] Improve user experience dan mobile support
-- [ ] Establish payment gateway integration
+- [ ] Establish public transparency portal
 
 #### Features
+
+**🔗 Blockchain Certificate System (NEW):**
+
+- [ ] **IPFS Integration:** Store certificate metadata di decentralized storage - *Priority: High*
+- [ ] **Smart Contract Deployment:** ERC-721 NFT contract di Polygon blockchain - *Priority: High*
+- [ ] **Certificate Issuance:** Generate immutable blockchain certificates - *Priority: High*
+- [ ] **QR Code Verification:** Scan to verify certificate authenticity - *Priority: High*
+- [ ] **Batch Issuance:** Gas optimization untuk multiple certificates - *Priority: Medium*
+- [ ] **Gas Fee Recovery:** Charge Rp 50,000 per certificate - *Priority: Medium*
+
+**🕌 Sharia-Compliant Payment Gateways (NEW):**
+
+- [ ] **BSI Integration:** Bank Syaria Indonesia payment methods (VA, Mobile, Auto-Debit) - *Priority: High*
+- [ ] **BNI Syariah Integration:** Alternative sharia payment gateway - *Priority: Medium*
+- [ ] **Multi-Gateway Router:** Smart routing based on donor preference - *Priority: Medium*
+- [ ] **Sharia Compliance Badge:** Display syaria certification untuk payments - *Priority: High*
+- [ ] **Midtrans Integration:** Online donation processing (general) - *Priority: High*
+- [ ] **Recurring Donations:** Monthly auto-debit for donors - *Priority: High*
 
 **Enhanced Financial Management:**
 
 - [ ] **Advanced Accounting:** Full PSAK 109 compliance modules - *Priority: High*
+- [ ] **BWI Report Templates:** One-click BWI standard report generation - *Priority: High*
 - [ ] **Asset Valuation:** Automated property valuation integration - *Priority: Medium*
-- [ ] **Investment Management:** Wakaf asset investment tracking - *Priority: Medium*
-- [ ] **Multi-currency Support:** Support untuk various asset types - *Priority: Low*
+- [ ] **Multi-Currency Support:** Support untuk 10 currencies (IDR, USD, SGD, MYR, EUR, SAR, AED, KWD, JPY, CNY) - *Priority: Medium*
+- [ ] **Exchange Rate Sync:** Daily automatic exchange rate updates - *Priority: Medium*
 
-**Digital Payment Integration:**
+**📊 Public Transparency Portal (NEW):**
 
-- [ ] **Midtrans Integration:** Online donation processing - *Priority: High*
-- [ ] **Recurring Donations:** Monthly auto-debit for donors - *Priority: High*
-- [ ] **Digital Wallet Support:** GoPay, OVO, DANA integration - *Priority: Medium*
-- [ ] **QRIS Payments:** QR code payments untuk offline donations - *Priority: Medium*
+- [ ] **Public Dashboard:** waqfwise.com/public/{institution_slug} - *Priority: High*
+- [ ] **Asset Transparency:** Display total assets, breakdown by type (aggregate data only) - *Priority: High*
+- [ ] **Financial Transparency:** Donations vs disbursements, program funding - *Priority: High*
+- [ ] **Real-Time Updates:** Livewire polling untuk live data - *Priority: Medium*
+- [ ] **Mobile Optimization:** Responsive design untuk mobile donors - *Priority: High*
+- [ ] **Social Sharing:** Share dashboard link ke social media - *Priority: Low*
 
 **User Experience Enhancements:**
 
 - [ ] **Mobile Responsive Design:** Full mobile optimization - *Priority: High*
+- [ ] **FluxUI Components:** Implement pre-built UI components untuk consistency - *Priority: Medium*
 - [ ] **Dashboard Improvements:** Advanced analytics dan insights - *Priority: Medium*
 - [ ] **Bulk Operations:** Mass data import/export capabilities - *Priority: Medium*
 - [ ] **User Onboarding:** Guided setup process untuk new nazhir - *Priority: High*
@@ -100,36 +131,42 @@
 **Communication Features:**
 
 - [ ] **Email Notifications:** Automated donor receipts dan updates - *Priority: High*
-- [ ] **SMS Notifications:** Important updates via WhatsApp/SMS - *Priority: Medium*
 - [ ] **Donor Portal:** Self-service portal untuk Wakif - *Priority: Medium*
 - [ ] **Annual Reports:** Automated annual report generation - *Priority: Low*
 
 #### Success Metrics
 
-- **Active Nazhir:** 100+ institutions
+- **Active Nazhir:** 100+ institutions (target: 50 free, 50 premium)
 - **Asset Under Management:** IDR 10+ Milyar
 - **Monthly Donations:** IDR 500+ Juta
+- **Blockchain Certificates Issued:** 5,000+ certificates
+- **Certificate Verification Rate:** 95% successful verification
+- **Sharia Payment Gateway Adoption:** 60% dari donations via BSI/BNI Syariah
+- **Freemium Conversion Rate:** 15% free-to-paid conversion
 - **User Satisfaction:** 4.5/5 rating dari surveys
 - **Performance:** Load time < 3 seconds
+- **Public Dashboard Views:** 10,000+ unique visitors/month
 
 ---
 
-### 🏆 Phase 3: Growth & Ecosystem Integration (Q4 2025 - Q2 2026)
+### 🏆 Phase 3: Growth, AI & Ecosystem Integration (Q4 2025 - Q2 2026)
 
 **Timeline:** Oct 2025 - Jun 2026 | **Status:** Future Planning
 
 #### Goals
 
 - [ ] Scale ke 500+ nazhir institutions
-- [ ] Introduce premium subscription model
+- [ ] Optimize freemium conversion funnel (target: 20% conversion)
 - [ ] Build ecosystem partnerships
-- [ ] Expand ke enterprise features
+- [ ] Expand ke enterprise features dengan advanced AI
+- [ ] Grow MRR ke IDR 100+ Juta/bulan
 
 #### Features
 
-**Business Intelligence & Analytics:**
+**Business Intelligence & AI Analytics:**
 
 - [ ] **Advanced Analytics Dashboard:** Predictive analytics dan trends - *Priority: High*
+- [ ] **AI-Powered Insights:** Predictive asset growth analysis, donor retention prediction - *Priority: Medium*
 - [ ] **Benchmarking:** Industry comparison dan best practices - *Priority: Medium*
 - [ ] **Custom Reports:** Drag-and-drop report builder - *Priority: Medium*
 - [ ] **Data Export:** Multiple format exports (Excel, PDF, CSV) - *Priority: High*
@@ -139,14 +176,21 @@
 - [ ] **Multi-institution Support:** Manage multiple nazhir accounts - *Priority: High*
 - [ ] **Advanced User Permissions:** Granular access control - *Priority: High*
 - [ ] **API Access:** RESTful API untuk third-party integrations - *Priority: Medium*
-- [ ] **White-labeling:** Custom branding untuk enterprise clients - *Priority: Low*
+- [ ] **White-labeling:** Custom branding untuk enterprise clients - *Priority: Medium*
+
+**Enhanced Blockchain Features:**
+
+- [ ] **Smart Contract Upgrades:** Proxy pattern untuk contract improvements - *Priority: Medium*
+- [ ] **Certificate Transfer:** Transfer ownership antar nazhir institutions - *Priority: Low*
+- [ ] **Gas Optimization:** Layer-2 scaling solutions - *Priority: Medium*
+- [ ] **Blockchain Analytics:** Track certificate issuance trends - *Priority: Low*
 
 **Ecosystem Integration:**
 
-- [ ] **Bank Integration:** Direct API integration dengan major banks - *Priority: High*
+- [ ] **BSI/BNI Syariah API:** Direct API integration untuk corporate accounts - *Priority: High*
 - [ ] **Property Management Integration:** Integration dengan property platforms - *Priority: Medium*
-- [ ] **Government Systems:** Integration dengan BPJPH, Kementerian Agama - *Priority: Medium*
-- [ ] **Blockchain:** Immutable records untuk high-value assets - *Priority: Low*
+- [ ] **Kemenag Integration:** Direct submission ke Kementerian Agama database - *Priority: High*
+- [ ] **Muamalat Bank:** Additional sharia payment gateway - *Priority: Low*
 
 **Mobile Application:**
 
@@ -154,6 +198,7 @@
 - [ ] **Offline Support:** Basic offline functionality - *Priority: Medium*
 - [ ] **Push Notifications:** Real-time updates dan alerts - *Priority: High*
 - [ ] **Biometric Authentication:** Secure login methods - *Priority: Medium*
+- [ ] **QR Code Scanner:** Mobile certificate verification - *Priority: High*
 
 #### Success Metrics
 
@@ -248,9 +293,21 @@
 ### Compliance Metrics
 
 - **PSAK 109 Compliance Score:** Audit compliance percentage
+- **BWI Report Accuracy:** 100% BWI standard report compliance
+- **Blockchain Certificate Verification:** 95% successful verification rate
+- **Sharia Payment Gateway Adoption:** 60% dari total donations via BSI/BNI Syariah
 - **Regulatory Reporting:** 100% on-time regulatory submissions
 - **Audit Trail Completeness:** 100% activity logging
 - **Data Accuracy:** Financial data accuracy rate
+- **Freemium Conversion Rate:** 15% free-to-paid conversion (Phase 2), 20% (Phase 3)
+
+### Blockchain Metrics
+
+- **Certificates Issued:** Total blockchain certificates minted
+- **Verification Success Rate:** 95%+ successful QR code scans
+- **Gas Fee Efficiency:** Average Rp 50-100 per certificate
+- **Smart Contract Security:** Third-party audit completed
+- **IPFS Storage Success:** 99.9% uptime untuk certificate metadata
 
 ### Technical Metrics
 
@@ -343,7 +400,7 @@
 
 ---
 
-**Last Updated:** 2024-12-01
-**Next Review Date:** 2025-01-01
+**Last Updated:** 2026-01-06
+**Next Review Date:** 2025-04-01
 **Owner:** Product Team (WaqfWise)
-**Reviewers:** Development Team, Islamic Scholars, Compliance Experts
+**Reviewers:** Development Team, Islamic Scholars, Compliance Experts, Blockchain Specialists

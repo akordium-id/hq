@@ -56,9 +56,10 @@
 
 **UI Components:**
 
-- **Component Library:** Custom components dengan Tailwind CSS
+- **Component Library:** **FluxUI** (Livewire component library) + Custom components dengan Tailwind CSS
 - **Design System:** Tailwind UI components dengan customization untuk WaqfWise branding
-- **Custom Components:** Financial charts (Chart.js), Data tables (DataTables), File upload systems
+- **FluxUI Benefits:** Pre-built components reduce development time 40-60%, consistent UI, less boilerplate code
+- **Custom Components:** Financial charts (Chart.js), Data tables (DataTables), File upload systems, Blockchain certificate templates
 
 **Build Tools:**
 
@@ -244,6 +245,167 @@ app/
 
 ---
 
+## 🔗 Blockchain Integration
+
+### Platform Selection
+
+**Primary Blockchain: Polygon (MATIC)**
+
+- **Why Polygon:** Layer-2 Ethereum solution dengan ultra-low gas fees (<$0.01 per transaction vs Ethereum's $5-50)
+- **Benefits:** Fast transactions (2-5 seconds confirmation), low costs, Ethereum compatibility, EVM support
+- **Gas Fee Target:** Rp 50-100 per certificate (vs Rp 500,000+ on Ethereum mainnet)
+- **Environmental:** 99.9% more energy-efficient than Ethereum proof-of-work
+
+**Alternative: Ethereum Mainnet**
+
+- **Use Case:** High-value certificates requiring maximum security
+- **Consideration:** Significantly higher gas costs ($5-50 per transaction)
+- **Strategy:** Optional upgrade path untuk premium customers
+
+### Smart Contract Architecture
+
+**Technology Stack:**
+
+- **Smart Contract Language:** Solidity ^0.8.0
+- **Development Framework:** Hardhat atau Truffle Suite
+- **Testing Framework:** Hardhat Test, Mocha, Chai
+- **Deployment Tools:** Hardhat Deploy, Remix IDE (for testing)
+
+**Smart Contract Components:**
+
+1. **WaqfCertificateRegistry.sol**
+   - **Purpose:** Store certificate hashes dan ownership records
+   - **Functions:** `issueCertificate()`, `verifyCertificate()`, `transferCertificate()`
+   - **Events:** `CertificateIssued`, `CertificateTransferred`, `CertificateVerified`
+   - **Access Control:** Role-based (Admin, Nazhir, Public)
+
+2. **NFT/Token Implementation (ERC-721)**
+   - **Standard:** ERC-721 (Non-Fungible Token) untuk unique certificates
+   - **Metadata:** IPFS hash storage untuk certificate details
+   - **Token URI:** Decentralized storage (IPFS/Pinata)
+   - **Ownership Tracking:** Minted certificates linked to nazhir wallet address
+
+**Contract Features:**
+
+- **Batch Issuance:** Issue multiple certificates dalam single transaction (gas optimization)
+- **Metadata Storage:** Off-chain storage (IPFS) untuk reduce gas costs
+- **Upgradeability:** Proxy pattern untuk future contract upgrades
+- **Pausing:** Emergency pause functionality untuk security
+- **Access Control:** Only admin can issue certificates, public can verify
+
+### Blockchain Integration Libraries
+
+**PHP/Laravel Integration:**
+
+- **Web3.php:** PHP library untuk Ethereum interaction
+  - Version: ^1.6.0
+  - Purpose: Send transactions, read contract data, wallet management
+  - Integration: Laravel Service wrapper
+
+- **Guzzle HTTP:** HTTP client untuk blockchain node communication
+  - Purpose: Direct RPC calls ke blockchain nodes
+  - Fallback: When Web3.php tidak sufficient
+
+**Frontend Integration:**
+
+- **Ethers.js (v6):** JavaScript library untuk blockchain interaction
+  - Purpose: Wallet connection, transaction signing, contract interaction
+  - Use Case: Nazhir-facing certificate management interface
+
+- **Web3Modal:** Wallet connection UI component
+  - Purpose: Simplify wallet connection (MetaMask, WalletConnect)
+  - Supported Wallets: MetaMask, Coinbase Wallet, Trust Wallet
+
+### Infrastructure & Node Management
+
+**Blockchain Node Providers:**
+
+1. **Infura (Primary):**
+   - **Service:** Ethereum/Polygon node-as-a-service
+   - **Benefits:** Reliable, fast, free tier available (100K requests/day)
+   - **Fallback:** QuickNode atau Alchemy (redundancy)
+
+2. **Self-Hosted Nodes (Future):**
+   - **Purpose:** Cost optimization at scale, full control
+   - **Implementation:** Erigon node software
+   - **Timeline:** Year 2+ jika significant usage
+
+**Gas Management Strategy:**
+
+- **Gas Estimation:** Pre-transaction gas estimation untuk user confirmation
+- **Gas Price Oracle:** Real-time gas price tracking (Etherscan API)
+- **Batch Processing:** Batch multiple certificates dalam single transaction
+- **Gas Fee Recovery:** Charge Rp 50,000 per certificate untuk recover costs
+
+### Certificate Workflow
+
+**Certificate Issuance Process:**
+
+1. **User Request:** Nazhir requests certificate generation di UI
+2. **Data Preparation:** System prepares certificate metadata (JSON)
+3. **IPFS Upload:** Upload certificate PDF/IPFS hash → Get CID (Content Identifier)
+4. **Smart Contract Call:** Call `issueCertificate(certificateHash, metadata)` di Polygon
+5. **Transaction Signing:** Sign transaction dengan admin wallet (private key)
+6. **Blockchain Confirmation:** Wait 2-5 seconds untuk block confirmation
+7. **Certificate Generation:** Generate PDF dengan QR code → blockchain explorer link
+8. **Database Storage:** Store transaction hash, block number, gas used di database
+
+**Verification Process:**
+
+1. **QR Code Scan:** User scan QR code di certificate
+2. **Hash Extraction:** Extract certificate hash dari QR code
+3. **Blockchain Query:** Query smart contract `verifyCertificate(certificateHash)`
+4. **Result Display:** Show certificate details (issuance date, block number, confirmations)
+5. **IPFS Metadata:** Fetch certificate metadata dari IPFS (optional)
+
+### Security Considerations
+
+**Private Key Management:**
+
+- **Storage:** Environment variables (never commit ke git)
+- **Encryption:** AES-256 encryption untuk at-rest wallet files
+- **Backup:** Encrypted backups dengan multiple secure locations
+- **Access Control:** Only authorized admin accounts can access signing keys
+
+**Smart Contract Security:**
+
+- **Audits:** Third-party smart contract audit (Year 1)
+- **Testing:** 100% test coverage untuk critical functions
+- **Bug Bounty:** Bug bounty program untuk security researchers (Year 2)
+- **Upgradeability:** Proxy pattern untuk emergency upgrades
+
+**Anti-Fraud Measures:**
+
+- **Rate Limiting:** Prevent certificate spam (max 100 per day per nazhir)
+- **Validation Rules:** Strict validation untuk certificate data
+- **Verification Required:** Admin approval required before certificate issuance
+- **Audit Trail:** Complete audit trail untuk all blockchain transactions
+
+### Cost Optimization
+
+**Gas Optimization Techniques:**
+
+- **Batch Processing:** Combine multiple certificates dalam single transaction
+- **Lazy Minting:** Mint certificate hanya saat requested (not upfront)
+- **IPFS Storage:** Store large documents off-chain (IPFS vs on-chain)
+- **Optimized Data Types:** Use `uint256` instead of `string` where possible
+- **Event Logging:** Use events instead of storage untuk non-critical data
+
+**Estimated Costs:**
+
+- **Certificate Issuance:** Rp 50-100 per certificate (Polygon gas fees)
+- **IPFS Storage:** Rp 10 per certificate per year (Pinata premium)
+- **Infrastructure:** Rp 300,000 per month (Infura premium + node operation)
+- **Smart Contract Audit:** Rp 50-100M one-time (Year 1)
+
+**Revenue Model:**
+
+- **Gas Fee Recovery:** Charge Rp 50,000 per certificate
+- **Margin:** Rp 49,900 profit per certificate (after gas costs)
+- **Bundle Pricing:** 100 certificates/month free (Medium/Large plans)
+
+---
+
 ## 🌐 Infrastructure & DevOps
 
 ### Hosting & Deployment
@@ -409,12 +571,89 @@ app/
 
 ### Payment Processing
 
-**Primary Provider:** Midtrans
+**General Payment Gateway: Midtrans**
 
 - **API Version:** v2
 - **Features Used:** Credit cards, bank transfer, e-wallets (GoPay, OVO, DANA)
 - **Implementation:** Server-side integration dengan webhook handling
 - **Fallback:** Manual payment recording untuk offline transactions
+
+**Sharia-Compliant Payment Gateways:**
+
+1. **Bank Syaria Indonesia (BSI)** - Primary Sharia Payment
+   - **API Integration:** Direct API integration untuk online donations
+   - **Payment Methods:** BSI Virtual Account, BSI Mobile, BSI Auto-Debit
+   - **Sharia Compliance:** 100% syaria-compliant (no riba principles)
+   - **Features:**
+     - Virtual Account generation untuk donations
+     - Recurring payments untuk monthly donors
+     - Auto-debit untuk regular wakf payments
+   - **Implementation Timeline:** Q1 2025
+   - **Use Cases:** Zakat, wakf, infak payments
+
+2. **BNI Syariah** - Alternative Sharia Payment
+   - **API Integration:** Similar integration approach dengan BSI
+   - **Payment Methods:** BNI Syariah Virtual Account, BNI Mobile Syariah
+   - **Sharia Compliance:** DPSN (Dewan Syariah Nasional) certified
+   - **Features:**
+     - Virtual account dengan custom naming
+     - QRIS integration untuk walk-in donations
+     - Cross-bank transfer support
+   - **Implementation Timeline:** Q2 2025
+   - **Use Cases:** Alternative untuk donors who don't have BSI accounts
+
+**Payment Gateway Comparison:**
+
+| Gateway | Sharia Compliance | Methods | Fees | Pros | Cons |
+|---------|-------------------|----------|-------|------|------|
+| **Midtrans** | Partial (depends on method) | VA, GoPay, OVO, DANA, CC | 2-3% | Widely accepted, easy integration | Not 100% syaria |
+| **BSI** | 100% | VA, Mobile, Auto-Debit | Negotiable | Trusted Islamic brand | Limited to BSI customers |
+| **BNI Syariah** | 100% | VA, Mobile, QRIS | Negotiable | DPSN certified | Limited to BNI customers |
+| **QRIS** | 100% | QR code scanning | 0.7% | Universal, convenient | Lower donation amounts |
+
+**Integration Architecture:**
+
+- **Multi-Gateway Support:** Support multiple gateways simultaneously
+- **Gateway Routing:** Smart routing based on donor preference atau availability
+- **Unified Webhook:** Single webhook handler untuk all gateways
+- **Payment Reconciliation:** Auto-reconcile payments dari multiple sources
+- **Fallback Strategy:** Midtrans sebagai primary, BSI/BNI Syariah sebagai syaria-focused alternative
+
+**Compliance Features:**
+
+- **Zakat vs Wakf Classification:** Proper classification untuk different payment types
+- **Donation Purpose Tracking:** Track specific purpose (wakf, zakat, infak, sedekah)
+- **Automatic Receipt Generation:** Sharia-compliant receipts dengan proper wording
+- **Fund Separation:** Automatic segregation based donation type (wakf vs non-wakf)
+
+**Technical Implementation:**
+
+```php
+// Payment Gateway Service Pattern
+class PaymentService {
+    public function processDonation($amount, $method, $donorId, $donationType) {
+        // Route ke appropriate gateway
+        if ($this->isShariaGatewayPreferred($donorId)) {
+            return $this->processBSIPayment($amount, $method, $donorId);
+        }
+
+        // Default ke Midtrans
+        return $this->processMidtransPayment($amount, $method, $donorId);
+    }
+
+    private function isShariaGatewayPreferred($donorId) {
+        // Check donor preference atau default setting
+        return setting('payment_gateway_default') === 'bsi';
+    }
+}
+```
+
+**Future Payment Gateways (Roadmap v2.0):**
+
+- **Muamalat:** Sharia banking alternative
+- **Bank Mega Syariah:** Additional syaria option
+- **LinkAja:** Micro-donation support ( Rp 1,000-50,000 )
+- **Sharia P2P Lending:** Untuk wakf uang investment (future)
 
 ### Communication Services
 

@@ -607,8 +607,303 @@ Minor UI inconsistencies across different pages:
 
 ---
 
-**Last Updated:** 2024-12-01
-**Next Review Date:** 2024-12-08
+## 🔮 Emerging Risks & Considerations (NEW - 2026-01-06)
+
+### Blockchain-Related Risks
+
+#### Risk: Gas Fee Volatility
+
+**Description:** Polygon gas fees can fluctuate based pada network congestion. While currently <$0.01 per transaction, spikes could increase costs significantly.
+
+**Impact:**
+- **Cost Predictability:** Certificate issuance costs could vary from Rp 50-500 per certificate
+- **Margin Compression:** Gas fee spikes could reduce atau eliminate Rp 50,000 certificate fee margin
+- **User Experience:** Unexpected fee increases could frustrate users
+
+**Mitigation:**
+- Monitor gas prices using Etherscan API before transactions
+- Implement dynamic pricing untuk certificate fees (adjust based on gas costs)
+- Consider gas subsidy untuk premium customers (include in subscription)
+- Fallback: Allow users to "queue" certificate issuance during low-gas periods
+- Smart contract: Use gas optimization techniques (batch operations, optimized data types)
+
+**Monitoring:**
+- Alert if gas fees exceed Rp 200 per certificate
+- Weekly gas fee cost reporting
+- Quarterly review of certificate pricing vs gas costs
+
+---
+
+#### Risk: Smart Contract Security Vulnerabilities
+
+**Description:** Smart contracts are immutable once deployed. Bugs atau vulnerabilities could be exploited, leading to certificate loss atau manipulation.
+
+**Impact:**
+- **Critical:** Certificate theft atau unauthorized issuance
+- **Critical:** Loss of user trust dalam blockchain certificates
+- **High:** Financial loss if certificates need to be re-issued
+- **Reputation:** "Blockchain certificates" claim becomes meaningless if compromised
+
+**Mitigation:**
+- Third-party smart contract audit BEFORE mainnet deployment (budget Rp 50-100M)
+- Implement proxy pattern untuk upgradeability (can fix bugs without losing certificates)
+- Bug bounty program (Year 2+) - incentivize white-hat hackers to find vulnerabilities
+- Start dengan testnet deployment (Polygon Mumbai/Amoy) before mainnet
+- Time-lock admin functions (emergency pause can be activated but with delay)
+- Comprehensive testing: 100% test coverage untuk critical contract functions
+
+**Contingency:**
+- Emergency pause functionality (can stop all certificate issuance if critical bug found)
+- Migration plan: Transfer all certificates ke new contract if needed
+- Insurance: Consider smart contract insurance (Year 2+)
+
+---
+
+#### Risk: IPFS Storage Reliability
+
+**Description:** IPFS relies on pinning services (Pinata) untuk persistent storage. If Pinata goes down atau deletes data, certificate metadata could be lost.
+
+**Impact:**
+- **High:** Certificate metadata becomes inaccessible
+- **Medium:** Verification process fails (can't fetch metadata dari IPFS)
+- **Reputation:** "Permanent" storage claim is damaged
+
+**Mitigation:**
+- Use multiple IPFS pinning services (Pinata primary, Filebase secondary)
+- Implement local backup: Store certificate metadata di database alongside IPFS hash
+- Regular integrity checks: Periodically verify IPFS data is accessible
+- Fallback: Display certificate details dari database if IPFS unavailable
+- Pinata premium plan: Ensures higher uptime dan data persistence guarantees
+
+**Monitoring:**
+- Weekly IPFS accessibility checks
+- Alert if >1% of certificates fail IPFS retrieval
+- Monthly review of Pinata service status
+
+---
+
+### Multi-Currency Risks
+
+#### Risk: Exchange Rate Volatility
+
+**Description:** Multi-currency assets exposed to exchange rate fluctuations. IDR depreciation against USD could significantly impact reported asset values.
+
+**Impact:**
+- **Financial Reporting:** Asset values in IDR could fluctuate dramatically
+- **Compliance:** BWI may require stable valuation methodology
+- **User Confusion:** Donors confused by currency conversion differences
+- **Accounting Complexity:** Unrealized gains/losses calculation complexity
+
+**Mitigation:**
+- Store both original currency amount AND converted IDR amount at transaction date
+- Use historical exchange rates (as of transaction date) untuk accounting
+- Implement daily revaluation process untuk current value reporting
+- Display both "original amount" dan "IDR equivalent" untuk transparency
+- Allow users to choose "base currency" untuk their reports
+- Add disclaimer: "Exchange rates based on [Bank Indonesia] as of [date]"
+
+**Monitoring:**
+- Track exchange rate movements (alert if >10% change in month)
+- Monthly unrealized gains/losses reporting
+- Quarterly review of multi-currency accounting methodology
+
+---
+
+#### Risk: Payment Gateway Conversion Complexity
+
+**Description:** Different payment gateways may use different exchange rates untuk foreign transactions, leading to discrepancies.
+
+**Impact:**
+- **Reconciliation:** Donated amount doesn't match expected due to rate differences
+- **User Trust:** Donors feel "cheated" if conversion rate unfavorable
+- **Accounting:** Complex reconciliation untuk multi-currency donations
+
+**Mitigation:**
+- Use single source of truth untuk exchange rates (Bank Indonesia API)
+- Display estimated IDR equivalent BEFORE donor confirms payment
+- Add disclaimer: "Final amount may vary based on payment provider exchange rate"
+- Implement tolerance threshold (e.g., <2% difference auto-accepted)
+- Manual review untuk large discrepancies (>Rp 100,000 difference)
+
+---
+
+### Freemium Model Risks
+
+#### Risk: Low Free-to-Paid Conversion
+
+**Description:** Users may be content dengan free tier limitations (10 assets max, basic reporting) dan never upgrade to premium.
+
+**Impact:**
+- **Revenue:** Actual revenue significantly below projections (target: 10-15% conversion)
+- **Sustainability:** Cannot cover infrastructure costs dengan free users only
+- **Resource Allocation:** Support resources strained oleh free users
+
+**Mitigation:**
+- Clear upgrade prompts: "You've reached 10 asset limit. Upgrade untuk unlimited assets."
+- Feature gating: Make premium features attractive (blockchain certificates, BWI reports)
+- Time-limited trials: Offer 30-day full access to premium features
+- Success stories: Show how premium users benefit (case studies, testimonials)
+- FOMO marketing: "Advanced analytics available pada premium tier"
+- Annual pricing discount: 2 months free (17% discount) untuk annual commitment
+- Exit survey: Ask free users why they're not upgrading (gather feedback)
+
+**Monitoring:**
+- Track conversion funnel: Free signup → Premium trial → Paid subscription
+- Monitor feature usage: Which premium features are most requested?
+- Survey free users quarterly: Understand barriers to upgrading
+- A/B test pricing: Test different price points (Rp 300K vs Rp 500K)
+
+**Contingency:**
+- If conversion <5% after 6 months: Introduce aggressive freemium model (50 assets free, basic BWI reports free)
+- If conversion <10% after 12 months: Consider lowering prices atau introducing mid-tier (Rp 250K/month)
+
+---
+
+#### Risk: Free User Support Overload
+
+**Description:** Free tier users expect same level of support sebagai premium users, but business model doesn't support support costs.
+
+**Impact:**
+- **Resource Drain:** Support team overwhelmed oleh free user tickets
+- **Response Time:** Premium users experience slower support
+- **Churn:** Premium users cancel due to poor support experience
+
+**Mitigation:**
+- Clear support SLAs: Free users = community support only (email within 3-5 business days)
+- Premium SLAs: Priority support (email within 24 hours, WhatsApp available)
+- Self-service resources: Comprehensive FAQ, video tutorials, knowledge base
+- Community forum: Encourage free users to help each other
+- Chatbot: Implement AI chatbot untuk common questions (Year 2+)
+- Ticket prioritization: Premium tickets always handled first
+
+**Communication:**
+- Be upfront: "Free tier includes community support. Priority support available on premium plans."
+- Set expectations: Response time clearly stated during signup
+
+---
+
+### Sharia Payment Gateway Risks
+
+#### Risk: BSI/BNI Syariah Integration Complexity
+
+**Description:** BSI dan BNI Syariah APIs may be less mature than Midtrans, with potential downtime, bugs, atau changing requirements.
+
+**Impact:**
+- **Payment Failures:** Donors cannot complete donations via sharia gateways
+- **User Trust:** "100% syaria" claim damaged if sharia gateways frequently fail
+- **Reconciliation:** Failed payments require manual reconciliation
+- **Support Load:** Increased support tickets due to payment issues
+
+**Mitigation:**
+- Maintain Midtrans sebagai fallback: If BSI fails, automatically offer Midtrans
+- Multi-gateway strategy: Donors can choose alternative gateway
+- Extensive testing: Test BSI/BNI Syariah integration thoroughly before launch
+- Sandboxes: Use sandbox environments untuk testing before production
+- Direct bank relationships: Establish contacts di BSI/BNI Syariah untuk quick issue resolution
+- Monitor uptime: Track gateway uptime rates (alert if <99% uptime)
+- Error handling: Clear error messages jika payment fails ("Payment gateway unavailable. Please try alternative payment method.")
+
+**Testing:**
+- Load testing: Simulate 1000+ concurrent payments via BSI
+- Failover testing: Test automatic routing ke Midtrans if BSI fails
+- Regression testing: Re-test after any API changes dari BSI/BNI Syariah
+
+---
+
+#### Risk: Sharia Compliance Perception
+
+**Description:** Users may question whether payment via Midtrans (non-sharia methods like credit cards) is truly syaria-compliant.
+
+**Impact:**
+- **Trust Issues:** Donors reluctant to use platform if payment methods not 100% syaria
+- **Conversion:** Lower donation completion rates
+- **Reputation:** Accusations of "greenwashing" syaria compliance
+
+**Mitigation:**
+- Clear labeling: Mark payment methods dengan sharia compliance status
+  - BSI/BNI Syariah: "100% Syaria-Compliant ✓"
+  - Midtrans methods: "Partial syaria compliance" (explain: credit cards involve interest)
+- Educate users: Explain why some payment methods are not fully syaria (bank interest)
+- Default to sharia: BSI payment method selected by default
+- Separate donation types: Clearly separate "Zakat/Wakf" (sharia) dari "General Donations" (non-sharia)
+- Scholar endorsement: Get endorsement dari Islamic scholars untuk payment method choices
+
+**Communication:**
+- FAQ: "Why do you offer non-sharia payment methods?"
+  - Answer: "Donor convenience. We encourage sharia methods but provide alternatives untuk accessibility."
+- Transparency: Be clear tentang payment method limitations
+
+---
+
+### Market & Competitive Risks
+
+#### Risk: Competitor Response
+
+**Description:** Existing waqf management platforms (atau new entrants) may copy blockchain/sharia payment features, eroding WaqfWise's first-mover advantage.
+
+**Impact:**
+- **Differentiation Lost:** Competitive advantage diminished
+- **Price Pressure:** Competitors may undercut pricing (Rp 300K vs Rp 500K)
+- **Market Share:** Slower growth if competitors match features
+
+**Mitigation:**
+- Fast execution: Launch blockchain certificates BEFORE competitors (first-mover advantage)
+- Network effects: More users = more valuable blockchain verification network
+- Continuous innovation: Always working pada next feature (AI insights, mobile apps)
+- Brand building: "WaqfWise = Blockchain Wakaf Certificates" positioning
+- Partnership moat: Exclusive partnerships dengan BSI, BWI, Kemenag
+- Community: Open source Basic tier builds community lock-in
+- Switching costs: Data export makes leaving easy, BUT re-importing ke competitor is hard
+
+**Monitoring:**
+- Quarterly competitive analysis: What are competitors launching?
+- Feature comparison matrix: Maintain feature parity overview
+- Price monitoring: Track competitor pricing changes
+
+---
+
+#### Risk: Regulatory Changes
+
+**Description:** BWI atau Kemenag may introduce new regulations requiring different reporting formats, blockchain certificate standards, atau sharia compliance requirements.
+
+**Impact:**
+- **Compliance Cost:** Significant development work to comply dengan new regulations
+- **Timeline:** Launch delays jika regulations change suddenly
+- **Invalid Certificates:** Existing blockchain certificates may not meet new standards
+
+**Mitigation:**
+- Close monitoring: Maintain relationships dengan BWI/Kemenag untuk early warning
+- Flexible architecture: Design system untuk easy regulatory updates
+- Template versioning: Support multiple BWI report formats (backward compatible)
+- Sandbox environments: Test compliance with new regulations before public launch
+- Legal review: Regular consultations dengan Islamic law experts
+- Beta testing with regulators: Get early feedback dari BWI on new features
+
+---
+
+## 📊 Updated Issue Categories
+
+### By Component (Updated)
+
+- **Frontend:** 2 issues (Mobile UI, PDF generation)
+- **Backend:** 3 issues (Database performance, File upload, Email)
+- **Infrastructure:** 2 issues (Resource constraints, Performance)
+- **Blockchain:** 0 issues (not yet launched) - **New Risk Category**
+- **Payment Gateways:** 0 issues (not yet integrated) - **New Risk Category**
+
+### By Type (Updated)
+
+- **Bug:** 5 issues
+- **Performance:** 6 issues
+- **Usability:** 2 issues
+- **Security:** 0 issues (currently) - **Increased Risk:** Smart contract vulnerabilities
+- **Documentation:** 0 issues
+- **Strategic Risk:** 9 emerging risks identified (NEW)
+
+---
+
+**Last Updated:** 2026-01-06
+**Next Review Date:** 2026-01-13
 **Maintainer:** WaqfWise Development Team
 **Review Frequency:** Weekly
 

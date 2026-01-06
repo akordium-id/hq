@@ -369,6 +369,312 @@
 
 ---
 
+### Epic 6: Blockchain Certificate Management
+
+#### User Story 6.1: Generate Blockchain Certificates
+
+**As a** Ustadz Ahmad (Nazhir Manager),
+**I want to** generate immutable blockchain certificates untuk waqf assets,
+**so that** I can provide tamper-proof proof of ownership kepada wakif (donors).
+
+**Acceptance Criteria:**
+
+- [ ] Select waqf asset untuk certificate generation
+- [ ] Upload certificate metadata (asset details, ownership, date)
+- [ ] System uploads metadata ke IPFS → get CID
+- [ ] System mints ERC-721 NFT pada Polygon blockchain
+- [ ] Generate PDF certificate dengan QR code
+- [ ] QR code links to Polygonscan transaction verification
+- [ ] Display transaction hash, block number, gas fee
+- [ ] Store blockchain reference di database
+- [ ] Show confirmation dengan certificate preview
+- [ ] Limit certificates based on subscription plan (Basic: 0, Premium: unlimited)
+
+**Technical Requirements:**
+
+- IPFS integration (Pinata API)
+- Polygon smart contract integration (Web3.php)
+- ERC-721 token minting functionality
+- PDF generation dengan QR code embedding
+- Transaction monitoring untuk block confirmation
+- Gas fee estimation system
+- Batch certificate issuance (gas optimization)
+
+**Priority:** High | **Estimated Effort:** 21 story points | **Sprint:** 6
+
+#### User Story 6.2: Verify Blockchain Certificates
+
+**As a** Budi (Wakif/Donor),
+**I want to** verify certificate authenticity via QR code scan,
+**so that** I can trust bahwa certificate asli dan tidak dipalsukan.
+
+**Acceptance Criteria:**
+
+- [ ] Scan QR code dari certificate PDF
+- [ ] Redirect to verification page ( atau Polygonscan)
+- [ ] Display certificate details (asset info, issuance date, transaction hash)
+- [ ] Show blockchain confirmation status (block confirmations)
+- [ ] Fetch certificate metadata dari IPFS
+- [ ] Display verification status: ✓ Valid / ✗ Invalid
+- [ ] Show certificate owner (nazhir institution name)
+- [ ] Mobile-optimized verification page
+- [ ] Share verification link ke social media
+
+**Technical Requirements:**
+
+- QR code scanning library (mobile web)
+- Smart contract read function (`verifyCertificate()`)
+- IPFS metadata retrieval
+- Blockchain explorer integration (Polygonscan API)
+- Mobile-responsive verification UI
+- Caching untuk verified certificates
+
+**Priority:** High | **Estimated Effort:** 13 story points | **Sprint:** 6
+
+---
+
+### Epic 7: Multi-Currency Wakaf Management
+
+#### User Story 7.1: Multi-Currency Asset Recording
+
+**As a** Ustadz Ahmad (Nazhir Manager managing international waqf),
+**I want to** record waqf assets in multiple currencies (USD, SGD, MYR, EUR, etc.),
+**so that** I can manage international waqf donations accurately.
+
+**Acceptance Criteria:**
+
+- [ ] Select currency dari supported currencies (IDR, USD, SGD, MYR, EUR, SAR, AED, KWD, JPY, CNY)
+- [ ] Enter asset amount in selected currency
+- [ ] System auto-converts to base currency (IDR) using exchange rate
+- [ ] Display both original currency and converted value
+- [ ] Update exchange rates daily (automatic)
+- [ ] Historical exchange rate tracking (as of transaction date)
+- [ ] Financial reports show multi-currency breakdown
+- [ ] Filter assets by currency type
+- [ ] Revaluation untuk unrealized gains/losses
+
+**Technical Requirements:**
+
+- Multi-currency data model (store amount + currency_code)
+- Exchange rate API integration (Bank Indonesia, fixer.io)
+- Daily exchange rate sync job (Laravel scheduler)
+- Currency conversion calculations
+- Historical rate storage (exchange_rates table)
+- Multi-currency reporting templates
+
+**Priority:** Medium | **Estimated Effort:** 13 story points | **Sprint:** 7
+
+#### User Story 7.2: Multi-Currency Donations
+
+**As a** Budi (Wakif dari Singapore),
+**I want to** donate in SGD currency,
+**so that** I don't lose money pada unfavorable exchange rates.
+
+**Acceptance Criteria:**
+
+- [ ] Select donation currency (SGD, USD, etc.)
+- [ ] Display amount in IDR equivalent (real-time exchange rate)
+- [ ] Process payment in selected currency via payment gateway
+- [ ] Generate receipt in both currencies (SGD + IDR)
+- [ ] Track donation in original currency
+- [ ] Financial reports show multi-currency donations
+- [ ] Sharia-compliant payment methods untuk international donors
+
+**Technical Requirements:**
+
+- Multi-currency payment gateway integration
+- Real-time exchange rate display
+- Multi-currency receipt generation
+- Currency-specific payment methods
+- Exchange rate fee calculation
+
+**Priority:** Medium | **Estimated Effort:** 8 story points | **Sprint:** 7
+
+---
+
+### Epic 8: BWI Compliance & Reporting
+
+#### User Story 8.1: BWI Standard Report Generation
+
+**As a** Ustadz Ahmad (Nazhir Manager),
+**I want to** generate BWI-compliant reports dengan 1 klik,
+**so that** I can submit reports ke Badan Wakaf Indonesia tanpa manual formatting.
+
+**Acceptance Criteria:**
+
+- [ ] Select BWI report type (Laporan Aset Wakaf, Laporan Keuangan, Laporan Pemanfaatan)
+- [ ] System auto-fills report dari existing data
+- [ ] Report follows BWI template format exactly
+- [ ] Include required fields: Nilai Aset, Jenis Wakaf, Lokasi, Status Pemanfaatan
+- [ ] Preview report before export
+- [ ] Export to PDF (BWI format)
+- [ ] Export to Excel (BWI format)
+- [ ] Digital signature capability (future)
+- [ ] Direct submission ke Kemenag system (future)
+
+**Technical Requirements:**
+
+- BWI report template engine
+- Data mapping dari internal format ke BWI format
+- PDF/Excel generation dengan specific layout
+- Report validation (required fields, data formats)
+- Template versioning (BWI format changes)
+
+**Priority:** High | **Estimated Effort:** 13 story points | **Sprint:** 8
+
+#### User Story 8.2: PSAK 109 Automated Accounting
+
+**As a** Rina (Finance Staff),
+**I want to** system automatically generate journal entries sesuai PSAK 109,
+**so that** I don't need manual journal entry untuk setiap waqf transaction.
+
+**Acceptance Criteria:**
+
+- [ ] Auto-generate journal entries untuk wakf receipts (debit cash, credit wakf revenue)
+- [ ] Auto-generate journal entries untuk wakf expenses (debit wakf expense, credit cash)
+- [ ] Separate accounts untuk wakf assets (Aset Wakaf, Aset Productive, Aset Non-Productive)
+- [ ] Handle wakf uang (cash wakf) accounting differently dari wakf ghairu maqbud (property)
+- [ ] Auto-calculate amortization/depreciation untuk productive assets
+- [ ] Generate trial balance sesuai PSAK 109 format
+- [ ] Post journal entries dengan proper approval workflow
+- [ ] Audit trail untuk all journal entries
+
+**Technical Requirements:**
+
+- PSAK 109 compliant chart of accounts
+- Automated journal entry rules engine
+- Asset depreciation calculations
+- Double-entry accounting system
+- Approval workflow system
+- PSAK 109 report templates
+
+**Priority:** High | **Estimated Effort:** 21 story points | **Sprint:** 8
+
+---
+
+### Epic 9: Public Transparency Portal
+
+#### User Story 9.1: Public Asset Transparency Dashboard
+
+**As a** Budi (Wakif/Donor),
+**I want to** view public transparency dashboard untuk masjid/lembaga wakaf,
+**so that** I can see bagaimana wakf assets dikelola sebelum berdonasi.
+
+**Acceptance Criteria:**
+
+- [ ] Access public dashboard via unique URL (waqfwise.com/public/{institution_slug})
+- [ ] View total waqf assets managed (asset count + total value)
+- [ ] View asset breakdown by type (tanah, bangunan, wakaf uang, saham)
+- [ ] View financial summary (total donations, total disbursements)
+- [ ] View active programs funded oleh wakf
+- [ ] View impact metrics (beneficiaries helped, programs funded)
+- [ ] No sensitive data shown (hide donor names, specific addresses)
+- [ ] Mobile-friendly responsive design
+- [ ] Share dashboard link ke social media
+
+**Technical Requirements:**
+
+- Public dashboard route (no authentication required)
+- Data aggregation queries (optimized untuk performance)
+- Privacy controls (exclude sensitive fields)
+- Caching layer (Redis) untuk fast loading
+- SEO-friendly URLs
+- Mobile-responsive UI
+- Social sharing integration
+
+**Priority:** Medium | **Estimated Effort:** 8 story points | **Sprint:** 9
+
+#### User Story 9.2: Real-Time Financial Transparency
+
+**As a** Public user / Potential Donor,
+**I want to** see real-time financial updates dari lembaga wakaf,
+**so that** I can trust bahwa my donation akan digunakan dengan transparan.
+
+**Acceptance Criteria:**
+
+- [ ] View recent donations (anonymous, within 24 hours)
+- [ ] View recent disbursements (program name, amount, date)
+- [ ] Financial charts (donations vs disbursements trend)
+- [ ] Year-to-date financial summary
+- [ ] Program funding breakdown (berapa ke program A, program B, etc.)
+- [ ] Link to donate directly (call-to-action)
+- [ ] Data updates real-time (auto-refresh)
+- [ ] Export transparency report to PDF
+
+**Technical Requirements:**
+
+- Real-time data updates (Livewire polling atau WebSockets)
+- Chart.js integration untuk financial charts
+- Aggregated financial queries
+- Privacy controls (aggregate data only)
+- Caching strategy (balance freshness vs performance)
+- PDF export functionality
+
+**Priority:** Low | **Estimated Effort:** 8 story points | **Sprint:** 9
+
+---
+
+### Epic 10: Sharia Payment Gateway Integration
+
+#### User Story 10.1: BSI Payment Integration
+
+**As a** Budi (Wakif dengan BSI account),
+**I want to** donate via Bank Syaria Indonesia (BSI) payment methods,
+**so that** I can ensure payment saya 100% syaria-compliant.
+
+**Acceptance Criteria:**
+
+- [ ] Select BSI sebagai payment method
+- [ ] Choose BSI payment type: Virtual Account, BSI Mobile, Auto-Debit
+- [ ] Generate BSI Virtual Account dengan custom naming
+- [ ] Display payment instructions (how to transfer via BSI Mobile/ATM)
+- [ ] Auto-detect payment via BSI webhook
+- [ ] Send payment confirmation via email/SMS
+- [ ] Reconcile payment otomatis ke donation records
+- [ ] Handle failed payments (timeout, insufficient funds)
+- [ ] Support recurring donations via BSI Auto-Debit
+
+**Technical Requirements:**
+
+- BSI API integration
+- Virtual Account generation
+- Webhook handling untuk payment notifications
+- Payment reconciliation system
+- Recurring payment setup
+- Error handling dan retry logic
+
+**Priority:** High | **Estimated Effort:** 13 story points | **Sprint:** 10
+
+#### User Story 10.2: Multi-Gateway Payment Routing
+
+**As a** System,
+**I want to** route payments ke appropriate sharia payment gateway based on donor preference,
+**so that** donors have flexibility dalam payment methods.
+
+**Acceptance Criteria:**
+
+- [ ] Detect donor preferred gateway (stored in donor profile)
+- [ ] Route ke BSI jika donor preference = BSI
+- [ ] Route ke BNI Syariah jika donor preference = BNI Syariah
+- [ ] Route ke Midtrans jika no preference atau gateway unavailable
+- [ ] Fallback logic jika gateway fails (try alternative gateway)
+- [ ] Display all available payment methods ke donor
+- [ ] Show sharia-compliance badge untuk BSI & BNI Syariah
+- [ ] Track payment gateway conversion rates
+
+**Technical Requirements:**
+
+- Payment gateway router service
+- Donor preference storage
+- Fallback logic implementation
+- Multiple payment gateway integrations
+- A/B testing capability untuk gateway selection
+- Analytics tracking
+
+**Priority:** Medium | **Estimated Effort:** 8 story points | **Sprint:** 10
+
+---
+
 ## 📊 Functional Requirements
 
 ### User Management (FR-100)
@@ -417,10 +723,60 @@
 ### Compliance (FR-600)
 
 - **FR-601:** PSAK 109 compliance reporting
-- **FR-602:** Kementerian Agama reporting formats
-- **FR-603:** Audit trail management
-- **FR-604:** Document retention policies
-- **FR-605:** Regulatory change management
+- **FR-602:** BWI (Badan Wakaf Indonesia) standard report templates
+- **FR-603:** Kementerian Agama reporting formats
+- **FR-604:** Audit trail management
+- **FR-605:** Document retention policies
+- **FR-606:** Regulatory change management
+
+### Blockchain Integration (FR-700)
+
+- **FR-701:** IPFS integration untuk certificate metadata storage
+- **FR-702:** Polygon smart contract integration (ERC-721 token minting)
+- **FR-703:** QR code generation untuk certificate verification
+- **FR-704:** Blockchain verification page (public accessibility)
+- **FR-705:** Certificate issuance workflow dengan approval
+- **FR-706:** Gas fee estimation dan recovery
+- **FR-707:** Batch certificate issuance (gas optimization)
+- **FR-708:** Smart contract read functions untuk verification
+- **FR-709:** Transaction monitoring dan block confirmation tracking
+
+### Multi-Currency Support (FR-800)
+
+- **FR-801:** Multi-currency asset recording (IDR, USD, SGD, MYR, EUR, SAR, AED, KWD, JPY, CNY)
+- **FR-802:** Exchange rate API integration (real-time rates)
+- **FR-803:** Daily exchange rate sync automation
+- **FR-804:** Historical exchange rate tracking (as of transaction date)
+- **FR-805:** Multi-currency financial reporting
+- **FR-806:** Currency conversion calculations
+- **FR-807:** Revaluation untuk unrealized gains/losses
+- **FR-808:** Multi-currency donation processing
+- **FR-809:** Multi-currency receipt generation
+
+### Public Transparency Portal (FR-900)
+
+- **FR-901:** Public dashboard dengan unique institution URL
+- **FR-902:** Asset transparency display (aggregate data only)
+- **FR-903:** Financial transparency display (donations vs disbursements)
+- **FR-904:** Program funding breakdown display
+- **FR-905:** Impact metrics visualization
+- **FR-906:** Privacy controls (exclude sensitive fields)
+- **FR-907:** Real-time data updates (Livewire/WebSockets)
+- **FR-908:** Social sharing integration
+- **FR-909:** Mobile-responsive public UI
+
+### Sharia Payment Gateways (FR-1000)
+
+- **FR-1001:** BSI (Bank Syaria Indonesia) API integration
+- **FR-1002:** BSI Virtual Account generation
+- **FR-1003:** BSI Auto-Debit untuk recurring donations
+- **FR-1004:** BNI Syariah API integration
+- **FR-1005:** BNI Syariah Virtual Account generation
+- **FR-1006:** Payment gateway router (multi-gateway support)
+- **FR-1007:** Sharia-compliance badge display
+- **FR-1008:** Donor payment preference storage
+- **FR-1009:** Gateway fallback logic
+- **FR-1010:** Payment reconciliation untuk multiple gateways
 
 ---
 

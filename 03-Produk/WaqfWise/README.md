@@ -15,16 +15,30 @@
 
 **Tagline:** Sistem Manajemen Wakaf Terpercaya & Transparan
 
-**Deskripsi Singkat:** Platform SaaS yang membantu lembaga Nazhir (pengelola wakaf) mengelola aset wakaf, melaporkan donatur (Wakif), dan menyalurkan manfaat wakaf secara transparan dan akuntabel sesuai standar PSAK 109.
+**Deskripsi Singkat:** Platform SaaS freemium yang membantu lembaga Nazhir (pengelola wakaf) mengelola aset wakaf, melaporkan donatur (Wakif), menyalurkan manfaat wakaf, dan mengeluarkan sertifikat blockchain yang immutable. Terintegrasi dengan BWI (Badan Wakaf Indonesia) dan sesuai standar PSAK 109.
 
 **Target Market:**
 
-- Lembaga Nazhir perorangan / Masjid
-- Yayasan Islam skala kecil-menengah
-- Pengelola wakaf di Indonesia
+- **Primary:** Lembaga Nazhir perorangan / Masjid (manage 1-50 waqf assets)
+- **Secondary:** Yayasan Islam skala kecil-menengah (50-500 assets)
+- **Tertiary:** Lembaga pendidikan Islam (pesantren, universitas Islam)
+- **Quaternary:** International waqf institutions (multi-currency support)
+
+**6 Fitur Utama:**
+
+1. **Registrasi Aset Wakaf** - Tanah, bangunan, uang (cash waqf), saham dengan document upload & GPS mapping
+2. **Tracking Pemanfaatan & Distribusi** - Beneficiary management, distribution tracking, impact measurement
+3. **Laporan Keuangan BWI** - PSAK 109 compliant accounting, automated report generation
+4. **Portal Transparansi Publik** - Public dashboard untuk donors, asset & financial transparency
+5. **Sertifikat Blockchain** - Immutable certificate verification via Polygon (ERC-721 NFT)
+6. **Multi-Currency Support** - Wakaf internasional dengan IDR, USD, SGD, MYR, EUR, SAR, AED, KWD, JPY, CNY
 
 **Problem yang Diselesaikan:**
-Manajemen wakaf tradisional yang manual, tidak transparan, dan sulit dilaporkan kepada stakeholders (donatur, regulator, masyarakat).
+- Manual waqf management (Excel, kertas) - tidak transparan dan error-prone
+- Lack of transparency untuk wakif (donors) - tidak tahu bagaimana wakaf digunakan
+- Difficulty complying dengan BWI reporting standards - complex PSAK 109 requirements
+- No immutable proof of waqf certificates - mudah dipalsukan
+- Managing international waqf - multi-currency challenges dan exchange rate volatility
 
 ## 🛠 Tech Stack
 
@@ -37,8 +51,10 @@ Manajemen wakaf tradisional yang manual, tidak transparan, dan sulit dilaporkan 
 ### Frontend
 
 - **Framework:** Laravel Blade dengan Livewire 3
+- **Component Library:** **FluxUI** (Livewire component library) + Custom Tailwind components
 - **Styling:** Tailwind CSS 3
 - **State Management:** Livewire + Alpine.js
+- **Blockchain Integration:** Ethers.js v6 untuk certificate verification & wallet connection
 
 ### Infrastructure
 
@@ -49,9 +65,16 @@ Manajemen wakaf tradisional yang manual, tidak transparan, dan sulit dilaporkan 
 
 ### Third-party Services
 
-- **Payment:** Midtrans (untuk donasi online)
+- **Payment Gateways:**
+  - **Midtrans** - General online donations (GoPay, OVO, DANA, Credit Cards)
+  - **Bank Syaria Indonesia (BSI)** - Primary sharia payment (VA, Mobile, Auto-Debit)
+  - **BNI Syariah** - Alternative sharia payment (DPSN certified)
+- **Blockchain:**
+  - **Polygon (MATIC)** - Layer-2 Ethereum untuk certificate NFTs (ERC-721)
+  - **IPFS/Pinata** - Decentralized storage untuk certificate metadata
+  - **Infura/Alchemy** - Blockchain node providers
 - **Email:** SendGrid
-- **Storage:** Cloudflare R2
+- **Storage:** Cloudflare R2 + IPFS (decentralized)
 - **Analytics:** Google Analytics + Custom Analytics
 
 ## 💻 Local Development Setup
@@ -223,10 +246,14 @@ php artisan test --watch
 
 ### Business Metrics
 
-- [ ] **Active Nazhir:** Target 100+ active nazhir accounts
-- [ ] **Total Wakaf Assets Managed:** Target IDR 100+ Milyar
+- [ ] **Active Nazhir:** Target 100+ active nazhir accounts (Year 1)
+- [ ] **Total Wakaf Assets Managed:** Target IDR 100+ Milyar (Year 1)
 - [ ] **Monthly Donations:** Target growth 20% month-over-month
 - [ ] **User Engagement:** 80% monthly active users
+- [ ] **Blockchain Certificates Issued:** Target 10,000+ certificates (Year 1)
+- [ ] **Certificate Verification Rate:** Target 95% verification success rate
+- [ ] **Multi-Currency Transactions:** Target 10+ currencies supported by Year 2
+- [ ] **Freemium Conversion:** Target 10-15% free-to-paid conversion rate
 
 ### Technical Metrics
 
@@ -327,13 +354,87 @@ Lihat [changelog.md](./changelog.md) untuk riwayat perubahan WaqfWise.
 
 Lihat [known-issues.md](./known-issues.md) untuk daftar bug dan limitation yang diketahui.
 
+## 🔗 Blockchain Integration
+
+### Immutable Certificates
+
+**Why Blockchain:**
+- **Transparency:** Public verification untuk certificate authenticity
+- **Trust:** Immutable proof yang certificate tidak dipalsukan
+- **Accessibility:** Anyone can verify via blockchain explorer (Polygonscan)
+- **Innovation:** Modern technology untuk traditional waqf institutions
+
+**How It Works:**
+1. Nazhir generates certificate → System uploads metadata ke IPFS
+2. Smart contract mints ERC-721 NFT pada Polygon blockchain
+3. Certificate PDF includes QR code → links to Polygonscan transaction
+4. Public/Wakif scans QR code → verifies certificate authenticity instantly
+
+**Benefits:**
+- **Gas Fees:** Rp 50-100 per certificate (Polygon vs Rp 500,000+ on Ethereum)
+- **Speed:** 2-5 seconds confirmation (vs 15-60 seconds on Ethereum)
+- **Environment:** 99.9% more energy-efficient than Ethereum proof-of-work
+- **Cost Recovery:** Charge Rp 50,000 per certificate → Rp 49,900 margin
+
+---
+
+**Last Updated:** 2026-01-06
+**Version:** 0.3.0-alpha
+**Maintainer:** Najib Zain (Lead Developer)
+
+## 💰 Pricing & Licensing
+
+### Freemium Model
+
+**Basic Tier (Free - Open Source):**
+- **Price:** Rp 0 (gratis)
+- **License:** MIT (fully open source)
+- **Limits:** 10 waqf assets max, basic reporting only, single currency (IDR)
+- **Purpose:** Untuk masjid kecil, nazhir perorangan, proof of concept
+- **Support:** Community only
+
+**Premium Tier (Paid - Proprietary):**
+- **Small Plan:** Rp 500,000/month (up to 50 assets)
+- **Medium Plan:** Rp 2,000,000/month (up to 200 assets)
+- **Large Plan:** Rp 5,000,000/month (unlimited assets)
+- **License:** Proprietary (source available tapi requires subscription)
+- **Features:** BWI reporting templates, blockchain certificates, multi-currency, advanced analytics
+- **Support:** Priority email & WhatsApp
+- **Discount:** 2 months free (17% discount) jika bayar tahunan
+
+**Enterprise Plan (Custom Pricing):**
+- **Pricing:** Rp 10-50M/month
+- **Purpose:** Untuk yayasan besar, lembaga pendidikan Islam
+- **Features:** Unlimited everything + custom features, on-premise deployment option
+- **Support:** Dedicated support & training, custom integrations
+
+📖 **Detailed Pricing:** [pricing-model.md](./pricing-model.md) untuk complete pricing breakdown
+
+---
+
 ## 🏛️ Compliance & Standards
+
+### BWI Compliance (Badan Wakaf Indonesia)
+
+- **PSAK 109 Compliance:** Full accounting standard compliance untuk waqf
+- **BWI Reporting Templates:** Automated report generation sesuai BWI standards
+- **Double-Entry Bookkeeping:** Proper debit/credit handling untuk waqf accounting
+- **Asset Valuation:** Fair market value calculations dengan auditable trail
+- **Audit Trail:** Complete transaction logging untuk 10-year retention
+- **Chart of Accounts:** PSAK 109 compliant structure
 
 ### Sharia Compliance
 
-- **PSAK 109 Compliance:** Mengikuti standar akuntansi wakaf Indonesia
-- **Wakaf Validasi:** Validasi status wakaf dengan Kementerian Agama
-- **Asset Management:** Sesuai syariat Islam dalam pengelolaan aset
+- **Sharia Payment Gateways:** BSI & BNI Syariah (100% syaria-compliant, no riba)
+- **Sharia Certification:** DPSN (Dewan Syariah Nasional) certified payment methods
+- **Asset Management:** Sesuai syariat Islam dalam pengelolaan aset wakaf
+- **Zakat vs Wakf Classification:** Proper classification untuk different payment types
+- **Fund Separation:** Automatic segregation based donation type (wakf vs non-wakf)
+
+### Kemenag Integration
+
+- **Wakaf Validasi:** Validasi status wakaf dengan Kementerian Agama database (future)
+- **Ikrar Wakaf Digital:** Integration dengan Kemenag untuk online waqf pledges (future)
 
 ### Data Privacy
 
