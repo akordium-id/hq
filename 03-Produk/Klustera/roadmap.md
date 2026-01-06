@@ -1,884 +1,504 @@
-# 🗺️ Klustera.id - Development Roadmap
+# 🗺️ Klustera.id Roadmap
 
-**Version:** 1.0.0-concept
-**Last Updated:** 2026-01-06
-**Status:** Pre-Development
+> Visi jangka panjang dan rencana pengembangan untuk Klustera.id - Platform Manajemen Perumahan
 
----
+## 🎯 Product Vision
 
-## 📅 Overview
+**Vision Statement:** Menjadi platform manajemen perumahan terdepan di Indonesia yang mentransformasi pengelolaan kompleks tradisional menjadi sistem digital yang transparan, efisien, dan terpercaya melalui kekuatan open-source dan mobile technology.
 
-Klustera.id akan dikembangkan dalam 10 milestone besar, mulai dari MVP (Minimum Viable Product) hingga platform lengkap dengan integrasi IoT dan mobile apps. Total timeline estimasi: 18-24 bulan.
+**Mission Statement:** Memberdayakan pengelola kompleks perumahan dan developer properti dengan teknologi modern untuk mengoptimalkan operasional, meningkatkan transparansi keuangan kepada warga, dan menciptakan lingkungan hunian yang aman dan nyaman.
 
-**MVP Target:** Milestone 1-4 (12 minggu)
-**Public Launch Target:** Milestone 6 (6-7 bulan)
-**Full Platform Target:** Milestone 10 (18-24 bulan)
+**North Star Metric:** Jumlah unit perumahan yang dikelola melalui platform Klustera.id.
 
 ---
 
-## 🎯 Milestones Overview
+## 📅 Development Timeline
 
-```mermaid
-gantt
-    title Klustera.id Development Timeline
-    dateFormat  YYYY-MM-DD
-    section Foundation
-    Milestone 1: MVP Foundation       :m1, 2026-02-01, 21d
-    Milestone 2: Financial Management :m2, after m1, 28d
-    Milestone 3: Resident Portal      :m3, after m2, 21d
-    Milestone 4: Services             :m4, after m3, 21d
-    section Testing & Launch
-    Milestone 5: Beta Testing         :m5, after m4, 30d
-    Milestone 6: Public Launch        :m6, after m5, 60d
-    section Advanced Features
-    Milestone 7: Guest Management     :m7, after m6, 60d
-    Milestone 8: Mobile Apps          :m8, after m7, 90d
-    Milestone 9: IoT Integration      :m9, after m8, 90d
-    Milestone 10: Advanced Analytics  :m10, after m9, 60d
-```
+### 🥚 Phase 1: MVP Foundation (Months 1-4)
 
----
+**Timeline:** Month 1-4 | **Status:** 🥚 Concept
 
-## 📋 Detailed Milestones
+#### Goals
 
-### Milestone 1: MVP Foundation (Week 1-3)
+- [ ] Meluncurkan platform manajemen perumahan dasar dengan 4 core features
+- [ ] Akuisisi 5-10 pilot complexes (50% free tier, 50% paid)
+- [ ] Validasi product-market fit dengan target market
+- [ ] Establish basic multi-tenant architecture
 
-**Timeline:** 3 weeks
-**Goal:** Setup project infrastructure dan basic authentication system
+#### Features
 
-**Deliverables:**
+**Milestone 1: Foundation & Core Infrastructure (Month 1-2)**
 
-**Backend Setup:**
-- [ ] Laravel 10 project initialization
-- [ ] PostgreSQL 15 database setup dengan schema dasar
-- [ ] Basic database migrations:
-  - users table (admin, pengelola, resident roles)
-  - complexes table (master data kompleks)
-  - units table (data unit/rumah di kompleks)
-  - residents table (data warga)
-- [ ] Laravel Sanctum authentication setup
-- [ ] Basic authorization (Role-based access control)
+**Technical Setup:**
+- [ ] **Multi-tenant Architecture:** Laravel tenancy package (`stancl/tenancy`) - *Priority: P0*
+- [ ] **User Authentication:** 3 user roles (Admin, Resident, Staff) - *Priority: P0*
+- [ ] **Database Schema:** PostgreSQL dengan tenant isolation - *Priority: P0*
+- [ ] **Admin Dashboard Scaffold:** FluxUI components integration - *Priority: P0*
+- [ ] **Dev & Staging Environments:** Coolify deployment - *Priority: P0*
 
-**Frontend Setup:**
-- [ ] Tailwind CSS configuration
-- [ ] Alpine.js integration
-- [ ] FluxUI component library setup
-- [ ] Basic layout (Navigation, Sidebar, Footer)
+**Key Decisions:**
+- Choose tenancy package: `stancl/tenancy` or `centralops/filament-tenancy`
+- Define multi-tenant data isolation strategy (database-per-tenant vs schema-per-tenant)
+- Set up CI/CD pipeline dengan GitHub Actions
 
-**DevOps:**
-- [ ] GitHub repository setup
-- [ ] CI/CD pipeline dengan GitHub Actions
-- [ ] Staging environment di Coolify
-- [ ] Environment variables management
-- [ ] Basic monitoring setup (Sentry)
-
-**Documentation:**
-- [ ] API documentation structure
-- [ ] Developer setup guide
-- [ ] Database schema documentation
-
-**Success Criteria:**
-- Developer bisa clone repo dan run project locally dalam < 30 menit
-- Basic authentication works (admin, pengelola, resident login)
-- Database migrations run tanpa error
-- Staging environment accessible
+**Success Metrics:**
+- ✅ 3 user roles can log in and access appropriate dashboards
+- ✅ Multi-tenant isolation verified (cannot access other tenants' data)
+- ✅ Load time < 2 seconds for dashboard
+- ✅ Coolify auto-deployment works (push → deploy)
 
 ---
 
-### Milestone 2: Core Features - Financial Management (Week 4-7)
+**Milestone 2: Financial Core - Iuran & Billing Management (Month 3-4)**
 
-**Timeline:** 4 weeks
-**Goal:** Implementasi iuran collection dan payment tracking system
+**Core Financial Features:**
+- [ ] **Invoice Generation:** Automated monthly billing (IPL, kebersihan, keamanan) - *Priority: P0*
+- [ ] **Xendit Integration:** QRIS, Virtual Account, E-Wallet (GoPay, OVO, DANA) - *Priority: P0*
+- [ ] **Payment Tracking:** Real-time payment status updates via webhook - *Priority: P0*
+- [ ] **Payment Reminders:** WhatsApp & Email notifications untuk late payments - *Priority: P1*
+- [ ] **Basic Financial Reports:** Cash in/out, outstanding AR tracking - *Priority: P1*
 
-**Deliverables:**
+**Database Entities:**
+- `invoices`, `payments`, `payment_methods`, `billing_cycles`
+- `resident_accounts`, `fee_structures`
 
-**Iuran Management System:**
-- [ ] Billing types configuration (Iuran Kebersihan, Iuran Keamanan, Iuran Satpam, dll)
-- [ ] Automatic monthly billing generation
-- [ ] Billing calculation engine (per-unit pricing)
-- [ ] Invoice generation (PDF export)
-- [ ] Payment status tracking (Unpaid, Partial, Paid, Overdue)
+**User Stories:**
+- "As a property manager, I want auto-generated invoices so I don't spend 10 hours/month on Excel"
+- "As a resident, I want to pay via QRIS so I can use GoPay/OVO"
+- "As a property manager, I want payment auto-reconciliation so I don't manually update spreadsheets"
 
-**Payment Integration:**
-- [ ] Midtrans integration setup
-- [ ] Payment methods support:
-  - Bank Transfer (VA)
-  - GoPay, OVO, Dana (e-wallets)
-  - Credit Card (opsional untuk MVP)
-- [ ] Payment notification webhook handling
-- [ ] Automatic payment status updates
-- [ ] Payment reconciliation system
-
-**Financial Dashboard:**
-- [ ] Overview dashboard untuk pengelola:
-  - Total collected this month
-  - Outstanding amount
-  - Collection rate (%)
-  - Overdue residents list
-- [ ] Per-resident payment history
-- [ ] Export laporan ke Excel/CSV
-
-**Reminder System:**
-- [ ] Automatic email/SMS/WhatsApp reminders (belum kirim, j overdue)
-- [ ] Late fee calculation (jika ada)
-- [ ] Dunning automation (3 reminders: 7 days, 14 days, 30 days overdue)
-
-**Success Criteria:**
-- Pengelola bisa generate monthly bills untuk semua units dalam 1 klik
-- Residents bisa pay bills via Midtrans payment page
-- Payment status updates automatically setelah Midtrans webhook
-- Financial dashboard shows accurate collection metrics
+**Success Metrics:**
+- ✅ Can generate 1000+ invoices in < 10 seconds
+- ✅ Xendit payment webhook processes correctly with signature verification
+- ✅ Payment auto-reconciliation works (invoice status updated within 5 seconds of payment)
+- ✅ Payment reminder WhatsApp sent to overdue residents
 
 ---
 
-### Milestone 3: Core Features - Resident Portal (Week 8-10)
+### 🚀 Phase 2: Core Product - Complete Basic Suite (Months 5-8)
 
-**Timeline:** 3 weeks
-**Goal:** Build communication dan engagement portal untuk warga
+**Timeline:** Month 5-8 | **Status:** 🔮 Planned
 
-**Deliverables:**
+#### Goals
 
-**Pengumuman System:**
-- [ ] Announcement creation dashboard (pengelola/admin only)
-- [ ] Rich text editor untuk announcement content
-- [ ] Announcement categories:
-  - Pengumuman Penting
-  - Info Kompleks
-  - Kegiatan Komunitas
-  - Maintenance Notice
-- [ ] Targeting options:
-  - All residents
-  - Specific blok/cluster
-  - Specific residents
-- [ ] Announcement history with search/filter
-- [ ] Read receipt tracking
+- [ ] Complete "Complete Basic Suite" MVP (Financial + Resident Portal + Access Control)
+- [ ] Akuisisi 10-20 paying complexes
+- [ ] Launch resident portal with communication features
+- [ ] Deploy access control system in pilot complexes
 
-**Voting System:**
-- [ ] Create poll/vote (admin only)
-- [ ] Multiple choice questions (single/multiple select)
-- [ ] Anonymous voting (result shown after vote)
-- [ ] Vote expiration date
-- [ ] Real-time vote count display
-- [ ] Vote result export
+#### Features
 
-**Document Repository:**
-- [ ] Upload documents (PDF, Word, Excel)
-- [ ] Document categories:
-  - Peraturan Kompleks
-  - Laporan Keuangan (summary only)
-  - Meeting Minutes
-  - Formulir/Aplikasi
-- [ ] Access control (admin upload, all residents view)
-- [ ] Document versioning
-- [ ] Download tracking
+**Milestone 3: Resident Portal & Community Features (Month 5-6)**
 
-**Resident Profile:**
-- [ ] Basic profile management (name, phone, email)
-- [ ] Unit assignment (blok, nomor, tipe unit)
-- [ ] Family members listing
-- [ ] Vehicle registration (plat nomor untuk access control future)
-- [ ] Profile photo upload
+**Resident Self-Service:**
+- [ ] **Resident Dashboard:** View bills, payment history, announcements - *Priority: P0*
+- [ ] **Announcement System:** Rich text announcements dengan WhatsApp notifications - *Priority: P0*
+- [ ] **Online Voting:** Musyawarah kompleks decisions (one vote per unit) - *Priority: P1*
+- [ ] **Document Repository:** Peraturan kompleks, policies (PDF upload) - *Priority: P2*
+- [ ] **Resident Directory:** Opt-in resident contact list - *Priority: P2*
 
-**Success Criteria:**
-- Pengelola bisa create announcement dan target specific residents
-- Residents receive announcements di portal dan bisa mark as read
-- Voting system works untuk keputusan kompleks
-- Documents uploaded accessible oleh semua residents
+**Communication Features:**
+- [ ] **WhatsApp Notifications:** Announcements, payment reminders, voting alerts - *Priority: P0*
+- [ ] **Email Notifications:** Backup notifications untuk residents without WhatsApp - *Priority: P1*
+- [ ] **Push Notifications:** In-app notifications untuk real-time updates - *Priority: P2*
+
+**Success Metrics:**
+- ✅ 80% of residents can log in and view bills within 1 week of launch
+- ✅ Announcement reaches 90% of residents via WhatsApp
+- ✅ Voting system achieves quorum (50%+ participation) untuk decisions
+- ✅ Resident satisfaction score > 4.0/5
 
 ---
 
-### Milestone 4: Core Features - Services (Week 11-13)
+**Milestone 4: Access Control & Guest Management (Month 7-8)**
 
-**Timeline:** 3 weeks
-**Goal:** Implementasi complaint tracking dan facility booking system
+**Access Control Features:**
+- [ ] **QR Code Generation:** Residents generate QR codes in portal (30-day validity) - *Priority: P0*
+- [ ] **Guest Pre-Registration:** Residents register guests, guards verify dengan code - *Priority: P0*
+- [ ] **Guard Mode Tablet:** Security post interface dengan QR scanner & code entry - *Priority: P0*
+- [ ] **Access Logs:** Complete history of entries/exits with timestamps - *Priority: P1*
+- [ ] **Temporary Access Codes:** Time-limited codes untuk delivery, service providers - *Priority: P1*
 
-**Deliverables:**
+**Hardware Integrations (Future):**
+- QR code scanners at gates (Phase 3)
+- Automatic gate openers via IoT relay (Phase 3)
 
-**Complaint Tracking System:**
-- [ ] Complaint submission form (resident):
-  - Category (Kebersihan, Keamanan, Facility, Lainnya)
-  - Priority (Low, Medium, High, Urgent)
-  - Description + photo upload
-  - Location (blok/nomor)
-- [ ] Complaint dashboard untuk pengelola:
-  - All complaints list with status
-  - Filter by category, status, priority, date
-  - Assignment ke staff/satpam/technician
-- [ ] Complaint status workflow:
-  - Open → In Progress → Resolved → Closed
-  - Reopened (jika resident tidak puas)
-- [ ] SLA tracking (response time, resolution time)
-- [ ] Automatic notifications:
-  - Resident: complaint received, status update, resolved
-  - Pengelola: new complaint, overdue complaints
-- [ ] Complaint analytics:
-  - Common complaint categories
-  - Average resolution time
-  - Complaint trends by month
-
-**Facility Booking System:**
-- [ ] Facility management:
-  - Create facilities (Clubhouse, Kolam Renang, Lapangan Badminton, Gym)
-  - Set capacity (max concurrent users)
-  - Set operating hours
-  - Set pricing (free/paid per hour)
-- [ ] Calendar view (monthly, weekly, daily)
-- [ ] Booking form (resident):
-  - Select facility
-  - Select date & time slot
-  - Select duration
-  - Add notes
-- [ ] Real-time availability check
-- [ ] Booking confirmation & payment (jika paid facility)
-- [ ] Booking management:
-  - View my bookings
-  - Cancel booking (with rules, e.g., max 24 hours before)
-  - Booking history
-- [ ] Facility usage analytics:
-  - Most booked facilities
-  - Peak usage times
-  - No-show rate
-
-**Admin Dashboard Integration:**
-- [ ] Unified dashboard showing:
-  - Active complaints
-  - Today's facility bookings
-  - Pending approvals
-  - Recent activities
-- [ ] Quick action buttons:
-  - Create announcement
-  - Add new resident
-  - Generate monthly bills
-  - View overdue payments
-
-**Success Criteria:**
-- Residents bisa submit complaints dengan photo attachment
-- Pengelola bisa assign complaints ke staff dan track resolution
-- Complaint SLA metrics accurately tracked
-- Residents bisa book facilities dengan real-time availability
-- Facility usage data captured untuk analytics
+**Success Metrics:**
+- ✅ Guest check-in time reduced from 3 minutes to 30 seconds
+- ✅ 95% of residents use digital access codes (no more physical cards)
+- ✅ Security guards report 50% time savings on guest processing
+- ✅ Zero unauthorized access incidents in pilot complexes
 
 ---
 
-### Milestone 5: Beta Testing (Week 14-17)
+### 🏆 Phase 3: Operations & Analytics (Months 9-14)
 
-**Timeline:** 4 weeks
-**Goal:** Test MVP dengan 3-5 pilot complexes dan gather feedback
+**Timeline:** Month 9-14 | **Status:** 🔮 Planned
 
-**Deliverables:**
+#### Goals
 
-**Pilot Complex Selection:**
-- [ ] Identify 5 pilot complexes:
-  - 2 small complexes (< 100 units)
-  - 2 medium complexes (100-500 units)
-  - 1 large complex (500+ units)
-- [ ] Sign LOI dengan pilot complexes
-- [ ] Onboard pilot complexes:
-  - Data migration (units, residents, existing bills)
-  - Training sessions (2 hours per complex)
-  - Setup dedicated support channel (WhatsApp group)
+- [ ] Add operations management (complaints, facilities, tasks)
+- [ ] Launch analytics dashboards untuk pengurus
+- [ ] Begin native mobile app development
+- [ ] Akuisisi 20-50 paying complexes
 
-**Testing Focus Areas:**
-- [ ] **Financial Management:**
-  - Test billing generation accuracy
-  - Test payment flow end-to-end
-  - Validate payment reconciliation
-  - Test reminder system
+#### Features
 
-- [ ] **Resident Portal:**
-  - Test announcement delivery
-  - Test voting system accuracy
-  - Test document upload/download
-  - Measure resident engagement rate
+**Milestone 5: Operations & Service Management (Month 9-10)**
 
-- [ ] **Complaint System:**
-  - Test complaint submission flow
-  - Test SLA tracking accuracy
-  - Test notification system
-  - Gather feedback on resolution process
+**Operational Features:**
+- [ ] **Complaint/Ticketing System:** Resident complaints dengan SLA tracking - *Priority: P0*
+- [ ] **Facility Booking:** Online booking untuk lapangan, hall, gym - *Priority: P0*
+- [ ] **Staff Task Management:** Recurring tasks untuk cleaning & security - *Priority: P1*
+- [ ] **Photo Verification:** Before/after photos untuk task completion - *Priority: P1*
+- [ ] **Supply Requests:** Staff request materials (cleaning supplies, spare parts) - *Priority: P2*
 
-- [ ] **Facility Booking:**
-  - Test booking flow
-  - Test real-time availability
-  - Test payment integration (jika paid facility)
-  - Test cancellation policy
+**User Roles Added:**
+- Cleaning Service Staff (view assigned tasks, mark complete)
+- Security Guards (patrol logs, incident reports)
+- Facility Technicians (maintenance tickets)
 
-**Bug Fixes & Improvements:**
-- [ ] Daily bug triage (30 min standup)
-- [ ] Critical bugs: Fix within 24 hours
-- [ ] High priority bugs: Fix within 3 days
-- [ ] UI/UX improvements based on feedback
-- [ ] Performance optimization (slow queries, page load times)
-
-**Data Collection:**
-- [ ] User engagement metrics:
-  - Daily active users (pengelola, resident)
-  - Feature usage frequency
-  - Session duration
-- [ ] Business metrics:
-  - Payment collection rate improvement
-  - Complaint resolution time improvement
-  - Resident satisfaction score (survey)
-- [ ] Technical metrics:
-  - Page load times
-  - API response times
-  - Error rates
-  - Uptime
-
-**Beta Testing Success Criteria:**
-- 80%+ pilot complexes actively using platform (daily/weekly)
-- 60%+ residents registered di portal
-- 90%+ payment collection rate (vs baseline sebelum Klustera)
-- Average complaint resolution time < 48 hours
-- Average rating (satisfaction) ≥ 4.0/5.0
-- < 5 critical bugs per week (by week 4)
-- Net Promoter Score (NPS) ≥ 40
+**Success Metrics:**
+- ✅ Average complaint resolution time < 24 hours
+- ✅ Facility booking utilization increases 40% (more residents booking)
+- ✅ 80% of tasks completed dengan photo verification
+- ✅ Staff report higher job satisfaction (less confusion about tasks)
 
 ---
 
-### Milestone 6: Public Launch (Month 5-7)
+**Milestone 6: Analytics & Executive Dashboard (Month 11-12)**
 
-**Timeline:** 8-10 weeks
-**Goal:** Prepare untuk public launch dan acquire first 10 paying customers
+**Analytics Features:**
+- [ ] **Financial Dashboards:** Revenue, expenses, collection rates, budget vs actual - *Priority: P0*
+- [ ] **Payment Collection Analytics:** Trends, late payment analysis, top overdue units - *Priority: P0*
+- [ ] **Resident Engagement Metrics:** Active users, complaint volume, voting participation - *Priority: P1*
+- [ ] **Facility Usage Statistics:** Most booked facilities, utilization rates - *Priority: P1*
+- [ ] **Exportable Reports:** PDF & Excel exports untuk board meetings - *Priority: P0*
+- [ ] **Custom Report Builder:** Drag-and-drop report creator - *Priority: P2*
 
-**Deliverables:**
+**Key Metrics Tracked:**
+- **Collection Rate:** % of iuran collected on time
+- **Resident Satisfaction:** NPS dari complaint resolution ratings
+- **Financial Health:** Cash flow, reserves, outstanding AR
+- **Operational Efficiency:** Response times, task completion rates
 
-**Product Polish (Week 1-2):**
-- [ ] Fix all critical bugs dari beta testing
-- [ ] UI/UX improvements:
-  - Responsive design testing (mobile, tablet, desktop)
-  - Accessibility improvements (WCAG 2.1 AA)
-  - Dark mode support
-  - Loading states & skeleton screens
-- [ ] Performance optimization:
-  - Database query optimization
-  - Implement caching (Redis)
-  - CDN setup untuk static assets
-  - Lazy loading untuk images
-- [ ] Security hardening:
-  - Security audit (OWASP Top 10)
-  - Penetration testing
-  - Input validation review
-  - Rate limiting tuning
-
-**Documentation (Week 2-3):**
-- [ ] **User Documentation:**
-  - Pengelola Guide (PDF & online help center)
-  - Resident Guide (simple walkthrough)
-  - Video tutorials (5-10 short videos)
-  - FAQ section
-- [ ] **Technical Documentation:**
-  - API documentation (jika public API)
-  - Integration guides (Midtrans, WhatsApp gateway)
-  - Troubleshooting guide
-
-**Marketing Assets (Week 3-4):**
-- [ ] Landing page creation:
-  - Hero section dengan value proposition
-  - Feature highlights (4 core features)
-  - Pricing calculator (input units → estimate monthly cost)
-  - Case studies dari pilot complexes
-  - Testimonials
-  - Sign-up CTA
-- [ ] Demo video (2-3 minutes)
-- [ ] Product screenshots & mockups
-- [ ] Pitch deck (10 slides)
-- [ ] One-pager (PDF)
-
-**Marketing Channels (Week 4-6):**
-- [ ] Content marketing:
-  - Blog launch (4 articles: "5 Masalah Manajemen Kompleks & Solusinya", "Cara Meningkatkan Collection Rate Iuran", etc.)
-  - SEO optimization (target keywords: "software manajemen kompleks", "aplikasi iuran warga")
-- [ ] Social media setup:
-  - Instagram (@klustera.id)
-  - LinkedIn (company page)
-  - Facebook (community page)
-- [ ] Outreach:
-  - Email ke 500 housing complexes (Jakarta, Bandung, Surabaya)
-  - Cold calling ke 100 property management companies
-  - Partnership dengan real estate agents
-- [ ] Launch event:
-  - Webinar: "Transformasi Digital Manajemen Kompleks Perumahan"
-  - Press release ke tech media (DailySocial, Tech in Asia Indonesia)
-  - Product Hunt launch (target: Top 5 Product of the Day)
-
-**Sales Process (Week 5-7):**
-- [ ] CRM setup (HubSpot free tier atau Pipedrive)
-- [ ] Sales script & objection handling
-- [ ] Demo scheduling system (Calendly)
-- [ ] Onboarding checklist:
-  - Data migration assistance
-  - Training session (2 hours)
-  - 30-day free trial
-  - Dedicated support channel
-- [ ] Pricing & payment:
-  - Subscription activation flow
-  - Invoice generation
-  - Payment collection (bank transfer atau Midtrans)
-
-**Public Launch Success Criteria:**
-- 10 paying customers acquired
-- 5,000+ units managed
-- Monthly Recurring Revenue (MRR): ≥ Rp 15,000,000
-- Landing page conversion rate: ≥ 5% (visitor → sign-up)
-- Trial-to-paid conversion rate: ≥ 20%
-- Customer Acquisition Cost (CAC): < Rp 500,000
-- Average onboarding time: < 3 days per complex
+**Success Metrics:**
+- ✅ Pengurus spend < 5 minutes daily reviewing dashboard
+- ✅ Can drill down dari month → unit → individual payment
+- ✅ Export reports in < 10 seconds untuk board meetings
+- ✅ Custom report builder used by 30%+ of complexes
 
 ---
 
-### Milestone 7: v2.0 Features - Guest Management (Month 8-10)
+**Milestone 7: Native Mobile Apps - Operations Staff (Month 13-14)**
 
-**Timeline:** 8-10 weeks
-**Goal:** Implement guest management dan access control system
+**Mobile Apps to Build (Flutter or React Native):**
 
-**Deliverables:**
+**1. Satpam App (Security Guards):**
+- [ ] Check-in/check-out dengan GPS location verification
+- [ ] Patrol route tracking (map-based checkpoints, QR scanning)
+- [ ] Incident reporting (photo + voice notes + GPS)
+- [ ] Guest notifications (real-time guest arrival alerts)
+- [ ] Offline-first (works without internet)
 
-**Guest Management System:**
-- [ ] Guest pre-registration (resident portal):
-  - Add guest details (name, phone, vehicle plate)
-  - Select date & time of visit
-  - Generate QR code/barcode untuk guest
-  - Send invitation link via WhatsApp/SMS
+**2. Cleaning Service App:**
+- [ ] Daily task checklist (area, frequency, standards)
+- [ ] Photo verification (before/after photos)
+- [ ] Supply requests (cleaning materials, tools)
+- [ ] Time tracking (hours worked per area)
 
-- [ ] Guest check-in/out (gate system):
-  - QR code/barcode scanner (satpam app)
-  - Manual entry (walk-in guests)
-  - Capture guest photo (opsional)
-  - Print visitor pass (thermal printer integration)
+**3. Facility Staff App:**
+- [ ] Maintenance ticket assignments
+- [ ] Work order tracking (status updates)
+- [ ] Parts/materials requests
+- [ ] Completion photos & signatures
 
-- [ ] Access control:
-  - Time-based access (guest hanya valid pada scheduled time)
-  - One-time use QR codes (expire setelah check-out)
-  - Blacklist system (banned guests)
-  - Host notification (guest arrival, departure)
+**Technical Decisions:**
+- Choose Flutter or React Native (based on team preference)
+- Offline-first architecture (critical untuk areas dengan poor connectivity)
+- Background sync when connection restored
+- Push notifications (Firebase Cloud Messaging)
 
-- [ ] Guest history:
-  - View guest history per resident
-  - Frequent guest list (delivery drivers, helpers, etc.)
-  - Analytics (guest frequency, peak times)
-
-**Satpam App (Mobile Web):**
-- [ ] Login satpam (device-specific authentication)
-- [ ] Dashboard (today's guests, recent check-ins)
-- [ ] QR/barcode scanner integration
-- [ ] Manual guest entry form
-- [ ] Emergency alert button (notifikasi semua satpam & pengelola)
-
-**Resident App Integration:**
-- [ ] "I'm expecting a guest" quick action
-- [ ] Real-time guest arrival notification
-- [ ] Guest management (view, cancel, extend visit)
-
-**Admin Dashboard (Enhanced):**
-- [ ] Guest management reports:
-  - Daily guest count
-  - Guest frequency by resident
-  - Peak visiting hours
-  - Blacklisted guests list
-- [ ] Access rules configuration:
-  - Max guests per resident per day
-  - Guest curfew hours
-  - Approved guest list (frequent visitors auto-approve)
-
-**Hardware Integration:**
-- [ ] Thermal printer SDK integration (visitor pass printing)
-- [ ] QR/barcode scanner selection guide
-- [ ] Optional: Integration dengan existing access control systems (card readers)
-
-**Success Criteria:**
-- Residents can pre-register guests via portal
-- Satpam can check-in guests using QR scanner atau manual entry
-- Guest passes generated dan printed
-- Hosts receive arrival notifications dalam < 30 seconds
-- System handles 100+ guest check-ins per day tanpa performance issues
+**Success Metrics:**
+- ✅ 90% of operational tasks completed via mobile app
+- ✅ Offline sync success rate > 99%
+- ✅ Guard patrol completion rate increases to 95%
+- ✅ Staff report mobile app is easy to use (4.5/5 rating)
 
 ---
 
-### Milestone 8: Mobile Apps (Month 11-15)
+### 🌟 Phase 4: Growth & Scale (Months 15-20)
 
-**Timeline:** 12-15 weeks
-**Goal:** Build native mobile apps untuk residents dan service staff
+**Timeline:** Month 15-20 | **Status:** 🔮 Future Planning
 
-**Deliverables:**
+#### Goals
 
-**Resident App (React Native - iOS & Android):**
+- [ ] Scale ke 50-100 paying complexes
+- [ ] Add enterprise features untuk large property developers
+- [ ] Prepare untuk IoT integration (optional, based on traction)
+- [ ] Explore marketplace model
 
-**Core Features:**
-- [ ] Authentication (Biometric login, Face ID)
-- [ ] Home dashboard:
-  - Announcements (push notifications)
-  - My bills (outstanding, due soon)
-  - Active complaints (status tracking)
-  - Upcoming facility bookings
-- [ ] Bill payment:
-  - View bill details
-  - Pay via Midtrans (Deep linking)
-  - Payment confirmation
-  - Payment history
-- [ ] Complaint submission:
-  - Photo capture
-  - Category selection
-  - Real-time status tracking
-  - Chat dengan pengelola/staff
-- [ ] Facility booking:
-  - View facility availability
-  - Book slot
-  - QR code booking confirmation (show di gate)
-  - Cancel booking
-- [ ] Guest management:
-  - Pre-register guest
-  - Generate QR code
-  - Guest arrival notifications
-- [ ] Community features:
-  - Resident directory (search neighbors)
-  - Marketplace (jual beli barang second)
-  - Lost & found
-  - Emergency contacts (satpam, ambulance)
+#### Features
 
-**Push Notifications:**
-- [ ] Announcement notifications (important only)
-- [ ] Bill due reminders (7 days, 3 days, 1 day before)
-- [ ] Complaint status updates
-- [ ] Guest arrival notifications
-- [ ] Booking confirmations
+**Milestone 8: Smart Home IoT Integration (Months 15-16) - *Optional***
 
-**Settings:**
-- [ ] Profile management
-- [ ] Notification preferences
-- [ ] Dark mode toggle
-- [ ] Language (Indonesian, English)
+**IoT Features (Based on Milestone 1-7 Traction):**
+- [ ] **Smart Lock Integration:** Open gates via resident app - *Priority: P2*
+- [ ] **Energy Monitoring:** Per-unit electricity usage tracking - *Priority: P2*
+- [ ] **Water Usage Tracking:** Leak detection, consumption analytics - *Priority: P3*
+- [ ] **IoT Device Management:** Dashboard untuk IoT devices - *Priority: P2*
+- [ ] **API untuk Integrators:** Third-party IoT vendors can integrate - *Priority: P1*
+- [ ] **Premium Subscription Tier:** IoT features = +Rp 1,000/unit/month - *Priority: P1*
 
-**Satpam App (React Native):**
+**IoT Platforms to Consider:**
+- **Home Assistant** (open-source, self-hosted)
+- **Tuya/Smart Life** (popular di Indonesia, cheap devices)
+- **Custom MQTT-based** (full control, more dev effort)
 
-**Core Features:**
-- [ ] Device authentication (phone number + OTP)
-- [ ] Shift management (check-in/check-out shift)
-- [ ] Guest management:
-  - QR scanner
-  - Manual guest entry
-  - Guest history search
-  - Blacklist check
-- [ ] Patrol management:
-  - Patrol checkpoints
-  - Incident reporting (photo, notes)
-  - Emergency SOS button
-- [ ] Task list:
-  - Assigned complaints
-  - Facility inspection tasks
-- [ ] Communication:
-  - Chat dengan pengelola
-  - Broadcast announcements ke residents
+**Decision Criteria:**
+- Proceed dengan IoT hanya jika:
+  - 50+ paying complexes achieved
+  - Clear demand dari residents (survey shows >30% want IoT)
+  - Competitors starting to offer IoT features
 
-**Cleaning Service App (React Native):**
-
-**Core Features:**
-- [ ] Task assignment (cleaning schedule per area)
-- [ ] Task checklist
-- [ ] Before/after photos
-- [ ] Supply request (cleaning materials)
-- [ ] Incident reporting
-
-**App Store & Play Store Submission:**
-- [ ] App store assets (icons, screenshots, descriptions)
-- [ ] Privacy policy & terms of service
-- [ ] App review & approval
-- [ ] Beta testing (TestFlight, Play Store Internal Test)
-
-**Success Criteria:**
-- Resident app available di App Store & Play Store
-- Satpam app deployed ke pilot complexes
-- 70%+ residents using mobile app (vs web portal)
-- Average app rating: ≥ 4.3/5.0
-- Crash rate: < 1%
-- Push notification delivery rate: ≥ 95%
+**Success Metrics (If Implemented):**
+- ✅ 20% of residents adopt at least 1 IoT feature
+- ✅ IoT contributes 15% of total revenue
+- ✅ 99.9% uptime untuk IoT integrations
+- ✅ Partner dengan 2-3 IoT hardware vendors
 
 ---
 
-### Milestone 9: IoT Integration (Month 16-19)
+**Milestone 9: Enterprise Features & Multi-Complex (Months 17-18)**
 
-**Timeline:** 12-15 weeks
-**Goal:** Integrate smart home devices dan IoT sensors
+**Enterprise Features:**
+- [ ] **Multi-Complex Management:** One developer, many complexes view - *Priority: P0*
+- [ ] **Advanced Permissions:** Granular role-based access control - *Priority: P0*
+- [ ] **White-Label Branding:** Custom logo, colors, domain per complex - *Priority: P1*
+- [ ] **Custom Workflow Automation:** Approval chains, escalation rules - *Priority: P1*
+- [ ] **ERP/Accounting API:** Integration dengan Jurnal, Accurate, Zoho - *Priority: P1*
+- [ ] **Bulk Deployment Tools:** Spin up new complex in minutes - *Priority: P0*
+- [ ] **Consolidated Reporting:** Roll-up across all complexes - *Priority: P0*
+- [ ] **Enterprise SLA:** Dedicated support, account manager - *Priority: P0*
 
-**Deliverables:**
+**Target Customers:**
+- Property Developers: Ciputra, Permata, Summarecon, etc.
+- Management Companies: Manage multiple complexes
+- REITs: Real estate investment trusts
 
-**Smart Lock Integration:**
-- [ ] Integration dengan smart lock brands:
-  - Yale (real estate locks)
-  - August (smart locks)
-  - Tuya (generic smart locks)
-- [ ] Features:
-  - Temporary access codes untuk guests
-  - Remote lock/unlock (pengelola access)
-  - Access log (who entered, when)
-  - Auto-expire access codes (checkout time)
+**Pricing untuk Enterprise:**
+- Custom pricing (Rp 10-50M/month depending on units)
+- Minimum commitment: 12 months
+- Includes: Setup fee (Rp 20-50M), training, dedicated support, custom features
 
-**Smart Meter Integration (Utilities):**
-- [ ] Water meter sensors (pulse counter)
-- [ ] Electricity meter sensors (Modbus protocol)
-- [ ] Automatic meter reading:
-  - Monthly usage data capture
-  - Alert jika abnormal usage (leak, meter error)
-  - Historical usage trends
-- [ ] Individual billing:
-  - Water billing per unit (jika ada water meter per unit)
-  - Electricity backup (generator usage billing)
-
-**Environmental Sensors:**
-- [ ] Air quality sensors (CO2, PM2.5)
-- [ ] Temperature & humidity sensors
-- [ ] Dashboard:
-  - Real-time sensor data
-  - Historical trends
-  - Alerts (air quality warning)
-- [ ] Automated actions:
-  - Turn on exhaust fans jika CO2 high
-  - Alert pengelola jika temperature out of range
-
-**Facility Automation:**
-- [ ] Smart lighting:
-  - Motion sensor activation
-  - Remote on/off control
-  - Energy usage monitoring
-- [ ] HVAC control:
-  - Temperature scheduling
-  - Energy optimization
-- [ ] Irrigation system:
-  - Automated watering schedule
-  - Soil moisture sensors
-  - Weather-based adjustment
-
-**Parking Management:**
-- [ ] Parking slot sensors (occupied/vacant)
-- [ ] License plate recognition (camera integration)
-- [ ] Features:
-  - Real-time parking availability
-  - Reserved parking (resident can reserve guest slot)
-  - Violation detection (parking di reserved slot tanpa permission)
-  - Monthly parking fee (jika ada)
-
-**IoT Dashboard:**
-- [ ] Centralized dashboard:
-  - All devices status
-  - Battery levels (battery-powered sensors)
-  - Connectivity status (online/offline)
-  - Alert center (device offline, low battery, unusual readings)
-- [ ] Automation rules:
-  - If-then triggers (e.g., "If motion detected di clubhouse after 10PM, send alert to satpam")
-  - Time-based schedules (e.g., "Turn on garden lights at 6PM, off at 6AM")
-- [ ] Energy monitoring:
-  - Total energy consumption
-  - Per-facility breakdown
-  - Cost optimization recommendations
-
-**MQTT Broker Setup:**
-- [ ] Mosquitto MQTT broker deployment
-- [ ] Device authentication (TLS certificates)
-- [ ] Topic hierarchy design (e.g., `klustera/{complex_id}/{device_type}/{device_id}`)
-- [ ] Message queue untuk processing IoT data
-- [ ] Real-time data streaming ke dashboard
-
-**Success Criteria:**
-- MQTT broker handles 1,000+ connected devices
-- Device messages processed dalam < 1 second
-- Smart lock integration works (guest access codes automatically generated)
-- Smart meter data accurately captured dan used untuk billing
-- Parking availability real-time data accurate (95%+)
-- IoT dashboard shows all devices dengan current status
+**Success Metrics:**
+- ✅ Onboard 5 enterprise customers
+- ✅ Enterprise contributes 40% of total revenue
+- ✅ Multi-complex deployment < 1 day
+- ✅ Enterprise retention rate > 95% (annual contracts)
 
 ---
 
-### Milestone 10: Advanced Analytics (Month 20-24)
+**Milestone 10: Marketplace & Ecosystem (Months 19-20)**
 
-**Timeline:** 10-12 weeks
-**Goal:** Build comprehensive analytics dashboard dan predictive insights
+**Marketplace Features:**
+- [ ] **Service Provider Marketplace:** Pre-vetted plumbers, electricians, cleaners - *Priority: P1*
+- [ ] **Insurance Integration:** Home insurance, contents insurance untuk residents - *Priority: P2*
+- [ ] **Utility Bill Aggregation:** Water, electricity, internet in one bill - *Priority: P2*
+- [ ] **Community Features:** Neighbor marketplace, carpooling, classifieds - *Priority: P3*
+- [ ] **Revenue Share:** 10-20% commission pada transactions - *Priority: P0*
+- [ ] **Partner API:** Third-party developers can build on Klustera - *Priority: P2*
 
-**Deliverables:**
+**Ecosystem Partnerships:**
+- **Service Providers:** Pre-vetted plumbers, electricians, cleaning services
+- **Insurance Companies:** Asuransi Takaful, Allianz, Prudential
+- **Utility Providers:** PLN, PDAM, internet providers
+- **E-commerce:** Tokopedia/Shopee integration untuk bulk orders
 
-**Financial Analytics Dashboard:**
-- [ ] Revenue & expenses:
-  - Monthly revenue trend (iuran collected)
-  - Expense breakdown (satpam salary, cleaning, maintenance, utilities)
-  - Net income (surplus/deficit)
-  - Budget vs actual comparison
-- [ ] Collection metrics:
-  - Collection rate trend (by month)
-  - Overdue trends
-  - Payment method breakdown (bank transfer, e-wallet, etc.)
-  - Resident payment behavior (repeated late payers)
-- [ ] Financial health score:
-  - Overall financial health (0-100)
-  - Risk factors (high overdue rate, declining reserves)
-  - Recommendations (e.g., "Increase late fee", "Send reminder earlier")
+**Monetization:**
+- Marketplace commission (10-20% on service transactions)
+- Referral fees dari insurance policies
+- Lead generation fees untuk service providers
+- Premium placement untuk promoted services
 
-**Resident Engagement Analytics:**
-- [ ] Engagement metrics:
-  - Active users (daily, weekly, monthly)
-  - Feature usage (announcements read, complaints submitted, bookings made)
-  - Session duration
-  - App vs web portal usage
-- [ ] Sentiment analysis:
-  - Complaint sentiment (positive, neutral, negative)
-  - Common complaint themes
-  - Resident satisfaction score (NPS)
-- [ ] Community insights:
-  - Most active residents
-  - Participation rate (voting, events)
-  - Communication effectiveness (announcement read rate)
-
-**Operational Analytics:**
-- [ ] Facility usage:
-  - Utilization rate per facility
-  - Peak usage times
-  - No-show rate
-  - Revenue per facility (jika paid)
-- [ ] Complaint analytics:
-  - Volume trends (by category, month)
-  - Average resolution time
-  - SLA compliance rate
-  - Top complaint types
-  - Staff performance (complaints resolved per staff)
-- [ ] Guest management:
-  - Guest volume trends
-  - Peak visiting days/hours
-  - Average visit duration
-  - Frequent guests (delivery workers, helpers)
-
-**Predictive Analytics (Machine Learning):**
-- [ ] Payment prediction:
-  - Predict which residents will be late payers next month
-  - Risk scoring (high/medium/low risk)
-  - Proactive outreach (send early reminder ke high-risk residents)
-- [ ] Churn prediction:
-  - Predict which complexes might cancel subscription
-  - Identify at-risk complexes (low engagement, high complaints)
-  - Retention recommendations
-- [ ] Demand forecasting:
-  - Predict facility booking demand
-  - Optimize facility availability (e.g., add more slots jika high demand)
-- [ ] Maintenance prediction:
-  - Predict equipment failure (HVAC, lighting, pumps)
-  - Schedule preventive maintenance
-  - Reduce emergency repairs
-
-**Comparative Analytics:**
-- [ ] Benchmarking:
-  - Compare complex metrics vs similar complexes
-  - Industry benchmarks (collection rate, complaint volume, etc.)
-  - Ranking (e.g., "Your complex is in top 20% untuk collection rate")
-- [ ] Best practices:
-  - "What top-performing complexes do differently"
-  - Recommendations based on benchmarking
-
-**Custom Reports:**
-- [ ] Report builder:
-  - Drag-and-drop report designer
-  - Custom date ranges
-  - Export to PDF, Excel, CSV
-  - Schedule automatic email reports (monthly financial report ke pengelola)
-- [ ] Report templates:
-  - Monthly financial summary
-  - Resident engagement report
-  - Operational performance report
-  - Board meeting report (untuk komite kompleks)
-
-**Data Warehousing:**
-- [ ] Set up data warehouse (PostgreSQL + TimescaleDB untuk time-series data)
-- [ ] ETL pipeline (extract dari production DB, transform, load ke warehouse)
-- [ ] Automated data refresh (daily)
-- [ ] Data retention policy (keep detailed data 2 years, aggregated data 5 years)
-
-**Success Criteria:**
-- Financial dashboard accurate (matches actual accounting)
-- Predictive models have ≥ 70% accuracy (payment prediction)
-- Reports generated dalam < 10 seconds
-- Benchmarking data available (minimum 50 complexes untuk comparison)
-- Custom reports usable oleh non-technical pengelola
+**Success Metrics:**
+- ✅ 30% of residents use marketplace monthly
+- ✅ Marketplace contributes 25% of total revenue
+- ✅ 50+ active service providers on platform
+- ✅ Net Promoter Score (NPS) > 50
 
 ---
 
-## 🎯 Overall Success Metrics
+## 📊 Prioritization Framework
 
-**By End of Milestone 10 (24 months):**
+### Priority Levels
 
-- [ ] **Active Complexes:** 200+ complexes
-- [ ] **Total Units Managed:** 40,000+ units
-- [ ] **Monthly Recurring Revenue (MRR):** Rp 100,000,000+ (1M IDR = 100 juta)
-- [ ] **Mobile App Downloads:** 25,000+ installs
-- [ ] **Average Collection Rate:** 95%+ (vs industry average 70-80%)
-- [ ] **Average Complaint Resolution Time:** < 24 hours
-- [ ] **Customer Satisfaction (NPS):** ≥ 50
-- [ ] **Churn Rate:** < 5% per year
-- [ ] **Technical Metrics:**
-  - Uptime: 99.5%+
-  - Average response time: < 500ms
-  - Error rate: < 0.5%
+- **P0 - Critical:** Core functionality, regulatory compliance, blocking issues
+- **P1 - High:** Important features, user acquisition, revenue impact
+- **P2 - Medium:** Nice to have, planned improvements, operational efficiency
+- **P3 - Low:** Future considerations, exploratory features
+
+### Decision Criteria
+
+1. **Customer Impact:** How many residents/pengurus will benefit?
+2. **Revenue Value:** Direct impact pada subscription revenue atau retention
+3. **Competitive Differentiation:** Does this set us apart dari competitors?
+4. **Technical Debt:** Reduce complexity or improve stability
+5. **Dependencies:** Required untuk other features
+6. **Partnership Value:** Enables strategic partnerships
+
+---
+
+## 🔄 Release Schedule
+
+### Current Development Plan
+
+**Timeline:** 2026 Q1 - 2027 Q3 (20 months)
+
+**Upcoming Releases:**
+
+- **v0.1.0-alpha** (Month 2): Milestone 1 complete - Foundation
+- **v0.2.0-beta** (Month 4): Milestone 2 complete - Financial Core
+- **v0.3.0-beta** (Month 6): Milestone 3 complete - Resident Portal
+- **v1.0.0** (Month 8): MVP Launch - Complete Basic Suite (Milestones 1-4)
+- **v1.5.0** (Month 10): Milestone 5 - Operations Management
+- **v2.0.0** (Month 12): Milestone 6 - Analytics Dashboard
+- **v2.5.0** (Month 14): Milestone 7 - Mobile Apps Launch
+- **v3.0.0** (Month 16): Milestone 8 - IoT Integration (Optional)
+- **v3.5.0** (Month 18): Milestone 9 - Enterprise Features
+- **v4.0.0** (Month 20): Milestone 10 - Marketplace Launch
+
+---
+
+## 📈 Success Metrics & KPIs
+
+### Product Metrics
+
+- **Active Complexes:** New complexes per month
+- **User Engagement:** Daily/Monthly active residents & pengurus
+- **Retention Rate:** 30/60/90 day retention untuk complexes
+- **Feature Adoption:** Usage rate untuk key features (billing, access control, etc.)
+
+### Business Metrics
+
+- **Units Under Management:** Total units managed via platform
+- **Monthly Recurring Revenue (MRR):** Subscription income
+- **Customer Lifetime Value (CLV):** Average value per complex over 3 years
+- **Customer Acquisition Cost (CAC):** Marketing spend per new complex
+
+### Financial Metrics
+
+- **Collection Rate:** % of iuran collected on time
+- **Outstanding AR:** Total unpaid invoices
+- **Payment Success Rate:** % of successful payments via Xendit
+- **Average Revenue Per Unit (ARPU):** Rp 3,500-5,000/month
+
+### Operational Metrics
+
+- **Complaint Resolution Time:** Average time dari complaint submission to resolution
+- **Facility Utilization:** % of booked hours vs available hours
+- **Task Completion Rate:** % of tasks completed on time
+- **Staff Productivity:** Tasks completed per staff per day
+
+---
+
+## 🚨 Risks & Mitigation
+
+### Business Risks
+
+| Risk | Probability | Impact | Mitigation |
+|------|-------------|--------|------------|
+| Slow market adoption | Medium | High | Strong pilot program, partnerships dengan property developers, freemium tier |
+| Price sensitivity | Medium | High | Flexible pricing, volume discounts, freemium tier, prove ROI (time savings) |
+| Competition dari prop-tech | High | Medium | Open-source transparency (trust), superior UX, mobile-first, faster deployment |
+| Payment gateway dependency | Low | Medium | Multi-gateway support (Xendit + Midtrans), manual payment reconciliation |
+| Non-payment of iuran | High | Medium | Auto-payment features, late fees, resident shaming (optional), legal support |
+
+### Technical Risks
+
+| Risk | Probability | Impact | Mitigation |
+|------|-------------|--------|------------|
+| Multi-tenant data leakage | Low | Critical | Strict tenant isolation, row-level security, regular security audits |
+| Xendit downtime | Medium | High | Multi-gateway backup, manual payment reconciliation, clear error communication |
+| Scalability bottlenecks | Medium | High | Performance testing, database indexing, caching strategy (Redis), load balancing |
+| Mobile app complexity | High | Medium | Start dengan web, defer native until traction proven, hire experienced mobile dev |
+| Data privacy (PDPA) | Medium | High | Encryption, access control, audit logs, explicit consent, right to deletion |
+
+### Operational Risks
+
+| Risk | Probability | Impact | Mitigation |
+|------|-------------|--------|------------|
+| Solo founder dependency | High | High | Document processes, hire contractors, build community, prioritize automation |
+| Customer support burden | Medium | Medium | Self-service documentation, chatbot, community forum, prioritized support untuk paid |
+| Feature creep | Medium | Medium | Strict roadmap discipline, prioritization framework, customer feedback loops |
+| Open-source license violations | Low | Medium | Clear license documentation, compliance checks, AGPL enforcement |
 
 ---
 
 ## 🔄 Iteration Process
 
-**Sprint Cycle (2 weeks):**
-1. Sprint Planning (Monday 2 hours) - Plan features untuk next sprint
-2. Development (Days 1-8) - Build features
-3. Code Review (Day 9) - Peer review semua code changes
-4. Testing (Day 10) - QA testing, bug fixes
-5. Sprint Review & Retro (Friday 2 hours) - Demo progress, identify improvements
+### Review Cadence
 
-**Release Cadence:**
-- **Minor Releases:** Every 2 sprints (4 weeks) - New features
-- **Patch Releases:** As needed - Bug fixes, hotfixes
-- **Major Releases:** Every 6 months - Significant feature additions (v2.0, v3.0)
+- **Weekly:** Team standup dan sprint progress review
+- **Bi-weekly:** Sprint planning dan review
+- **Monthly:** Roadmap review dan adjustment
+- **Quarterly:** Strategic planning dan goal setting
 
-**Quality Gates:**
-- All code must be reviewed oleh peer before merge
-- All features must have automated tests (unit + integration)
-- Critical bugs block release
-- Performance benchmarks must be met (page load < 1s, API response < 500ms)
+### Feedback Loops
+
+- **User Feedback:** Monthly user interviews dengan pilot complexes
+- **Stakeholder Review:** Quarterly updates dengan property managers
+- **Technical Review:** Monthly architecture dan performance reviews
+- **Market Analysis:** Quarterly competitive landscape dan trends
 
 ---
 
-## 📅 Timeline Summary
+## 📝 Change Management
 
-| Milestone | Duration | Target Completion | Key Deliverable |
-|-----------|----------|-------------------|-----------------|
-| M1: MVP Foundation | 3 weeks | Week 3 | Project setup, auth system |
-| M2: Financial Management | 4 weeks | Week 7 | Billing & payment system |
-| M3: Resident Portal | 3 weeks | Week 10 | Announcement, voting, documents |
-| M4: Services | 3 weeks | Week 13 | Complaints, facility booking |
-| **MVP Complete** | **13 weeks** | **Week 13** | **4 core features working** |
-| M5: Beta Testing | 4 weeks | Week 17 | Tested dengan 5 pilot complexes |
-| M6: Public Launch | 8-10 weeks | Week 27 | 10 paying customers, live launch |
-| M7: Guest Management | 8-10 weeks | Week 37 | Access control system |
-| M8: Mobile Apps | 12-15 weeks | Week 52 | Resident & satpam apps released |
-| M9: IoT Integration | 12-15 weeks | Week 67 | Smart locks, sensors, automation |
-| M10: Advanced Analytics | 10-12 weeks | Week 79 | Predictive analytics, ML models |
+### Roadmap Updates
 
-**Total Timeline:** 79 weeks (18 months) dari project start hingga complete platform
+- **Frequency:** Reviewed quarterly, updated as needed
+- **Process:** User feedback → Team discussion → Stakeholder approval → Documentation update
+- **Communication:** Changes communicated via monthly newsletter dan sprint planning
+
+### Priority Changes
+
+- **Triggers:** Customer feedback, technical constraints, market changes, competitor moves
+- **Process:** Impact analysis → Team discussion → Decision → Communication
+- **Documentation:** Updated in this roadmap dengan rationale dan timeline
 
 ---
 
-## 🚀 Next Steps
+## 🎯 Success Stories & Use Cases
 
-**Immediate Actions (This Week):**
-1. Finalize technical architecture review
-2. Set up development environment (local + staging)
-3. Create GitHub project board dengan tasks untuk Milestone 1
-4. Schedule weekly standup (30 min, Monday 9 AM)
-5. Start Milestone 1: MVP Foundation
+### Target Success Stories
 
-**First Sprint (Week 1-2):**
-- Day 1-2: Laravel setup, database schema design
-- Day 3-4: Authentication system implementation
-- Day 5-6: Basic layout & navigation
-- Day 7-8: Testing & bug fixes
-- Day 9: Code review & documentation
-- Day 10: Sprint review
+1. **Kompleks Graha Indah (300 units):**
+   - Challenge: 65% collection rate, manual Excel billing, frequent conflicts
+   - Solution: Klustera automated billing + transparent portal
+   - Result: 92% collection rate, 8 hours/week saved, zero conflicts
+
+2. **Permata Housing (5 complexes, 1,500 units):**
+   - Challenge: Different systems per complex, no consolidated reporting
+   - Solution: Klustera multi-complex management
+   - Result: Unified dashboard, 50% reduction admin overhead, data-driven decisions
+
+3. **Apartemen City View (200 units):**
+   - Challenge: Security issues, manual guest log, no access tracking
+   - Solution: Klustera QR access control + guest pre-registration
+   - Result: 30-second guest processing, 100% access log coverage, improved security
+
+### Expected Impact
+
+- **Transparency:** 100% visibility untuk residents ke aggregate financial data
+- **Efficiency:** 80% reduction dalam administrative work (billing, reporting)
+- **Security:** Complete access log with audit trail
+- **Collection:** 25-30% improvement in on-time payment collection
+- **Satisfaction:** 4.5/5 resident satisfaction score
 
 ---
 
 **Last Updated:** 2026-01-06
-**Roadmap Version:** 1.0.0
-**Maintainer:** Najib - Akordium Lab
-
-**Note:** Timeline ini adalah estimasi. Actual progress may vary based pada complexity, team size, dan unforeseen challenges. Regular roadmap reviews akan dilakukan setiap quarter untuk adjust timeline based on progress dan market feedback.
+**Next Review Date:** 2026-04-01
+**Owner:** Product Team (Klustera.id)
+**Reviewers:** Development Team, Property Managers, Pilot Complex Representatives

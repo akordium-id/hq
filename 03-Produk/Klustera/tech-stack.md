@@ -1,774 +1,700 @@
-# 🛠️ Klustera.id Tech Stack
+# ⚙️ Klustera.id - Technical Architecture
 
-> Detailed technology stack and architecture documentation for Klustera.id - All-in-One Housing Management Platform
+> Technical stack, architecture decisions, dan infrastructure untuk Klustera.id
 
 ## 🏗️ Architecture Overview
 
-### System Architecture
+Klustera.id follows a **multi-tenant SaaS architecture** using the **TALL stack** (Tailwind, Alpine.js, Laravel, Livewire) dengan PostgreSQL database and Oracle Cloud infrastructure.
 
-**Architecture Type:** Monolithic dengan modular design untuk mempertahankan development speed sambil mempersiapkan untuk microservices migration
+### Architectural Principles
 
-**Design Patterns:**
-
-- [ ] **Repository Pattern:** Clean separation antara business logic dan data access
-- [ ] **Service Layer:** Centralized business logic implementation
-- [ ] **Factory Pattern:** untuk object creation dengan berbagai billing types
-- [ ] **Observer Pattern:** untuk event-driven payment processing
-- [ ] **Strategy Pattern:** untuk berbagai facility pricing strategies
-
-**Data Flow:**
-
-```
-[User Browser] → [Cloudflare CDN] → [Load Balancer] → [Laravel App] → [PostgreSQL]
-                    ↓                        ↓               ↓               ↓
-              [Static Assets]         [Nginx]         [Redis Cache]   [Backups]
-```
-
-### Technology Rationale
-
-**Why this stack:**
-
-- **Development Speed:** Laravel ecosystem provides rapid development capabilities
-- **Team Expertise:** Strong PHP/Laravel expertise within Akordium Lab team (proven di WaqfWise)
-- **Domain Fit:** Rich ecosystem untuk multi-tenant SaaS applications
-- **Indonesian Market:** Mature payment gateway integrations (Midtrans)
-- **Scalability:** Proven scalability patterns dengan Laravel + PostgreSQL
-- **Cost Efficiency:** Lower infrastructure costs dibandingkan microservices awalnya
-- **Open Source:** MIT-licensed core platform untuk trust dan customization
+1. **Multi-Tenancy First:** Data isolation between complexes (tenants) is critical
+2. **Mobile-Ready:** Responsive web + native mobile apps untuk operational staff
+3. **Offline-First:** Mobile apps work without internet, sync when connected
+4. **Real-Time:** Livewire polling for real-time updates (dashboard, notifications)
+5. **Security:** Role-based access control, encrypted data, audit trails
+6. **Scalability:** Horizontal scaling via load balancer, database read replicas
+7. **Observability:** Comprehensive logging, monitoring, error tracking
 
 ---
 
-## 🖥️ Frontend Stack
+## 🎨 Frontend Architecture
 
-### Framework & Libraries
+### Web Application (Resident & Admin Portal)
 
-**Primary Framework:** Laravel Blade dengan Livewire 3
+**Framework:** Laravel Blade dengan Livewire 3
 
-- **Version:** Laravel 10.25+ / Livewire 3.x
-- **Why chosen:** Perfect balance antara server-side performance dan interaktivitas client-side, ideal untuk multi-tenant admin dashboards
-- **Team Experience:** High familiarity dengan Laravel ecosystem (proven di WaqfWise)
-- **Reference:** Following successful TALL Stack pattern dari WaqfWise
+**Component Library:**
+- **FluxUI** (Primary): Official Livewire component library
+- **Custom Tailwind Components**: For complex UI patterns not in FluxUI
+
+**Styling:**
+- **Tailwind CSS 3**: Utility-first CSS framework
+- **Alpine.js**: Lightweight JavaScript framework untuk interactive components
+- **Custom CSS**: Minimal, only untuk specific needs
 
 **State Management:**
+- **Livewire**: Server-side state management (automatic)
+- **Alpine.js**: Client-side state untuk small interactions (dropdowns, modals)
+- **Database**: Single source of truth (no client-side state duplication)
 
-- **Primary:** Livewire component state + Alpine.js
-- **Version:** Alpine.js 3.13+
-- **Why:** Reactive state management tanpa complexity frontend framework
-- **Patterns:** Component-based state dengan server-side persistence
-
-**UI Components:**
-
-- **Component Library:** FluxUI (Livewire component library)
-- **Design System:** Tailwind CSS dengan customization untuk Klustera.id branding
-- **Custom Components:**
-  - Financial charts (Chart.js) - billing collection trends
-  - Data tables (DataTables) - resident lists, billing history
-  - Calendar views (FullCalendar.js) - facility booking
-  - Real-time counters (Alpine.js) - vote counts, complaint status
-
-**Build Tools:**
-
-- **Bundler:** Laravel Mix (Vite-based)
-- **Version:** Vite 4.x
-- **CSS Preprocessor:** Tailwind CSS 3.x
-- **JavaScript:** Modern ES6+ dengan Alpine.js untuk interactivity
-
-### Frontend Architecture
-
-**Component Structure:**
-
-```
-resources/
-├── views/
-│   ├── components/          # Reusable Livewire components
-│   │   ├── common/        # Generic components (modals, tables)
-│   │   ├── forms/         # Form components (billing, complaint forms)
-│   │   ├── charts/        # Data visualization components
-│   │   └── layout/        # Layout components (header, sidebar)
-│   ├── livewire/          # Full-page Livewire components
-│   │   ├── dashboard/     # Dashboard components (pengelola, resident)
-│   │   ├── billing/       # Billing & payment components
-│   │   ├── announcements/ # Announcement & voting components
-│   │   ├── complaints/    # Complaint tracking components
-│   │   ├── facilities/    # Facility booking components
-│   │   └── residents/     # Resident management components
-│   └── layouts/           # Page layouts (admin, portal, public)
-├── js/
-│   ├── components/        # Alpine.js components
-│   ├── utils/            # Utility functions
-│   └── charts/           # Chart.js configurations
-└── css/
-    ├── components/        # Component-specific styles
-    └── utilities/        # Custom Tailwind utilities
-```
-
-**Code Splitting:**
-
-- **Route-based:** Automatic Livewire component loading
-- **Component-based:** Lazy loading untuk heavy charts (financial analytics)
-- **Vendor libraries:** Separate bundles untuk Chart.js, DataTables, FullCalendar
-
-**Performance Optimizations:**
-
-- **Bundle Size:** Target < 2MB main bundle
-- **Image Optimization:** Cloudflare Image Resizing service (resident photos, facility images)
-- **Caching Strategy:** Redis caching untuk Livewire component state
-- **Lazy Loading:** Progressive loading untuk financial reports dan resident lists
-- **Database Optimization:** Query optimization dengan eager loading (units, residents, bills)
+**Key Libraries:**
+- **Alpine.js**: @alpinejs/~3.x
+- **Livewire**: Livewire v3
+- **FluxUI**: Flux UI (latest)
+- **Chart.js atau ApexCharts**: Data visualization
 
 ---
 
-## ⚙️ Backend Stack
+### Mobile Applications (Operational Staff)
 
-### Primary Language & Framework
+**Framework:** Flutter (preferred) atau React Native (alternative)
+
+**Decision Criteria:**
+- **Flutter** if: Team prefers Dart, want single codebase iOS/Android, better performance
+- **React Native** if: Team already knows JavaScript/React, want to reuse web code
+
+**Architecture Pattern:**
+- **BLoC (Business Logic Component)** if Flutter
+- **Redux Toolkit** if React Native
+
+**Key Features:**
+- **Offline-First:** SQLite local database, sync when internet available
+- **Background Sync:** Upload cached data when connection restored
+- **Push Notifications:** Firebase Cloud Messaging (FCM)
+- **Biometric Auth:** Fingerprint/Face ID login
+
+**Libraries:**
+- **HTTP:** Dio (Flutter) atau Axios (React Native)
+- **Local DB:** SQLite (flutter_sqlite atau react-native-sqlite-storage)
+- **State:** Provider/Riverpod (Flutter) atau Redux (React Native)
+- **Maps:** Google Maps SDK
+- **Camera:** Camera package (flutter_camera atau react-native-camera)
+
+---
+
+## 🖥️ Backend Architecture
+
+### Framework: Laravel 10+
 
 **Language:** PHP 8.2+
 
-- **Version:** 8.2.15
-- **Why chosen:** Mature ecosystem, excellent SaaS libraries, strong community support
-- **Benefits:** Type declarations, performance improvements, modern syntax
-- **Team Expertise:** Proven di WaqfWise project
+**Key Packages:**
 
-**Framework:** Laravel 10
+1. **Multi-Tenancy:**
+   - `stancl/tenancy` (recommended) atau `tenancy/tenancy`
+   - Database-per-tenant strategy (best isolation)
+   - Tenant identification via subdomain (klustera.id/complex-slug) atau custom domain
 
-- **Version:** 10.25+
-- **Key Features Used:**
-  - Eloquent ORM dengan relationship management (complexes, units, residents, bills)
-  - Laravel Sanctum untuk API authentication (mobile apps, future integrations)
-  - Queue system untuk background processing (billing generation, reminders, notifications)
-  - Event system untuk decoupled architecture (payment received → update status → send receipt)
-  - Validation system dengan custom rules (Indonesian phone numbers, NPWP validation)
-  - Notification system untuk email/SMS/WhatsApp (bill reminders, complaint updates)
+2. **Authentication & Authorization:**
+   - `laravel/sanctum`: API tokens untuk mobile apps
+   - `spatie/laravel-permission`: Role-based access control
+   - Roles: Admin, Resident, Staff, Security, Cleaning, Facility
 
-### Backend Architecture
+3. **Queues & Jobs:**
+   - `laravel/horizon`: Queue monitoring (Redis)
+   - Jobs: Invoice generation, WhatsApp notifications, PDF generation
+   - Queues: billing, notifications, email, sms
 
-**Application Structure:**
+4. **Media & File Storage:**
+   - `spatie/laravel-medialibrary`: Media management (photos, documents)
+   - Storage: Cloudflare R2 (S3-compatible) atau Oracle Object Storage
 
-```
-app/
-├── Http/
-│   ├── Controllers/       # HTTP request handlers
-│   │   ├── Auth/         # Authentication controllers (login, password reset)
-│   │   ├── Admin/        # Admin/pengelola controllers
-│   │   │   ├── BillingController.php
-│   │   │   ├── ComplaintController.php
-│   │   │   ├── FacilityController.php
-│   │   │   └── AnnouncementController.php
-│   │   ├── Resident/     # Resident portal controllers
-│   │   │   ├── BillController.php
-│   │   │   ├── ComplaintController.php
-│   │   │   └── BookingController.php
-│   │   └── Api/          # API endpoints (mobile apps, integrations)
-│   ├── Middleware/       # Custom middleware
-│   │   ├── CheckComplexAccess.php  # Multi-tenant access control
-│   │   ├── CheckRole.php           # Role-based authorization
-│   │   └── VerifyCsrfToken.php     # CSRF protection
-│   └── Requests/         # Form request validation
-│       ├── BillingRequest.php
-│       ├── ComplaintRequest.php
-│       └── BookingRequest.php
-├── Models/               # Eloquent models
-│   ├── Auth/            # User dan role models
-│   │   ├── User.php
-│   │   └── Role.php
-│   ├── Complex.php      # Complex master data
-│   ├── Unit.php         # Unit/house data
-│   ├── Resident.php     # Resident data
-│   ├── Billing.php      # Billing & invoice models
-│   ├── Payment.php      # Payment transactions
-│   ├── Announcement.php # Announcement model
-│   ├── Complaint.php    # Complaint model
-│   ├── Facility.php     # Facility model
-│   └── Booking.php      # Facility booking model
-├── Services/            # Business logic layer
-│   ├── BillingService/    # Billing calculation & generation
-│   ├── PaymentService/    # Midtrans integration & reconciliation
-│   ├── ComplaintService/  # Complaint workflow & SLA
-│   ├── FacilityService/   # Availability & booking logic
-│   └── NotificationService/ # Multi-channel notifications
-├── Repositories/        # Data access layer
-│   ├── BillingRepository.php
-│   ├── ResidentRepository.php
-│   └── ComplaintRepository.php
-├── Jobs/                # Background jobs
-│   ├── GenerateMonthlyBills.php
-│   ├── SendPaymentReminder.php
-│   ├── ProcessMidtransWebhook.php
-│   └── CheckOverduePayments.php
-├── Notifications/       # Email/SMS/WhatsApp notifications
-│   ├── BillDueNotification.php
-│   ├── PaymentReceivedNotification.php
-│   ├── ComplaintStatusUpdateNotification.php
-│   └── AnnouncementNotification.php
-├── Listeners/           # Event listeners
-│   ├── UpdatePaymentStatus.php
-│   └── SendPaymentReceipt.php
-└── Providers/           # Service providers
-```
-
-**Design Patterns:**
-
-- **Repository Pattern:** Abstraction layer untuk data access
-- **Service Layer:** Business logic encapsulation
-- **Factory Pattern:** Bill creation dengan berbagai billing types
-- **Observer Pattern:** Payment processing events
-- **Strategy Pattern:** Facility pricing algorithms (hourly, daily, per-usage)
-
-**API Design:**
-
-- **Style:** RESTful API dengan Livewire endpoints untuk admin dashboard
-- **Authentication:** Laravel Sanctum dengan token-based auth (mobile apps, integrations)
-- **Versioning:** URL versioning untuk future-proofing (`/api/v1/...`)
-- **Documentation:** API documentation dengan Scribe
-- **Rate Limiting:** Token bucket algorithm (100 requests/minute per IP)
-- **Multi-Tenancy:** Subdomain-based (`kompleks-a.klustera.id`, `kompleks-b.klustera.id`)
+5. **PDF Generation:**
+   - `barryvdh/laravel-dompdf`: PDF invoice generation
+   - Templates: Blade views dengan custom styling
 
 ---
 
-## 🗄️ Database Layer
+### Database Design
 
-### Primary Database
+**Database:** PostgreSQL 15+
 
-**Database System:** PostgreSQL 15
+**Multi-Tenancy Strategy:** Database-per-tenant
 
-- **Version:** 15.4
-- **Why chosen:**
-  - Strong data integrity untuk financial transactions
-  - JSON support untuk flexible facility configurations
-  - Excellent transaction handling (ACID compliance untuk payments)
-  - Proven scalability di Akordium Lab projects
-  - Full-text search capabilities untuk complaint search
-
-**Database Design:**
-
-**Schema Organization:**
+**Schema Design:**
 
 ```sql
--- Main schemas
--- public: Main application tables
--- tenant: Multi-tenant data per complex
--- finance: Financial data and transactions
--- audit: Audit logs and history
--- reports: Reporting materialized views
+-- Tenant Database (klustera_main)
+CREATE TABLE tenants (
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(255),
+    slug VARCHAR(255) UNIQUE, -- URL subdomain
+    database_name VARCHAR(255), -- Tenant database name
+    plan ENUM('free', 'standard', 'enterprise'),
+    max_units INT,
+    status ENUM('active', 'suspended', 'cancelled'),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
+);
+
+-- Tenant-Specific Database (klustera_tenant_{tenant_id})
+CREATE TABLE units (
+    id BIGINT PRIMARY KEY,
+    unit_number VARCHAR(50),
+    building VARCHAR(100),
+    floor INT,
+    type ENUM('studio', '1BR', '2BR', '3BR', 'house'),
+    ownership_status ENUM('owned', 'rented'),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE residents (
+    id BIGINT PRIMARY KEY,
+    unit_id BIGINT REFERENCES units(id),
+    name VARCHAR(255),
+    phone VARCHAR(20) UNIQUE,
+    email VARCHAR(255),
+    is_owner BOOLEAN DEFAULT TRUE,
+    status ENUM('active', 'inactive', 'moved_out'),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE invoices (
+    id BIGINT PRIMARY KEY,
+    resident_id BIGINT REFERENCES residents(id),
+    invoice_number VARCHAR(50) UNIQUE,
+    billing_cycle_start DATE,
+    billing_cycle_end DATE,
+    total_amount DECIMAL(12, 2),
+    status ENUM('pending', 'paid', 'overdue', 'cancelled'),
+    due_date DATE,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE payments (
+    id BIGINT PRIMARY KEY,
+    invoice_id BIGINT REFERENCES invoices(id),
+    payment_method VARCHAR(50), -- Xendit: QRIS, VA, EWALLET
+    amount DECIMAL(12, 2),
+    transaction_id VARCHAR(255),
+    status ENUM('pending', 'completed', 'failed', 'refunded'),
+    paid_at TIMESTAMP,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE access_logs (
+    id BIGINT PRIMARY KEY,
+    resident_id BIGINT REFERENCES residents(id) NULL, -- NULL for guests
+    type ENUM('resident_entry', 'guest_entry', 'staff_entry', 'exit'),
+    entry_method ENUM('qr_code', 'guest_code', 'manual'),
+    timestamp TIMESTAMP,
+    guard_on_duty VARCHAR(255),
+    created_at TIMESTAMP
+);
+
+-- Other tables: announcements, guests, complaints, facilities, bookings, tasks, etc.
 ```
 
-**Key Tables:**
-
-```sql
--- Authentication & Authorization
-users                    -- User accounts (pengelola, admin, resident, satpam)
-roles                    -- Role definitions (admin, pengelola, resident, satpam)
-permissions              -- Granular permissions
-role_user                -- User-role assignments
-permission_role          -- Permission-role assignments
-
--- Multi-Tenancy
-complexes                -- Complex master data
-units                    -- Unit/house data per complex
-residents                -- Resident profiles
-resident_units           -- Resident-unit relationships
-
--- Financial Management
-billings                 -- Monthly bills/invoices
-billing_items            -- Bill line items (iuran kebersihan, keamanan, etc.)
-payments                 -- Payment transactions (Midtrans)
-payment_reminders        -- Reminder history
-
--- Resident Portal
-announcements            -- Pengumuman
-announcement_recipients  -- Targeting (all, specific blok, specific residents)
-votes                    -- Voting/poll data
-vote_options             -- Vote options
-vote_records             -- Resident votes
-documents                -- Document repository (peraturan, laporan)
-
--- Complaint Tracking
-complaints                -- Complaint tickets
-complaint_comments        -- Complaint communication threads
-complaint_assignments     -- Staff assignments
-
--- Facility Management
-facilities               -- Facility master data
-facility_schedules        -- Operating hours
-bookings                 -- Facility bookings
-booking_payments          -- Booking payments (jika paid facility)
-
--- Guest Management (v2.0)
-guests                   -- Guest pre-registrations
-guest_visits             -- Guest check-in/check-out records
-
--- IoT Integration (v2.0)
-iot_devices              -- Smart locks, sensors
-iot_device_data          -- Time-series sensor data
-automation_rules         -- If-then automation rules
-```
-
-**Indexing Strategy:**
-
-- **Primary Indexes:** All primary keys dengan appropriate constraints
-- **Foreign Key Indexes:** Optimize untuk relationship queries (complex_id, unit_id, resident_id)
-- **Query Indexes:** Optimize untuk common queries:
-  - `billings (complex_id, status, due_date)` - Dashboard queries
-  - `complaints (complex_id, status, created_at)` - SLA tracking
-  - `bookings (facility_id, date, time_slot)` - Availability check
-- **Composite Indexes:** Multi-column queries (resident + due_date untuk overdue checks)
-- **JSON Indexes:** GIN indexes untuk facility configurations, IoT metadata
-
-**Data Integrity:**
-
-- **Foreign Keys:** All relationships enforced dengan proper cascading rules
-- **Check Constraints:** Billing amount > 0, facility capacity > 0, etc.
-- **Unique Constraints:** (resident_id, bill_id) untuk payment uniqueness, (facility_id, date, time_slot) untuk booking uniqueness
-- **Triggers:** Automated status updates, audit logging
-
-### Caching Layer
-
-**Cache System:** Redis 7.2
-
-- **Version:** 7.2.3
-- **Usage Patterns:**
-  - **Session Storage:** Laravel session storage (multi-tenant aware)
-  - **Query Results:** Expensive dashboard queries (collection metrics, complaint trends)
-  - **Livewire Component State:** Component state caching (billing list, facility calendar)
-  - **API Responses:** Frequently accessed data (facility availability, complex info)
-  - **Configuration:** Application settings dan feature flags per complex
-
-**Cache Strategy:**
-
-- **Cache-Aside:** Dashboard financial metrics (recalculate hourly)
-- **Write-Through:** User session data (real-time updates)
-- **Refresh-Ahead:** Scheduled reports (monthly financial summary)
-- **Tag-based Cache:** Organized cache invalidation (`complex:{id}:*` tags)
+**Key Design Decisions:**
+- **Foreign Keys:** Enforced referential integrity
+- **Indexes:** Strategic indexes pada frequently queried columns (tenant_id, resident_id, dates)
+- **Soft Deletes:** Use deleted_at untuk audit trail, not hard deletes
+- **Timestamps:** created_at, updated_at on all tables
+- **UUIDs:** Consider UUIDs untuk sensitive data (invoices, payments) instead of auto-increment
 
 ---
 
-## 🌐 Infrastructure & DevOps
+### API Design
 
-### Hosting & Deployment
+**RESTful API Standards:**
 
-**Cloud Provider:** Oracle Cloud Infrastructure
+**Base URL:** `https://api.klustera.id/v1`
 
-- **Region:** Singapore (ap-singapore-1) - Low latency untuk Indonesia
-- **Instance Type:** VM.Standard.A2.Flex (ARM-based, scalable)
-- **Initial Specs:** 2 OCPU, 8GB RAM (MVP)
-- **Scaling Plan:** Vertical scaling hingga 4 OCPU, 16GB RAM (Year 1), horizontal scaling (Year 2+)
+**Authentication:**
+- Bearer token (Laravel Sanctum)
+- Token refresh rotation
+- Token expiration: 30 days (mobile apps)
 
-**Containerization:**
+**Rate Limiting:**
+- 100 requests per minute per IP
+- 1000 requests per hour per authenticated user
+- Throttle:60,1 untuk public endpoints
 
-- **Container Runtime:** Docker 24.x
-- **Orchestration:** Coolify PaaS platform
-- **Container Registry:** Docker Hub untuk public images, private registry untuk custom images
-- **Multi-stage builds:** Optimized production images (alpine-based untuk smaller size)
+**API Endpoints (Examples):**
 
-**Deployment Strategy:**
+```
+# Authentication
+POST   /api/v1/auth/register
+POST   /api/v1/auth/login
+POST   /api/v1/auth/logout
+POST   /api/v1/auth/refresh
 
-- **CI/CD Pipeline:** GitHub Actions → Coolify deployment
-- **Deployment Method:** Blue-green deployment dengan zero-downtime
-- **Environment Promotion:** `develop` → `staging` → `production`
-- **Rollback Strategy:** Immediate rollback capability dengan previous image retention (keep 5 versions)
+# Invoices (Resident)
+GET    /api/v1/invoices
+GET    /api/v1/invoices/{id}
+POST   /api/v1/invoices/{id}/pay
 
-**Multi-Tenancy Setup:**
+# Invoices (Property Manager)
+GET    /api/v1/admin/invoices
+POST   /api/v1/admin/invoices
+PUT    /api/v1/admin/invoices/{id}
 
-- **Subdomain-per-Complex:** `kompleks-a.klustera.id`, `kompleks-b.klustera.id`
-- **Database Isolation:** Schema-based separation (tenant.{complex_id}.tables)
-- **Resource Quotas:** Per-complex limits (residents, storage, API calls)
+# Announcements
+GET    /api/v1/announcements
+POST   /api/v1/admin/announcements
 
-### Monitoring & Observability
+# Access Control
+POST   /api/v1/access-codes/generate
+POST   /api/v1/guests/register
+POST   /api/v1/access/verify
 
-**Application Monitoring:**
+# Complaints
+GET    /api/v1/complaints
+POST   /api/v1/complaints
+PATCH  /api/v1/complaints/{id}/status
 
-- **Error Tracking:** Sentry dengan Laravel integration
-- **Performance Monitoring:** Custom dashboard dengan response time tracking
-- **Log Aggregation:** Structured logging dengan JSON format
-- **Health Checks:** `/health` endpoint (database, Redis, external APIs)
+# Facilities
+GET    /api/v1/facilities
+POST   /api/v1/facilities/{id}/bookings
 
-**Infrastructure Monitoring:**
+# Mobile Staff APIs
+GET    /api/v1/staff/tasks
+PATCH  /api/v1/staff/tasks/{id}/complete
+POST   /api/v1/staff/patrol/checkpoints
+```
 
-- **Server Monitoring:** Prometheus + Grafana stack (Oracle Cloud metrics)
-- **Uptime Monitoring:** UptimeRobot + Cloudflare monitoring
-- **Database Monitoring:** pgAdmin + custom monitoring queries (connection pool, query performance)
-- **Resource Monitoring:** CPU, Memory, Disk, Network usage tracking
+**Response Format:**
 
-**Business Metrics Monitoring:**
+```json
+{
+    "success": true,
+    "data": { ... },
+    "message": "Operation successful",
+    "meta": {
+        "page": 1,
+        "per_page": 20,
+        "total": 150
+    }
+}
+```
 
-- **Collection Rate:** Daily billing collection percentage
-- **Payment Processing:** Midtrans webhook success rate
-- **User Engagement:** Daily active users (pengelola, residents)
-- **Complaint SLA:** Average resolution time, overdue complaints
+**Error Handling:**
 
-**Alerting:**
-
-- **Alert Manager:** Custom alert system via email dan Slack
-- **Notification Channels:** Email, Slack, SMS untuk critical issues
-- **Escalation Policy:** Tiered alert escalation:
-  - P0: Immediate (system down, payment processing failed)
-  - P1: Within 1 hour (high error rate, slow response times)
-  - P2: Within 4 hours (elevated error rates, degraded performance)
+```json
+{
+    "success": false,
+    "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "The given data was invalid.",
+        "details": {
+            "phone_number": ["The phone number field is required."]
+        }
+    }
+}
+```
 
 ---
 
-## 🔐 Security Implementation
+## 🔒 Security Architecture
 
 ### Authentication & Authorization
 
-**Authentication Method:** Laravel Sanctum (API tokens)
+**Authentication Methods:**
+1. **Web (Admin/Resident):** Laravel session-based auth
+2. **Mobile Apps:** Laravel Sanctum tokens (Bearer tokens)
+3. **API Clients:** API keys dengan rate limiting
 
-- **Implementation Details:** API tokens dengan expiration (30 days) dan refresh capabilities
-- **Token Management:** Automatic token refresh dengan secure rotation
-- **Multi-factor Authentication:** Email-based 2FA untuk admin users (optional untuk MVP)
+**Role-Based Access Control (RBAC):**
 
-**Authorization Model:** Role-based Access Control (RBAC)
+| Role | Permissions |
+|------|-------------|
+| **Super Admin** | Full access, tenant management |
+| **Property Manager** | Manage single complex: invoices, residents, announcements, reports |
+| **Resident** | View own invoices, submit complaints, book facilities, voting |
+| **Security Staff** | Guard mode, access logs, patrol tracking, incident reports |
+| **Cleaning Staff** | View assigned tasks, mark complete, upload photos |
+| **Facility Staff** | View assigned tickets, update status, upload photos |
 
-- **Permissions System:** Granular permissions dengan resource-based control
-- **Role Definitions:**
-  - **Super Admin:** Full system access (manage complexes, billing, residents)
-  - **Pengelola:** Manage single complex (billing, complaints, facilities, announcements)
-  - **Resident:** Portal access (pay bills, submit complaints, book facilities)
-  - **Satpam:** Guest management, patrol logs (v2.0)
-- **Access Control:** Middleware-based permission checking (`CheckRole`, `CheckComplexAccess`)
+**Implementation:**
+- `spatie/laravel-permission` package
+- Middleware: `role:admin`, `role:resident`, etc.
+- Policies: InvoicePolicy, ComplaintPolicy, etc.
 
-### Security Measures
+---
 
-**Data Protection:**
+### Multi-Tenant Data Isolation
 
-- **Encryption at Rest:** PostgreSQL Transparent Data Encryption (TDE) - planned for Year 2
-- **Encryption in Transit:** TLS 1.3 enforcement dengan Cloudflare SSL
-- **Sensitive Data:** Financial data (payment details) encrypted di application level
-- **Key Management:** Environment variables dengan secure storage (AWS KMS or Oracle KMS)
+**Strategy:** Database-per-tenant
+
+**Implementation:**
+- Each tenant gets dedicated PostgreSQL database
+- Tenant identification via:
+  - **Primary:** Subdomain (e.g., `graha-indah.klustera.id`)
+  - **Secondary:** Custom domain (e.g., `graha-indah.co.id`)
+  - **Fallback:** Path parameter (e.g., `klustera.id/complex/graha-indah`)
+
+**Security Measures:**
+- Tenant ID validated on every request
+- Database connection switched based on tenant (middleware)
+- Cross-tenant queries blocked (validation layer)
+- Audit logs untuk all cross-tenant access attempts
+
+---
+
+### Data Encryption
+
+**At Rest:**
+- PostgreSQL transparent data encryption (TDE)
+- Encrypted backups
+- Sensitive fields encrypted using Laravel encryption:
+  - `access_codes.code` (AES-256)
+  - `confirmation_codes.code` (AES-256)
+
+**In Transit:**
+- TLS 1.3 for all connections (HTTPS)
+- Certificate managed via Cloudflare SSL
 
 **API Security:**
-
-- **Rate Limiting:** Token bucket algorithm (100 requests/minute per IP, 1000/minute per authenticated user)
-- **Input Validation:** Laravel validation rules dengan custom validators (Indonesian phone format, NPWP)
-- **SQL Injection Prevention:** Eloquent ORM dengan parameterized queries
-- **XSS Protection:** Laravel's built-in XSS protection dengan Content Security Policy (CSP)
-
-**Network Security:**
-
-- **Firewall Rules:** Cloudflare WAF dengan custom rules (SQL injection protection, XSS protection)
-- **VPC Configuration:** Private network dengan bastion host (Year 2+)
-- **DDoS Protection:** Cloudflare DDoS protection (included di free tier)
-- **SSL/TLS Configuration:** Modern SSL configuration dengan automatic renewal (Let's Encrypt via Cloudflare)
-
-**Payment Security:**
-
-- **PCI DSS Compliance:** Midtrans handles card data (Klustera never stores card details)
-- **Webhook Verification:** Midtrans webhook signature verification
-- **Payment Reconciliation:** Automatic reconciliation dengan Midtrans transaction logs
+- Request signing untuk Xendit webhooks (HMAC signature)
+- SQL injection prevention (Eloquent ORM)
+- XSS prevention (Blade {{ }} escaping)
+- CSRF protection (all POST/PUT/DELETE forms)
 
 ---
 
-## ⚡ Performance Optimization
+### Privacy & Compliance (PDPA)
 
-### Application Performance
+**Data Collection:**
+- Explicit consent saat registration
+- Minimal data collection (only what's necessary)
+- Data retention policy: 5 years untuk financial records, 1 year untuk operational data
 
-**Backend Optimizations:**
+**User Rights:**
+- Right to access: Download all personal data
+- Right to correction: Update personal info
+- Right to deletion: Account deletion dengan data anonymization
+- Right to portability: Export data in standard format (JSON, CSV)
 
-- **Database Query Optimization:** Eager loading relationships (units with residents, bills with payments)
-- **Connection Pooling:** Optimized database connection management (max 20 connections)
-- **Async Processing:** Queue system untuk billing generation (1000+ bills processed di background)
-- **Caching Strategies:** Multi-level caching (Redis, application-level, browser)
-
-**Frontend Optimizations:**
-
-- **Bundle Optimization:** Vite bundling dengan code splitting (separate admin & resident bundles)
-- **Image Optimization:** Cloudflare image optimization service (resident avatars, facility photos)
-- **Lazy Loading:** Progressive loading untuk:
-  - Resident lists (load 50 per scroll)
-  - Complaint history (load 20 per scroll)
-  - Financial reports (load on-demand)
-- **Resource Optimization:** Minified CSS/JS dengan Gzip compression
-
-### Monitoring & Metrics
-
-**Key Performance Indicators:**
-
-- **Response Time:** P50 < 500ms, P95 < 2s, P99 < 5s
-- **Throughput:** 1000+ requests/minute (single VM)
-- **Error Rate:** < 1% error rate
-- **Resource Utilization:** CPU < 70%, Memory < 80%
-
-**Performance Testing:**
-
-- **Load Testing:** 500 concurrent users simulation (MVP target)
-- **Stress Testing:** Peak load testing untuk end-of-month billing generation
-- **Database Performance:** Query optimization dengan `EXPLAIN ANALYZE`
-- **Frontend Performance:** Lighthouse scores (>90 untuk admin dashboard, >85 untuk resident portal)
+**Implementation:**
+- `gdpr_consent` table (track consent versioning)
+- Soft deletes (anonymize data, don't hard delete)
+- Data export endpoint (ZIP file dengan JSON + documents)
 
 ---
 
-## 🔧 Development Tools & Workflow
+## 🚀 Deployment Architecture
 
-### Development Environment
+### Infrastructure: Oracle Cloud Infrastructure (OCI)
 
-**Local Development:**
+**Compute:**
+- **App Servers:** Oracle Linux 8, 2 vCPU, 4GB RAM (VM.Standard.E2.1)
+- **Worker Servers:** Oracle Linux 8, 2 vCPU, 4GB RAM (for queues)
+- **Load Balancer:** OCI Load Balancer (public)
 
-- **IDE/Editor:** VS Code dengan Laravel extensions (Intelephense, Laravel Extra Intellisense)
-- **Version Control:** Git dengan GitHub
-- **Database Management:** TablePlus (PostgreSQL client)
-- **API Testing:** Postman collections dengan environments (local, staging, production)
+**Database:**
+- **PostgreSQL:** OCI Managed PostgreSQL (Flex Architecture)
+- **Redis:** OCI Redis (Cache & Queue)
+- **Storage:** OCI Object Storage (S3-compatible)
 
-**Code Quality:**
-
-- **Linting:** Laravel Pint (PHP CS Fixer) dengan PSR-12 standard
-- **Static Analysis:** Larastan dengan PHPStan level 6
-- **Testing Framework:** Pest untuk modern testing syntax
-- **Test Coverage:** Minimum 85% (MVP), 90% (production)
-
-### Development Workflow
-
-**Git Workflow:**
-
-- **Branch Strategy:** Git Flow dengan feature branches (`feature/billing-automation`, `fix/complaint-sla`)
-- **Commit Convention:** Conventional Commits (`feat:`, `fix:`, `docs:`, `refactor:`)
-- **Pull Request Process:** Automated checks + manual review (1 approval required)
-- **Code Review Guidelines:** Security, performance, code quality checklist
-
-**Continuous Integration:**
-
-- **Build Pipeline:** Automated testing (unit, feature), code quality checks (Pint, PHPStan)
-- **Test Pipeline:** Unit tests (models, services), Feature tests (Livewire components), Browser tests (Dusk untuk critical paths)
-- **Quality Gates:** Code coverage > 85%, zero critical issues, zero security vulnerabilities
-- **Deployment Pipeline:** Automated deployment dengan rollback capability
+**Network:**
+- **VCN (Virtual Cloud Network):** 10.0.0.0/16
+- **Subnets:** Public subnet (load balancer), Private subnet (app, db)
+- **Security Lists:** Firewall rules (only allow 80, 443 from LB, SSH from bastion)
 
 ---
 
-## 📊 Third-party Integrations
+### Deployment Strategy: Coolify (PaaS)
 
-### Payment Processing
+**Environments:**
+- **Development:** Local (Docker Compose)
+- **Staging:** Coolify (auto-deploy dari branch `develop`)
+- **Production:** Coolify (auto-deploy dari branch `main`)
 
-**Primary Provider:** Midtrans
+**CI/CD Pipeline:**
 
-- **API Version:** v2
-- **Features Used:**
-  - Credit cards (Visa, Mastercard)
-  - Bank Transfer (BCA, Mandiri, BNI, BRI Virtual Accounts)
-  - E-wallets (GoPay, OVO, DANA, ShopeePay)
-  - QRIS (QR code payment)
-- **Implementation:** Server-side integration dengan webhook handling
-- **Fallback:** Manual payment recording untuk offline transactions (cash ke pengelola)
+```yaml
+# .github/workflows/deploy.yml
+name: Deploy to Production
 
-### Communication Services
+on:
+  push:
+    branches: [main]
 
-**Email Service:** SendGrid
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
-- **Templates:**
-  - Bill delivery (PDF invoice attachment)
-  - Payment reminders (7 days, 3 days, 1 day before due)
-  - Payment receipt
-  - Complaint status updates
-  - Announcement notifications
-- **Delivery Tracking:** Event webhooks untuk bounce handling (invalid emails)
-- **Templates:** Dynamic templates dengan Blade rendering
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
 
-**SMS Service:** (Planned untuk v1.1)
+      - name: Install Dependencies
+        run: composer install --no-dev
 
-- **Provider:** Nexmo atau Twilio
-- **Use Cases:** High-priority announcements, payment reminders (jika email failed)
+      - name: Build Assets
+        run: npm run build
 
-**WhatsApp Integration:** (Planned untuk v2.0)
+      - name: Deploy to Coolify
+        run: |
+          curl -X POST $COOLIFY_WEBHOOK_URL
+        env:
+          COOLIFY_WEBHOOK_URL: ${{ secrets.COOLIFY_WEBHOOK }}
+```
 
-- **Provider:** WhatsApp Business API via Twilio atau official WhatsApp Business API
-- **Use Cases:** Payment reminders, complaint updates, announcement delivery (Indonesian preference for WhatsApp)
-
-### Analytics & Monitoring
-
-**Error Monitoring:** Sentry
-
-- **Error Levels:** Fatal, Error, Warning, Info
-- **Performance Monitoring:** Transaction tracing (payment processing, billing generation)
-- **Release Tracking:** Deploy tracking dan performance comparison
-
-**Business Analytics:** (Planned untuk Milestone 10)
-
-- **Custom Dashboard:** Built-in analytics dashboard (no external BI tool untuk MVP)
-- **Export:** Excel/CSV export untuk advanced analysis (external tools)
+**Coolify Configuration:**
+- **Repository:** GitHub private
+- **Build Pack:** PHP (Laravel)
+- **Environment:** Production variables (DB, Xendit, etc.)
+- **Zero-Downtime:** Deploy dengan symlink switching
 
 ---
 
-## 🚀 Scaling Strategy
+### Scalability Strategy
 
-### Current Scalability (MVP)
+**Horizontal Scaling:**
 
-**Vertical Scaling:**
+1. **App Servers:**
+   - Start: 1 server (handles 1000 concurrent users)
+   - Scale: Add servers based on CPU > 70% (auto-scaling)
+   - Load balancer: Round-robin algorithm
 
-- **Current Capacity:** 500 concurrent users, 2 CPU cores, 8GB RAM
-- **Scaling Triggers:** CPU > 80%, Memory > 85%, Response time > 3s
-- **Auto-scaling:** Manual scaling dengan Coolify (future: auto-scaling based on metrics)
+2. **Worker Servers:**
+   - Start: 1 worker (processes queues)
+   - Scale: Add workers based on queue length > 1000
 
-**Database Performance:**
+3. **Database:**
+   - Start: Single instance (2000 connections max)
+   - Scale: Read replicas untuk reporting queries
+   - Future: Sharding by tenant (if > 1000 tenants)
 
-- **Connection Pooling:** 20 max connections, 5 idle connections
-- **Query Optimization:** Index optimization, query caching (Redis)
-- **Read Replicas:** Planned untuk Milestone 10 (Year 2) untuk reporting queries
+**Caching Strategy:**
+- **Redis:** Cache frequently accessed data (dashboard metrics, announcements)
+- **CDN:** Cloudflare untuk static assets (CSS, JS, images)
+- **HTTP Cache:** Cache-Control headers untuk public pages
 
-### Future Scaling Plans
-
-**Short-term (6 months):**
-
-- [ ] **Database Optimization:** Read replica setup untuk financial reporting queries
-- [ ] **Caching Enhancement:** Redis clustering untuk multi-tenant cache isolation
-- [ ] **CDN Integration:** Cloudflare Workers untuk API response caching (public data)
-
-**Medium-term (12 months):**
-
-- [ ] **Horizontal Scaling:** Load balancer dengan multiple application servers
-- [ ] **Database Sharding:** Multi-tenant data separation (per-complex databases)
-- [ ] **Queue Processing:** Separate queue workers untuk background jobs (billing generation, notifications)
-
-**Long-term (18+ months):**
-
-- [ ] **Microservices Migration:** Financial billing sebagai separate service
-- [ ] **Event Streaming:** Redis Streams atau Kafka untuk real-time updates (IoT data)
-- [ ] **Caching Layer:** Memcached atau Redis Cluster untuk improved performance
+**Performance Optimization:**
+- **Database Indexing:** Strategic indexes pada foreign keys, dates
+- **Query Optimization:** Eager loading (avoid N+1 queries), select only needed columns
+- **Lazy Loading:** Load large datasets di background (pagination, infinite scroll)
+- **Queue Heavy Operations:** Invoice generation, PDF generation, notifications
 
 ---
 
-## 📝 Maintenance & Operations
+## 📊 Monitoring & Observability
 
-### Regular Maintenance
+### Logging
 
-**Database Maintenance:**
+**Application Logs:**
+- **Channel:** Daily rotating log files (`storage/logs/laravel.log`)
+- **Level:** Debug (dev), Info (staging), Warning (production)
+- **Format:** JSON untuk structured logging
 
-- **Backup Schedule:** Daily automated backups dengan 30-day retention
-- **Backup Strategy:** pg_dump dengan compression, offsite backup ke Oracle Object Storage
-- **Index Rebuilding:** Weekly maintenance window untuk index optimization
-- **Vacuum/Analyze:** Regular PostgreSQL maintenance dengan autovacuum
-- **Performance Tuning:** Monthly performance review dan optimization (slow query log analysis)
+**Key Events to Log:**
+- All financial transactions (invoices, payments, refunds)
+- Access control events (guest entries, exits, failed attempts)
+- Authentication events (logins, logouts, failed attempts)
+- Admin actions (changes to critical data)
+- API errors (5xx errors, validation failures)
 
-**Application Maintenance:**
-
-- **Dependency Updates:** Weekly security patch updates (`composer update`, `npm update`)
-- **Security Patches:** Critical updates applied within 24 hours
-- **Performance Monitoring:** Daily monitoring alerts review (Sentry errors, slow queries)
-- **Log Rotation:** Automated log rotation dengan 30-day retention
-
-### Operational Procedures
-
-**Incident Response:**
-
-- **Severity Levels:**
-  - **P0 (Critical):** System down, payment processing failed, data loss
-  - **P1 (High):** Elevated error rates, slow response times (>3s)
-  - **P2 (Medium):** Non-critical bugs, UI issues
-  - **P3 (Low):**: Feature requests, minor improvements
-- **Response Team:** On-call engineer dengan escalation procedures
-- **Communication Plan:** Stakeholder notification dengan status updates (email, status page)
-- **Post-mortem Process:** Root cause analysis dengan prevention measures (document di internal wiki)
-
-**Deployment Procedures:**
-
-- **Rollback Plan:** Previous version retention dengan immediate rollback (<5 minutes)
-- **Blue-Green Deployment:** Zero-downtime deployment strategy
-- **Health Checks:** Automated health verification (`/health` endpoint) setelah deployment
-- **Rolling Updates:** Gradual deployment (10% traffic, then 50%, then 100%) dengan monitoring
+**Log Retention:**
+- Application logs: 30 days
+- Audit logs: 5 years (for compliance)
+- Financial logs: 7 years (for tax compliance)
 
 ---
 
-## 🔮 Technology Roadmap
+### Monitoring
 
-### Planned Upgrades
+**Metrics to Track:**
 
-**Next 3 Months (MVP Development):**
+1. **Business Metrics:**
+   - Active tenants (complexes)
+   - Total units managed
+   - Monthly Recurring Revenue (MRR)
+   - Collection rate
+   - User engagement (DAU, MAU)
 
-- [ ] **PHP 8.2:** Latest PHP 8.2.x version untuk performance improvements
-- [ ] **Laravel 10.25+:** Latest Laravel 10 features dengan compatibility testing
-- [ ] **Redis 7.2:** Latest Redis features dengan improved performance
-- [ ] **Node.js 18:** Latest build tools support (Vite 4.x)
+2. **Application Metrics:**
+   - Response time (p50, p95, p99)
+   - Request rate (requests per second)
+   - Error rate (5xx errors)
+   - Queue depth (jobs pending)
+   - Database connection pool usage
 
-**Next 6 Months (Post-MVP):**
+3. **Infrastructure Metrics:**
+   - CPU usage
+   - Memory usage
+   - Disk I/O
+   - Network I/O
+   - Database connections
 
-- [ ] **PostgreSQL 15.4+:** Latest PostgreSQL 15 features
-- [ ] **Laravel 11:** Upgrade ke Laravel 11 saat stable (compatibility testing required)
-- [ ] **Docker Compose v2:** Latest container orchestration
-
-**Next 12 Months (v2.0+):**
-
-- [ ] **PHP 8.3:** Performance improvements dan new features
-- [ ] **Redis Cluster:** Horizontal scaling untuk cache layer
-- [ ] **PostgreSQL 16:** Latest PostgreSQL features (improved JSON support, performance)
-
-### Technology Debt
-
-**Current Technical Debt:**
-
-- **High Priority:** None (starting from scratch)
-- **Medium Priority:** Code coverage improvement (target 90% by production)
-- **Low Priority:** UI component library standardization (consider FluxUI adoption)
-
-**Refactoring Plans:**
-
-- **Service Layer Enhancement:** Better abstraction untuk billing calculation logic
-- **API Versioning:** Proper API versioning implementation (`/api/v1/`, `/api/v2/`)
-- **Testing Enhancement:** Browser test coverage (Dusk) untuk critical user journeys (payment flow, complaint submission)
+**Monitoring Tools:**
+- **Laravel Telescope:** Debugging toolbar untuk development
+- **Custom Dashboard:** Build admin dashboard untuk metrics
+- **Uptime Monitoring:** Cloudflare Uptime Checks (ping every 1 minute)
+- **Error Tracking:** Custom error logging + Slack notifications
 
 ---
 
-## 🏛️ Compliance & Regulatory
+### Alerting
 
-### Indonesian Data Privacy Law (PDPA)
+**Alert Rules:**
 
-**Data Privacy:**
+1. **Critical (PagerDuty-style immediate alert):**
+   - Down time > 5 minutes (uptime check fails)
+   - Error rate > 5% (5xx errors)
+   - Payment webhook failures > 10% (Xendit integration down)
 
-- **Data Minimization:** Collect hanya necessary resident information (name, phone, unit, email optional)
-- **Consent Management:** Explicit consent untuk data processing (terms acceptance saat registration)
-- **Data Portability:** Export functionality untuk resident data (GDPR-style right to data portability)
-- **Right to Deletion:** Account deletion capability dengan data anonymization (financial data retained untuk audit)
+2. **Warning (Email within 15 minutes):**
+   - Response time p95 > 2 seconds
+   - Queue depth > 1000 jobs
+   - Database CPU > 80%
 
-**Financial Compliance:**
+3. **Info (Daily digest):**
+   - New tenant signups
+   - Churn (tenant cancellations)
+   - Weekly summary report
 
-- **Tax Compliance:** VAT (PPN) handling untuk billing transactions
-- **Audit Requirements:** Comprehensive transaction logging (payments, billing adjustments)
-- **Data Retention:** 5-year data retention policy untuk financial records (Indonesian tax regulations)
-- **Access Logs:** Complete user activity tracking (pengelola actions, resident payments)
+**Alert Channels:**
+- **Slack:** #klustera-alerts channel
+- **Email:** on-call@akordium.id
+- **SMS:** Untuk critical alerts (via Twilio)
 
 ---
 
-## 🌐 Open Source Strategy
+## 🧪 Testing Strategy
 
-### What's Open Source (MIT License)
+### Test Pyramid
 
-**Core Platform Code:**
+```
+        /\
+       /E2E\        5% - Critical user journeys
+      /------\
+     /Browser\      10% - Laravel Dusk tests
+    /----------\
+   /Integration\   25% - API tests, database tests
+  /--------------\
+ /   Unit Tests  \ 60% - Model, Service, Repository
+/----------------\
+```
 
-- Laravel application code (billing, complaints, facilities, announcements)
-- Livewire components (admin dashboard, resident portal)
-- Database migrations dan seeders
-- API endpoints (RESTful API)
-- Documentation (README, setup guides, API docs)
+### Test Coverage
 
-**Benefits:**
+**Target:** 85% code coverage
 
-- **Trust:** Open source code = transparency (customers can audit)
-- **Customization:** Complexes can self-host atau customize untuk specific needs
-- **Community:** Potential contributions dari Indonesian developer community
-- **Marketing:** "Open Source" sebagai selling point (trust factor)
+**Tools:**
+- **PHPUnit/Pest:** Unit & feature tests
+- **Laravel Dusk:** Browser tests (critical journeys)
+- **Mocking:** Mock Xendit API, WhatsApp gateway
 
-### What's Proprietary
+### Test Types
 
-**Production Assets:**
+1. **Unit Tests:**
+   - Models: Relationships, scopes, accessors
+   - Services: Business logic (invoice calculation, fee allocation)
+   - Helpers: Format functions, validation rules
 
-- Production deployment configurations (Coolify setup, environment variables)
-- Performance optimization scripts (database tuning, caching strategies)
-- Premium integrations (custom IoT providers, white-label branding)
-- Branding assets (Klustera.id logo, design system files)
-- Monitoring dashboards (custom Grafana dashboards)
+2. **Feature Tests:**
+   - Authentication flows (login, registration)
+   - Invoice generation & payment
+   - Complaint submission & resolution
+   - Facility booking workflow
+   - Multi-tenant data isolation
 
-**Rationale:**
+3. **Browser Tests (Laravel Dusk):**
+   - Resident login → View invoice → Pay via Xendit
+   - Property manager → Create announcement → Verify WhatsApp sent
+   - Security guard → Verify guest code → Log entry
 
-- **Revenue:** Premium features untuk paying customers
-- **Support:** Managed hosting service (revenue stream)
-- **Quality Control:** Prevent poor self-hosted implementations yang damage brand
+---
 
-**Licensing Model:**
+## 🔄 Backup & Disaster Recovery
 
-- **Core:** MIT License (free to use, modify, distribute)
-- **Premium Assets:** Proprietary (available only to paying customers)
-- **Managed Hosting:** Service agreement (SLA, support, updates included)
+### Backup Strategy
+
+**Database Backups:**
+- **Frequency:** Daily automated backups
+- **Retention:** 7 daily, 4 weekly, 3 monthly
+- **Location:** OCI Object Storage (separate region)
+- **Encryption:** Encrypted at rest
+
+**Application Backups:**
+- **Frequency:** Before each deployment
+- **Content:** Source code, environment files, SSL certificates
+- **Location:** GitHub (code), OCI Vault (secrets)
+
+**File Storage Backups:**
+- **Frequency:** Continuous (Cross-region replication)
+- **Content:** User uploads (photos, documents)
+- **Location:** OCI Object Storage (secondary region)
+
+---
+
+### Disaster Recovery Plan
+
+**RTO (Recovery Time Objective):** 4 hours
+**RPO (Recovery Point Objective):** 24 hours
+
+**Scenarios:**
+
+1. **Server Failure:**
+   - Auto-scale: Spin up new server (5 minutes)
+   - Restore: Load backup database (30 minutes)
+   - DNS update: Point to new server (5 minutes)
+
+2. **Database Failure:**
+   - Failover: Promote read replica to primary (10 minutes)
+   - Restore: From latest backup (1 hour)
+   - Replay: Transaction logs (1 hour)
+
+3. **Region Failure:**
+   - Activate: Secondary region (manual trigger)
+   - DNS update: Point to secondary region (5 minutes)
+   - Data: Restore from cross-region backup (2 hours)
+
+---
+
+## 📚 Development Workflow
+
+### Git Workflow
+
+**Branch Strategy:**
+- `main` - Production code (protected)
+- `develop` - Staging code
+- `feature/*` - Feature branches
+- `hotfix/*` - Emergency fixes
+
+**Commit Conventions:**
+- Follow Conventional Commits
+- Types: `feat:`, `fix:`, `docs:`, `refactor:`, `test:`
+- Example: `feat(billing): add Xendit QRIS payment integration`
+
+**Pull Request Process:**
+1. Create feature branch dari `develop`
+2. Implement feature + tests
+3. Create PR to `develop`
+4. Code review by team lead
+5. CI checks pass (tests, linting)
+6. Squash & merge to `develop`
+
+---
+
+### Code Quality Standards
+
+**PHP Standards:**
+- **PSR-12:** Coding style
+- **Type Hints:** Strict types untuk all functions
+- **DocBlocks:** PHPDoc untuk all public methods
+
+**JavaScript Standards:**
+- **ESLint:** Linting rules
+- **Prettier:** Code formatting
+
+**Tools:**
+- **Laravel Pint:** Auto-formatting PHP
+- **PHPStan:** Static analysis (level 5)
+- **Laravel IDE Helper:** Generate IDE helper files
 
 ---
 
 **Last Updated:** 2026-01-06
-**Tech Lead:** Najib - Akordium Lab
-**Review Date:** 2026-02-01
-
-**Note:** This document follows the TALL Stack pattern proven di WaqfWise project, adapted untuk housing management domain. Technical architecture will evolve based pada production learnings dan scale requirements.
+**Version:** 1.0.0-concept
+**Maintainer:** Development Team
