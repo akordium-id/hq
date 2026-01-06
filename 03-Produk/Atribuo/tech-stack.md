@@ -73,12 +73,62 @@
 - **Animations:** Framer Motion untuk smooth transitions
 - **SVG Manipulation:** React-SVG untuk custom charts
 
-### Mobile Optimization
+### Mobile Optimization & Cross-Device Sync
 
-- **PWA:** Next.js PWA configuration
+- **PWA:** Next.js PWA configuration dengan offline support
 - **Responsive:** Mobile-first design approach
 - **Touch Gestures:** React-Use-Gesture library
 - **Performance:** Code splitting dan lazy loading
+- **Cross-Device Sync:** Real-time synchronization via WebSocket + API polling
+
+**PWA Configuration:**
+
+```typescript
+// next-pwa configuration
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development',
+  runtimeCaching: [
+    {
+      urlPattern: /^https:\/\/api\.atribuo\.com\/.*/
+      handler: 'NetworkFirst',
+      options: {
+        cacheName: 'api-cache',
+        expiration: {
+          maxEntries: 64,
+          maxAgeSeconds: 24 * 60 * 60 // 24 hours
+        }
+      }
+    }
+  ]
+})
+
+module.exports = withPWA(nextConfig)
+```
+
+**Cross-Device Sync Architecture:**
+
+```typescript
+// Sync service for cross-device data consistency
+interface SyncService {
+  // WebSocket for real-time updates
+  subscribeToProfileUpdates(userId: string): WebSocket
+
+  // API polling fallback for offline
+  syncProfileData(userId: string): Promise<SyncResult>
+
+  // Conflict resolution strategy
+  resolveConflict(local: Profile, remote: Profile): Profile
+}
+
+// Sync strategies:
+// 1. Real-time: WebSocket connection when online
+// 2. Periodic: 5-minute API polling when WebSocket unavailable
+// 3. On-demand: Manual refresh trigger
+// 4. Conflict resolution: Last-write-wins with user notification
+```
 
 ### Frontend Development Setup
 
