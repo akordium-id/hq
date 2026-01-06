@@ -11,12 +11,35 @@ Repository documentation untuk Akordium Lab HQ.
 ## [Unreleased]
 
 ### Added
+- **SnapKasir Product Validation** (`hq-bun`)
+  - Validated product direction: F&B-focused POS platform (warung, cafe, restoran)
+  - Tech stack migration: Next.js → Flutter for cross-platform efficiency (iOS + Android + Web from 1 codebase)
+  - Pricing model: Freemium → Usage-based paid tiers (Rp 49k-299k/bulan)
+  - 18 child items created for comprehensive product validation across:
+    - Product Identity & Market Fit (3 items)
+    - Technical Validation (3 items)
+    - Features & Roadmap (3 items)
+    - Business Model (3 items)
+    - Go-to-Market Strategy (3 items)
+    - Documentation Updates (3 items)
+  - Updated SnapKasir documentation:
+    - `README.md`: Product status, F&B focus, Flutter stack, usage-based pricing
+    - `tech-stack.md`: Complete Flutter architecture with offline-first design, hardware integration
+    - `roadmap.md`: M1-M10 milestone breakdown (Geo-constrained beta → national scale)
+  - Competitive differentiation: Simple UX (ibu-ibu friendly), reliable offline-first, Flutter cost efficiency
+
 - GitHub issue templates: `bug-report.md`, `feature-request.md`, `akses-request.md`, `ide-produk.md`
 - Pull Request template dengan comprehensive checklist
 - Enhanced `CONTRIBUTING.md` dengan detailed contribution guidelines
 - `CLAUDE.md` untuk AI assistant guidance
 
 ### Changed
+- **SnapKasir Strategic Pivot**
+  - Target market: All UMKM → F&B segment only (warung, cafe, restoran)
+  - Tech stack: Go + Next.js → Go + Flutter (60% dev cost reduction)
+  - Monetization: Freemium → Usage-based paid model
+  - Launch strategy: Broad launch → Geo-constrained beta (1 kecamatan pilot)
+
 - Improved documentation structure organization
 - Updated Git workflow standards
 

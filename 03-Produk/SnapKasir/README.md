@@ -5,43 +5,44 @@
 ## 🏷️ Product Identity
 
 - **Nama Produk:** SnapKasir
-- **Status:** 🚀 Active Development / Production Ready
-- **Repo Code:** `github.com/akordium/snapkasir` (Private)
-- **Live Site:** https://snapkasir.com
-- **Staging:** https://staging.snapkasir.com
-- **Project Management:** [Link ke GitHub Project Board]
+- **Status:** 🔍 In Validation (Product Concept Phase)
+- **Repo Code:** `github.com/akordium/snapkasir` (Private - Not Yet Created)
+- **Live Site:** https://snapkasir.com (Domain only - Not built yet)
+- **Project Management:** `hq-bun` (Beads issue tracker)
 
 ## 📋 Quick Overview
 
 **Tagline:** Solusi Point of Sale Modern untuk UMKM Indonesia
 
-**Deskripsi Singkat:** Platform Point of Sale (POS) yang user-friendly, terjangkau, dan lengkap untuk UMKM Indonesia. Dibuat khusus untuk memudahkan transaksi penjualan, manajemen inventaris, dan analisis bisnis untuk pemilik usaha kecil dan menengah di Indonesia.
+**Deskripsi Singkat:** Platform Point of Sale (POS) yang user-friendly, offline-first, dan terjangkau khusus untuk segmen F&B (warung, cafe, restoran) di Indonesia. Menggunakan Flutter untuk cross-platform coverage (iOS + Android + Web) dengan satu codebase.
 
-**Target Market:**
+**Target Market (F&B Focused):**
 
-- Warung dan toko kelontong
-- Cafe dan restoran kecil
-- Butik dan toko retail
-- Usaha jasa (salon, bengkel, dll)
-- Startup dan online sellers dengan offline presence
+- **Primary:** Warung makan dan minuman (60% dari market)
+- **Secondary:** Cafe dan kedai kopi kecil (25% dari market)
+- **Tertiary:** Restoran kecil dan menengah (15% dari market)
 
-**Problem yang Diselesaikan:** UMKM Indonesia masih menggunakan sistem penjualan manual yang tidak efisien, sulit melacak inventaris, dan tidak memiliki data penjualan yang terstruktur untuk pengambilan keputusan bisnis. Solusi POS existing terlalu mahal, terlalu kompleks, atau tidak support konteks lokal Indonesia.
+**Problem yang Diselesaikan:** UMKM F&B Indonesia masih menggunakan sistem penjualan manual (kertas/buku), tidak efisien, sulit melacak inventaris, dan tidak memiliki data penjualan yang terstruktur untuk pengambilan keputusan bisnis. Solusi POS existing (Moka, Pawoon, Olsera) terlalu mahal, UX terlalu kompleks untuk ibu-ibu warung, dan sering tidak bekerja saat internet putus.
 
 ## 🛠️ Tech Stack
 
 ### Backend
 
-- **Framework/Language:** Go 1.21 (Golang)
-- **Database:** PostgreSQL 15
-- **API:** RESTful API + WebSocket (real-time updates)
-- **Queue:** Redis dengan Bull Queue
+- **Framework/Language:** Go 1.21+ (Golang) - RESTful API
+- **Database:** PostgreSQL 15+ dengan proper indexing
+- **Queue:** Redis 7+ untuk background jobs dan sync
+- **Architecture:** Clean Architecture dengan domain-driven design
 
-### Frontend
+### Frontend (Flutter - Cross-Platform)
 
-- **Framework:** Next.js 14 with TypeScript
-- **Styling:** Tailwind CSS + Headless UI
-- **State Management:** Zustand
-- **Charts:** Chart.js dengan custom plugins
+- **Framework:** Flutter 3.16+ with Dart 3.2+
+- **Platform Coverage:**
+  - **iOS:** Native build untuk iPhone/iPad
+  - **Android:** Native build untuk phones/tablets
+  - **Web:** Responsive web app (Flutter for Web)
+- **State Management:** Riverpod (bloc pattern)
+- **Local Storage:** Hive (offline-first storage)
+- **Sync Mechanism:** Custom sync service dengan conflict resolution
 
 ### Infrastructure
 
@@ -400,44 +401,62 @@ Lihat [known-issues.md](./known-issues.md) untuk daftar bug dan limitation yang 
 
 ## 💰 Pricing Model
 
-### Freemium Structure
+### Usage-Based Structure (Paid Tiers)
 
-**Free Plan:**
-
-- 1 store location
-- Up to 100 products
-- 500 transactions per month
-- Basic reporting
+**Tier 1 - Rp 49,000/bulan:**
+- Up to 500 transactions per month
+- 1 outlet location
+- Core POS features
+- Basic inventory (100 products)
+- Daily sales reports
 - Email support
 
-**Premium Plan - IDR 149,000/bulan:**
+**Tier 2 - Rp 99,000/bulan:**
+- 500-2,000 transactions per month
+- Up to 3 outlet locations
+- Advanced inventory (unlimited products)
+- Employee shift management
+- Monthly reports & analytics
+- WhatsApp support
 
-- Up to 5 store locations
-- Unlimited products
-- Unlimited transactions
-- Advanced reporting & analytics
+**Tier 3 - Rp 199,000/bulan:**
+- 2,000-5,000 transactions per month
+- Up to 5 outlet locations
+- Multi-outlet management
+- Kitchen display system (KDS)
+- Table management & split bill
 - Priority support
 - SMS notifications
-- Inventory management
 
-**Enterprise Plan - Custom Pricing:**
-
-- Unlimited store locations
-- Advanced multi-store management
+**Tier 4 - Rp 299,000/bulan:**
+- 5,000+ transactions per month
+- Unlimited outlet locations
+- Advanced analytics dashboard
 - API access
 - Custom integrations
-- Dedicated support
-- On-premise deployment option
+- Dedicated account manager
+- On-site training
+
+### Discount Strategy
+
+**Student Discount:** 30% off untuk student entrepreneurs dengan valid student ID
+
+**UKM Certification:** 20% off untuk businesses dengan UKM certification dari pemerintah
+
+**Annual Payment:** 2 months free (17% discount) untuk annual payment
+
+**Early Adopter:** 50% off untuk first 100 users dalam geographic target area
 
 ### Additional Services
 
-- **Hardware Bundle:** POS device + printer + barcode scanner
-- **Training:** On-site training untuk staff
-- **Customization:** Custom features development
-- **Integration:** ERP dan accounting system integration
+- **Hardware Bundle:** POS device + printer + barcode scanner ( Rp 2.5M )
+- **On-site Training:** Rp 500,000 per session (max 3 hours)
+- **Custom Development:** Custom quotes untuk enterprise clients
+- **Data Migration:** Free untuk first 50 users, then Rp 250,000 per store
 
 ---
 
-**Last Updated:** 2024-12-01
-**Version:** 2.1.0
-**Maintainer:** SnapKasir Development Team
+**Last Updated:** 2026-01-06
+**Version:** 0.1.0-alpha (Validation Phase)
+**Maintainer:** Najib Zain (Product Lead)
+**Validation Issue:** `hq-bun` (18 child items for complete product validation)

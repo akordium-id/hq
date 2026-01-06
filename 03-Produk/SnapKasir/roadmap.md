@@ -1,29 +1,297 @@
 # 🗺️ SnapKasir Product Roadmap
 
-> Perencanaan strategis pengembangan SnapKasir - Solusi Point of Sale Modern untuk UMKM Indonesia
+> Perencanaan strategis pengembangan SnapKasir - Solusi POS Modern untuk UMKM F&B Indonesia
 
 ## 🎯 Product Vision
 
-**Vision Statement:** Menjadi platform POS terdepan yang memberdayakan jutaan UMKM Indonesia dengan teknologi modern, terjangkau, dan mudah digunakan untuk transformasi digital bisnis mereka.
+**Vision Statement:** Menjadi platform POS F&B terdepan untuk warung, cafe, dan restoran Indonesia dengan teknologi modern, UX yang sangat simpel (ibu-ibu friendly), dan offline-first yang reliable.
 
-**Mission Statement:** Menyediakan solusi POS yang komprehensif dan intuitif, memungkinkan UMKM Indonesia mengelola penjualan, inventaris, dan operasional bisnis dengan efisien, terukur, dan scalable.
+**Mission Statement:** Memberdayakan 60 juta+ UMKM F&B Indonesia dengan solusi POS yang terjangkau, mudah digunakan tanpa training, dan bekerja sempurna bahkan saat internet putus.
 
 ## 📊 Current Status
 
 ### Product Position
 
-- **Version:** 2.1.0
-- **Status:** 🚀 Active Development / Production Ready
-- **Market Readiness:** 70% (Core features ready)
-- **Technical Readiness:** 80% (Stable infrastructure)
-- **Team Readiness:** 90% (Full team onboarded)
+- **Version:** 0.1.0-alpha
+- **Status:** 🔍 In Validation (Product Concept Phase)
+- **Market Readiness:** 0% (Concept stage)
+- **Technical Readiness:** 0% (Architecture design phase)
+- **Team Readiness:** 40% (Lead identified, team formation in progress)
+
+### Validation Status
+
+- **Validation Issue:** `hq-bun` (18 child items)
+- **Target Market:** F&B segment (warung, cafe, restoran)
+- **Tech Stack:** Go (backend) + Flutter (iOS/Android/Web)
+- **Pricing Model:** Usage-based (Rp 49k-299k/bulan)
 
 ### Market Opportunity
 
-- **Target Market Size:** 64M+ UMKM di Indonesia
-- **Market Growth:** 12% pertumbuhan tahunan retail sector
-- **Competitive Landscape:** Fragmented market dengan low penetration of digital POS
-- **Unique Value Proposition:** Indonesia-centric design, affordable pricing, localized features
+- **Target Market Size:** 64M UMKM di Indonesia, ~30% F&B segment
+- **F&B Focus:** 19.2M F&B businesses (warung, cafe, restoran)
+- **Market Growth:** 12% pertumbuhan tahunan F&B sector
+- **Competitors:** Moka, Pawoon, Olsera, majoo (expensive, complex UX, poor offline support)
+- **Unique Value Proposition:**
+  - UX super simpel (ibu-ibu friendly, no training needed)
+  - Offline-first yang reliable (works without internet)
+  - Flutter efficiency = 1 codebase 3 platforms
+  - Usage-based pricing (pay as you grow)
+
+## 🏗️ Development Roadmap (M1-M10)
+
+### M1: Geo-Constrained Beta Launch (Months 1-3)
+
+**Duration:** 3 months
+**Team Size:** 3 developers (1 Go backend, 1 Flutter mobile, 1 Flutter UI/UX)
+**Budget:** IDR 150 Juta
+**Geographic Focus:** 1 kecamatan di Jakarta Selatan (pilot area)
+
+#### Core POS Features
+
+- **Product Management**
+  - Simple product catalog (max 100 products untuk M1)
+  - Quick add/edit products dengan photo capture
+  - Category management (F&B categories: makanan, minuman, lainnya)
+  - Price management (single pricing tier)
+
+- **Transaction Processing**
+  - Cart-based checkout (add/remove items, quantity adjustment)
+  - Payment methods: Cash, QRIS (GoPay, OVO, Dana, ShopeePay)
+  - Receipt printing (Bluetooth thermal printers - Epson TM series)
+  - Transaction history (local storage)
+
+- **Offline-First Foundation**
+  - Local storage dengan Hive (NoSQL database)
+  - Queue-based sync when online
+  - Basic conflict resolution (last-write-wins)
+  - Connectivity status indicator
+
+- **Basic Inventory**
+  - Stock quantity tracking
+  - Simple stock adjustment (add/reduce)
+  - Low stock alerts (manual threshold)
+
+- **Daily Reports**
+  - Total sales (daily)
+  - Top 5 best-selling products
+  - Payment method breakdown
+  - Export ke WhatsApp/Email
+
+#### F&B-Specific Features (M1)
+
+- **Quick Order Mode:** Single-tap order untuk frequent items
+- **Split Bill:** Basic split bill functionality (2-4 ways)
+- **Table Management:** Simple table numbering system (max 10 tables)
+
+#### Technical Foundation
+
+- **Backend (Go)**
+  - RESTful API dengan proper error handling
+  - PostgreSQL database dengan basic schema
+  - Redis untuk caching dan sync queue
+  - JWT authentication
+
+- **Frontend (Flutter)**
+  - iOS build (iPhone support)
+  - Android build (phone + tablet support)
+  - Riverpod state management setup
+  - Material Design 3 theming
+
+#### Success Metrics (M1)
+
+- [ ] 10-20 pilot users (warung/cafe dalam target geographic area)
+- [ ] 90%+ uptime (excluding planned maintenance)
+- [ ] < 5 seconds average transaction time
+- [ ] 95%+ offline transaction sync success rate
+- [ ] 4.0+ average user satisfaction score
+- [ ] < 10% crash rate across all platforms
+
+### M2-M3: Expansion & User Feedback (Months 4-6)
+
+**Duration:** 3 months
+**Team Size:** 5 developers (+1 QA, +1 DevOps)
+**Budget:** IDR 200 Juta
+**Geographic Expansion:** Expand ke 5 kecamatan di Jakarta area
+
+#### Enhanced Features
+
+- **Employee Shift Management**
+  - Shift creation dan assignment
+  - Staff performance tracking per shift
+  - Multi-user login dengan role-based access
+  - Shift handover report
+
+- **Advanced Inventory**
+  - Stock adjustment dengan reason codes
+  - Automatic low stock alerts (configurable threshold)
+  - Batch stock import (CSV/Excel)
+  - Supplier management (basic contact info)
+
+- **Multi-Payment Transactions**
+  - Split payments dalam satu transaction (cash + QRIS)
+  - Partial payments (down payment untuk large orders)
+  - Payment method priorities
+
+- **Monthly Reports & Analytics**
+  - Monthly sales summary
+  - Product performance trends
+  - Staff performance comparison
+  - Revenue breakdown per payment method
+  - Export ke PDF/Excel
+
+#### Platform Improvements
+
+- **Web App (Flutter Web)**
+  - Responsive web dashboard
+  - Desktop-based POS untuk larger screens
+  - Admin portal untuk store settings
+
+- **Enhanced Offline Mode**
+  - Improved conflict resolution (timestamp-based)
+  - Background sync dengan retry logic
+  - Sync progress indicator
+  - Manual sync trigger
+
+#### F&B Enhancements
+
+- **Advanced Split Bill**
+  - Custom amount split
+  - Item-based split
+  - Tax calculation per split portion
+
+- **Menu Management**
+  - Modifier support (extra ice, less sugar, etc.)
+  - Combo meals (bundling)
+  - Seasonal menu activation
+
+#### Success Metrics (M2-M3)
+
+- [ ] 100+ active stores
+- [ ] 5,000+ daily transactions
+- [ ] IDR 500 Juta+ monthly GMV
+- [ ] 85%+ monthly active retention
+- [ ] 4.5+ average user satisfaction score
+- [ ] < 3% crash rate
+
+### M4-M6: Growth & Platform Maturity (Months 7-12)
+
+**Duration:** 6 months
+**Team Size:** 8 developers (+1 Product Manager, +1 Designer)
+**Budget:** IDR 500 Juta
+**Geographic Expansion:** Jabodetabek area (Jakarta + 5 satellite cities)
+
+#### Multi-Outlet Support
+
+- **Store Management**
+  - Multiple outlet creation dan management
+  - Centralized product catalog
+  - Outlet-specific pricing
+  - Inter-store inventory transfer
+
+- **Consolidated Reporting**
+  - Multi-store sales dashboard
+  - Cross-store performance comparison
+  - Consolidated inventory view
+  - Multi-store user access controls
+
+#### Kitchen Display System (KDS)
+
+- **Order Routing**
+  - Automatic order routing ke kitchen display
+  - Order queue management (FIFO)
+  - Preparation time tracking
+  - Order completion confirmation
+
+- **KDS Features**
+  - Color-coded orders (dine-in, take-away, delivery)
+  - Order delay alerts
+  - Kitchen performance metrics
+  - Integration dengan table management
+
+#### Table Management (F&B Focus)
+
+- **Table Layout**
+  - Visual floor plan editor
+  - Table capacity management
+  - Table status (available, occupied, reserved)
+  - Move/merge tables
+
+- **Reservation System**
+  - Simple reservation booking
+  - Reservation calendar view
+  - Customer contact capture
+  - Reservation reminders (WhatsApp)
+
+#### Advanced Analytics
+
+- **Business Intelligence**
+  - Sales trend analysis (hourly, daily, weekly)
+  - Product performance heatmaps
+  - Customer behavior insights
+  - Staff productivity analysis
+
+- **Forecasting**
+  - Demand prediction berdasarkan historical data
+  - Staff scheduling recommendations
+  - Inventory reorder suggestions
+
+#### Success Metrics (M4-M6)
+
+- [ ] 500+ active stores
+- [ ] 50,000+ daily transactions
+- [ ] IDR 5 Milyar+ monthly GMV
+- [ ] 80%+ monthly active retention
+- [ ] 4.7+ average user satisfaction score
+- [ ] 15%+ month-over-month growth
+
+### M7-M10: Maturity & Enterprise Features (Months 13-24)
+
+**Duration:** 18 months
+**Team Size:** 12+ developers (full stack + DevOps + QA)
+**Budget:** IDR 2+ Milyar
+**Geographic Expansion:** National coverage (major cities: Jakarta, Surabaya, Bandung, Medan, Makassar)
+
+#### Advanced Features
+
+- **API Platform**
+  - Public API documentation
+  - Third-party integration support
+  - Webhook system
+  - API key management
+
+- **Enterprise Features**
+  - Custom roles dan permissions
+  - Advanced audit logs
+  - Multi-level approval workflows
+  - Custom branding (white-label options)
+
+- **Advanced Integrations**
+  - Accounting software integration (Jurnal, Accurate)
+  - E-commerce platform sync (Tokopedia, Shopee)
+  - Delivery app integration (GoFood, GrabFood)
+  - Payment aggregator (Midtrans, Xendit, Flip)
+
+#### AI & Machine Learning
+
+- **Smart Recommendations**
+  - Menu optimization suggestions
+  - Pricing recommendations
+  - Inventory demand forecasting
+  - Customer churn prediction
+
+- **Automated Operations**
+  - Auto-reorder triggers
+  - Dynamic pricing suggestions
+  - Staff scheduling optimization
+
+#### Success Metrics (M7-M10)
+
+- [ ] 5,000+ active stores
+- [ ] 500,000+ daily transactions
+- [ ] IDR 50 Milyar+ monthly GMV
+- [ ] 75%+ monthly active retention
+- [ ] 4.8+ average user satisfaction score
+- [ ] Positive unit economics (LTV > 3x CAC)
 
 ## 🏗️ Development Phases
 
@@ -503,8 +771,9 @@
 
 ---
 
-**Last Updated:** 2024-12-01
-**Version:** 1.0
+**Last Updated:** 2026-01-06
+**Version:** 2.0.0-alpha (F&B Focus + M1-M10 Roadmap)
 **Review Cycle:** Monthly review dengan quarterly major updates
-**Owner:** SnapKasir Product Team
+**Owner:** Najib Zain (Product Lead)
 **Stakeholders:** Akordium Leadership, Development Team, Business Team
+**Validation Status:** See `hq-bun` beads issue (18 child items)

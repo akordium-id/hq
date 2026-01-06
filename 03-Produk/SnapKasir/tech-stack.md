@@ -1,6 +1,6 @@
 # ⚙️ SnapKasir Technology Stack
 
-> Arsitektur teknologi dan implementasi untuk SnapKasir - Solusi Point of Sale Modern untuk UMKM Indonesia
+> Arsitektur teknologi dan implementasi untuk SnapKasir - Solusi POS Modern untuk UMKM F&B Indonesia dengan Flutter Cross-Platform
 
 ## 🏗️ System Architecture Overview
 
@@ -14,103 +14,274 @@
 ### High-Level Architecture
 
 ```text
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Web Frontend  │    │  Mobile Apps    │    │  Admin Portal   │
-│   Next.js       │    │ React Native    │    │   Next.js       │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                       │                       │
-         └───────────────────────┼───────────────────────┘
-                                 │
-                    ┌─────────────────┐
-                    │   API Gateway   │
-                    │   (Go + Envoy)  │
-                    └─────────────────┘
-                                 │
-         ┌───────────────────────┼───────────────────────┐
-         │                       │                       │
+┌──────────────────────────────────────────────────────────────────┐
+│                     Flutter App (Single Codebase)                │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
+│  │    iOS App   │  │ Android App  │  │   Web App    │          │
+│  │  (Native)    │  │  (Native)    │  │ (Flutter Web)│          │
+│  └──────────────┘  └──────────────┘  └──────────────┘          │
+└──────────────────────────────────────────────────────────────────┘
+                                │
+                    ┌─────────────────────────┐
+                    │   Offline Storage      │
+                    │   (Hive - NoSQL)       │
+                    └─────────────────────────┘
+                                │
+                    ┌─────────────────────────┐
+                    │   Sync Service          │
+                    │   (Background Worker)   │
+                    └─────────────────────────┘
+                                │
+         ┌──────────────────────┼───────────────────────┐
+         │                      │                       │
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │  Transaction    │    │   Inventory     │    │   Analytics     │
 │    Service      │    │    Service      │    │    Service      │
 │     (Go)        │    │     (Go)        │    │     (Go)        │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                       │                       │
-         └───────────────────────┼───────────────────────┘
-                                 │
+         │                      │                       │
+         └──────────────────────┼───────────────────────┘
+                                │
                     ┌─────────────────┐
                     │  Message Queue  │
-                    │   Redis + Bull  │
+                    │  Redis (Bull)   │
                     └─────────────────┘
-                                 │
+                                │
                     ┌─────────────────┐
                     │   Databases     │
-                    │ PostgreSQL +    │
-                    │   TimescaleDB   │
+                    │  PostgreSQL 15  │
                     └─────────────────┘
 ```
 
-## 💻 Frontend Stack
+## 💻 Frontend Stack (Flutter - Cross-Platform)
 
-### Web Application: Next.js 14
+### Framework: Flutter 3.16+
 
 **Core Framework:**
 
-- **Framework:** Next.js 14 dengan App Router
-- **Language:** TypeScript 5.2+
-- **Styling:** Tailwind CSS 3.3+ dengan custom components
-- **State Management:** Zustand 4.4+ + React Query
-- **Forms:** React Hook Form dengan Zod validation
+- **Framework:** Flutter 3.16+ (Dart 3.2+)
+- **State Management:** Riverpod 2.4+ (Provider pattern + code generation)
+- **Local Storage:** Hive 2.2+ (NoSQL, offline-first storage)
+- **Networking:** Dio 5.3+ (HTTP client dengan interceptors)
+- **Dependency Injection:** GetIt 7.6+ + Injectable 2.3+
 
-### Key Frontend Dependencies
+### Platform Targets
 
-```json
-{
-  "dependencies": {
-    "next": "^14.0.0",
-    "react": "^18.2.0",
-    "typescript": "^5.2.0",
-    "tailwindcss": "^3.3.0",
-    "@headlessui/react": "^1.7.0",
-    "framer-motion": "^10.16.0",
-    "chart.js": "^4.4.0",
-    "react-chartjs-2": "^5.2.0",
-    "@tanstack/react-query": "^5.0.0",
-    "zustand": "^4.4.0",
-    "react-hook-form": "^7.47.0",
-    "zod": "^3.22.0",
-    "@hookform/resolvers": "^3.3.0",
-    "lucide-react": "^0.288.0",
-    "clsx": "^2.0.0",
-    "date-fns": "^2.30.0",
-    "react-hot-toast": "^2.4.0"
+**iOS (Native Build):**
+- **Minimum iOS:** iOS 12+
+- **Build:** Xcode 15+ dengan Flutter build
+- **Architecture:** Release builds menggunakan AOT compilation
+- **Features:** Native performance, platform-specific APIs (Bluetooth, Camera)
+
+**Android (Native Build):**
+- **Minimum Android:** Android 5.0 (API 21) +
+- **Target SDK:** Android 14 (API 34)
+- **Build:** Gradle-based builds
+- **Features:** Native performance, background services, hardware integration
+
+**Web (Flutter Web):**
+- **Browsers:** Chrome, Firefox, Safari, Edge (modern browsers)
+- **Rendering:** CanvasKit (default) atau HTML renderer
+- **PWA:** Progressive Web App capabilities
+- **Limitations:** No Bluetooth/USB hardware access (web platform limitation)
+
+### Key Flutter Dependencies
+
+```yaml
+# pubspec.yaml
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  flutter_riverpod: ^2.4.9
+  riverpod_annotation: ^2.3.3
+
+  # Local Storage (Offline-First)
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.1
+
+  # Networking
+  dio: ^5.3.4
+  connectivity_plus: ^5.0.2
+
+  # Dependency Injection
+  get_it: ^7.6.4
+  injectable: ^2.3.2
+
+  # UI Components
+  flutter_screenutil: ^5.9.0
+  flutter_svg: ^2.0.9
+  cached_network_image: ^3.3.0
+  shimmer: ^3.0.0
+
+  # Utilities
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
+  intl: ^0.18.1
+  uuid: ^4.2.2
+
+  # Platform-Specific
+  flutter_blue_plus: ^1.31.5  # Bluetooth for printing
+  qr_code_scanner: ^1.0.1     # Barcode scanning
+  image_picker: ^1.0.4         # Camera/Product images
+  shared_preferences: ^2.2.2   # Simple key-value storage
+
+  # Charts & Analytics
+  fl_chart: ^0.65.0            # Beautiful charts
+  syncfusion_flutter_charts: ^24.1.41  # Advanced charts
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Code Generation
+  build_runner: ^2.4.7
+  riverpod_generator: ^2.3.9
+  injectable_generator: ^2.4.1
+  freezed: ^2.4.6
+  json_serializable: ^6.7.1
+  hive_generator: ^2.0.1
+
+  # Linting
+  flutter_lints: ^3.0.1
+```
+
+### Project Structure (Flutter)
+
+```text
+lib/
+├── main.dart                 # App entry point
+├── core/
+│   ├── constants/            # App constants
+│   ├── theme/                # App theming
+│   ├── utils/                # Utility functions
+│   └── network/              # Dio configuration, interceptors
+├── data/
+│   ├── models/               # Data models (with freezed)
+│   ├── repositories/         # Repository implementations
+│   └── services/             # API services, local storage services
+├── domain/
+│   ├── entities/             # Business entities
+│   ├── repositories/         # Repository interfaces
+│   └── usecases/             # Business logic use cases
+├── presentation/
+│   ├── providers/            # Riverpod providers
+│   ├── pages/                # Full-screen pages
+│   ├── widgets/              # Reusable widgets
+│   └── dialogs/              # Custom dialogs
+└── offline/
+    ├── sync/                 # Background sync service
+    ├── queue/                # Offline operation queue
+    └── conflict/             # Conflict resolution
+```
+
+### Offline-First Architecture
+
+```dart
+// Offline storage service with Hive
+class OfflineStorageService {
+  late Box<Transaction> _transactionBox;
+  late Box<Product> _productBox;
+  late Box<SyncQueueItem> _syncQueueBox;
+
+  Future<void> init() async {
+    // Initialize Hive
+    await Hive.initFlutter();
+
+    // Register adapters
+    Hive.registerAdapter(TransactionAdapter());
+    Hive.registerAdapter(ProductAdapter());
+    Hive.registerAdapter(SyncQueueItemAdapter());
+
+    // Open boxes
+    _transactionBox = await Hive.openBox<Transaction>('transactions');
+    _productBox = await Hive.openBox<Product>('products');
+    _syncQueueBox = await Hive.openBox<SyncQueueItem>('sync_queue');
+  }
+
+  // Save transaction offline
+  Future<void> saveTransactionOffline(Transaction transaction) async {
+    await _transactionBox.put(transaction.id, transaction);
+
+    // Add to sync queue
+    final queueItem = SyncQueueItem(
+      action: SyncAction.create,
+      entityType: 'transaction',
+      data: jsonEncode(transaction.toJson()),
+      timestamp: DateTime.now(),
+    );
+    await _syncQueueItem.add(queueItem);
+
+    // Trigger background sync when online
+    if (await _isOnline()) {
+      await _syncService.processQueue();
+    }
+  }
+
+  // Background sync service
+  Future<void> syncWhenOnline() async {
+    final connectivity = Connectivity();
+    final subscription = connectivity.onConnectivityChanged.listen((result) {
+      if (result != ConnectivityResult.none) {
+        processSyncQueue();
+      }
+    });
   }
 }
 ```
 
-### Mobile Application: React Native
+### Hardware Integration (Flutter)
 
-**Core Framework:**
+```dart
+// Bluetooth printer service
+class PrinterService {
+  final FlutterBluePlus _ble = FlutterBluePlus();
 
-- **Framework:** React Native 0.72+
-- **Language:** TypeScript 5.2+
-- **Navigation:** React Navigation 6
-- **State Management:** Zustand + React Query
-- **UI Components:** React Native Elements + Custom Components
+  Future<List<BluetoothDevice>> getAvailablePrinters() async {
+    // Start scanning
+    await _ble.startScan(timeout: Duration(seconds: 5));
 
-### Mobile-Specific Libraries
+    // Listen to scan results
+    List<BluetoothDevice> printers = [];
+    _ble.scanResults.listen((results) {
+      for (ScanResult r in results) {
+        if (r.device.localName.contains('Printer') ||
+            r.device.localName.contains('EPSON') ||
+            r.device.localName.contains('PT-')) {
+          printers.add(r.device);
+        }
+      }
+    });
 
-```json
-{
-  "dependencies": {
-    "react-native": "^0.72.0",
-    "react-navigation": "^4.4.0",
-    "@react-navigation/native": "^6.1.0",
-    "@react-navigation/stack": "^6.3.0",
-    "react-native-elements": "^3.4.0",
-    "react-native-vector-icons": "^10.0.0",
-    "react-native-camera": "^4.2.0",
-    "react-native-bluetooth-serial": "^1.0.0",
-    "react-native-thermal-printer": "^1.0.0",
-    "@react-native-async-storage/async-storage": "^1.19.0"
+    return printers;
+  }
+
+  Future<void> printReceipt(BluetoothDevice printer, Receipt receipt) async {
+    // Connect to printer
+    await printer.connect();
+
+    // Send ESC/POS commands
+    await printer.write(receipt.toEscPosCommands());
+
+    // Disconnect
+    await printer.disconnect();
+  }
+}
+
+// Barcode scanner service
+class BarcodeScannerService {
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+
+  Future<String?> scanBarcode(BuildContext context) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BarcodeScannerView(),
+      ),
+    );
+    return result;
   }
 }
 ```
@@ -709,12 +880,31 @@ func (r *TransactionRepository) GetTransactionsByStore(storeID string, limit, of
 - **Simplicity:** Easy maintenance dan deployment
 - **Ecosystem:** Rich standard library, growing community
 
-### Why Next.js for Frontend?
+### Why Flutter for Cross-Platform Frontend?
 
-- **Performance:** SSR/SSG capabilities untuk fast loading
-- **Developer Experience:** Excellent TypeScript support
-- **SEO Benefits:** Important untuk marketing pages
-- **Ecosystem:** Rich React ecosystem
+- **One Codebase, Three Platforms:** iOS, Android, dan Web dari single codebase (60% dev cost reduction vs native)
+- **Native Performance:** AOT compilation produces native ARM/x64 code, bukan JavaScript interpretation
+- **Beautiful UI:** Widget system enables pixel-perfect UI dengan smooth 60fps animations
+- **Fast Development:** Hot reload enables instant feedback during development
+- **Growing Ecosystem:** Flutter ecosystem maturing rapidly dengan 200K+ packages on pub.dev
+
+**Flutter vs React Native vs Native:**
+
+| Aspect | Flutter | React Native | Native (iOS + Android) |
+|--------|---------|--------------|------------------------|
+| **Codebase** | 1 codebase | 1 codebase | 2 separate codebases |
+| **Performance** | Native (AOT) | Good (Bridge) | Best |
+| **UI Consistency** | 100% pixel-perfect | ~90% consistent | Platform-specific |
+| **Dev Cost** | $ (1 team) | $$ (1 team + RN expert) | $$$ (2 teams) |
+| **Time to Market** | Fastest | Fast | Slowest |
+| **Hardware Access** | Full access | Full access | Full access |
+| **Learning Curve** | Medium (Dart) | Low (JavaScript) | High (Swift + Kotlin) |
+
+**Decision:** Flutter provides optimal balance untuk SnapKasir:
+- F&B UX requirements need pixel-perfect consistency across devices
+- Offline-first architecture requires robust local storage (Hive) - Flutter excels here
+- Limited development budget → 1 codebase vs 2 native teams
+- Go backend + Flutter frontend = modern stack with strong type safety
 
 ### Why PostgreSQL + TimescaleDB?
 
@@ -723,19 +913,13 @@ func (r *TransactionRepository) GetTransactionsByStore(storeID string, limit, of
 - **ACID Compliance:** Critical untuk financial transactions
 - **Extensions:** Rich extension ecosystem
 
-### Why Redis for Caching?
+### Why Redis for Caching & Sync?
 
 - **Performance:** In-memory storage untuk speed
 - **Data Structures:** Multiple data types untuk different use cases
 - **Persistence:** Optional persistence untuk durability
 - **Scalability:** Horizontal scaling support
-
-### Why React Native for Mobile?
-
-- **Code Reuse:** Share logic dengan web application
-- **Performance:** Native performance untuk critical operations
-- **Ecosystem:** Large library ecosystem
-- **Development Speed:** Single codebase untuk iOS dan Android
+- **Pub/Sub:** Real-time sync untuk multi-device updates
 
 ## 🔮 Future Technology Evolution
 
@@ -762,9 +946,10 @@ func (r *TransactionRepository) GetTransactionsByStore(storeID string, limit, of
 
 ---
 
-**Document Version:** 1.0
-**Last Updated:** 2024-12-01
-**Next Review:** 2025-01-15
-**Owner:** Development Team
+**Document Version:** 2.0.0-alpha (Flutter Migration)
+**Last Updated:** 2026-01-06
+**Next Review:** 2026-02-01 (Post-validation)
+**Owner:** Najib Zain (Product Lead)
 **Tech Lead:** Backend Engineer
 **Maintainer:** DevOps Team
+**Validation Status:** See `hq-bun` beads issue for complete validation
