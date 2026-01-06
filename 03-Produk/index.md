@@ -13,6 +13,7 @@
 | [**WaqfWise**](./WaqfWise/) | 🥈 Beta | Islamic Fintech | [README](./WaqfWise/README.md) • [Roadmap](./WaqfWise/roadmap.md) • [Tech Stack](./WaqfWise/tech-stack.md) |
 | [**Atribuo**](./Atribuo/) | 🥚 Concept | Gamification | [README](./Atribuo/README.md) • [Roadmap](./Atribuo/roadmap.md) • [User Stories](./Atribuo/user-stories.md) |
 | [**Katauser**](./Katauser/) | 🥚 Concept | SaaS Tools | [README](./Katauser/README.md) • [Roadmap](./Katauser/roadmap.md) • [Product Spec](./Katauser/product-spec.md) |
+| [**Klustera**](./Klustera/) | 🥚 Concept | Property Tech | [README](./Klustera/README.md) • [Roadmap](./Klustera/roadmap.md) • [Pricing Model](./Klustera/pricing-model.md) |
 
 ## 📊 Portfolio Overview
 
@@ -39,7 +40,9 @@ gantt
 | Technology | Usage | Products | Benefits |
 |------------|-------|----------|----------|
 | **Go 1.21+** | Backend | SnapKasir, Atribuo, Katauser | Performance, Concurrency, Simplicity |
+| **Laravel 10** | Backend | WaqfWise, Klustera | Rapid Development, Ecosystem, Team Expertise |
 | **Next.js 14** | Frontend | SnapKasir, Anggarin, Atribuo | Performance, Developer Experience, SEO |
+| **Livewire 3** | Frontend | WaqfWise, Klustera | Full-stack Reactive, No Node.js Needed |
 | **Tanstack Start** | Frontend | Katauser | Type Safety, Modularity, Future-Proof |
 | **PostgreSQL 15** | Database | All | Reliability, Features, Ecosystem |
 | **React Native** | Mobile | SnapKasir | Code Reuse, Performance, Ecosystem |
@@ -124,17 +127,34 @@ gantt
 - [📝 Changelog](./Katauser/changelog.md) - Version history
 - [🐛 Known Issues](./Katauser/known-issues.md) - Risk assessment dan limitations
 
+### 🏘️ Klustera - Housing Management Platform
+
+**Focus:** All-in-one housing management untuk Indonesian residential complexes
+**Target:** 10,000+ modern housing complexes, developers perumahan, pengelola kompleks
+**Key Features:** Financial management (iuran & tagihan), Resident portal, Complaint tracking, Facility booking, Per-unit pricing
+
+📂 **Dokumen Lengkap:**
+
+- [📖 README](./Klustera/README.md) - Product overview dan tech stack
+- [📋 Product Spec](./Klustera/product-spec.md) - Fitur dan business model
+- [🗺️ Roadmap](./Klustera/roadmap.md) - 10-milestone development plan
+- [👥 User Stories](./Klustera/user-stories.md) - Personas dan requirements
+- [⚙️ Tech Stack](./Klustera/tech-stack.md) - TALL Stack architecture
+- [💰 Pricing Model](./Klustera/pricing-model.md) - Per-unit pricing strategy
+- [📝 Changelog](./Klustera/changelog.md) - Version history
+- [🐛 Known Issues](./Klustera/known-issues.md) - Risk assessment dan limitations
+
 ## 📈 Key Metrics Dashboard
 
 ### Current Status (December 2024)
 
-| Metric | SnapKasir | Anggarin | WaqfWise | Atribuo | Katauser |
-|--------|-----------|----------|----------|---------|----------|
-| **Development** | 90% | 60% | 70% | 10% | 0% |
-| **Market Ready** | ✅ Production | 🚧 Beta | 🚧 Beta | 🥈 Concept | 🥈 Concept |
-| **Team Size** | 8 developers | 6 developers | 5 developers | 3 developers | 1 developer |
-| **Target Users** | 10K+ stores | 100K+ users | 50K+ institutions | 500K+ users | 5K+ users |
-| **Revenue Model** | SaaS + Fees | Freemium | Freemium | Freemium | Freemium |
+| Metric | SnapKasir | Anggarin | WaqfWise | Atribuo | Katauser | Klustera |
+|--------|-----------|----------|----------|---------|----------|----------|
+| **Development** | 90% | 60% | 70% | 10% | 0% | 0% |
+| **Market Ready** | ✅ Production | 🚧 Beta | 🚧 Beta | 🥈 Concept | 🥈 Concept | 🥈 Concept |
+| **Team Size** | 8 developers | 6 developers | 5 developers | 3 developers | 1 developer | 1 developer |
+| **Target Users** | 10K+ stores | 100K+ users | 50K+ institutions | 500K+ users | 5K+ users | 10K+ complexes |
+| **Revenue Model** | SaaS + Fees | Freemium | Freemium | Freemium | Freemium | Per-Unit Pricing |
 
 ### 2025 Targets
 
@@ -192,10 +212,11 @@ flowchart TD
 | **Islamic Fintech** | WaqfWise | Sharia compliance, blockchain transparency |
 | **Personal Gamification** | Atribuo | RPG-style visualization, social features |
 | **Feedback Management** | Katauser | Affordable (Rp 299k vs UserJot $15-79), Telegram integration, Bahasa Indonesia |
+| **Housing Management** | Klustera | Per-unit pricing (Rp 2-5K/unit), Open Source, TALL Stack, Bahasa Indonesia |
 
 ### Technology Advantages
 
-- **Modern Stack:** Go + Next.js + PostgreSQL
+- **Modern Stack:** Go + Next.js + Laravel + PostgreSQL
 - **Cloud-Native:** Scalable, reliable architecture
 - **API-First:** Easy integration dan ecosystem building
 - **Mobile-First:** Responsive design dan native apps
@@ -210,6 +231,7 @@ flowchart TD
 3. **Complete WaqfWise** - Islamic fintech leadership
 4. **Validate Atribuo** - Gamification market testing
 5. **Develop Katauser** - Feedback management platform for Indonesian SaaS
+6. **Validate Klustera** - Housing management market entry (Q2-Q3 2025)
 
 ### 2026 Expansion Plans
 
@@ -233,6 +255,8 @@ flowchart TD
 - **Anggarin:** support@anggarin.com
 - **WaqfWise:** support@waqfwise.com
 - **Atribuo:** support@atribuo.com
+- **Katauser:** support@katauser.com
+- **Klustera:** support@klustera.id | +62 815-9988-995
 
 ### Developer Resources
 
@@ -249,6 +273,6 @@ flowchart TD
 - [🏗️ _Templates/](./_templates/) - Documentation templates
 - [📚 Individual Products](#--produk-aktif) - Detailed product information
 
-**Last Updated:** 2024-12-01
-**Document Version:** 1.0
+**Last Updated:** 2026-01-06
+**Document Version:** 1.1
 **Review Cycle:** Monthly updates
