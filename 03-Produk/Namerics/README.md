@@ -6,78 +6,139 @@
 
 - **Nama Produk:** Namerics
 - **Tagline:** "Dukun Nama Digital & Social Identity Generator"
-- **Status:** 📋 Development Phase (Pivot Strategy 2.0)
+- **Status:** 🚧 In Development (Pivot Strategy 2.0)
+- **Repo Code:** `github.com/akordium/namerics-fe`
 - **Live Site:** https://namerics.com (Coming Soon)
-- **Repo Code:** `github.com/akordium/namerics-fe` (Remix Version)
+- **Staging:** https://staging.namerics.com (Coming Soon)
 
-## 🔮 Visi Baru: "Smart Aggregator"
+## 📋 Quick Overview
 
-Namerics bukan sekadar "Name Generator" biasa. Kita adalah **Konsultan Branding Digital** untuk UMKM, Kreator, dan Gamer Indonesia. Kita mengisi celah yang ditinggalkan pemain global (seperti Namelix) yang terlalu kaku dan tidak paham konteks lokal.
+**Deskripsi Singkat:**
+Platform generator nama bisnis dan username media sosial yang dirancang khusus untuk pasar Indonesia. Namerics menggunakan AI untuk menghasilkan nama yang "membumi", unik, dan sesuai dengan "vibe" lokal (seperti UMKM, Indie, atau Gaul), serta menyediakan pengecekan ketersediaan domain dan media sosial secara cerdas.
 
-**Filosofi:** "Jalur Tengah" (Pareto Principle).
-- **80% Value:** Ide kreatif yang "membumi" dan relevan.
-- **20% Effort:** Validasi domain otomatis & deep-linking ke medsos (tanpa scraping berat).
+**Target Market:**
+- **Primary:** UMKM & Pedagang Online (Butuh nama toko yang hoki).
+- **Secondary:** Content Creator & Gamer (Butuh username unik & tersedia).
+- **Tertiary:** Digital Agency (Butuh ide branding cepat untuk klien).
 
-## 🌶️ Fitur Unggulan "Kearifan Lokal"
+**Problem yang Diselesaikan:**
+- Generator nama global (seperti Namelix) tidak paham konteks bahasa & budaya Indonesia.
+- Mengecek ketersediaan username di banyak platform secara manual itu melelahkan.
+- Kebanyakan generator hanya memberikan ide, tanpa mengarahkan ke eksekusi (beli domain/buat akun).
 
-1.  **The "Lokal Vibe" Selector**
-    Alih-alih "Modern" atau "Classic", user memilih "Rasa" yang relate:
-    -   👔 **UMKM Berkah:** (e.g., *SumberRejeki, MakmurJaya*)
-    -   ☕ **Indie Senopati:** (e.g., *KopiKala, RuangTemu*)
-    -   😎 **Gaul & Santuy:** (e.g., *JajanKuy, SobatRebahan*)
-    -   🌶️ **Juragan Lokal:** (e.g., *OmahDahar, CakTech*)
+## 🌶️ Fitur Utama (The "Dukun" Features)
+
+1.  **Lokal Vibe Selector (AI Prompting)**
+    -   **👔 UMKM Berkah:** Nama yang membawa doa dan rejeki (*Sumber, Jaya, Makmur, Abadi*).
+    -   **☕ Indie Senopati:** Nama estetik, campuran Inggris-Indo, minimalis (*Kala, Ruang, Cerita, .jkt*).
+    -   **😎 Gaul & Santuy:** Nama slang, singkatan, asik (*Kuy, Sobat, Hype, .id*).
+    -   **🌶️ Juragan Lokal:** Sentuhan bahasa daerah yang kuat (*Omah, Cak, Juragan, Warung*).
 
 2.  **Smart Aggregator & Deep Linking**
-    -   **Domain Check:** Langsung cek ketersediaan domain `.com`, `.id`, `.my.id` (via API GoDaddy/Namecheap/Exabytes).
-    -   **Social Check Shortcut:** Tombol pintar untuk cek manual instan:
-        -   [IG Icon] -> Buka `instagram.com/username` (Biarkan user lihat sendiri).
-        -   [TikTok Icon] -> Buka `tiktok.com/@username`.
-    -   *Keuntungan:* Bebas maintenance API medsos yang mahal & ribet.
+    -   **Domain Check:** Integrasi API untuk cek ketersediaan `.com`, `.id`, `.my.id` secara real-time.
+    -   **Social Shortcut:** Tombol "Deep Link" yang membuka halaman profil medsos secara langsung (`instagram.com/user`) untuk validasi manual yang akurat tanpa API yang mahal.
 
-3.  **Profile Page (The Retainer)**
-    -   User bisa "mengunci" nama mereka di `namerics.com/username`.
-    -   Berfungsi sebagai kartu nama digital sederhana.
+3.  **Profile Page (Retainer)**
+    -   Landing page sederhana di `namerics.com/username` untuk mengklaim identitas digital sementara sebelum punya website sendiri.
 
-## 💰 Monetisasi (Lean Strategy)
-
-1.  **Affiliate Marketing (Main Engine):**
-    -   Komisi dari penjualan domain (Niagahoster, Exabytes, Dewaweb).
-    -   Fokus dorong domain murah meriah (`.my.id`, `.sch.id`) untuk volume.
-2.  **Freemium Model:**
-    -   **Free:** Generate nama basic.
-    -   **Premium (Sawer Dukun):** Akses ke "Mantra Khusus" (Prompt AI yang lebih canggih/spesifik) & Custom Profile Page.
-
-## 🛠 Tech Stack (Final Decision)
-
-Kita menggunakan stack yang *lean*, SEO-friendly, dan cepat untuk deploy.
+## 🛠 Tech Stack
 
 ### Frontend & Backend (Monorepo)
--   **Framework:** RemixJS (React Router v7 ready)
--   **Runtime:** Cloudflare Pages (Serverless/Edge)
+-   **Framework:** Remix v2 (Future v3 Ready)
+-   **Language:** TypeScript
 -   **Styling:** Tailwind CSS (Mobile First)
--   **State:** React Server Actions (No complex client state needed)
 -   **AI Engine:** OpenAI GPT-4o / Claude 3.5 Sonnet (via Server Side Action)
 
 ### Infrastructure
 -   **Hosting:** Cloudflare Pages
--   **Database (Future):** Cloudflare D1 (Jika butuh simpan user profile)
+-   **Deployment:** GitHub Actions -> Cloudflare Pages (Direct Integration)
 -   **Analytics:** Cloudflare Web Analytics
+-   **Domain:** Cloudflare DNS
 
-## 🗺️ Roadmap: "From Sabang to Global"
+### Third-party Services
+-   **AI:** OpenAI API
+-   **Domain Check:** GoDaddy / Namecheap / Exabytes API
+-   **Affiliate Network:** Niagahoster / Accesstra.de (untuk monetisasi)
 
-### Phase 1: Jago Kandang (Indonesia) 🇮🇩
--   Fokus: UMKM, Gamer Lokal, Content Creator Pemula.
--   Goal: Menjadi top-of-mind generator nama yang "ngerti bahasa kita".
--   Keyword SEO: "Nama olshop aesthetic", "Nama channel gaming hoki".
+## 💻 Local Development Setup
 
-### Phase 2: Tetangga Serumpun (Regional) 🌏
--   Ekspansi ke Malaysia & Brunei.
--   Tweak prompt untuk menyesuaikan dialek Melayu ("Kedai", "Empire").
+### Prerequisites
+- [ ] Node.js 20+ (LTS)
+- [ ] npm / pnpm / yarn
+- [ ] Akun Cloudflare (untuk deploy)
+- [ ] OpenAI API Key
 
-### Phase 3: Global Niche 🌐
--   Serang niche spesifik global (e.g., "Anime Username", "K-Pop Fan Account").
+### Installation Steps
+
+1.  **Clone repository**
+    ```bash
+    git clone https://github.com/akordium/namerics-fe.git
+    cd namerics-fe
+    ```
+
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Environment setup**
+    ```bash
+    cp .env.example .env
+    # Isi OPENAI_API_KEY dan variable lain
+    ```
+
+4.  **Start development server**
+    ```bash
+    npm run dev
+    # Aplikasi jalan di http://localhost:5173
+    ```
+
+## 🧪 Testing Strategy
+
+-   **Unit Tests:** Vitest untuk logic generator & prompt formatting.
+-   **E2E Tests:** Playwright untuk flow user (Input -> Generate -> Click Social Link).
+-   **Manual Testing:** Validasi "Vibe" hasil generate secara berkala.
+
+## 🚢 Deployment Process
+
+**Cloudflare Pages (Git Integration)**
+-   Push ke `main` -> Deploy ke Production (`namerics.com`)
+-   Push ke branch lain -> Deploy ke Preview URL (`<branch>.namerics.pages.dev`)
+
+## 💰 Monetisasi & Metrics
+
+### Business Metrics (Target)
+-   **Click-Through Rate (CTR) Affiliate:** Target 5% user klik tombol "Beli Domain".
+-   **User Retention:** 20% user kembali untuk generate nama proyek lain.
+
+### Revenue Stream
+1.  **Affiliate Domain:** Komisi penjualan domain & hosting.
+2.  **Premium Prompt:** Bayar sekali putus untuk akses prompt "Spesifik Industri" (misal: Prompt Khusus Nama Startup Fintech).
+
+## 📈 Roadmap (Milestones)
+
+### Phase 1: MVP "Jago Kandang" (Minggu 1-4)
+-   [ ] Setup Remix + Tailwind + Cloudflare Pages.
+-   [ ] Integrasi OpenAI API dengan Prompt "Lokal Vibe".
+-   [ ] UI Input Sederhana (Keyword + Vibe Selector).
+-   [ ] Deep Link Button ke Instagram & TikTok.
+
+### Phase 2: Domain Cuan (Minggu 5-8)
+-   [ ] Integrasi API Cek Domain (.com, .id, .my.id).
+-   [ ] Daftar Program Afiliasi Domain Lokal.
+-   [ ] Pasang Link Afiliasi di UI.
+
+### Phase 3: Profile Page (Bulan 3)
+-   [ ] Fitur "Claim This Name" (Page generator sederhana).
+-   [ ] Simple Dashboard untuk user manage link mereka.
+
+## 🤝 Team (One Man Army)
+
+-   **Lead Developer / Shaman:** Najib Zain
+-   **Role:** Fullstack Dev, Prompt Engineer, Growth Hacker.
 
 ---
 
-**Maintainer:** Najib Zain (Lead Shaman/Developer)
 **Last Updated:** 2026-02-06
+**Version:** 0.2.0-dukun-strategy
+**Maintainer:** Najib Zain
