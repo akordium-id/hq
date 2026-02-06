@@ -6,9 +6,9 @@
 
 - **Nama Produk:** Namerics
 - **Tagline:** "Dukun Nama Digital & Social Identity Generator"
-- **Status:** 📋 Planning Phase (Pivot Strategy 2.0)
-- **Live Site:** https://namerics.com
-- **Repo Code:** `github.com/akordium/namerics`
+- **Status:** 📋 Development Phase (Pivot Strategy 2.0)
+- **Live Site:** https://namerics.com (Coming Soon)
+- **Repo Code:** `github.com/akordium/namerics-fe` (Remix Version)
 
 ## 🔮 Visi Baru: "Smart Aggregator"
 
@@ -47,17 +47,21 @@ Namerics bukan sekadar "Name Generator" biasa. Kita adalah **Konsultan Branding 
     -   **Free:** Generate nama basic.
     -   **Premium (Sawer Dukun):** Akses ke "Mantra Khusus" (Prompt AI yang lebih canggih/spesifik) & Custom Profile Page.
 
-## 🛠 Tech Stack (Simplified)
+## 🛠 Tech Stack (Final Decision)
 
-### Backend
--   **Framework:** RedwoodJS (TypeScript)
--   **Runtime:** Cloudflare Workers (Edge)
--   **Database:** Cloudflare D1
--   **AI:** OpenAI GPT-4o / Claude 3.5 Sonnet (System Prompt Engineering is Key!)
+Kita menggunakan stack yang *lean*, SEO-friendly, dan cepat untuk deploy.
 
-### Frontend
+### Frontend & Backend (Monorepo)
+-   **Framework:** RemixJS (React Router v7 ready)
+-   **Runtime:** Cloudflare Pages (Serverless/Edge)
 -   **Styling:** Tailwind CSS (Mobile First)
--   **UI:** Simple, Fast, "Magical" dark mode theme.
+-   **State:** React Server Actions (No complex client state needed)
+-   **AI Engine:** OpenAI GPT-4o / Claude 3.5 Sonnet (via Server Side Action)
+
+### Infrastructure
+-   **Hosting:** Cloudflare Pages
+-   **Database (Future):** Cloudflare D1 (Jika butuh simpan user profile)
+-   **Analytics:** Cloudflare Web Analytics
 
 ## 🗺️ Roadmap: "From Sabang to Global"
 
