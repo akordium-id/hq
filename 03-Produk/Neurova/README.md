@@ -101,6 +101,11 @@ Infra:      Hetzner VPS + Cloudflare CDN
 3. **Indonesia-first** - Konten Bahasa Indonesia, konteks lokal: produktivitas saat Ramadan, kerja hybrid, budaya rapat panjang
 4. **B2B2C flywheel** - Perusahaan bayar → karyawan pakai → mereka subscribe B2C personal
 5. **Kredibilitas akademis** - Potential research collaboration dengan departemen psikologi/neurosains
+6. **Neuroscience-driven UX** - Menggunakan [7 Prinsip Neuroscience](../_templates/neuroscience-design-guide.md) untuk engagement yang etis dan efektif:
+   - **Variable Reward:** Brain Score yang berubah sesuai performa
+   - **Habit Loop:** Daily training streak dengan visual progress
+   - **Loss Aversion:** *"Streak 7 harimu akan putus!"*
+   - **Endowment Effect:** Identity Badge "Brain Athlete Level X"
 
 ## 8. Integrasi Ekosistem Akordium
 

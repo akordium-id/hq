@@ -99,6 +99,26 @@ Each product folder contains comprehensive documentation:
 - **Target Market** - Customer segments and personas
 - **Competitive Analysis** - Positioning vs alternatives
 
+## 🧠 Neuroscience Design Framework
+
+Semua produk Akordium dirancang menggunakan prinsip neuroscience yang terbukti meningkatkan engagement dan user retention.
+
+### 7 Prinsip Neuroscience Inti
+
+| Prinsip | Mekanisme | Contoh |
+| :-- | :-- | :-- |
+| **Variable Reward** | Dopamine surge saat reward tidak predictable | TikTok infinite scroll |
+| **Habit Loop** | Basal ganglia membentuk neural pathway otomatis | WeChat Moments |
+| **Zeigarnik Effect** | Uncompleted tasks stay in working memory | Duolingo progress bar |
+| **Loss Aversion** | Kehilangan terasa 2x lebih sakit dari gain | Pinduoduo countdown |
+| **Social Proof + FOMO** | Mirror neurons & amygdala response | Temu real-time counter |
+| **Endowment Effect** | User yang sudah invest akan terus pakai | WeChat identity |
+| **Cognitive Ease** | Otak menyukai yang mudah diproses | HTMX/instant feedback |
+
+📖 **Panduan lengkap:** [Neuroscience Design Guide](./_templates/neuroscience-design-guide.md)
+
+---
+
 ## 🛠 Tech Stack Overview
 
 ### Backend Technologies
