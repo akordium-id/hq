@@ -12,10 +12,11 @@
 
 ## 🚀 Product Ideas Overview
 
-### 💡 All 18 Product Ideas
+### 💡 All 19 Product Ideas
 
 | Produk | Kategori | Target Market | Priority |
 |--------|----------|---------------|----------|
+| [**Neurova**](./Neurova/) | Cognitive Health | 18M knowledge workers & students | ⭐⭐⭐⭐⭐ |
 | [**WaqfWise**](./WaqfWise/) | Islamic Fintech | 677K wakaf assets | ⭐⭐⭐⭐⭐ |
 | [**Klustera**](./Klustera/) | Property Tech | 10K+ housing complexes | ⭐⭐⭐⭐⭐ |
 | [**Katauser**](./Katauser/) | SaaS Tools | Indonesian SaaS | ⭐⭐⭐⭐ |
@@ -104,7 +105,7 @@ Each product folder contains comprehensive documentation:
 
 | Technology | Products Using It | Why |
 |------------|-------------------|-----|
-| **Go 1.21+** | Katauser, Nanabung, Guestron, Sesarra, DukunGPS, CaptionMania, ExcelCircle | Performance, concurrency, simple deployment |
+| **Go 1.21+** | Katauser, Nanabung, Guestron, Sesarra, DukunGPS, CaptionMania, ExcelCircle, Neurova | Performance, concurrency, simple deployment |
 | **Laravel 10** | WaqfWise, Klustera, Anggarin, SnapKasir | Rapid dev, ecosystem, PHP expertise |
 | **Ruby on Rails** | LayanganLegacy | Fast prototyping, Hotwire, community |
 | **Rust** | KoalaMail | Extreme performance, safety |
@@ -116,11 +117,12 @@ Each product folder contains comprehensive documentation:
 | Technology | Products Using It | Why |
 |------------|-------------------|-----|
 | **Next.js 14** | Guestron | SSR, SEO-friendly, ecosystem |
-| **SvelteKit** | Nanabung, Sesarra, DukunGPS, CaptionMania | Performance, simplicity |
+| **SvelteKit** | Nanabung, Sesarra, DukunGPS, CaptionMania, Neurova | Performance, simplicity |
 | **TanStack Start** | Katauser, AkarKita, Sesarra | Type safety, React Server Components |
 | **Livewire 3** | WaqfWise, Klustera | No Node.js needed, reactivity |
 | **HTMX + Alpine** | ExcelCircle | Simplicity, no build step |
 | **Vuetify** | KoalaMail | Vue 3 ecosystem |
+| **Flutter** | Neurova | Mobile-first, offline-first |
 
 ### Database & Infrastructure
 
@@ -134,6 +136,7 @@ Each product folder contains comprehensive documentation:
 
 | Product | Model | Price Range | Target Margin |
 |---------|-------|-------------|---------------|
+| **Neurova** | B2C/B2B Freemium | Rp 79K-699K (B2C), Rp 40-50K/user (B2B) | 80%+ |
 | **WaqfWise** | Freemium | Rp 500K-5M/month | 80%+ |
 | **Klustera** | Per-unit | Rp 2-5K/unit/month | 85%+ |
 | **Katauser** | Freemium | Rp 299K-5M/month | 85%+ |
@@ -218,9 +221,9 @@ For each product before building:
 
 ---
 
-**Last Updated:** 2026-01-06
-**Document Version:** 2.0 (Corrected - all products in ideation)
-**Total Product Ideas:** 18 concepts
+**Last Updated:** 2026-03-02
+**Document Version:** 2.1 (Added Neurova - cognitive performance platform)
+**Total Product Ideas:** 19 concepts
 **Status:** 🥚 All in ideation phase - awaiting market validation
 
 **Quick Links:**
