@@ -670,7 +670,39 @@ Lihat: [neurodesign-vs-ux-traditional.md](../_templates/neurodesign-vs-ux-tradit
 
 ---
 
+## 13. fMRI Research Insights
+
+> **Evidence-based design:** Temuan neuroscience untuk optimasi UI
+
+### Brain Response to UI (200ms Rule)
+
+Dalam 200ms pertama, OFC (Orbitofrontal Cortex) user sudah membuat penilaian tentang desain. First impression bukan pepatah — ini hardwired di otak.
+
+### Key Research Findings
+
+| Finding | Implication | Application |
+|---------|-------------|-------------|
+| OFC aktif untuk high-reward stimulus | Tampilkan value secara visual | Hero section harus convey value instantly |
+| Color > No Color untuk engagement | Tambahkan aksen warna strategis | Bahkan developer tools perlu color accent |
+| DMN activation = personal resonance | Konten harus berbicara tentang user | Gunakan "you" language, personal relevance |
+
+### Research-Based Checklist
+
+- [ ] Above-fold harmonis dalam 200ms?
+- [ ] Visual consistency 100%?
+- [ ] Color accent pada elemen kritis?
+- [ ] Personal resonance di hero copy?
+
+### Referensi Lengkap
+
+Lihat: [neurodesign-fmri-case-studies.md](../_templates/neurodesign-fmri-case-studies.md)
+
+---
+
 *Based on: [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)*
+
+*Last Updated: 2026-03-03*
+*Document Version: 1.1*
 
 *Last Updated: 2026-03-03*
 *Document Version: 1.0*
