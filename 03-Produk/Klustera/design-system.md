@@ -1,8 +1,8 @@
 # Klustera Design System
 
-> Neurodesign-based visual hierarchy untuk Platform Manajemen Perumahan Terintegrasi
+> Neurodesign-based visual hierarchy untuk Platform Manajemen Event & Komunitas
 
-**Category:** Islamic (Mosque QR Payment & Community Management)
+**Category:** B2B/Serious - Community Management
 
 **Related:** [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)
 
@@ -14,10 +14,10 @@
 
 | Role | Color | Hex | Neuroscience Rationale |
 |------|-------|-----|------------------------|
-| Primary | Dark Teal (Islamic Heritage) | `#0D5C4D` | Warna hijau tua melambangkan kepercayaan dan kedamaian, cocok untuk manajemen komunitas yang harmonis. Hijau adalah warna identik dengan masjid dan lingkungan Islam di Indonesia. |
-| Secondary | Gold (Community Value) | `#D4AF37` | Emas melambangkan nilai properti dan kebersamaan yang berharga. Memberikan kesan premium dan menghargai kontribusi warga. |
-| Accent | Warm Gold | `#E8C547` | Aksen yang lebih terang untuk highlight tombol bayar dan elemen interaktif, mempertahankan nuansa kemuliaan namun lebih visible. |
-| Background | Cream/Warm White | `#FAF8F5` | Latar belakang hangat yang memberikan kesan ramah dan membumi, seperti suasana kompleks perumahan yang nyaman. |
+| Primary | Deep Blue (Trust & Connection) | `#0D5C4D` | Warna biru tua melambangkan kepercayaan dan stabilitas, cocok untuk platform komunitas profesional. Biru membantu menurunkan anxiety dan meningkatkan sense of belonging. |
+| Secondary | Coral (Community Energy) | `#D4AF37` | Coral melambangkan energi komunitas dan kehangatan koneksi antar anggota. Memberikan kesan welcoming namun tetap profesional. |
+| Accent | Warm Orange | `#E8C547` | Aksen yang lebih terang untuk highlight tombol aksi dan elemen interaktif, mempertahankan nuansa energy namun tetap visible. |
+| Background | Light Gray/White | `#FAF8F5` | Latar belakang bersih yang memberikan kesan profesional dan modern, memudahkan keterbacaan konten event dan komunitas. |
 | Surface | Off-White | `#FFFFFF` | Surface untuk kartu dan panel konten, memberikan kontras yang cukup untuk keterbacaan. |
 | Text Primary | Deep Charcoal | `#1A1A2E` | Teks utama dengan kontras tinggi untuk keterbacaan maksimal, namun tetap soft di mata. |
 | Text Secondary | Slate Gray | `#6B7280` | Teks sekunder untuk informasi pendukung, memberikan hierarki visual yang jelas. |
@@ -173,14 +173,14 @@ Example: Portal Pembayaran Warga
 
 ### Density Level: Generous
 
-**Rationale:** Sebagai produk trust-based (community management, financial), whitespace yang luas melambangkan transparansi, kejelasan, dan premium feel. Whitespace juga memudahkan warga memproses informasi tagihan dan laporan keuangan yang penting.
+**Rationale:** Sebagai produk trust-based (community management), whitespace yang luas melambangkan transparansi, kejelasan, dan professional feel. Whitespace memudahkan anggota komunitas memproses informasi event dan koneksi yang penting.
 
 | Whitespace Type | Value | Application |
 |-----------------|-------|-------------|
 | **Macro** (section gaps) | 64-96px | Antara section utama dashboard |
-| **Card padding** | 24px | Inside kartu tagihan dan laporan |
-| **Form group gaps** | 16px | Antara field di form keluhan/complaint |
-| **List item gaps** | 12px | Antara item di daftar tagihan/pengumuman |
+| **Card padding** | 24px | Inside kartu event dan community info |
+| **Form group gaps** | 16px | Antara field di form event creation |
+| **List item gaps** | 12px | Antara item di daftar event/member |
 | **Micro** (tight) | 4-8px | Elemen inline yang terkait erat |
 
 ### Density by Product Category
@@ -351,33 +351,33 @@ Example: Portal Pembayaran Warga
 
 Based on Peak-End Rule: Users remember the **peak moment** and the **ending**, not the average.
 
-### Peak Moment: Pembayaran Berhasil
+### Peak Moment: Event Registration Berhasil
 
 | Moment | Implementation |
 |--------|----------------|
-| **Trigger** | Pembayaran iuran berhasil diverifikasi |
-| **Visual** | Full-screen celebration dengan micro-confetti gold + teal, ikon rumah atau checkmark |
+| **Trigger** | User berhasil registrasi ke event |
+| **Visual** | Full-screen celebration dengan micro-confetti, ikon checkmark |
 | **Duration** | 400ms animation |
-| **Micro-copy** | "Terima kasih! Pembayaran iuran Anda telah diterima." |
-| **Secondary Message** | "Kompleks Al-Hidayah berterima kasih atas kontribusi Anda." (mosque-specific personalization) |
+| **Micro-copy** | "Kamu terdaftar! Sampai jumpa di event." |
+| **Secondary Message** | "3 orang lain dari komunitasmu juga akan hadir." (social proof) |
 
-### Secondary Peak Moment: Guest Pre-Registration Berhasil
+### Secondary Peak Moment: New Member Joined
 
 | Moment | Implementation |
 |--------|----------------|
-| **Trigger** | Warga berhasil pre-register tamu |
-| **Visual** | Card slide-in dengan kode konfirmasi (6-digit) |
+| **Trigger** | Anggota baru bergabung ke komunitas |
+| **Visual** | Card slide-in dengan avatar dan welcome message |
 | **Duration** | 300ms animation |
-| **Micro-copy** | "Tamu berhasil didaftarkan!" |
-| **Secondary Message** | "Kode konfirmasi: 123456 (SMS telah dikirim ke tamu)" |
+| **Micro-copy** | "Selamat datang, [Nama]!" |
+| **Secondary Message** | "Komunitasmu sekarang memiliki 152 anggota." |
 
 ### Ending Design
 
 | Moment | Implementation |
 |--------|----------------|
 | **Trigger** | Logout atau menutup aplikasi |
-| **Message** | "Sampai jumpa! Semoga harimu menyenangkan." |
-| **Tone** | Warm, friendly, community-oriented |
+| **Message** | "Sampai jumpa! Semoga komunitasmu terus bertumbuh." |
+| **Tone** | Warm, encouraging, community-focused |
 
 ---
 
@@ -397,17 +397,261 @@ Based on Peak-End Rule: Users remember the **peak moment** and the **ending**, n
 
 ## 10. Implementation Checklist
 
-- [ ] Colors match Islamic category palette (Teal + Gold)
-- [ ] Single focal point per screen (QR Code / Tagihan)
+- [ ] Colors match B2B/Serious category palette (Blue + Coral)
+- [ ] Single focal point per screen (Event CTA / Community Stats)
 - [ ] Eye tracking pattern applied (F-Pattern for dashboard)
 - [ ] Whitespace density appropriate (Generous untuk trust)
 - [ ] Motion used sparingly (300ms max untuk micro-animations)
-- [ ] Peak moment designed (Pembayaran berhasil celebration)
+- [ ] Peak moment designed (Event registration celebration)
 - [ ] Design tokens implemented in CSS
 - [ ] Accessibility requirements met (WCAG AA)
 - [ ] Typography pairing correct (Lora + Inter)
-- [ ] Background cream tone applied (#FAF8F5)
-- [ ] QR code scannability ensured (minimum size, high contrast)
+- [ ] Background light tone applied (#FAF8F5)
+- [ ] Behavioral design techniques implemented appropriately
+
+---
+
+## 11. Behavioral Design Techniques
+
+Klustera menggunakan behavioral design techniques untuk meningkatkan engagement komunitas tanpa manipulasi. Sebagai produk B2B/Serious untuk community management, fokusnya adalah membantu membangun koneksi komunitas yang genuine, bukan artificial engagement.
+
+### 11.1 Applied Techniques
+
+| # | Technique | Klustera Implementation | Ethical Note |
+|---|-----------|------------------------|--------------|
+| 1 | **Anticipation Loop** | Event countdown timer di halaman event, loading state dengan progress indicator saat registrasi event | Creates excitement without false urgency |
+| 2 | **Invisible Personalization** | Event recommendations berdasarkan jenis event yang dihadiri sebelumnya, komunitas yang relevan dengan lokasi/user interest | Helpful without being creepy |
+| 3 | **Streak + Loss Aversion** | Light version: "3 event berturut-turut" badge untuk anggota aktif, tanpa penalty untuk inactivity | Encourages consistency, not addiction |
+| 4 | **Emotional Character** | **NOT APPLICABLE** - Professional B2B tool should maintain neutral, trustworthy persona | N/A |
+| 5 | **Variable Reward Notification** | "New member joined", "Someone registered for your event", "Event reminder 1 hour before" | Genuine value, not gambling mechanics |
+| 6 | **Social Proof Counter** | "152 members in this community", "47 events hosted", "23 active this week" | Transparency builds trust |
+| 7 | **Annual Wrapped** | Yearly summary: "Your community grew 47% this year", "You hosted 12 events", "Top 5 most engaged members" | Celebrates genuine growth |
+| 8 | **Personalization Surprise** | "Your community grew 25% this month! 🎉", "You've attended 5 tech events this quarter" | Delight through unexpected insight |
+| 9 | **Flash Sale Countdown** | Early bird registration countdown: "3 days left for early bird price", "5 spots remaining" | Genuine scarcity, not artificial |
+| 10 | **Social Commerce** | Group membership discount: "Get 20% off when 5 members from your community register together" | Encourages community growth |
+| 11 | **Gentle Nudge** | "Event starts in 1 hour", "You haven't joined any event this month, here are recommendations", "Member [Name] hasn't been active in 2 weeks" | Helpful, not harassing |
+
+### 11.2 Implementation Guidelines
+
+#### Anticipation Loop - Event Countdown
+
+```
+┌───────────────────────────────────────────┐
+│  Tech Meetup: Building Scalable Systems   │
+│                                           │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│  02:14:33 remaining until registration    │
+│                                           │
+│  [Register Now - Early Bird Rp 150K]     │
+└───────────────────────────────────────────┘
+```
+
+**Use cases:**
+- Event registration page
+- Early bird countdown
+- Loading state saat memproses registrasi
+
+#### Invisible Personalization - Event Recommendations
+
+```
+┌───────────────────────────────────────────┐
+│  Recommended for You                      │
+│                                           │
+│  Based on events you've attended:         │
+│  • Tech Meetups (80%)                     │
+│  • Design Workshops (60%)                 │
+│                                           │
+│  [Design Systems Workshop] [Register]    │
+│  [Go Best Practices] [Register]          │
+└───────────────────────────────────────────┘
+```
+
+**Use cases:**
+- Dashboard personal recommendations
+- Community discovery
+- Event feed filtering
+
+#### Streak + Loss Aversion (Light Version)
+
+```
+┌───────────────────────────────────────────┐
+│  Your Engagement Streak                   │
+│                                           │
+│  🔥 3 events in a row                    │
+│  Attend 1 more this month to keep streak  │
+│                                           │
+│  Badge: Community Active Member          │
+└───────────────────────────────────────────┘
+```
+
+**Ethical boundaries:**
+- No penalty for losing streak
+- No shame messaging
+- Focus on celebration, not fear
+
+#### Variable Reward Notification
+
+```
+┌───────────────────────────────────────────┐
+│  🔔 Notifications                         │
+│                                           │
+│  • New member: Sarah joined your community│
+│  • Event reminder: AI Workshop in 1 hour  │
+│  • Achievement: You've hosted 10 events!  │
+└───────────────────────────────────────────┘
+```
+
+**Notification types:**
+- Social: New member, member milestone
+- Functional: Event reminder, registration confirmation
+- Delightful: Unexpected achievement, community growth
+
+#### Social Proof Counter
+
+```
+┌───────────────────────────────────────────┐
+│  Jakarta Tech Community                   │
+│                                           │
+│  👥 152 members                           │
+│  📅 47 events hosted                      │
+│  ⚡ 23 active this week                   │
+│                                           │
+│  Recent members:                          │
+│  [Avatar] [Avatar] [Avatar] [Avatar]     │
+└───────────────────────────────────────────┘
+```
+
+**Metrics to display:**
+- Total members
+- Events hosted
+- Active members (this week/month)
+- Upcoming events count
+
+#### Annual Wrapped
+
+```
+┌───────────────────────────────────────────┐
+│  Your 2026 Community Year in Review       │
+│                                           │
+│  📈 Community grew 47%                    │
+│  🎉 You hosted 12 events                  │
+│  👥 89 new members joined                 │
+│                                           │
+│  Top 5 Most Engaged Members:              │
+│  1. Sarah (attended 11 events)            │
+│  2. Budi (attended 9 events)              │
+│  3. Dian (attended 8 events)              │
+│  ...                                      │
+│                                           │
+│  [Share Your Story]                       │
+└───────────────────────────────────────────┘
+```
+
+**Timing:**
+- Send on last week of December
+- Include shareable visuals
+- Focus on growth and connection
+
+#### Personalization Surprise
+
+```
+┌───────────────────────────────────────────┐
+│  💡 Community Insight                     │
+│                                           │
+│  Your community grew 25% this month! 🎉   │
+│                                           │
+│  That's 12% faster than average growth.   │
+│  Keep up the great community building!    │
+└───────────────────────────────────────────┘
+```
+
+**Trigger conditions:**
+- Unexpected growth milestone
+- Above-average engagement
+- Unique achievement
+
+#### Flash Sale Countdown - Early Bird
+
+```
+┌───────────────────────────────────────────┐
+│  🎟️ Early Bird Registration               │
+│                                           │
+│  Design Systems Workshop                  │
+│  Regular: Rp 250K                         │
+│  Early Bird: Rp 150K (save 40%)          │
+│                                           │
+│  ⏰ 2 days 14 hours remaining             │
+│  🎫 5 spots remaining at this price       │
+│                                           │
+│  [Register Now - Save Rp 100K]           │
+└───────────────────────────────────────────┘
+```
+
+**Ethical boundaries:**
+- Genuine scarcity (real spot limits)
+- Genuine time limit (early bird deadline)
+- Clear regular price shown
+
+#### Social Commerce - Group Discount
+
+```
+┌───────────────────────────────────────────┐
+│  👥 Group Registration Discount           │
+│                                           │
+│  Get 20% off when 5+ members from         │
+│  your community register together         │
+│                                           │
+│  Progress: 3/5 members registered         │
+│  [━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━]      │
+│                                           │
+│  Share this event:                        │
+│  [WhatsApp] [Twitter] [LinkedIn]         │
+└───────────────────────────────────────────┘
+```
+
+**Benefits:**
+- Encourages community growth
+- Viral word-of-mouth
+- Genuine group discount
+
+#### Gentle Nudge
+
+```
+┌───────────────────────────────────────────┐
+│  👋 Gentle Reminder                       │
+│                                           │
+│  You haven't joined any events this       │
+│  month. Here are some recommendations:    │
+│                                           │
+│  • Tech Meetup (Tomorrow)                 │
+│  • Design Workshop (Next week)            │
+│                                           │
+│  [Browse All Events]                      │
+└───────────────────────────────────────────┘
+```
+
+**Nudge types:**
+- Re-engagement: Inactive member reminder
+- Event reminder: 1 hour before event
+- Community care: Member inactivity alert to admin
+
+### 11.3 Ethical Design Principles
+
+**Klustera follows these ethical boundaries:**
+
+1. **Transparency**: All mechanics are visible and understandable
+2. **Genuine Value**: Every technique provides real user value
+3. **No Addiction**: No dark patterns or FOMO-based manipulation
+4. **User Control**: Users can opt-out of any behavioral feature
+5. **Sticky > Addictive**: Focus on genuine community connection, not artificial engagement
+
+**Why Sticky Design for Community Products?**
+
+Community B2B products should lean toward **Sticky** design because:
+- Helps build genuine community connections
+- Increases user retention through value, not addiction
+- Creates sustainable engagement without burnout
+- Aligns with professional B2B use cases
 
 ---
 

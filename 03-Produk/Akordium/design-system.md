@@ -371,6 +371,334 @@ Based on Peak-End Rule: Users remember the **peak moment** and the **ending**, n
 
 ---
 
+## 11. Behavioral Design Techniques
+
+> **Category:** B2B/Serious - Value-creating design
+>
+> **Ethical Design Note:** B2B products should lean toward **Sticky** design karena fokus pada value creation dan trust building, bukan engagement manipulation.
+
+### Technique Applicability Matrix
+
+| # | Technique | Applicable | Implementation | Priority |
+|---|-----------|------------|----------------|----------|
+| 1 | Anticipation Loop | ✅ Yes | Loading portfolio/projects reveal | Medium |
+| 2 | Invisible Personalization | ✅ Yes | Project recommendations for returning visitors | Low |
+| 3 | Streak + Loss Aversion | ❌ No | Not applicable for corporate website | N/A |
+| 4 | Emotional Character | ❌ No | Not applicable for corporate website | N/A |
+| 5 | Variable Reward Notification | ❌ No | No notification system | N/A |
+| 6 | Social Proof Counter | ✅ Yes | Client logos, project count, years experience | High |
+| 7 | Annual Wrapped | ✅ Yes | Client success stories yearly summary | Medium |
+| 8 | Personalization Surprise | ✅ Yes | Relevant case studies based on browsing | Low |
+| 9 | Flash Sale Countdown | ❌ No | No sales mechanism | N/A |
+| 10 | Social Commerce | ❌ No | Not applicable for B2B services | N/A |
+| 11 | Gentle Nudge | ✅ Yes | Newsletter subscription reminders | Low |
+
+### Applicable Techniques
+
+#### 1. Anticipation Loop ⚡
+
+**Concept:** Build anticipation during loading states to increase perceived value and reduce abandonment.
+
+**Implementation for Akordium:**
+
+```css
+/* Portfolio loading animation with progressive reveal */
+.portfolio-skeleton {
+  animation: shimmer 1.5s ease-in-out infinite;
+  background: linear-gradient(90deg, #F0F4F8 25%, #E2E8F0 50%, #F0F4F8 75%);
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.portfolio-item {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: revealUp 0.4s ease-out forwards;
+}
+
+@keyframes revealUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+```
+
+**When to Use:**
+- Loading portfolio grid on homepage
+- Filtering projects by category/tech stack
+- Loading case study details
+
+**Neuroscience Rationale:** Anticipation triggers dopamine release, making the final reveal more rewarding and memorable.
+
+---
+
+#### 2. Invisible Personalization 🔍
+
+**Concept:** Personalize experience without asking for explicit preferences, using behavioral data.
+
+**Implementation for Akordium:**
+
+```javascript
+// Track visited projects to recommend similar work
+const trackProjectView = (projectId, category, techStack) => {
+  const viewed = JSON.parse(localStorage.getItem('viewedProjects') || '[]');
+  viewed.push({ projectId, category, techStack, timestamp: Date.now() });
+  localStorage.setItem('viewedProjects', JSON.stringify(viewed));
+};
+
+// Recommend similar projects based on browsing history
+const recommendProjects = () => {
+  const viewed = JSON.parse(localStorage.getItem('viewedProjects') || '[]');
+  const preferences = analyzePreferences(viewed);
+
+  return projects.filter(p =>
+    p.category === preferences.topCategory ||
+    p.techStack.some(t => preferences.topTechStack.includes(t))
+  ).slice(0, 3);
+};
+```
+
+**When to Use:**
+- Show "Recommended for You" section on portfolio page
+- Highlight relevant case studies based on previously viewed projects
+
+**Neuroscience Rationale:** Implicit personalization reduces cognitive load while increasing relevance perception.
+
+---
+
+#### 6. Social Proof Counter 📊
+
+**Concept:** Display social proof metrics to build trust and credibility.
+
+**Implementation for Akordium:**
+
+```html
+<!-- Hero section with social proof -->
+<div class="social-proof-bar">
+  <div class="metric">
+    <span class="value">5+</span>
+    <span class="label">Years Experience</span>
+  </div>
+  <div class="metric">
+    <span class="value">50+</span>
+    <span class="label">Projects Delivered</span>
+  </div>
+  <div class="metric">
+    <span class="value">20+</span>
+    <span class="label">Happy Clients</span>
+  </div>
+</div>
+
+<!-- Client logos section -->
+<div class="client-logos">
+  <img src="/clients/logo1.svg" alt="Client 1" loading="lazy">
+  <img src="/clients/logo2.svg" alt="Client 2" loading="lazy">
+  <!-- More client logos -->
+</div>
+```
+
+**When to Use:**
+- Hero section (below value proposition)
+- Before contact form
+- Footer of every page
+
+**Neuroscience Rationale:** Social proof activates herd mentality and reduces decision-making anxiety in B2B contexts.
+
+---
+
+#### 7. Annual Wrapped 🎁
+
+**Concept:** Yearly summary that creates emotional connection and re-engagement.
+
+**Implementation for Akordium:**
+
+```html
+<!-- Year in Review section (shown in January/February) -->
+<section class="annual-wrapped">
+  <h2>2025: Year in Review</h2>
+  <div class="wrapped-stats">
+    <div class="stat-card">
+      <span class="stat">15</span>
+      <span class="label">Projects Launched</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat">3</span>
+      <span class="label">New Technologies Mastered</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat">98%</span>
+      <span class="label">Client Satisfaction</span>
+    </div>
+  </div>
+  <div class="success-stories">
+    <h3>Featured Success Stories</h3>
+    <!-- Top 3 client success stories from the year -->
+  </div>
+</section>
+```
+
+**When to Use:**
+- January/February (beginning of year)
+- Company anniversary
+- Before major business quarters
+
+**Neuroscience Rationale:** Recapitulation creates narrative coherence and positive retrospective evaluation.
+
+---
+
+#### 8. Personalization Surprise 🎯
+
+**Concept:** Delight users with unexpected, relevant content based on implicit signals.
+
+**Implementation for Akordium:**
+
+```javascript
+// Show relevant case study based on referrer or time
+const showPersonalizedCaseStudy = () => {
+  const referrer = document.referrer;
+  const hour = new Date().getHours();
+
+  // If coming from LinkedIn (business context)
+  if (referrer.includes('linkedin')) {
+    return {
+      title: 'Enterprise ERP Implementation',
+      category: 'Business Solutions',
+      relevance: 'Based on your professional network'
+    };
+  }
+
+  // If visiting during business hours
+  if (hour >= 9 && hour <= 17) {
+    return {
+      title: 'Real-time Analytics Dashboard',
+      category: 'Business Intelligence',
+      relevance: 'Popular during business hours'
+    };
+  }
+
+  // Default: most viewed case study
+  return getMostViewedCaseStudy();
+};
+```
+
+**When to Use:**
+- Homepage "Featured Case Study" section
+- Portfolio page header
+- After viewing 3+ projects
+
+**Neuroscience Rationale:** Surprise relevance triggers dopamine and increases perceived intelligence of the system.
+
+---
+
+#### 11. Gentle Nudge 💡
+
+**Concept:** Subtle, non-intrusive prompts for desirable actions.
+
+**Implementation for Akordium:**
+
+```html
+<!-- Exit intent newsletter signup -->
+<div class="newsletter-nudge" id="newsletterNudge">
+  <div class="nudge-content">
+    <h3>Stay Updated</h3>
+    <p>Get latest insights on web development and technology trends.</p>
+    <form id="newsletterForm">
+      <input type="email" placeholder="Your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <button class="dismiss" aria-label="Close">✕</button>
+  </div>
+</div>
+
+<script>
+// Show nudge on exit intent (desktop) or after 30 seconds (mobile)
+let hasShownNudge = false;
+
+document.addEventListener('mouseout', (e) => {
+  if (e.clientY < 10 && !hasShownNudge) {
+    showNudge();
+  }
+});
+
+setTimeout(() => {
+  if (!hasShownNudge && isMobile()) {
+    showNudge();
+  }
+}, 30000);
+</script>
+```
+
+**When to Use:**
+- Exit intent on homepage
+- After reading a case study
+- 30-45 seconds into session (mobile only)
+
+**Neuroscience Rationale:** Gentle prompts leverage reciprocity bias without triggering reactance.
+
+---
+
+### Non-Applicable Techniques
+
+#### 3. Streak + Loss Aversion ❌
+
+**Not Applicable:** Corporate websites don't have daily engagement patterns. Streak mechanics would feel forced and inappropriate for B2B context.
+
+**Alternative:** Focus on **Social Proof Counter** and **Annual Wrapped** to build long-term trust instead of daily engagement.
+
+---
+
+#### 4. Emotional Character ❌
+
+**Not Applicable:** Corporate website maintains professional tone. Character-based interactions would undermine credibility.
+
+**Alternative:** Use **consistent visual identity** and **professional micro-copy** to build brand personality without personification.
+
+---
+
+#### 5. Variable Reward Notification ❌
+
+**Not Applicable:** No notification system exists for corporate website. Push notifications would be intrusive for B2B visitors.
+
+**Alternative:** **Personalization Surprise** and **Invisible Personalization** provide relevance without notification dependency.
+
+---
+
+#### 9. Flash Sale Countdown ❌
+
+**Not Applicable:** B2B services don't use sales mechanics. Urgency tactics reduce trust in professional services context.
+
+**Alternative:** **Gentle Nudge** for contact form or newsletter subscription is more appropriate for B2B.
+
+---
+
+#### 10. Social Commerce ❌
+
+**Not Applicable:** Akordium provides services, not e-commerce products. Social buying mechanics don't translate to service-based B2B.
+
+**Alternative:** **Social Proof Counter** (client logos, testimonials, metrics) builds trust appropriate for service sales.
+
+---
+
+### Implementation Priority
+
+**High Priority (Must Have):**
+1. **Social Proof Counter** - Critical for B2B trust building
+2. **Anticipation Loop** - Improves perceived quality of portfolio
+
+**Medium Priority (Should Have):**
+3. **Annual Wrapped** - Strengthens client relationships
+4. **Personalization Surprise** - Differentiates from competitors
+
+**Low Priority (Nice to Have):**
+5. **Gentle Nudge** - Secondary conversion optimization
+6. **Invisible Personalization** - Enhanced user experience
+
+---
+
 *Based on: [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)*
 
 *Last Updated: 2026-03-03*

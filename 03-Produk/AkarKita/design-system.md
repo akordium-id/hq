@@ -361,7 +361,352 @@ Based on Peak-End Rule: Users remember the **peak moment** and the **ending**, n
 
 ---
 
+## 11. Behavioral Design Techniques
+
+### Ethical Design Philosophy
+
+**Design Goal: Sticky (Not Addictive)**
+
+AkarKita sebagai produk heritage harus berfokus pada membangun koneksi keluarga yang bermakna dan berkelanjutan, bukan menciptakan addiction. Teknik behavioral digunakan untuk memperkuat bonding antar-generasi, bukan untuk memaksimalkan time-on-site dengan cara manipulatif.
+
+### Technique Implementation Matrix
+
+| # | Technique | AkarKita Implementation | Ethical Consideration |
+|---|-----------|------------------------|----------------------|
+| 1 | **Anticipation Loop** | Family tree reveal animation dengan gradual "unfolding" dari generasi tertua ke terbaru + ancestor discovery progress | Membangun anticipation terhadap sejarah keluarga, bukan terhadap reward dopamin |
+| 2 | **Invisible Personalization** | Suggested family connections berdasarkan data (tanggal lahir, lokasi, nama keluarga) yang ditampilkan secara subtle tanpa highlight agresif | Personalization harus transparan - user tahu mengapa rekomendasi muncul |
+| 3 | **Streak + Loss Aversion** | Weekly family story contribution streak dengan "family memory fire" yang perlu dijaga agar tidak padam | Streak untuk konsistensi mendokumentasikan sejarah, bukan untuk FOMO |
+| 4 | **Emotional Character** | Family avatar/mascot "Akar" (pohon kecil dengan wajah ramah) yang celebrates discoveries dengan animasi subtle | Karakter mendukung tujuan (family bonding), bukan manipulatif untuk engagement |
+| 5 | **Variable Reward Notification** | "New family member found" dan "New story shared" dari kerabat dengan varied timing (social connection reward, bukan gambling) | Reward berbasis koneksi sosial nyata, bukan variable schedule yang addictive |
+| 6 | **Social Proof Counter** | Display jumlah family members in tree, total stories shared, dan kontribusi aktif keluarga (transparent, meaningful metrics) | Social proof untuk validasi aktivitas positif, bukan peer pressure |
+| 7 | **Annual Wrapped** | "Family Tree Year in Review" - summary pertumbuhan silsilah, top contributors, milestones tercapai (reflection & gratitude) | Celebration of family legacy, bukan gamification berlebihan |
+| 8 | **Personalization Surprise** | "You might be related to..." suggestions berdasarkan common surnames, lokasi geografis, dan timeline | Delightful discovery yang memperkaya pemahaman sejarah keluarga |
+| 9 | **Flash Sale Countdown** | **NOT APPLICABLE** - Heritage products tidak menggunakan urgency tactics yang manipulatif | - |
+| 10 | **Social Commerce** | Family subscription plan referrals - "Share AkarKita with family" dengan benefit: unlimited members, collaborative editing | Incentive untuk inklusivitas keluarga, bukan aggressive sales tactics |
+| 11 | **Gentle Nudge** | Reminder untuk add family stories dengan timing yang contextual (misal: saat ada moment keluarga/anniversary) | Nudge untuk nilai sentimental, bukan spam notifications |
+
+### 1. Anticipation Loop - Family Tree Reveal
+
+**Implementation:**
+
+```css
+/* Tree reveal animation - gradual unfolding */
+@keyframes treeUnfold {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.family-node {
+  animation: treeUnfold 0.4s ease-out forwards;
+  animation-delay: calc(var(--generation) * 0.1s);
+}
+```
+
+**UX Pattern:**
+- Generasi 1 (tertua) muncul pertama dengan 100ms delay
+- Setiap generasi berikutnya muncul dengan +100ms cumulative delay
+- Progress bar: "Membuka silsilah... 3 dari 5 generasi"
+
+**Ethical Guardrail:**
+- User dapat skip animation dengan tombol "Lihat Semua"
+- Animation tidak repeat untuk user yang sudah melihat tree tersebut
+
+### 2. Invisible Personalization - Connection Suggestions
+
+**Implementation:**
+
+```javascript
+// Personalization logic (transparent to user)
+function suggestConnections(userProfile) {
+  return {
+    basedOn: {
+      surname: userProfile.lastName,
+      location: userProfile.birthPlace,
+      timeline: userProfile.birthYear ± 10
+    },
+    confidence: 'high', // Display to user
+    reason: 'Sama nama keluarga dan lokasi kelahiran'
+  };
+}
+```
+
+**UX Pattern:**
+- Suggestion card muncul di sidebar dengan subtle highlight (cream background)
+- Transparan: "Karena Anda dan Budi keduanya lahir di Medan dengan nama keluarga Nasution"
+- User bisa dismiss dengan feedback: "Tidak ada hubungan" (improves algorithm)
+
+### 3. Streak + Loss Aversion - Family Story Contribution
+
+**Implementation:**
+
+```
+┌─────────────────────────────────┐
+│  🔥 3 Minggu Berturut-turut     │
+│  Api cerita keluarga menyala!   │
+│                                 │
+│  [Tambah Cerita Minggu Ini]     │
+│  (Jaga agar api tetap menyala)  │
+└─────────────────────────────────┘
+```
+
+**UX Pattern:**
+- Visual: "Family Memory Fire" yang mengecil jika tidak ada kontribusi
+- Loss framing: "Jangan biarkan cerita buyut Neni hilang"
+- Recovery: Mudah restart streak dengan 1 kontribusi
+
+**Ethical Guardrail:**
+- Tidak ada penalty yang nyata (hanya visual fire fades)
+- Streak reset hanya setelah 4 minggu (tidak agresif)
+- Emphasis pada value: "Dokumentasi untuk generasi mendatang"
+
+### 4. Emotional Character - "Akar" Family Avatar
+
+**Character Design:**
+- Nama: Akar (pohon kecil dengan wajah ramah)
+- Personality: Wise, warm, family-oriented
+- Expression changes: Celebrates (smile), curious (tilt head), thoughtful (hand on chin)
+
+**Implementation:**
+
+```
+┌─────────────────────────────────┐
+│                                 │
+│     🌱 Akar                      │
+│     "Hebat! Kamu menemukan       │
+│      hubungan baru!"             │
+│                                 │
+│     [Lihat Koneksi]             │
+│                                 │
+└─────────────────────────────────┘
+```
+
+**UX Pattern:**
+- Muncul saat milestone: New member, tree growth, story added
+- Animation: Subtle (bouncing leaves, smiling)
+- Tidak interruptive - muncul di corner, dismissible
+
+### 5. Variable Reward Notification - Discovery Moments
+
+**Implementation:**
+
+```javascript
+// Notification scheduling (not truly random - social-based)
+function scheduleNotifications() {
+  const triggers = [
+    'new_member_added_by_relative',
+    'story_shared_by_cousin',
+    'comment_on_ancestor_story',
+    'tree_anniversary'
+  ];
+
+  // Vary timing but keep contextual relevance
+  return scheduleBasedOnActivity(triggers, {minDelay: 2, maxDelay: 24});
+}
+```
+
+**UX Pattern:**
+- Push notification: "Budi menambahkan cerita baru tentang Kakek Ahmad!"
+- In-app celebration: Confetti subtle saat membuka
+- Content preview: 2-3 sentences dari cerita
+
+**Ethical Guardrail:**
+- Not truly random - only real family activity triggers
+- Batch notifications: Max 2 per day
+- Quiet hours: 9PM - 7AM no notifications
+
+### 6. Social Proof Counter - Family Participation
+
+**Implementation:**
+
+```
+┌─────────────────────────────────┐
+│  👨‍👩‍👧‍👦 24 Anggota Keluarga      │
+│  📖 47 Cerita Terdokumentasi     │
+│  🌳 5 Generasi Terdata           │
+│                                 │
+│  Kontributor Teraktif:          │
+│  • Siti (12 cerita)             │
+│  • Budi (8 cerita)              │
+└─────────────────────────────────┘
+```
+
+**UX Pattern:**
+- Display di dashboard dengan earth tone colors
+- Highlight contributors, bukan competitors
+- Collective framing: "Keluarga kita telah mendokumentasikan..."
+
+**Ethical Guardrail:**
+- Tidak ada leaderboard yang creates FOMO
+- Focus pada collective achievement, bukan individual ranking
+- Anonymous opt-out untuk privacy-conscious users
+
+### 7. Annual Wrapped - Family Tree Year in Review
+
+**Implementation:**
+
+```
+┌─────────────────────────────────────────┐
+│  2025 Family Tree Wrap                  │
+│                                         │
+│  🌳 Tahun ini keluarga kita:            │
+│  • Menambahkan 8 anggota baru           │
+│  • Mendokumentasikan 24 cerita          │
+│  • Menemukan koneksi ke 3 kota lain     │
+│                                         │
+│  Pencapaian Terbesar:                   │
+│  Melengkapi 5 generasi silsilah!        │
+│                                         │
+│  Terima kasih atas kontribusinya:       │
+│  [Top Contributors List]                │
+│                                         │
+│  [Share ke WhatsApp Family Group]       │
+└─────────────────────────────────────────┘
+```
+
+**UX Pattern:**
+- Available di akhir tahun (December) atau anniversary sign-up
+- Visual: Animated timeline dengan milestones
+- Shareable: Format WhatsApp/Instagram friendly
+
+**Ethical Guardrail:**
+- Tidak pushy - available on demand
+- Focus pada gratitude & reflection
+- Data transparency: User bisa review semua data sebelum share
+
+### 8. Personalization Surprise - "You Might Be Related"
+
+**Implementation:**
+
+```javascript
+// Surprise suggestion algorithm
+function findPotentialRelatives(user, allProfiles) {
+  return allProfiles
+    .filter(p => {
+      const surnameMatch = p.lastName === user.lastName;
+      const locationProximity = distance(p.birthPlace, user.birthPlace) < 50km;
+      const generationOverlap = Math.abs(p.birthYear - user.birthYear) < 30;
+
+      return (surnameMatch && locationProximity) ||
+             (surnameMatch && generationOverlap);
+    })
+    .map(p => ({
+      profile: p,
+      confidence: calculateConfidence(user, p),
+      reason: explainMatch(user, p) // Transparent
+    }));
+}
+```
+
+**UX Pattern:**
+- Card appears: "Kemungkinan besar Anda terkait dengan Budi Nasution"
+- Explanation: "Karena nama keluarga sama dan lahir di lokasi yang dekat"
+- Action: "Lihat Silsilah" atau "Tidak Ada Hubungan"
+
+**Ethical Guardrail:**
+- Always provide explanation
+- User can dismiss permanently
+- Low confidence suggestions tidak ditampilkan
+
+### 9. Flash Sale Countdown - NOT APPLICABLE
+
+**Rationale:**
+Produk heritage tidak cocok dengan urgency tactics yang manipulatif. AkarKita berfokus pada long-term value building, bukan impulse decisions.
+
+### 10. Social Commerce - Family Plan Referrals
+
+**Implementation:**
+
+```
+┌─────────────────────────────────┐
+│  Ajak Keluarga Bergabung        │
+│                                 │
+│  Family Plan Benefits:          │
+│  • Unlimited family members     │
+│  • Collaborative editing        │
+│  • Shared photo storage         │
+│  • Priority support             │
+│                                 │
+│  [Share Invitation Link]        │
+│                                 │
+│  Saat bergabung:                │
+│  • 5 anggota keluarga aktif     │
+│  • 10+ cerita terdokumentasi    │
+│                                 │
+└─────────────────────────────────┘
+```
+
+**UX Pattern:**
+- Focus pada value untuk family unity
+- Incentive: Better collaborative features, bukan discount
+- Social proof: "5 keluarga lain menggunakan family plan"
+
+**Ethical Guardrail:**
+- Transparent pricing
+- No aggressive upselling
+- Feature-based benefits, bukan FOMO-based
+
+### 11. Gentle Nudge - Contextual Reminders
+
+**Implementation:**
+
+```javascript
+// Contextual nudge scheduling
+function scheduleNudges(user) {
+  const nudges = [
+    {
+      trigger: 'family_anniversary',
+      message: 'Anniversary pernikahan Kakek & Nenek tiba. Tambahkan cerita momen ini?',
+      timing: '3 days before',
+      dismissible: true
+    },
+    {
+      trigger: 'new_photo_uploaded',
+      message: 'Foto baru diupload. Ceritakan kisah di balik foto ini?',
+      timing: '1 hour after',
+      dismissible: true
+    },
+    {
+      trigger: 'inactivity_2_weeks',
+      message: 'Cerita keluarga menunggu. Ada yang bisa ditambahkan?',
+      timing: '2 weeks inactive',
+      dismissible: true
+    }
+  ];
+
+  return nudges.filter(n => !user.hasDismissed(n.trigger));
+}
+```
+
+**UX Pattern:**
+- Timing: Contextual, bukan random
+- Tone: Gentle suggestion, bukan demanding
+- Action: Single clear CTA
+- Dismissible: Forever mute option
+
+**Ethical Guardrail:**
+- Max 1 nudge per week
+- Always dismissible permanently
+- Respect user's stated preferences
+
+### Behavioral Design Audit Checklist
+
+- [ ] **Transparency:** Semua personalization dapat dijelaskan kepada user
+- [ ] **No Dark Patterns:** Tidak ada deceptive UI atau hidden costs
+- [ ] **User Control:** User dapat mengontrol semua notifikasi dan nudges
+- [ ] **Sticky Over Addictive:** Fokus pada long-term engagement, bukan short-term dopamine
+- [ ] **Value-First:** Setiap behavioral technique memberikan nilai nyata kepada user
+- [ ] **Respectful:** Tidak mengganggu saat user inactive atau busy
+- [ ] **Family-Centric:** Semua design mendukung tujuan utama: family connection & legacy
+
+---
+
 *Based on: [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)*
 
 *Last Updated: 2026-03-03*
-*Document Version: 1.0*
+*Document Version: 1.1*

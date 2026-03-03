@@ -362,6 +362,213 @@ Based on Peak-End Rule: Users remember the **peak moment** and the **ending**, n
 
 ---
 
+## 11. Behavioral Design Techniques
+
+Berikut adalah 11 teknik behavioral design dengan implementasi spesifik untuk Sesarra (Wedding Website Builder):
+
+### 1. Variable Reward
+
+**Neuroscience Basis:** Dopamine surge terjadi saat reward tidak predictable - membuat eksplorasi template dan fitur menjadi engaging.
+
+| Implementasi Sesarra | Detail |
+|---------------------|--------|
+| **Template Discovery** | Saat user browse template, kadang muncul "Hidden Gem" badge dengan efek glow rose-gold - template ini mendapat highlight visual khusus yang tidak muncul setiap saat |
+| **AI Content Suggestions** | Fitur saran konten (vows, quotes, love story) kadang memberikan hasil yang biasa, kadang sangat personal dan menyentuh hati - user terus mencoba karena tidak tahu kapan dapat "perfect suggestion" |
+| **Random Romance Tips** | Saat publish, kadang munculkan tips spesial: "Tip: Tambahkan playlist lagu masa pacaran di section music untuk personal touch yang kuat" |
+
+### 2. Habit Loop (Cue → Routine → Reward)
+
+**Neuroscience Basis:** Basal ganglia membentuk neural pathway otomatis untuk perilaku yang berulang.
+
+| Loop Element | Implementasi Sesarra |
+|--------------|---------------------|
+| **Cue** | Notifikasi pagi: "Ada 3 update baru di website Andi & Putri yang menunggu" |
+| **Routine** | User membuka editor untuk mengecek dan menambahkan konten baru |
+| **Reward** | Micro-celebration dengan confetti rose-gold setiap kali ada perubahan yang di-save + progress bump: "Website kamu 85% lengkap!" |
+
+**Wedding Countdown Habit:**
+- Cue: Notifikasi harian pada jam yang sama dengan countdown menuju hari H
+- Routine: User membuka untuk melihat countdown timer berkurang
+- Reward: Anticipation dopamine yang semakin kuat mendekati hari pernikahan
+
+### 3. Zeigarnik Effect
+
+**Neuroscience Basis:** Uncompleted tasks stay in working memory - otak terus mengingat tugas yang belum selesai.
+
+| Implementasi Sesarra | Visual Treatment |
+|---------------------|------------------|
+| **Profile Completion** | "Website pernikahanmu 72% lengkap - ada 5 section yang belum diisi" dengan progress bar rose yang ada gap-nya (incomplete = attention grabber) |
+| **Gallery Upload** | "24 dari 50 foto prewedding terupload - lanjutkan ya!" dengan visual gap di gallery grid |
+| **RSVP Checklist** | Checklist tamur dengan icon yang jelas terlihat mana yang belum (gap effect lebih kuat daripada sekadar angka) |
+
+**Progress Visualization:**
+```css
+/* Zeigarnik Progress Bar - Incomplete lebih menarik perhatian */
+.wedding-progress {
+  background: linear-gradient(90deg, #E8B4B8 72%, #F5D5D8 72%);
+  position: relative;
+}
+.wedding-progress::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 28%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(232, 180, 184, 0.3) 10px,
+    rgba(232, 180, 184, 0.3) 20px
+  );
+}
+```
+
+### 4. Loss Aversion
+
+**Neuroscience Basis:** Kehilangan terasa 2x lebih sakit dari gain setara - sangat powerful untuk wedding context dengan deadline yang fixed.
+
+| Implementasi Sesarra | Copywriting |
+|---------------------|-------------|
+| **Countdown to Hari H** | "23 hari lagi menuju hari pernikahan - websitemu harus sudah siap dibagikan ke tamu!" |
+| **Domain Reminder** | "Domain andi-putri.sesarra.id masih tersedia - tapi 5 orang lain juga melihat domain ini hari ini" |
+| **Early Bird Discount** | "Diskon 30% berakhir dalam 47 jam - hemat Rp 300.000 untuk premium themes" |
+| **Memory Warning** | "Jangan sampai lupa membagikan momen-momen kecil yang tak ternilai ini - upload sekarang sebelum hilang dari ingatan" |
+
+### 5. Social Proof + FOMO
+
+**Neuroscience Basis:** Mirror neurons dan amygdala merespons kehadiran orang lain - wedding adalah inherently social event.
+
+| Implementasi Sesarra | Example |
+|---------------------|---------|
+| **Real-time Activity** | "3 pasangan lain sedang membuat website untuk tanggal 25 Desember 2025 juga" |
+| **Template Popularity** | "Template 'Romantic Garden' dipilih oleh 127 pasangan bulan ini" |
+| **Success Stories** | Testimoni dengan foto: "Rina & Diman: 'Website kami mendapat 347 kunjungan dari tamu undangan!'" |
+| **Share Count** | "Website ini sudah dibagikan ke 89 tamu - tambah lagi ya!" |
+
+**Social Proof Widget:**
+```
+┌─────────────────────────────────────────┐
+│  🔥 Trending Template Bulan Ini         │
+│  ┌─────────────────────────────────┐   │
+│  │  [PREVIEW] Romantic Garden       │   │
+│  │  ✨ Dipilih oleh 127 pasangan    │   │
+│  │  ⭐ 4.9/5 dari 89 reviews        │   │
+│  └─────────────────────────────────┘   │
+└─────────────────────────────────────────┘
+```
+
+### 6. Endowment Effect
+
+**Neuroscience Basis:** User yang sudah invest (waktu, data, identitas) akan terus pakai - sangat relevant untuk wedding website yang berisi memories personal.
+
+| Implementasi Sesarra | Detail |
+|---------------------|--------|
+| **Love Story Timeline** | User mengisi timeline cinta mereka sendiri - semakin lengkap, semakin tidak mau pindah ke platform lain |
+| **Personalized URL** | Setelah dapat domain custom, user merasa "website ini milik kita" - tidak mau kehilangan |
+| **Guest Messages** | Buku tamu digital dengan pesan dari keluarga/teman - semakin banyak pesan, semakin valuable |
+| **Anniversary Vault** | Fitur time capsule yang hanya bisa dibuka 1 tahun setelah hari H - investment dalam jangka panjang |
+
+**Identity Lock-in:**
+- Character card "Couple Profile" yang bisa di-share ke Instagram
+- Badge "Wedding Website Premium" dengan tema rose-gold yang eksklusif
+
+### 7. Cognitive Ease
+
+**Neuroscience Basis:** Otak lebih menyukai yang mudah diproses secara kognitif - sangat penting karena calon pengantin biasanya busy dan stressed.
+
+| Implementasi Sesarra | Detail |
+|---------------------|--------|
+| **Smart Pre-fill** | Isi data undangan dari form sederhana dulu, AI generate konten lengkap otomatis |
+| **One-Click Templates** | Setelah pilih template, semua section langsung terisi dengan placeholder romantis - tinggal edit |
+| **Instant Preview** | Setiap perubahan langsung terlihat di live preview tanpa reload - zero friction |
+| **Mobile-First Editor** | Drag-and-drop yang smooth di mobile dengan thumb zone optimization |
+
+**Smart Wizard Pattern:**
+```
+Step 1: Nama Pasangan + Tanggal Pernikahan (2 field saja)
+    ↓ [AI generates complete website draft]
+Step 2: Review & Customize (optional)
+    ↓
+Step 3: Publish & Share
+```
+
+### 8. Peak Moment Design (Enhanced)
+
+**Neuroscience Basis:** Peak-End Rule - users remember peak moments and endings, not average.
+
+| Peak Moment | Implementasi Sesarra |
+|-------------|---------------------|
+| **First Publish** | Full-screen celebration dengan website preview yang "mengudara" (scale up + fade) + confetti rose-gold + sound effect romantis |
+| **Countdown Zero** | Saat countdown mencapai 0, tampilkan special animation: "The Big Day is Here! Selamat menempuh hidup baru!" |
+| **First RSVP** | Saat tamu pertama konfirmasi kehadiran: "Yeay! Budi & Sarah sudah konfirmasi - wedding website kamu sudah mulai bekerja!" |
+| **Gallery Milestone** | Setiap kelipatan 10 foto: "10 kenangan indah terabadikan - tambah lagi untuk melengkapi cerita cintamu!" |
+
+### 9. Anticipation Architecture
+
+**Neuroscience Basis:** Anticipation dopamine sering lebih kuat dari reward itu sendiri - wedding is all about anticipation.
+
+| Implementasi Sesarra | Detail |
+|---------------------|--------|
+| **Countdown Timer** | Timer besar di dashboard dengan efek pulse rose - setiap hari yang berkurang terasa significant |
+| **Reveal Countdown** | Untuk fitur premium: "Fitur Surprise akan terbuka dalam 3 hari" |
+| **Guest Reveal** | Real-time counter: "7 tamu sudah melihat website kamu hari ini" |
+| **Anniversary Countdown** | Setelah hari H, mulai countdown ke anniversary pertama |
+
+**Visual Timer Design:**
+```
+┌─────────────────────────────────────────┐
+│         23 : 14 : 45 : 32              │
+│    HARI    JAM   MENIT  DETIK          │
+│                                         │
+│  Menuju Hari Pernikahan Andi & Putri   │
+└─────────────────────────────────────────┘
+```
+
+### 10. Memory Anchoring
+
+**Neuroscience Basis:** Otak menyimpan memori dengan emosi yang kuat - wedding adalah ultimate emotional memory event.
+
+| Implementasi Sesarra | Detail |
+|---------------------|--------|
+| **Memory Lane** | Timeline visual dengan highlight "First Kiss", "First Date", "Proposal" dengan icon dan animasi spesial |
+| **Voice Notes** | Fitur upload voice message (vows, personal messages) yang bisa didengar tamu - audio lebih emotional daripada teks |
+| **Photo Stories** | Gallery dengan caption yang men-trigger memory: "Ingat moment ini? Saat kamu bilang 'I do' di hadapan keluarga" |
+| **Anniversary Reminders** | Setiap tahun, kirim "Memory from Your Wedding Day" dengan highlight dari website |
+
+### 11. Altruistic Reward
+
+**Neuroscience Basis:** Acts of giving activate reward pathways - wedding inherently about sharing joy with others.
+
+| Implementasi Sesarra | Detail |
+|---------------------|--------|
+| **Thank You Notes** | Fitur kirim ucapan terima kasih otomatis ke tamu yang sudah RSVP - membuat user merasa helpful |
+| **Charity Registry** | Opsional charity donation di wedding website - "Alih-alih kado, kami mohon doa restu" |
+| **Family Connection** | Fitur khusus untuk menghubungkan keluarga jauh: "Share website ini ke keluarga di luar kota agar mereka bisa merasakan kebahagiaanmu" |
+| **Vendor Showcase** | Highlight vendor (photographer, caterer) di website - supporting others feels good |
+
+---
+
+### Ethical Design Note
+
+Untuk produk kategori **Wedding**, pendekatan behavioral design harus:
+
+✅ **DO:**
+- Gunakan loss aversion untuk membantu user menghindari missed opportunities (memories lost, domain taken)
+- Fokus pada anticipation yang positif menuju hari yang bahagia
+- Buat habit yang helpful (mengupdate konten, membagikan ke tamu)
+- Social proof yang genuine (real testimonials, real activity)
+
+❌ **DON'T:**
+- Exploit wedding stress dengan artificial urgency
+- Create FOMO yang excessive tentang template/domain availability
+- Push features yang tidak needed dengan aggressive tactics
+- Make user feel inadequate jika wedding website tidak "perfect"
+
+**North Star:** Wedding website harus menjadi alat yang mengurangi stress dan meningkatkan joy selama masa persiapan pernikahan - bukan menambah beban mental calon penganten.
+
+---
+
 *Based on: [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)*
 
 *Last Updated: 2026-03-03*

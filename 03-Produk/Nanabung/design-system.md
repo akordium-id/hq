@@ -412,7 +412,120 @@ Based on Peak-End Rule: Users remember the **peak moment** and the **ending**, n
 
 ---
 
+## 11. Behavioral Design Techniques
+
+### Ethical Design Note
+
+Islamic finance products should lean toward **Sticky** design karena membantu user build wealth secara halal, bukan gamified gambling mechanics. The goal is to build positive financial habits while maintaining syariah compliance.
+
+### 11 Techniques Applied to Nanabung
+
+| # | Technique | Status | Implementation for Nanabung |
+|---|-----------|--------|----------------------------|
+| **1** | **Anticipation Loop** | ✅ Applied | Investment confirmation loading dengan progress bar "Sedang memproses investasi...", countdown timer ke distribusi bagi hasil berikutnya ("7 hari lagi") untuk build anticipation |
+| **2** | **Invisible Personalization** | ✅ Applied | Project recommendations berdasarkan risk profile user, filter project yang sesuai dengan budget dan preferensi sektor (UMMK, pertanian, dll) |
+| **3** | **Streak + Loss Aversion** | ✅ Applied | Monthly investment streak counter ("6 bulan berturut-turut berinvestasi"), badge "Wealth Builder" untuk konsistensi, gentle reminder jangan putus streak |
+| **4** | **Emotional Character** | ❌ NOT APPLICABLE | Islamic finance product - maintain serious, trustworthy tone tanpa anthropomorphic characters yang bisa trivialize keputusan finansial |
+| **5** | **Variable Reward Notification** | ✅ Applied | Push notification "Bagi hasil Rp 1.250.000 telah diterima!" dengan varied amount dan timing (tak terduga tapi welcome), celebration animation saat bagi hasil masuk |
+| **6** | **Social Proof Counter** | ✅ Applied | Real-time counter: "1,247 investor", "52 project terdanai", "Rp 8.5M bagi hasil didistribusikan", "5 orang baru saja investasi di project ini" |
+| **7** | **Annual Wrapped** | ✅ APPLIED (Very Powerful) | Yearly investment summary dengan total portfolio growth, ARB comparison vs rata-rata, project terbaik tahun ini, badge achievement - ini sangat powerful untuk finance produk karena menunjukkan tangible progress |
+| **8** | **Personalization Surprise** | ✅ Applied | "ARV kamu tahun ini: 12.5% - lebih tinggi dari rata-rata investor!", "Kamu top 10% investor di project ini", personalized insight tentang performa portfolio |
+| **9** | **Flash Sale Countdown** | ✅ Applied | Countdown timer ke funding deadline project ("3 hari lagi penutupan"), progress bar funding yang mendekat 100% dengan urgency, "Hanya tersisa Rp 15M lagi" |
+| **10** | **Social Commerce** | ❌ NOT APPLICABLE | B2C finance product - tidak perlu referral/affiliate mechanic yang bisa mengganggu trust dan syariah compliance |
+| **11** | **Gentle Nudge** | ✅ Applied | Push notification "Ada project baru yang cocok dengan profilmu", "Sudah lama tidak investasi, yuk mulai lagi", "Diversifikasi portfoliomu dengan project sektor pertanian" |
+
+### Technique Examples
+
+#### Anticipation Loop - Investment Confirmation
+
+```
+┌─────────────────────────────────────┐
+│                                     │
+│    🔄 Memproses Investasi...        │
+│    ████████████░░░░ 75%            │
+│                                     │
+│  Estimasi: 2 detik lagi            │
+│                                     │
+└─────────────────────────────────────┘
+```
+
+#### Streak + Loss Aversion - Monthly Investment Streak
+
+```
+┌─────────────────────────────────────┐
+│  🔥 6 Bulan Streak!                 │
+│                                     │
+│  Kamu sudah berinvestasi 6 bulan    │
+│  berturut-turut. Jangan putus now!  │
+│                                     │
+│  [Investasi Bulan Ini]              │
+└─────────────────────────────────────┘
+```
+
+#### Annual Wrapped - Yearly Investment Summary
+
+```
+┌─────────────────────────────────────┐
+│  📊 2025 Investment Summary         │
+│                                     │
+│  Total Portfolio Growth: +Rp 25M    │
+│  ARB Kamu: 12.5% (top 15% 🎉)       │
+│                                     │
+│  Project Terbaik:                   │
+│  • Pembiayaan UMKM A: +18% ARB     │
+│  • Pertanian B: +15% ARB            │
+│                                     │
+│  Achievement Unlocked:              │
+│  🏆 Wealth Builder - 1 Year Streak  │
+│  🌱 Halal Investor - 100% Syariah   │
+│                                     │
+│  [Share Summary]                    │
+└─────────────────────────────────────┘
+```
+
+#### Gentle Nudge - Investment Opportunity
+
+```
+┌─────────────────────────────────────┐
+│  💡 Project Baru Tersedia!          │
+│                                     │
+│  "Pembiayaan Toko Kelontong Bu Aisyah"│
+│  - Sektor: Retail UMKM              │
+│  - Estimasi ARB: 13%                │
+│  - Tenor: 12 bulan                  │
+│  - Risiko: Menengah                 │
+│                                     │
+│  Sesuai dengan profilmu!            │
+│                                     │
+│  [Lihat Detail] [Lain Kali]         │
+└─────────────────────────────────────┘
+```
+
+### Implementation Priority
+
+| Priority | Technique | ROI | Effort |
+|----------|-----------|-----|--------|
+| **HIGH** | Annual Wrapped | Very High - powerful retention tool | Medium |
+| **HIGH** | Social Proof Counter | High - builds trust | Low |
+| **HIGH** | Variable Reward Notification | High - reinforces positive behavior | Low |
+| **MEDIUM** | Anticipation Loop | Medium - improves UX | Low |
+| **MEDIUM** | Streak + Loss Aversion | Medium - builds habit | Medium |
+| **MEDIUM** | Gentle Nudge | Medium - increases engagement | Low |
+| **LOW** | Invisible Personalization | Low - subtle benefit | Medium |
+| **LOW** | Personalization Surprise | Low - delight moment | Low |
+| **LOW** | Flash Sale Countdown | Low - urgency builder | Low |
+
+### Ethical Design Guidelines
+
+1. **Transparansi Total** - Semua mechanic terlihat jelas, tidak ada hidden algorithm
+2. **No Dark Patterns** - Tidak ada false urgency atau misleading countdown
+3. **Syariah Compliance** - Semua reinforcement harus halal dan tidak encourage gambling behavior
+4. **User Control** - User bisa opt-out dari notifications dan behavioral features
+5. **Respect Autonomy** - Gentle nudge, bukan aggressive push notifications
+
+---
+
 *Based on: [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)*
 
 *Last Updated: 2026-03-03*
-*Document Version: 1.0*
+*Document Version: 1.1*

@@ -375,6 +375,46 @@ Based on Peak-End Rule: Users remember the **peak moment** and the **ending**, n
 
 ---
 
+## 11. Behavioral Design Techniques
+
+### Product-Specific Implementation
+
+Namerics sebagai creative utility tool menggunakan behavioral design untuk enhance creative exploration dan user engagement, bukan untuk manipulative retention.
+
+| Technique | Status | Namerics Implementation |
+|-----------|--------|------------------------|
+| **1. Anticipation Loop** | ✅ Apply | **Name Generation Loading Animation** - "AI thinking" pulse animation saat generating name suggestions (800-1200ms) creates anticipation dan makes the result feel more valuable. Visual: Purple gradient pulse dengan subtle text variations ("Crafting names...", "Exploring options...", "Almost there..."). |
+| **2. Invisible Personalization** | ✅ Apply | **Name Style Suggestions** - Suggest name styles based on user's previous interactions (modern, classic, playful, tech-forward) tanpa explicit preferences. Implementation: Subtle "Recommended for you" badge pada style categories. |
+| **3. Streak + Loss Aversion** | ⚠️ Partial | **NOT PRIMARY FOCUS** - Sebagai utility tool, tidak perlu gamification streaks. Namun bisa menampilkan "Keep your creative momentum" untuk users yang generated names beberapa hari berturut-turut (gentle encouragement, bukan pressure). |
+| **4. Emotional Character** | ✅ Apply | **Creative Mascot** - Friendly "Name Muse" character yang appears saat user stuck dengan writer's block. Contextual messages: "Stuck? Try combining two words", "What feeling do you want your brand to evoke?". Helps reduce creative anxiety. |
+| **5. Variable Reward Notification** | ✅ Apply | **Premium Name Unlock + Availability Alert** - Randomly unlock 1 premium name suggestion saat free users generate names (variable reward). Additionally, push notification saat saved name becomes available atau ada domain match (high-value alert). |
+| **6. Social Proof Counter** | ✅ Apply | **Names Generated + Successful Registrations** - Display counter pada hero section: "47,832 names generated this month" dan "12,847 brands successfully named". Optional: "3 users just generated names" (real-time activity indicator). |
+| **7. Annual Wrapped** | ✅ Apply | **Your Naming Personality Report** - End-of-year summary: "Your naming style is 80% modern, 15% playful, 5% classic". Show favorite categories, most-used keywords, creative diversity score. Shareable "Naming Persona" card (e.g., "The Modern Minimalist"). |
+| **8. Personalization Surprise** | ✅ Apply | **"Your Naming Style" Insight** - Setelah generating 10+ names, show personalized insight: "You tend to prefer 2-syllable, modern-tech names. Want to explore more creative options?". Creates discovery moment tentang user's own creative patterns. |
+| **9. Flash Sale Countdown** | ⚠️ Selective | **Premium Search Trial Countdown** - Timed limited access: "48 hours left to try Premium Search" (untuk free users yang showed interest). Focus pada urgency untuk trying value-add feature, bukan discount pricing. |
+| **10. Social Commerce** | ❌ N/A | **NOT APPLICABLE** - Namerics adalah B2C/B2B utility tool, tidak memerlukan social selling features seperti "team gifting" atau "share untuk unlock". |
+| **11. Gentle Nudge** | ✅ Apply | **Saved Search Availability Notification** - Weekly check-in: "One of your saved names 'Lumina' is now available as .com domain!" atau "Still thinking about 'Nova'? It's trending this week". Non-intrusive reminder dengan clear opt-out. |
+
+### Ethical Design Note untuk Namerics
+
+**Creative utility products** should focus on **Engaging** design untuk inspire creativity dan reduce creative anxiety, bukan addictive retention.
+
+**✅ Appropriate:**
+- Delightful micro-interactions (loading animations, success states)
+- Helpful suggestions based on user's creative patterns
+- Social proof untuk build trust (jumlah brands named)
+- Gentle reminders untuk high-intent actions (domain availability)
+
+**❌ Avoid:**
+- Artificial scarcity pada basic name generation
+- Pushy notifications untuk generate more names
+- Gamification yang distracts dari core value (finding the perfect name)
+- Dark patterns yang make free users feel inadequate
+
+**Focus:** Help users find their perfect brand name dengan minimum friction dan maximum creative confidence.
+
+---
+
 *Based on: [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)*
 
 *Last Updated: 2026-03-03*

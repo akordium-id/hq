@@ -393,6 +393,323 @@ Based on Peak-End Rule: Users remember the **peak moment** and the **ending**, n
 
 ---
 
+## 11. Behavioral Design Techniques
+
+### Ethical Design Note
+
+Email marketing products should lean toward **Sticky** design because the goal is effective communication, not keeping users constantly in the app. Focus on value creation rather than engagement farming.
+
+### Technique Matrix
+
+| # | Technique | Applied | Implementation |
+|---|-----------|---------|----------------|
+| 1 | Anticipation Loop | ✅ | Campaign sending progress, analytics loading |
+| 2 | Invisible Personalization | ✅ | Send time optimization, subject line suggestions |
+| 3 | Streak + Loss Aversion | ✅ | Weekly campaign streak (keep your subscribers engaged) |
+| 4 | Emotional Character | ✅ | Koala mascot for celebration moments (light usage) |
+| 5 | Variable Reward Notification | ✅ | Campaign milestone, high open rate achieved |
+| 6 | Social Proof Counter | ✅ | Emails sent, open rates, subscribers managed |
+| 7 | Annual Wrapped | ✅ | Yearly campaign performance summary |
+| 8 | Personalization Surprise | ✅ | "Your best performing subject line was..." |
+| 9 | Flash Sale Countdown | ❌ | NOT applicable |
+| 10 | Social Commerce | ✅ | Agency plan referral |
+| 11 | Gentle Nudge | ✅ | Campaign schedule reminder, list cleanup suggestion |
+
+### 1. Anticipation Loop
+
+**Use Cases:**
+- Campaign sending progress (0% → 100% to 10,000 subscribers)
+- Analytics loading when opening performance dashboard
+- Email list import progress
+
+**Implementation:**
+```
+Sending campaign...
+███░░░░░░░░░ 30% (3,000 / 10,000 emails sent)
+
+Progress bar + ETA + real-time counter
+```
+
+**Do's:**
+- Show actual progress with percentage and absolute numbers
+- Provide realistic ETA based on current velocity
+- Allow cancellation without data loss
+
+**Don'ts:**
+- Fake progress that jumps artificially
+- Hide progress behind spinners without context
+- Block user from navigating away during send
+
+---
+
+### 2. Invisible Personalization
+
+**Use Cases:**
+- Send time optimization based on subscriber engagement patterns
+- Subject line suggestions using historical performance data
+- Smart segmentation based on user behavior
+
+**Implementation:**
+```
+"Best time to send: Tuesday 10:00 AM (based on your subscribers' engagement)"
+
+"Subject line suggestion: 'Your weekly summary' (historically 23% higher open rate)"
+```
+
+**Do's:**
+- Make suggestions feel helpful, not intrusive
+- Provide clear rationale for recommendations
+- Allow easy override with one click
+
+**Don'ts:**
+- Make changes without user awareness
+- Hide what data is used for personalization
+- Remove user agency in final decisions
+
+---
+
+### 3. Streak + Loss Aversion
+
+**Use Cases:**
+- Weekly campaign streak (keep your subscribers engaged)
+- Consecutive weeks with campaigns sent
+- Monthly newsletter consistency tracker
+
+**Implementation:**
+```
+🔥 8-week streak! Keep your subscribers engaged.
+
+Send this week's campaign to maintain your streak.
+```
+
+**Do's:**
+- Frame streak around value to subscribers (not app usage)
+- Show streak impact on engagement metrics
+- Make streak recovery clear after break
+
+**Don'ts:**
+- Use guilt or FOMO to drive sends
+- Hide streak reset conditions
+- Prioritize streak over send quality
+
+---
+
+### 4. Emotional Character
+
+**Use Cases:**
+- Koala mascot for celebration moments (light usage)
+- Success/celebration screens for campaign milestones
+- Error states with helpful, friendly guidance
+
+**Implementation:**
+```
+Campaign milestone reached! 🐨
+
+You've sent 100,000 emails through KoalaMail.
+Your subscribers love hearing from you.
+```
+
+**Do's:**
+- Use character sparingly for peak moments only
+- Maintain professional tone for B2B context
+- Ensure character adds value, not decoration
+
+**Don'ts:**
+- Overuse mascot in critical workflows
+- Let character distract from metrics/tasks
+- Use character for serious error messages
+
+---
+
+### 5. Variable Reward Notification
+
+**Use Cases:**
+- Campaign milestone achievements
+- High open rate notifications
+- Unusual engagement patterns detected
+
+**Implementation:**
+```
+🎉 New record!
+
+Your campaign just hit a 45% open rate.
+That's 12% higher than your average.
+```
+
+**Do's:**
+- Celebrate meaningful milestones, not arbitrary ones
+- Contextualize achievement against user's baseline
+- Link celebration to action (e.g., "Analyze what worked")
+
+**Don'ts:**
+- Celebrate trivial metrics (e.g., "You opened the app today!")
+- Use celebrations for dark pattern re-engagement
+- Hide reward conditions from users
+
+---
+
+### 6. Social Proof Counter
+
+**Use Cases:**
+- Total emails sent counter
+- Open rate benchmarks against similar senders
+- Subscriber growth metrics
+
+**Implementation:**
+```
+Your account stats:
+• 1,247,832 emails sent
+• 34.2% avg. open rate (top 20% of senders)
+• 12,456 active subscribers
+```
+
+**Do's:**
+- Show proof that builds trust in platform reliability
+- Use real data from user's account only
+- Contextualize metrics (percentages, not just raw numbers)
+
+**Don'ts:**
+- Fabricate or exaggerate social proof
+- Use other users' data without consent
+- Show competitive rankings that create anxiety
+
+---
+
+### 7. Annual Wrapped
+
+**Use Cases:**
+- Yearly campaign performance summary
+- Subscriber growth over 12 months
+- Top performing content/themes
+
+**Implementation:**
+```
+Your 2025 in KoalaMail
+
+You sent 156 campaigns to 24,000 subscribers
+Your best subject line: "Your weekly summary" (52% open rate)
+Your most engaged month: December (holiday campaigns)
+
+[View full report]
+```
+
+**Do's:**
+- Deliver wrapped in January, not random times
+- Focus on insights, not vanity metrics
+- Make it shareable for business reporting
+
+**Don'ts:**
+- Gate insights behind premium features
+- Use wrapped for upselling without clear value
+- Include irrelevant or confusing metrics
+
+---
+
+### 8. Personalization Surprise
+
+**Use Cases:**
+- "Your best performing subject line was..."
+- Audience insight discoveries
+- Unexpected optimization opportunities
+
+**Implementation:**
+```
+We noticed something interesting:
+
+Your emails sent on Tuesdays at 10 AM
+perform 23% better than your average.
+
+Try scheduling your next campaign for this time.
+```
+
+**Do's:**
+- Surprise with genuinely useful insights
+- Base surprises on actual user data
+- Make action clear and easy to take
+
+**Don'ts:**
+- Fabricate insights for engagement
+- Use surprise for feature promotion
+- Deliver insights when user can't act on them
+
+---
+
+### 9. Flash Sale Countdown
+
+**Status:** ❌ NOT APPLICABLE
+
+Email marketing platforms should not use urgency tactics for plan upgrades. This contradicts the goal of effective, thoughtful communication.
+
+---
+
+### 10. Social Commerce
+
+**Use Cases:**
+- Agency plan referral program
+- Team collaboration invitations
+- Client onboarding through referrals
+
+**Implementation:**
+```
+Invite your team:
+
+KoalaMail Agency Plan lets you manage
+multiple client accounts in one place.
+
+[Copy invite link]
+```
+
+**Do's:**
+- Frame referrals around team collaboration benefits
+- Provide clear value for both parties
+- Make referral process frictionless
+
+**Don'ts:**
+- Use aggressive referral prompts
+- Hide referral rewards conditions
+- Push referrals at inappropriate moments (e.g., during campaign send)
+
+---
+
+### 11. Gentle Nudge
+
+**Use Cases:**
+- Campaign schedule reminder
+- List cleanup suggestion (inactive subscribers)
+- Unfinished campaign draft reminder
+
+**Implementation:**
+```
+Draft reminder:
+
+You started "March Newsletter" 3 days ago.
+Your subscribers are waiting for your updates.
+
+[Continue drafting]  [Snooze]
+```
+
+**Do's:**
+- Provide clear opt-out (snooze/dismiss)
+- Time nudges based on user's actual patterns
+- Link directly to relevant action
+
+**Don'ts:**
+- Use guilt or urgency language
+- Send nudges at inappropriate times
+- Make dismissal difficult or hidden
+
+---
+
+### Implementation Priority
+
+| Priority | Techniques | Timeline |
+|----------|------------|----------|
+| P0 (Core) | 1, 5, 6, 11 | Launch - essential for user trust |
+| P1 (Enhancement) | 2, 3, 7, 8 | Post-launch - drives engagement |
+| P2 (Nice-to-have) | 4, 10 | When core features stable |
+
+---
+
 *Based on: [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)*
 
 *Last Updated: 2026-03-03*

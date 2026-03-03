@@ -407,6 +407,469 @@ Based on Peak-End Rule: Users remember the **peak moment** and the **ending**, n
 
 ---
 
+## 11. Behavioral Design Techniques
+
+### Ethical Design Philosophy
+
+**Islamic Trust Products** should lean toward **Sticky** design karena membangun kebiasaan memberi yang berkelanjutan, bukan urgency-based giving. Focus on spiritual reward and impact transparency.
+
+### Techniques Matrix for WaqfWise
+
+| # | Technique | Applicability | Implementation |
+|---|-----------|---------------|----------------|
+| 1 | **Anticipation Loop** | ✅ Apply | Donation processing, certificate generation loading |
+| 2 | **Invisible Personalization** | ✅ Apply | Program recommendations based on giving history |
+| 3 | **Streak + Loss Aversion** | ✅ Apply | Monthly giving streak (building charitable habit) |
+| 4 | **Emotional Character** | ❌ Not Applicable | NOT appropriate for Islamic trust product |
+| 5 | **Variable Reward Notification** | ✅ Apply | Donation impact update, program milestone |
+| 6 | **Social Proof Counter** | ✅ Apply | Total wakif, programs funded, beneficiaries helped |
+| 7 | **Annual Wrapped** | ✅ Apply | Yearly wakaf journey, impact created (very meaningful!) |
+| 8 | **Personalization Surprise** | ✅ Apply | "Your waqf has helped 50 students this year" |
+| 9 | **Flash Sale Countdown** | ❌ Not Applicable | Not appropriate for charity/wakaf |
+| 10 | **Social Commerce** | ✅ Apply | Family waqf program (collective giving) |
+| 11 | **Gentle Nudge** | ✅ Apply | Giving reminder (Ramadan, special occasions), impact update |
+
+---
+
+### 1. Anticipation Loop
+
+**Purpose:** Build excitement during waiting moments for donation processing and certificate generation.
+
+**Implementation:**
+
+```
+Donation Processing Flow:
+┌─────────────────────────────────────────────┐
+│                                             │
+│  Memproses donasi Anda...                   │
+│  ████████░░░░░░  80%                        │
+│                                             │
+│  "Mohon tunggu sebentar...                 │
+│   Sertifikat digital Anda sedang            │
+│   diproses dengan aman."                    │
+│                                             │
+└─────────────────────────────────────────────┘
+```
+
+**Micro-copy Examples:**
+- "Sedang memverifikasi pembayaran..."
+- "Menyiapkan sertifikat wakaf digital Anda..."
+- "Hampir selesai! Sertifikat akan segera tersedia."
+
+**Neuroscience Rationale:** Anticipation releases dopamine before the reward, making the waiting moment feel like progress rather than delay.
+
+---
+
+### 2. Invisible Personalization
+
+**Purpose:** Recommend relevant wakaf programs based on user's giving history without explicit preference setting.
+
+**Implementation:**
+
+```
+Dashboard Section: "Rekomendasi Untuk Anda"
+┌─────────────────────────────────────────────┐
+│                                             │
+│  Berdasarkan riwayat wakaf Anda,            │
+│  program ini mungkin relevan:               │
+│                                             │
+│  ┌─────────────────────────────────────┐   │
+│  │ 💚 Wakaf Pendidikan                 │   │
+│  │ Anda 3x wakaf untuk pendidikan      │   │
+│  │ [Lihat Program Pendidikan Lainnya]  │   │
+│  └─────────────────────────────────────┘   │
+│                                             │
+│  ┌─────────────────────────────────────┐   │
+│  │ 🕌 Pembangunan Masjid               │   │
+│  │ Program terdekat dari lokasi Anda   │   │
+│  │ [Lihat Detail]                      │   │
+│  └─────────────────────────────────────┘   │
+│                                             │
+└─────────────────────────────────────────────┘
+```
+
+**Data Points for Personalization:**
+- Category preference (pendidikan, kesehatan, masjid, dll)
+- Geographic proximity (program terdekat)
+- Giving frequency (bulanan, Ramadhan, Qurban)
+- Amount range (rekomendasi sesuai kapasitas)
+
+**Neuroscience Rationale:** Reduces cognitive load by filtering relevant options, making decision-making easier and faster.
+
+---
+
+### 3. Streak + Loss Aversion
+
+**Purpose:** Build sustainable giving habit through monthly wakaf streak.
+
+**Implementation:**
+
+```
+Streak Display:
+┌─────────────────────────────────────────────┐
+│                                             │
+│  🔥 6 Bulan Berkelanjutan                   │
+│  Wakaf bulanan Anda terjumat 6 bulan!       │
+│                                             │
+│  Pertahankan streak bulan ini               │
+│  untuk mencapai status "Wakif Setia"        │
+│                                             │
+│  [Wakaf Bulan Ini]  ──  5 Hari tersisa     │
+│                                             │
+└─────────────────────────────────────────────┘
+```
+
+**Streak Milestones:**
+- 3 bulan: "Wakif Pemula" - Badge digital
+- 6 bulan: "Wakif Konsisten" - Highlight di profil
+- 12 bulan: "Wakif Setia" - Sertifikat khusus + annual report
+- 24+ bulan: "Wakif Premier" - VIP access ke program eksklusif
+
+**Loss Aversion Messaging:**
+- "Jangan putuskan streak Anda! 5 hari lagi untuk wakaf bulan ini."
+- "Anda telah 6 bulan konsisten. Pertahankan keberkahan ini."
+
+**Neuroscience Rationale:** Loss aversion (fear of losing streak) is 2x more powerful than gain anticipation. Streaks create emotional investment in continuing.
+
+---
+
+### 4. Emotional Character
+
+**Status:** ❌ **NOT APPLICABLE**
+
+**Rationale:** As an Islamic trust product handling religious endowments (wakaf), adding fictional characters or mascots would be inappropriate and could undermine the solemn, trustworthy nature of the service. Wakaf is a serious spiritual and financial commitment in Islam.
+
+**Alternative:** Use authentic imagery such as:
+- Real beneficiaries (students, patients, communities)
+- Actual completed projects (mosques, schools, hospitals)
+- Documented impact with photos and stories
+
+---
+
+### 5. Variable Reward Notification
+
+**Purpose:** Create surprise and delight through unpredictable but meaningful impact updates.
+
+**Implementation:**
+
+```
+Notification Types:
+┌─────────────────────────────────────────────┐
+│ 1. IMPACT UPDATE (Random timing)            │
+│ "Subhanallah! Wakaf Anda telah membantu     │
+│  5 siswa baru bulan ini."                   │
+│  [Lihat Lengkap]                            │
+└─────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────┐
+│ 2. MILESTONE ACHIEVED (Unexpected)          │
+│ "Program wakaf yang Anda dukung             │
+│  mencapai 75% target!"                      │
+│  [Lihat Progres]                            │
+└─────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────┐
+│ 3. BENEFICIARY STORY (Surprise)             │
+│ "Kisah Ahmad, siswa penerima manfaat        │
+│  wakaf pendidikan Anda..."                  │
+│  [Baca Cerita]                              │
+└─────────────────────────────────────────────┘
+```
+
+**Variable Elements:**
+- Timing (not predictable, but not annoying)
+- Content type (impact, milestone, story)
+- Program focus (different programs each time)
+
+**Neuroscience Rationale:** Variable rewards activate dopamine system more strongly than predictable rewards, creating sustained engagement.
+
+---
+
+### 6. Social Proof Counter
+
+**Purpose:** Show collective impact to build trust and encourage participation.
+
+**Implementation:**
+
+```
+Social Proof Display:
+┌─────────────────────────────────────────────┐
+│                                             │
+│  👥 1,247 Wakif                             │
+│  💚 152 Program Wakaf                       │
+│  🙏 45,892 Penerima Manfaat                 │
+│  💰 Rp 2.5 Miliar Terkumpul                 │
+│                                             │
+│  "Bergabung dengan 1,247 wakif lainnya      │
+│   yang telah memberikan keberkahan."        │
+│                                             │
+└─────────────────────────────────────────────┘
+
+Live Activity:
+┌─────────────────────────────────────────────┐
+│  Hamba Allah baru saja wakaf Rp 500.000     │
+│  untuk program pendidikan • 2 menit lalu    │
+│                                             │
+│  Hamba Allah baru saja wakaf Rp 1.000.000   │
+│  untuk pembangunan masjid • 5 menit lalu    │
+└─────────────────────────────────────────────┘
+```
+
+**Social Proof Locations:**
+- Landing page hero section
+- Program detail pages
+- Donation confirmation page
+- Email receipts
+
+**Neuroscience Rationale:** Social proof leverages herd instinct - if many others are doing it, it must be safe and worthwhile.
+
+---
+
+### 7. Annual Wrapped
+
+**Purpose:** Create deeply meaningful annual summary of wakaf journey and impact.
+
+**Implementation:**
+
+```
+Annual Wrapped Experience:
+┌─────────────────────────────────────────────┐
+│                                             │
+│  🌟 Wakaf Journey Anda 2026                 │
+│                                             │
+│  Rp 4.500.000 total wakaf tahun ini         │
+│  12x kebaikan                               │
+│  5 program wakaf                            │
+│  89 penerima manfaat                        │
+│                                             │
+│  [Lihat Cerita Dampak Anda 2026]            │
+│                                             │
+└─────────────────────────────────────────────┘
+
+Share Preview:
+┌─────────────────────────────────────────────┐
+│  "Tahun ini, wakaf saya telah:              │
+│                                             │
+│   ✨ Membantu 89 orang                       │
+│   📚 Mendukung 3 sekolah                     │
+│   🕌 Membangun 1 masjid                      │
+│                                             │
+   Semoga Allah menerima amal kita.           │
+   #WakafJourney #WaqfWise"                   │
+│                                             │
+│  [Bagikan ke WhatsApp]                      │
+│  [Bagikan ke Instagram]                     │
+└─────────────────────────────────────────────┘
+```
+
+**Annual Wrapped Elements:**
+1. Total amount wakaf
+2. Number of donations
+3. Programs supported
+4. Direct beneficiaries helped
+5. Impact stories (with photos if possible)
+6. Geographic reach (if applicable)
+7. Badge earned for the year
+8. Shareable summary card
+
+**Timing:** Send in early Shafar (after Zulhijjah/Ramadhan cycle) or during Ramadan for maximum spiritual resonance.
+
+**Neuroscience Rationale:** Annual retrospective creates meaningful narrative and emotional connection, turning data into life story and spiritual achievement.
+
+---
+
+### 8. Personalization Surprise
+
+**Purpose:** Deliver unexpected, personalized moments that deepen emotional connection.
+
+**Implementation:**
+
+```
+Personalized Impact Message:
+┌─────────────────────────────────────────────┐
+│                                             │
+│  ✨ HIGHLIGHT UNTUK ANDA                    │
+│                                             │
+│  "Masya Allah! Tahun ini, wakaf Anda        │
+│   telah membantu 50 siswa SD               │
+│   di Desa Sukamaju melanjutkan             │
+│   pendidikan mereka."                       │
+│                                             │
+│  [Lihat Profil Siswa yang Dibantu]          │
+│                                             │
+└─────────────────────────────────────────────┘
+
+Other Surprise Moments:
+┌─────────────────────────────────────────────┐
+│  "Anda adalah top 5% wakif di program       │
+│   pendidikan bulan ini. Terima kasih         │
+│   atas dedikasi luar biasa Anda!"           │
+└─────────────────────────────────────────────┘
+```
+
+**Personalization Data Points:**
+- Specific beneficiary count
+- Geographic impact
+- Category focus (education, health, etc)
+- Ranking percentile (if appropriate)
+- Comparison to previous year
+
+**Delivery Channels:**
+- In-app notification
+- Email digest
+- Dashboard highlight
+- Push notification (if opted in)
+
+**Neuroscience Rationale:** Unexpected personalized attention activates brain's reward system more than expected notifications, creating positive surprise and emotional attachment.
+
+---
+
+### 9. Flash Sale Countdown
+
+**Status:** ❌ **NOT APPLICABLE**
+
+**Rationale:** Flash sale tactics (urgency, scarcity, countdown timers) are inappropriate for wakaf and Islamic charity. Wakaf should be given sincerely (ikhlas) for Allah's pleasure, not due to FOMO or artificial time pressure.
+
+**Ethical Alternative:** Use **Seasonal Reminders** instead:
+- Ramadan reminder (month of giving)
+- Last 10 days of Ramadan (laylatul qadr)
+- Zulhijjah/Qurban period
+- Islamic new year reflection
+
+These are naturally occurring Islamic occasions, not manufactured urgency.
+
+---
+
+### 10. Social Commerce
+
+**Purpose:** Enable collective giving through family/community waqf programs.
+
+**Implementation:**
+
+```
+Family Waqf Program:
+┌─────────────────────────────────────────────┐
+│                                             │
+│  👨‍👩‍👧‍👦 Wakaf Keluarga                      │
+│                                             │
+│  Ajak keluarga untuk wakaf bersama.         │
+│  Satu keluarga, satu keberkahan.            │
+│                                             │
+│  Target: Rp 5.000.000                       │
+│  ████████░░░░░░  65% terkumpul              │
+│                                             │
+│  [Tambahkan Anggota Keluarga]               │
+│  [Share Link]                               │
+│                                             │
+└─────────────────────────────────────────────┘
+
+Contributors List:
+┌─────────────────────────────────────────────┐
+│  Anggota Keluarga Ahmad:                    │
+│                                             │
+│  ✅ Ahmad - Rp 1.000.000 (Organizer)        │
+│  ✅ Siti - Rp 500.000                       │
+│  ✅ Fatimah - Rp 750.000                    │
+│  ⏳ Umar - Menunggu konfirmasi              │
+│  📧 Aisyah - Belum bergabung [Undang]       │
+│                                             │
+└─────────────────────────────────────────────┘
+```
+
+**Social Commerce Features:**
+1. Family/group waqf pools
+2. Collaborative target setting
+3. Contribution tracking
+4. Invitation system (WhatsApp, email)
+5. Progress visualization
+6. Group certificate upon completion
+
+**Neuroscience Rationale:** Social commitment and visibility increases follow-through. Group participation leverages social accountability and shared purpose.
+
+---
+
+### 11. Gentle Nudge
+
+**Purpose:** Provide timely, contextually appropriate reminders for giving without being pushy.
+
+**Implementation:**
+
+```
+Contextual Nudges:
+
+┌─────────────────────────────────────────────┐
+│ RAMADHAN NUDGE (Spiritual context)          │
+│                                             │
+│  "Ramadhan adalah bulan terbaik untuk       │
+│   berwakaf. Keberkahan dilipatgandakan."    │
+│                                             │
+│  [Wakaf Sekarang]  [Tahun Ini Saja]        │
+└─────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────┐
+│ IMPACT UPDATE NUDGE (Transparency)          │
+│                                             │
+│  "Program yang Anda dukung bulan lalu       │
+│   telah mencapai milestone baru.            │
+│   Lihat dampak yang telah tercipta."        │
+│                                             │
+│  [Lihat Laporan Dampak]                     │
+└─────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────┐
+│ SPECIAL OCCASION NUDGE (Personal)           │
+│                                             │
+│  "Hari jadi pernikahan Anda tahun lalu,     │
+│   Anda telah memberikan wakaf untuk         │
+│   pendidikan 10 anak yatim."                │
+│                                             │
+│  "Tahun ini, lanjutkan keberkahan..."       │
+│                                             │
+│  [Wakaf Anniversary]                        │
+└─────────────────────────────────────────────┘
+```
+
+**Nudge Triggers:**
+- Ramadan (spiritual urgency)
+- Last 10 days of Ramadan
+- Zulhijjah/Qurban period
+- Personal anniversaries (wedding, etc)
+- Program milestones reached
+- Monthly recurring reminder (if opted in)
+- End of year (tax deduction reminder)
+
+**Nudge Principles:**
+- Always respectful, never pushy
+- Easy to dismiss/snooze
+- Frequency limited (max 1-2 per month)
+- Always opt-outable
+- Contextually relevant
+
+**Neuroscience Rationale:** Well-timed nudges leverage memory triggers and contextual cues to prompt action without creating annoyance or resistance.
+
+---
+
+### Implementation Priority
+
+**Phase 1 (Essential):**
+1. Social Proof Counter (build initial trust)
+2. Gentle Nudge (Ramadan + impact updates)
+3. Anticipation Loop (donation processing)
+
+**Phase 2 (Growth):**
+4. Variable Reward Notification (engagement)
+5. Personalization Surprise (emotional connection)
+6. Streak + Loss Aversion (retention)
+
+**Phase 3 (Maturity):**
+7. Invisible Personalization (smart recommendations)
+8. Social Commerce (viral growth)
+9. Annual Wrapped (deep loyalty)
+
+---
+
+---
+
 *Based on: [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)*
 
 *Last Updated: 2026-03-03*

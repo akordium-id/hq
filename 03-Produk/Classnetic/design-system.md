@@ -363,7 +363,241 @@ Based on Peak-End Rule: Users remember the **peak moment** and the **ending**, n
 
 ---
 
+## 11. Behavioral Design Techniques
+
+> **Ethical Design Note:** Education B2B products should lean toward **Sticky** design karena membantu educator be more effective, bukan membuat mereka glued to screen.
+
+### Technique Application Matrix
+
+| # | Technique | Applicable | Implementation for Classnetic |
+|---|-----------|------------|-------------------------------|
+| 1 | Anticipation Loop | ✅ Yes | Grade calculation, report generation loading |
+| 2 | Invisible Personalization | ✅ Yes | Student performance insights |
+| 3 | Streak + Loss Aversion | ✅ Yes (Light) | Daily attendance logging streak |
+| 4 | Emotional Character | ❌ No | Professional tool - not applicable |
+| 5 | Variable Reward Notification | ✅ Yes | New student enrolled, payment received |
+| 6 | Social Proof Counter | ✅ Yes | Total students, classes conducted, successful graduates |
+| 7 | Annual Wrapped | ✅ Yes | Yearly class performance summary |
+| 8 | Personalization Surprise | ✅ Yes | "Student X improved by Y% this semester" |
+| 9 | Flash Sale Countdown | ❌ No | Not applicable for education B2B |
+| 10 | Social Commerce | ❌ No | Not applicable for education B2B |
+| 11 | Gentle Nudge | ✅ Yes | Attendance reminder, schedule notifications |
+
+### 1. Anticipation Loop
+
+**Use Case:** Grade calculation and report generation
+
+| Component | Implementation |
+|-----------|----------------|
+| **Trigger** | User clicks "Generate Report" or "Calculate Grades" |
+| **Anticipation Build** | Progress bar dengan phases: "Mengambil data...", "Menghitung nilai...", "Generating report..." |
+| **Duration** | 2-3 seconds (artificial jika cepat, untuk create anticipation) |
+| **Peak Moment** | Report ready dengan subtle celebration animation |
+| **Micro-copy** | "Laporan sedang disiapkan...", "Hampir selesai...", "Laporan siap! 📊" |
+
+**Implementation Example:**
+```typescript
+// Phase-based progress instead of linear
+const reportPhases = [
+  { text: "Mengambil data siswa...", duration: 800 },
+  { text: "Menghitung rata-rata nilai...", duration: 1000 },
+  { text: "Generating laporan...", duration: 700 },
+  { text: "Laporan siap! 📊", duration: 0 }
+];
+```
+
+### 2. Invisible Personalization
+
+**Use Case:** Student performance insights without explicit input
+
+| Component | Implementation |
+|-----------|----------------|
+| **Data Points** | Grade trends, attendance patterns, subject strengths |
+| **AI Insights** | "Fisika adalah mata pelajaran terkuat Ahmad (rata-rata 90)" |
+| **Smart Recommendations** | "Pertimbangkan extra session untuk Matematika" |
+| **Privacy Note** | Semua insights based on existing data, no additional input needed |
+
+**Implementation Example:**
+```typescript
+// Auto-generated insight card
+interface StudentInsight {
+  strongestSubject: string;
+  improvementArea: string;
+  trend: "improving" | "stable" | "declining";
+  suggestion: string;
+}
+```
+
+### 3. Streak + Loss Aversion (Light Version)
+
+**Use Case:** Daily attendance logging streak
+
+| Component | Implementation |
+|-----------|----------------|
+| **Streak Type** | Light - professional, not gamified berlebihan |
+| **Trigger** | Guru input attendance setiap hari |
+| **Visual** | Subtle badge: "5 hari berturut-turut" |
+| **Loss Aversion** | "Jangan putus streak! Input attendance hari ini" |
+| **Cap** | Max 7 days untuk avoid obsession |
+
+**Ethical Consideration:** Keep it professional. Bukan "challenge" tapi "consistency reminder" untuk better classroom management.
+
+### 4. Emotional Character
+
+**Status:** ❌ **NOT APPLICABLE**
+
+**Rationale:** Classnetic adalah professional B2B tool untuk educators. Emotional character (mascot, personality) akan mengurangi credibility dan professional appearance. Tetap gunakan clean, professional UI tanpa character anthropomorphic.
+
+### 5. Variable Reward Notification
+
+**Use Case:** New student enrolled, payment received
+
+| Component | Implementation |
+|-----------|----------------|
+| **Trigger Types** | New enrollment, payment received, parent inquiry |
+| **Variable Element** | Different notification styles/timing per type |
+| **Dopamine Hit** | Subtle celebration untuk positive events |
+| **Timing** | Random 1-3 hours delay untuk natural feel (bukan instant batch) |
+
+**Implementation Example:**
+```typescript
+// Variable notification timing
+const notifyEnrollment = () => {
+  const delay = Math.random() * 7200 + 3600; // 1-3 hours
+  setTimeout(() => {
+    showNotification("🎓 Siswa baru terdaftar: Ahmad Rizky");
+  }, delay * 1000);
+};
+```
+
+### 6. Social Proof Counter
+
+**Use Case:** Trust-building through statistics
+
+| Counter Type | Implementation |
+|--------------|----------------|
+| **Total Students** | "1,247 siswa terdaftar" di dashboard |
+| **Classes Conducted** | "5,342 kelas telah diadakan" |
+| **Successful Graduates** | "892 lulusan dengan predikat memuaskan" |
+| **Active Schools** | "23 sekolah aktif menggunakan Classnetic" |
+| **Placement** | Subtle di footer atau dashboard widget, bukan hard sell |
+
+**Implementation Example:**
+```typescript
+// Dashboard widget
+interface SocialProofWidget {
+  totalStudents: number;
+  classesConducted: number;
+  successfulGraduates: number;
+  activeSchools: number;
+}
+```
+
+### 7. Annual Wrapped
+
+**Use Case:** Yearly class performance summary
+
+| Component | Implementation |
+|-----------|----------------|
+| **Timing** | Available di akhir tahun ajaran (Juni/Desember) |
+| **Content** | Total kelas diajar, rata-rata grade, improvement moments, perfect attendance count |
+| **Visual Style** | Professional dengan subtle celebration, bukan playful berlebihan |
+| **Shareability** | Optional: "Bagikan ke kepala sekolah" |
+| **Tone** | Professional achievement summary |
+
+**Implementation Example:**
+```typescript
+interface AnnualWrapped {
+  year: number;
+  totalClasses: number;
+  averageGrade: number;
+  improvementCount: number;
+  perfectAttendanceCount: number;
+  highlightMoment: string;
+}
+```
+
+### 8. Personalization Surprise
+
+**Use Case:** "Student X improved by Y% this semester"
+
+| Component | Implementation |
+|-----------|----------------|
+| **Trigger** | Significant improvement detected (>10% grade increase) |
+| **Surprise Element** | Unexpected insight notification |
+| **Visual** | Trend chart dengan arrow up hijau |
+| **Micro-copy** | "Ahmad improved by 15% in Matematika this semester! 📈" |
+| **Timing** | Random 2-4 hours setelah improvement terdeteksi |
+
+**Implementation Example:**
+```typescript
+// Surprise improvement notification
+const checkImprovements = () => {
+  const improvements = analyzeStudentProgress();
+  improvements.forEach(imp => {
+    if (improvement > 10) {
+      setTimeout(() => {
+        showNotification(`${student.name} improved by ${improvement}% in ${subject}! 📈`);
+      }, Math.random() * 7200 + 7200); // 2-4 hours delay
+    }
+  });
+};
+```
+
+### 9. Flash Sale Countdown
+
+**Status:** ❌ **NOT APPLICABLE**
+
+**Rationale:** Education B2B tidak memerlukan urgency tactics seperti flash sale. Classnetic adalah operational tool, bukan e-commerce. Use gentle reminders untuk deadlines administratif (misal: "Batas input nilai: 3 hari lagi") dengan tone professional, bukan urgency.
+
+### 10. Social Commerce
+
+**Status:** ❌ **NOT APPLICABLE**
+
+**Rationale:** Classnetic bukan social commerce platform. Education B2B tidak memerlukan social proof berbasis pembelian atau FOMO tactics. Focus pada professional trust melalui case studies, testimonials, dan proven results.
+
+### 11. Gentle Nudge
+
+**Use Case:** Attendance reminder, schedule notifications
+
+| Component | Implementation |
+|-----------|----------------|
+| **Trigger** | Missed attendance input, upcoming class schedule |
+| **Timing** | 2 hours sebelum kelas, atau end of day jika belum input |
+| **Tone** | Helpful, tidak judgmental |
+| **Frequency** | Max 2 reminders per day |
+| **Channel** | In-app notification + optional email |
+
+**Implementation Example:**
+```typescript
+// Gentle nudge untuk attendance
+interface AttendanceNudge {
+  type: "upcoming_class" | "missed_input";
+  message: string;
+  timing: "2_hours_before" | "end_of_day";
+  tone: "helpful";
+}
+
+// Example messages
+const nudgeMessages = {
+  upcoming_class: "Kelas X-IPA-1 akan dimulai dalam 2 jam. Siapkan materi belajar! 📚",
+  missed_input: "Jangan lupa input kehadiran untuk kelas hari ini 😊"
+};
+```
+
+### Ethical Design Principles
+
+For Classnetic as an Education B2B product:
+
+1. **Sticky over Addictive:** Design for efficiency, not engagement at all costs
+2. **Professional First:** No gamification yang mengurangi credibility
+3. **Respect Educator Time:** Helpful reminders, bukan notification spam
+4. **Focus on Outcomes:** Behavioral techniques harus support student success, bukan vanity metrics
+5. **Transparent AI:** Jelaskan kapan insights di-generate oleh algorithm
+
+---
+
 *Based on: [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)*
 
 *Last Updated: 2026-03-03*
-*Document Version: 1.0*
+*Document Version: 1.1*

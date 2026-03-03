@@ -384,7 +384,297 @@ Based on Peak-End Rule: Users remember the **peak moment** and the **ending**, n
 
 ---
 
+## 11. Behavioral Design Techniques
+
+Based on behavioral science and neuromarketing principles, these techniques increase engagement and retention. For finance products like Anggarin, we lean toward **Sticky** design (helping users achieve financial goals) rather than addictive patterns.
+
+### Technique Applicability for Anggarin
+
+| Technique | Applied | Priority | Notes |
+|-----------|---------|----------|-------|
+| 1. Anticipation Loop | ✅ Yes | High | Budget calculation loading, savings goal progress |
+| 2. Invisible Personalization | ✅ Yes | High | Budget category suggestions based on spending |
+| 3. Streak + Loss Aversion | ✅ Yes | Medium | Daily expense logging streak |
+| 4. Emotional Character | ✅ Yes | Low | Savings mascot that celebrates milestones |
+| 5. Variable Reward Notification | ✅ Yes | Medium | Budget milestone achieved, savings tip |
+| 6. Social Proof Counter | ✅ Yes | Low | Users who achieved savings goals |
+| 7. Annual Wrapped | ✅ Yes | High | Yearly financial summary (very powerful for finance apps) |
+| 8. Personalization Surprise | ✅ Yes | Medium | Weekly Insight: "You spent less on X this week" |
+| 9. Flash Sale Countdown | ❌ No | N/A | Not applicable - finance product |
+| 10. Social Commerce | ❌ No | N/A | Not applicable - finance product |
+| 11. Gentle Nudge | ✅ Yes | High | Daily expense logging reminder, savings motivation |
+
+---
+
+### 1. Anticipation Loop
+
+**Principle:** Dopamine release happens during anticipation, not just reward. Build anticipation to make the reward moment more powerful.
+
+**Anggarin Implementation:**
+
+| Use Case | Trigger | Anticipation Mechanism | Reward |
+|----------|---------|------------------------|--------|
+| **Budget Calculation** | User navigates to dashboard | Skeleton loading with "Menghitung anggaran bulan ini..." | Animated reveal of total saldo with green glow |
+| **Savings Goal Progress** | User adds money to savings goal | Progress bar fills gradually (not instantly) | Celebration animation when 100% reached |
+| **Monthly Report Generation** | User clicks "Lihat Laporan Bulanan" | "Menganalisis 47 transaksi..." counter incrementing | Beautiful charts with insights |
+
+**Implementation Notes:**
+- Loading duration: 400-800ms (long enough to build anticipation, short enough to not annoy)
+- Use skeleton screens with green tint for brand consistency
+- Add micro-copy during loading: "Menghitung...", "Menganalisis..."
+
+---
+
+### 2. Invisible Personalization
+
+**Principle:** Personalization that happens without explicit input creates "This app knows me" feeling - powerful for retention.
+
+**Anggarin Implementation:**
+
+| Feature | Data Used | Personalization Output |
+|---------|-----------|------------------------|
+| **Smart Category Suggestions** | Historical spending patterns | Suggest "Makan Siang" when user logs expense at 12pm weekday |
+| **Budget Recommendations** | Income + spending history | Suggest budget allocations based on actual behavior |
+| **Insight Highlights** | Transaction patterns | "Kamu biasanya spend lebih di weekend" |
+| **Recurring Transaction Detection** | Transaction frequency | Auto-tag "Gaji", "Bayar Kos", "Langganan" |
+
+**Implementation Notes:**
+- No explicit setup required - works from first transaction
+- Always allow user override (never force suggestions)
+- Show "Suggestion" label to be transparent
+
+---
+
+### 3. Streak + Loss Aversion
+
+**Principle:** People are more motivated by NOT losing something than gaining something. Streaks create loss aversion.
+
+**Anggarin Implementation:**
+
+| Feature | Streak Type | Loss Aversion Mechanic |
+|---------|-------------|------------------------|
+| **Daily Expense Logging** | Consecutive days logging expenses | "🔥 7 hari streak! Jangan sampe putus" |
+| **Budget Under Limit** | Weeks staying within budget | "4 minggu berturut-tetap di bawah budget!" |
+| **Savings Consistency** | Months adding to savings | "6 bulan nabung rutin - jangan break!" |
+
+**Visual Indicators:**
+- Fire icon for streak (7+ days)
+- Shield icon for budget consistency
+- Calendar view with filled circles for streak days
+- Warning notification: "Streak kamu mau putus besok!"
+
+**Implementation Notes:**
+- Forgiveness mechanic: Allow 1 skip day without breaking streak (use bonus streak token)
+- Start celebrating from day 3 (early wins)
+- Show streak prominently on dashboard
+
+---
+
+### 4. Emotional Character
+
+**Principle:** Characters create emotional connection. When they celebrate, users feel celebrated.
+
+**Anggarin Implementation:**
+
+**Character: "Tabu" - Smart Savings Owl**
+
+| Moment | Tabu Behavior |
+|--------|---------------|
+| **App Onboarding** | Tabu waves: "Hai! Aku Tabu, bantu atur keuanganmu ya" |
+| **First Transaction** | Tabu cheers: "Nice! Catat pertama kamu ✨" |
+| **Savings Goal Reached** | Tabu does celebration dance: "WOHOOO! Target tercapai! 🎉" |
+| **Budget Over** | Tabu looks concerned: "Oops, budget warning nih ⚠️" |
+| **Weekly Summary** | Tabu with magnifying glass: "Minggu ini hemat banget!" |
+| **Streak Milestone** | Tabu wears party hat: "30 hari STREAK! Juara banget!" |
+
+**Character Guidelines:**
+- Always friendly, never judgmental
+- Celebrate wins enthusiastically
+- Gently encourage without guilt
+- Appear in key moments only (don't overuse)
+
+**Implementation Notes:**
+- Optional toggle: Users can disable character if preferred
+- Character style: Minimalist owl in brand colors (green + navy)
+
+---
+
+### 5. Variable Reward Notification
+
+**Principle:** Unpredictable rewards trigger more dopamine than predictable ones (Skinner box effect).
+
+**Anggarin Implementation:**
+
+| Reward Type | Trigger | Content | Frequency |
+|-------------|---------|---------|-----------|
+| **Budget Milestone** | Reach 50%, 75%, 100% of category budget | Confetti + "Hebat! Budget Makanan aman ✅" | Monthly (per category) |
+| **Savings Tip** | Random time after app opens | "Tips: Pake envelope method untuk kontrol" | Weekly |
+| **Insight Surprise** | Random day | "Fakta unik: Kamu hemat 30% dari bulan lalu!" | Weekly |
+| **Milestone Badge** | Achieve certain number of transactions | "50 transaksi tercatat! 🏅" | One-time per badge |
+| **Streak Celebration** | Every 7 days streak | "7 hari straight! Konsisten banget!" | Weekly (if active streak) |
+
+**Implementation Notes:**
+- Randomize delivery time (not same day/time)
+- Variety in reward types (not just one pattern)
+- Keep rewards valuable (not fluff)
+- Allow user to control notification frequency
+
+---
+
+### 6. Social Proof Counter
+
+**Principle:** "Others are doing it" creates FOMO and validates behavior.
+
+**Anggarin Implementation:**
+
+| Placement | Social Proof Copy | Purpose |
+|-----------|-------------------|---------|
+| **Onboarding** | "Bergabung dengan 2.547 orang yang atur keuangan" | Validation |
+| **Savings Goal** | "1.234 orang telah capai target tabungan bulan ini" | Motivation |
+| **Budget Feature** | "892 user aktif pakai budget mingguan ini" | Feature adoption |
+| **Achievement** | "Kamu salah satu dari 156 user dengan 30-day streak!" | Exclusivity |
+
+**Implementation Notes:**
+- Use real numbers (never fake)
+- Update numbers daily or weekly
+- Position near relevant actions
+- For smaller user base, use percentage instead: "80% user aktif capai target bulan ini"
+
+---
+
+### 7. Annual Wrapped
+
+**Principle:** Yearly summaries create powerful emotional connection and viral sharing. Extremely effective for finance apps.
+
+**Anggarin Implementation:**
+
+**"Anggarin Wrapped" - Yearly Financial Summary**
+
+| Section | Content | Visual |
+|---------|---------|--------|
+| **Hero** | "2025: Tahun Keuanganmu" with total money managed | Large animated number, confetti |
+| **Top Category** | "Pengeluaran terbesar: Makanan (Rp 12.5jt)" | Bar chart, emoji icon |
+| **Best Month** | "Bulan paling hemat: Agustus" | Calendar highlight |
+| **Savings Win** | "Total tabungan tahun ini: Rp 25jt" | Growth chart, celebration |
+| **Streak Record** | "Streak terpanjang: 47 hari" | Trophy icon |
+| **Unique Insight** | "Kamu 35% lebih hemat dari user lain" | Comparison badge |
+| **Prediction** | "2026 prediction: If trend continues..." | Forward-looking chart |
+| **Shareable Card** | Instagram Stories format | Branded template |
+
+**Delivery Timing:**
+- Release on December 31 or January 1
+- Push notification: "Anggarin Wrapped 2025 ready! 🎉"
+- In-app splash screen for first open of new year
+
+**Shareability:**
+- Beautiful, Instagram-ready design
+- Include user handle/name
+- Branded Anggarin footer
+- Share button with "Share to IG Story" CTA
+
+**Implementation Notes:**
+- Data accuracy is critical (double-check all calculations)
+- Make it feel like a gift, not a report
+- Include both achievements and gentle improvement areas
+- Generate unique URL for each user
+
+---
+
+### 8. Personalization Surprise
+
+**Principle:** "The app noticed something about me" creates connection. Different from regular personalization because it's unexpected.
+
+**Anggarin Implementation:**
+
+| Surprise | Trigger | Example Copy |
+|----------|---------|--------------|
+| **Weekly Insight** | Open app after week of spending | "Fakta: Kamu spend 40% less di Makanan minggu ini 💪" |
+| **Pattern Detection** | After 3 similar transactions | "Kamu selalu beli kopi Senin pagi. Mau auto-catat?" |
+| **Progress Comparison** | Month over month | "Lebih hemat 15% dari bulan lalu. Nice work!" |
+| **Habit Recognition** | Consistent behavior | "3 bulan nabung rutin - ini jadi kebiasaan bagus!" |
+| **Anomaly Detection** | Unusual spending | "Pengeluaran weekend ini 2x biasanya. All good?" |
+
+**Implementation Notes:**
+- Timing: Show when user opens app, not push notification
+- Make insights actually useful (not fluff)
+- Always actionable (include "Lihat detail" or "Atur budget")
+- Keep variety high (rotate through different insight types)
+- Store shown insights to avoid repetition
+
+---
+
+### 9. Flash Sale Countdown
+
+**Status:** ❌ **NOT APPLICABLE** for Anggarin
+
+**Reason:** Finance products should not use urgency tactics like flash sales. Financial decisions require calm, rational thinking - not pressure.
+
+---
+
+### 10. Social Commerce
+
+**Status:** ❌ **NOT APPLICABLE** for Anggarin
+
+**Reason:** Not a commerce product. Social features should focus on community support and accountability, not selling.
+
+**Alternative:** Consider optional "Savings Buddy" feature where users can optionally share progress with a friend for accountability (with clear privacy controls).
+
+---
+
+### 11. Gentle Nudge
+
+**Principle:** Timely, helpful reminders that feel like assistance, not harassment.
+
+**Anggarin Implementation:**
+
+| Nudge Type | Timing | Copy | Frequency Cap |
+|------------|--------|------|---------------|
+| **Daily Logging** | Evening (7-9pm) if no expenses logged | "Catat pengeluaran hari ini yuk! 2 menit aja 💚" | Once per day |
+| **Savings Motivation** | Weekly, if savings progress stalled | "Target liburan kemana? Nabung dikit aja tiap minggu" | Once per week |
+| **Budget Warning** | When 80% of category budget used | "Budget Makanan tinggal 20%. Masih 10 hari lagi" | Once per category per month |
+| **Monthly Review** | Start of month | "Cek anggaran bulan ini yuk. Atur budget sekarang" | Once per month |
+| **Streak Warning** | Before streak breaks | "Catat sekarang biar streak 7 hari kamu aman! 🔥" | Once per day max |
+| **Bill Reminder** | 2 days before recurring bill | "Bayar Netflix 2 hari lagi. Siapkan Rp 180k" | Per bill |
+
+**Channel Strategy:**
+
+| Channel | Use For | Preference Level |
+|---------|---------|------------------|
+| **Push Notification** | Daily logging, streak warnings, bill reminders | Allow user control frequency |
+| **In-App Banner** | Budget warnings, monthly review | Non-intrusive, dismissible |
+| **Email** | Weekly/monthly summary, annual wrapped | Low frequency, high value only |
+| **SMS** | Only if user explicitly opts in | Critical alerts only |
+
+**Implementation Notes:**
+- Always include "Manage Notifications" deep link
+- Respect user's quiet hours (no late night/early morning)
+- Learn from user behavior: if they always dismiss, stop sending
+- Use AI timing: Send when user typically opens app
+- Allow full "mute all" option for privacy-focused users
+
+---
+
+### Ethical Design Note: Sticky vs. Addictive
+
+**For Finance Products, aim for STICKY design:**
+
+| Sticky (Good) | Addictive (Avoid) |
+|---------------|-------------------|
+| Helps user achieve financial goals | Makes user compulsively check app |
+- User returns because it's useful | - User returns out of anxiety |
+- Reinforces healthy financial habits | - Creates FOMO if not checking |
+- Saves user time | - Wastes user time |
+- User feels in control | - User feels controlled |
+
+**Anggarin Design Philosophy:**
+- Build for **long-term financial health**, not short-term engagement metrics
+- Celebrate real wins (savings goals reached), not fake wins (opened app 5 times today)
+- Notifications should be **helpful**, not attention-seeking
+- User should feel **empowered**, not addicted
+
+---
+
 *Based on: [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)*
 
 *Last Updated: 2026-03-03*
-*Document Version: 1.0*
+*Document Version: 1.1*

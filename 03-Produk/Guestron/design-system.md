@@ -362,6 +362,179 @@ Based on Peak-End Rule: Users remember the **peak moment** and the **ending**, n
 
 ---
 
+## 11. Behavioral Design Techniques
+
+### 11.1 Applicable Techniques for Guestron
+
+| # | Technique | Implementation | Impact |
+|---|-----------|----------------|--------|
+| **1** | **Anticipation Loop** | RSVP loading dengan animated progress bar; Countdown reveal yang bertambah setiap hari; Loading states menampilkan fakta pernikahan menarik saat menunggu | Builds excitement toward wedding day; Makes waiting time feel shorter |
+| **2** | **Invisible Personalization** | Guest seating suggestions berdasarkan hubungan (keluarga dekat di meja 1-5, teman kantor di meja 10-15); Auto-grouping berdasarkan kode pos; Smart suggestions untuk +1 berdasarkan data RSVP | Reduces cognitive load; Makes complex seating decisions feel effortless |
+| **3** | **Streak + Loss Aversion** | **NOT APPLICABLE** - Wedding adalah one-time event, bukan habit-forming product | N/A |
+| **4** | **Emotional Character** | Wedding theme mascot (dove/ring/love bird) yang muncul saat celebration moments (RSVP confirmed, undangan terkirim, milestone tercapai); Character dengan animasi subtle untuk human touch | Creates emotional connection; Makes stressful moments feel lighter |
+| **5** | **Variable Reward Notification** | "New RSVP from Budi Santono!"; "Citra confirmed dengan 2 tamu"; Notification dengan varied copy dan timing untuk setiap RSVP baru | Creates dopamine hits from guest confirmations; Encourages checking dashboard |
+| **6** | **Social Proof Counter** | "45 dari 120 tamu sudah konfirmasi"; "78 undangan sudah terkirim"; "Budi, Citra, dan 3 lainnya RSVP hari ini"; Countdown dengan social context "45 hari lagi, 45 tamu sudah pasti hadir!" | Leverages FOMO and social validation; Motivates completion |
+| **7** | **Annual Wrapped** | Post-wedding recap: "Total tamu: 180; RSVP rate: 85%; Most enthusiastic guest: Budi (RSVP 3 bulan early); Favorite menu: Ayam Bakar (65%)"; Shareable summary card untuk kenangan | Creates closure and beautiful memory; Shareable marketing moment |
+| **8** | **Personalization Surprise** | "70% tamu pilih vegetarian menu"; "Kebanyakan tamu dari Jakarta Timur"; Smart insight yang muncul setelah collecting data selama 24-48 jam | Delights users with unexpected insights; Helps decision-making |
+| **9** | **Flash Sale Countdown** | **NOT APPLICABLE** - Tidak ada urgency pricing di wedding products | N/A |
+| **10** | **Social Commerce** | **NOT APPLICABLE** - Guestron tidak memiliki commerce/affiliate features | N/A |
+| **11** | **Gentle Nudge** | "3 tamu belum RSVP, deadline 2 hari lagi"; "Selesaikan seating chart, 80% tamu sudah konfirmasi"; Friendly reminder dengan tone membantu, bukan mengancam | Reduces abandonment; Feels like supportive assistant |
+
+### 11.2 Technique-Specific Examples
+
+#### Example 1: Anticipation Loop - Countdown Reveal
+
+```text
+Initial state (30 days before):
+┌─────────────────────────────────┐
+│   ANDI & PUTRI                  │
+│   ♡ 30 HARI LAGI ♡              │
+│   [ 29  28  27 ... ]            │
+│                                 │
+│   Loading wedding facts...      │
+│   "Tahukah kamu? Rata-rata      │
+│    persiapan pernikahan         │
+│    memakan waktu 6-12 bulan"    │
+└─────────────────────────────────┘
+
+Daily update (next day):
+┌─────────────────────────────────┐
+│   ANDI & PUTRI                  │
+│   ♡ 29 HARI LAGI ♡              │
+│   ✨ HARI INI: 2 RSVP BARU ✨    │
+│                                 │
+│   Progress: 45/120 confirmed    │
+│   [████░░░░░░░░░░░░] 37.5%      │
+└─────────────────────────────────┘
+```
+
+#### Example 2: Variable Reward Notification
+
+```text
+Notification types (varied copy + timing):
+
+🎉 "Budi Santono baru saja RSVP!
+   Dia akan hadir berdua dengan istrinya."
+
+💌 "Surprise! Citra dari team marketing
+   konfirmasi kehadiran + 3 orang teman."
+
+✨ "RSVP milestone tercapai!
+   50 tamu sudah pasti hadir,
+   tinggal 70 lagi menuju target."
+
+💝 "Sari dari masa kecil kamu
+   baru RSVP dan tulis pesan:
+   'Akhirnya Andi nikah! Senang sekali!'"
+```
+
+#### Example 3: Social Proof Counter
+
+```text
+Dashboard social proof:
+
+┌─────────────────────────────────────┐
+│  ANDI & PUTRI                       │
+│  45 HARI LAGI                       │
+│                                     │
+│  ┌─────────────────────────────┐   │
+│  │ 45 dari 120 tamu confirmed   │   │
+│  │ [████░░░░░░░░░░░░] 37.5%     │   │
+│  └─────────────────────────────┘   │
+│                                     │
+│  Kebanyakan tamu (60%) dari        │
+│  Jakarta Timur & Selatan            │
+│                                     │
+│  Recent RSVPs:                      │
+│  • Budi Santono - 2 orang          │
+│  • Citra Dewi - 1 orang            │
+│  • Ahmad Rizky - 4 orang           │
+└─────────────────────────────────────┘
+```
+
+#### Example 4: Annual Wrapped (Post-Wedding)
+
+```text
+Wedding Day Recap:
+
+┌─────────────────────────────────────┐
+│     💒 WEDDING WRAPPED 💒           │
+│     Andi & Putri - 15 Maret 2026   │
+│                                     │
+│  📊 STATISTIK PERNIKAHANMU         │
+│  • Total tamu diundang: 200        │
+│  • Tamu hadir: 180 (90%)           │
+│  • RSVP rate: 85%                  │
+│  • Waktu persiapan: 6 bulan        │
+│                                     │
+│  🏆 PRESTASI UNIK                  │
+│  • RSVP tercepat: Budi (3 bulan)   │
+│  • Tamu terjauh: Sari (Surabaya)   │
+│  • Plus-one terbanyak: Rizky (5)   │
+│                                     │
+│  🍽️ FAVORIT TAMU                   │
+│  • Menu favorit: Ayam Bakar (65%)  │
+│  • Spot foto favorit: Garden area  │
+│  • Waktu favorit: Sesi malam       │
+│                                     │
+│  [📤 Share Kenangan Ini]           │
+└─────────────────────────────────────┘
+```
+
+#### Example 5: Gentle Nudge
+
+```text
+Nudge styles (supportive, not threatening):
+
+┌─────────────────────────────────────┐
+│  💡 Friendly Reminder              │
+│                                     │
+│  3 tamu belum RSVP,                 │
+│  deadline tinggal 2 hari lagi       │
+│                                     │
+│  [Kirim Reminder] [Lihat Detail]    │
+└─────────────────────────────────────┘
+
+┌─────────────────────────────────────┐
+│  ✨ Almost There!                   │
+│                                     │
+│  80% tamu sudah konfirmasi,         │
+│  waktunya buat seating chart        │
+│                                     │
+│  [Buat Seating] [Lihat Progress]    │
+└─────────────────────────────────────┘
+```
+
+### 11.3 Ethical Design Note
+
+**Design Philosophy for Guestron:**
+
+> **Sticky > Addictive**
+
+Wedding products harus fokus pada **Sticky design** (engaging selama needed season) bukan **Addictive design** (creating long-term addiction).
+
+**Key Principles:**
+- Wedding adalah momen sekali seumur hidup - jangan create FOMO yang berlebihan
+- Focus pada **reducing stress**, bukan creating addiction
+- Help users move forward ke下一阶段 (married life), bukan trap them in wedding prep
+- Peak moments saat celebration (RSVP milestone, undangan terkirim), bukan daily engagement
+- Healthy disengagement setelah wedding day - graceful closure dengan "Wedding Wrapped"
+
+**Anti-Patterns to Avoid:**
+- ❌ Dark patterns yang membuat user cemas kehilangan momen
+- ❌ Fake urgency ("RSVP sekarang atau kehilangan kursi!")
+- ❌ Infinite scroll di daftar tamu (create obsession, bukan clarity)
+- ❌ Push notifications excessive di tengah malam
+- ❌ Gamification yang membuat wedding prep terasa seperti kerjaan
+
+**Healthy Patterns to Embrace:**
+- ✅ Gentle nudges yang feel like helpful assistant
+- ✅ Celebration moments yang create joy, bukan anxiety
+- ✅ Social proof yang motivate, bukan pressure
+- ✅ Beautiful closure (wedding wrapped) untuk graceful exit
+
+---
+
 *Based on: [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)*
 
 *Last Updated: 2026-03-03*

@@ -488,7 +488,166 @@ interface StreakDisplay {
 
 ---
 
-## 11. Implementation Checklist
+## 11. Behavioral Design Techniques
+
+Neurova applies 11 behavioral design techniques to drive engagement and habit formation for cognitive training. Each technique is tailored to support genuine cognitive improvement rather than addiction.
+
+### 1. Anticipation Loop
+
+**Implementation:**
+- Assessment result loading dengan suspenseful animation (counting up dari 0 ke final score)
+- Performance score reveal setelah training completion dengan dramatic pause
+- "Analyzing your brain performance..." message sebelum menampilkan hasil
+
+**Product Context:**
+- Creates excitement untuk assessment results dan daily scores
+- Builds anticipation yang meningkatkan dopamine release saat result revealed
+- Supports user motivation untuk melihat progress
+
+### 2. Invisible Personalization
+
+**Implementation:**
+- Training recommendations otomatis berdasarkan cognitive profile (tanpa explicit settings)
+- Difficulty adjustment yang terjadi gradually tanpa user awareness
+- Exercise selection yang adaptif based on performance patterns
+
+**Product Context:**
+- Reduces decision fatigue - user tidak perlu memilih exercise manual
+- Creates feeling bahwa app "mengerti" cognitive strengths dan weaknesses
+- Personalization feels magical, bukan overwhelming
+
+### 3. Streak + Loss Aversion
+
+**Implementation:**
+- Daily training streak dengan prominent display (fire icon dengan animasi)
+- "Don't lose your 7-day streak!" notification ketika approaching deadline
+- Rest day feature yang dapat di-enable tanpa breaking streak
+- Streak freeze power-up untuk emergency skip days
+
+**Product Context:**
+- VERY applicable untuk habit formation - cognitive training requires consistency
+- Loss aversion: user lebih motivated untuk maintain streak daripada memulai baru
+- **Ethical balance**: Rest day options prevent unhealthy obsession
+
+### 4. Emotional Character
+
+**Implementation:**
+- Brain mascot ("Neuro") yang celebrates cognitive milestones
+- Character expression yang berubah based on performance (excited untuk PR, concerned untuk missed day)
+- Unlockable character evolution sebagai progress indicator
+
+**Product Context:**
+- Creates emotional connection dengan platform
+- Makes abstract cognitive progress menjadi tangible dan relatable
+- Character serves sebagai positive reinforcement source
+
+### 5. Variable Reward Notification
+
+**Implementation:**
+- "New high score!" notification dengan random reward tier (bronze, silver, gold)
+- "Cognitive improvement detected!" dengan unexpected insight reveal
+- Randomized bonus XP atau unlockable content setelah training completion
+
+**Product Context:**
+- Leverages dopamine system untuk reinforce training behavior
+- Variable rewards lebih effective daripada fixed rewards
+- Creates element of surprise dan delight
+
+### 6. Social Proof Counter
+
+**Implementation:**
+- "12,457 training minutes completed today" counter
+- "2,341 users improving their focus right now" live activity
+- "Average users gain 23% working memory in 30 days" statistics
+
+**Product Context:**
+- Validates bahwa cognitive training works untuk others
+- Creates FOMO (Fear Of Missing Out) untuk join active community
+- Social proof increases trust dan motivation
+
+### 7. Annual Wrapped
+
+**Implementation:**
+- Yearly cognitive journey summary dengan animated timeline
+- Top achievements: "Most improved area: Processing Speed (+45%)"
+- Total training hours, best streak, favorite exercises
+- Shareable summary card dengan beautiful visualization
+
+**Product Context:**
+- Creates annual moment of reflection dan celebration
+- Highly shareable content untuk social media (viral mechanic)
+- Reinforces long-term value proposition
+
+### 8. Personalization Surprise
+
+**Implementation:**
+- "Your memory improved 25% this month!" notification dengan unexpected insight
+- "You're in the top 10% for focus duration this week" surprise recognition
+- Personalized cognitive health tips berdasarkan unique performance patterns
+
+**Product Context:**
+- Delight factor dari discovering unexpected progress
+- Makes personalization tangible dan visible
+- Reinforces bahwa training mempengaruhi real cognitive abilities
+
+### 9. Flash Sale Countdown
+
+**Implementation:**
+- Premium program trial countdown dengan limited-time offer
+- "48 hours left untuk unlock Advanced Memory Training at 50% off"
+- Countdown timer pada upgrade screen dengan urgency messaging
+
+**Product Context:**
+- Creates urgency untuk conversion ke premium
+- Limited-time offer leverages scarcity principle
+- Countdown visual increases perceived value
+
+### 10. Social Commerce
+
+**Implementation:**
+- "7-Day Brain Training Challenge" dengan friend invitation system
+- Leaderboard untuk group challenges (team-based cognitive competitions)
+- "Train with a friend" feature dengan shared progress tracking
+
+**Product Context:**
+- Social accountability increases adherence
+- Friendly competition drives engagement
+- Viral mechanic melalui friend invitations
+
+### 11. Gentle Nudge
+
+**Implementation:**
+- Daily training reminder pada optimal time (dipersonalisasi berdasarkan user pattern)
+- "Your brain is primed for training - morning session available" nudge
+- Rest day reminder: "You've trained 5 days straight - consider a rest day for optimal recovery"
+- Balanced messaging that encourages BOTH consistency AND rest
+
+**Product Context:**
+- Supports habit formation melalui timely reminders
+- **Critical balance**: Encourages training tanpa creating unhealthy obsession
+- Science-backed approach: Rest days are essential untuk cognitive recovery
+- Prevents burnout dan promotes sustainable training habits
+
+### Ethical Design Note
+
+Cognitive health products should lean toward **Sticky** design (engagement through genuine value) rather than **Addictive** design (engagement through psychological exploitation).
+
+**Key Principles:**
+- Goal adalah genuine cognitive improvement, bukan time-on-app metrics
+- Streaks should have rest day options untuk prevent unhealthy obsession
+- Notifications should be helpful, bukan manipulative
+- User control over notification frequency dan timing
+- Transparent tentang how behavioral techniques are used
+
+**Red Flags to Avoid:**
+- Infinite scroll atau auto-play yang tanpa explicit stop mechanism
+- Dark patterns yang make difficult to skip training days
+- Exaggerated notifications yang create anxiety
+- Predatory scheduling (optimal notification times untuk maximize addiction)
+
+---
+
+## 12. Implementation Checklist
 
 - [ ] Colors match Teal/White/Deep Blue palette
 - [ ] Single focal point per screen (Cognitive Score atau Focus Time)
@@ -500,10 +659,11 @@ interface StreakDisplay {
 - [ ] Accessibility requirements met (WCAG AA, focus states, reduced motion)
 - [ ] Special cognitive considerations addressed (decision fatigue prevention)
 - [ ] Shareability mechanics implemented (viral loop untuk brain scores)
+- [ ] Behavioral design techniques applied ethically (Sticky bukan Addictive)
 
 ---
 
-## 12. Integration dengan Ekosistem Akordium
+## 13. Integration dengan Ekosistem Akordium
 
 ### Cross-Product Identity Badge
 
@@ -524,7 +684,7 @@ Neurova menggunakan:
 
 ---
 
-## 13. Design Asset Specifications
+## 14. Design Asset Specifications
 
 ### Iconography
 

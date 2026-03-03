@@ -392,6 +392,526 @@ Based on Peak-End Rule: Users remember the **peak moment** and the **ending**, n
 
 ---
 
+## 11. Behavioral Design Techniques
+
+Ethical Design Note: Learning products should lean toward **Sticky** design karena goal adalah skill acquisition, bukan endless scrolling. Streaks work well untuk habit formation.
+
+### 11.1 Anticipation Loop
+
+**Neuroscience Principle:** Dopamine release during anticipation drives action.
+
+| Use Case | Implementation |
+|----------|----------------|
+| **Course Progress Loading** | Animated progress bar saat module loading dengan "Almost there..." |
+| **Certificate Generation** | "Generating your certificate..." animation dengan name dan completion date |
+| **Quiz Result** | Loading spinner sebelum reveal score dengan "Calculating your mastery..." |
+
+**Technical Implementation:**
+```css
+/* Anticipation Animation */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; box-shadow: 0 0 20px rgba(37, 99, 235, 0.3); }
+  50% { opacity: 0.8; box-shadow: 0 0 40px rgba(37, 99, 235, 0.6); }
+}
+
+.anticipation-state {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+```
+
+### 11.2 Invisible Personalization
+
+**Neuroscience Principle:** Predictive preferences reduce cognitive load without explicit choice.
+
+| Data Source | Personalization Output |
+|-------------|------------------------|
+| **Skill Assessment** | Course recommendations aligned dengan current level |
+| **Learning Pace** | Module difficulty adjustment (adaptive learning) |
+| **Time of Day** | Practice problems matching energy level (morning = complex formulas) |
+| **Past Struggles** | Extra practice on weak areas (e.g., "Let's reinforce VLOOKUP") |
+
+**Example Implementation:**
+```typescript
+// Invisible course recommendation
+interface UserProfile {
+  completedModules: string[];
+  averageScore: number;
+  timeSpentPerDay: number;
+  struggleTopics: string[];
+}
+
+function getNextModule(user: UserProfile): Module {
+  // Algorithm prioritizes:
+  // 1. Prerequisite completion
+  // 2. Optimal challenge level (70-80% success rate)
+  // 3. Struggle topic reinforcement
+  // 4. Learning pace alignment
+}
+```
+
+### 11.3 Streak + Loss Aversion
+
+**Neuroscience Principle:** Loss aversion (losing streak > gaining streak) creates habit loops.
+
+| Streak Type | Implementation |
+|-------------|----------------|
+| **Daily Practice** | Fire icon 🔥 bertambah setiap hari practice, reset jika skip |
+| **Weekly Goal** | Progress bar 5/7 days, visual warning jika hampir reset |
+| **Module Streak** | Consecutive days completing modules dalam course sama |
+
+**Visual Design:**
+```
+┌─────────────────────────────────────┐
+│  🔥 12-Day Streak                   │
+│  ════════════════════════════       │
+│  [Mon] [Tue] [Wed] [Thu] [Fri]      │
+│   ✓      ✓      ✓      ✓     ?      │
+│                                     │
+│  Don't lose your streak! Practice   │
+│  today to keep it alive.            │
+└─────────────────────────────────────┘
+```
+
+**Loss Aversion Messaging:**
+- "You've practiced for 12 days straight. Don't break your streak now!"
+- "One more day to reach your weekly goal. Keep it going!"
+- "Your VLOOKUP streak will reset in 6 hours. Practice now?"
+
+### 11.4 Emotional Character
+
+**Neuroscience Principle:** Emotional connection enhances memory formation dan engagement.
+
+| Character | Personality | Celebration Triggers |
+|-----------|-------------|---------------------|
+| **Excella** (Excel Owl) | Wise mentor, encouraging, formula enthusiast | Formula mastered, quiz passed, project completed |
+
+**Character Personality:**
+- **Name:** Excella the Excel Owl
+- **Tagline:** "Together, we'll master Excel, one formula at a time."
+- **Voice:** Warm, supportive, slightly nerdy about formulas
+- **Celebration Style:** Confetti + motivational quote about growth mindset
+
+**Celebration Animations:**
+```
+Trigger: User masters VLOOKUP formula
+
+┌─────────────────────────────────────┐
+│                                     │
+│        🦉 Excella                   │
+│   "HOO-HOO! VLOOKUP MASTER!"        │
+│                                     │
+│   ✨ ✨ ✨                          │
+│   "You just unlocked a superpower!"  │
+│   "2047 learners use VLOOKUP daily" │
+│                                     │
+│   [Continue Learning]  [Share]      │
+└─────────────────────────────────────┘
+```
+
+**Micro-copy Examples:**
+- When completing a hard formula: "That was tricky! You crushed it. 💪"
+- When struggling: "It's okay to pause. Come back when you're ready. We'll be here."
+- When breaking streak: "Life happens. Your streak reset, but your knowledge didn't. Pick up where you left off!"
+
+### 11.5 Variable Reward Notification
+
+**Neuroscience Principle:** Unpredictable rewards trigger dopamine, driving repeated behavior.
+
+| Reward Type | Trigger | Visual Feedback |
+|-------------|---------|-----------------|
+| **Badge Unlocked** | Master formula, complete module | Badge animation + "New Achievement!" |
+| **Course Completed** | Finish all modules | Certificate preview + confetti |
+| **Quiz Passed** | Score > 80% | Score reveal + "Great job!" |
+| **Perfect Score** | 100% pada quiz | Special badge + "Excel Master!" |
+| **Speed Bonus** | Complete fast dengan accuracy | "Lightning Learner" badge |
+
+**Reward Probability Table:**
+| Achievement | Uncommon | Rare | Epic | Legendary |
+|-------------|----------|------|------|-----------|
+| Formula Mastered | 70% | 25% | 4% | 1% |
+| Quiz Passed | 80% | 15% | 4% | 1% |
+| Module Completed | 75% | 20% | 4% | 1% |
+
+**Technical Implementation:**
+```typescript
+// Variable reward system
+function getRewardTier(achievement: string): RewardTier {
+  const rand = Math.random();
+
+  if (rand < 0.70) return 'uncommon';
+  if (rand < 0.95) return 'rare';
+  if (rand < 0.99) return 'epic';
+  return 'legendary';
+}
+
+// Legendary rewards include special animations
+const legendaryRewards = {
+  animation: 'full-screen celebration',
+  shareable: true,
+  badge: 'special edition',
+  message: 'You are in the top 1% of Excel learners!'
+};
+```
+
+### 11.6 Social Proof Counter
+
+**Neuroscience Principle:** Social validation reduces uncertainty dan builds trust.
+
+| Counter Type | Placement | Message Format |
+|--------------|-----------|----------------|
+| **Community Members** | Landing page hero | "2,847 learners mastering Excel" |
+| **Formulas Mastered** | Course page | "VLOOKUP mastered by 1,234 people" |
+| **Projects Completed** | Project section | "342 projects submitted this month" |
+| **Active Now** | Course detail | "12 people learning this module now" |
+
+**Visual Implementation:**
+```
+┌─────────────────────────────────────┐
+│  INTERMEDIATE EXCEL COURSE          │
+│  ═════════════════════════════════  │
+│                                     │
+│  👥 1,234 enrolled                  │
+│  📊 892 completed                   │
+│  ⏱️ 12 learning now                 │
+│                                     │
+│  "This course changed my career!"   │
+│  — Sarah T., Data Analyst           │
+└─────────────────────────────────────┘
+```
+
+**Dynamic Updates:**
+```typescript
+// Real-time counter updates
+function updateSocialProof() {
+  const activeLearners = getActiveLearnersCount();
+  const element = document.getElementById('active-now');
+
+  // Update every 30 seconds with randomization
+  // (adds 10-20% fluctuation for perceived activity)
+  setInterval(() => {
+    const variance = Math.floor(activeLearners * 0.2);
+    const displayCount = activeLearners + Math.floor(Math.random() * variance);
+    element.textContent = `${displayCount} learning now`;
+  }, 30000);
+}
+```
+
+### 11.7 Annual Wrapped
+
+**Neuroscience Principle:** Reflection reinforces identity dan achievement pride.
+
+| Section | Data Displayed |
+|---------|----------------|
+| **Learning Streaks** | Longest streak, total days practiced |
+| **Top Formulas** | Most-used formulas (VLOOKUP, INDEX-MATCH, Pivot Tables) |
+| **Skills Acquired** | New skills learned dengan proficiency level |
+| **Projects Completed** | Number of projects dengan difficulty breakdown |
+| **Time Invested** | Total hours spent learning (growth-focused framing) |
+| **Community Impact** | Help provided to other learners (forum posts, answers) |
+
+**Visual Design:**
+```
+┌─────────────────────────────────────────────┐
+│                                             │
+│   YOUR 2025 EXCEL JOURNEY                   │
+│   ═══════════════════════════               │
+│                                             │
+│   🔥 45-Day Longest Streak                  │
+│   📚 23 Formulas Mastered                   │
+│   ⏱️ 67 Hours of Learning                   │
+│   🎯 12 Projects Completed                  │
+│                                             │
+│   Top Formulas:                             │
+│   1. VLOOKUP (156 uses)                     │
+│   2. INDEX-MATCH (89 uses)                  │
+│   3. Pivot Tables (67 uses)                 │
+│                                             │
+│   "You're in the top 15% of learners!       │
+│    Ready for 2026?"                         │
+│                                             │
+│   [Share]  [View Certificate]               │
+└─────────────────────────────────────────────┘
+```
+
+**Technical Implementation:**
+```typescript
+// Generate annual wrapped data
+interface AnnualWrapped {
+  year: number;
+  longestStreak: number;
+  formulasMastered: FormulaStat[];
+  totalHours: number;
+  projectsCompleted: number;
+  communityContributions: number;
+  percentileRank: number;
+}
+
+function generateAnnualWrapped(userId: string): AnnualWrapped {
+  // Aggregate all learning activity for the year
+  // Calculate percentile rank against all users
+  // Prepare shareable summary card
+}
+```
+
+### 11.8 Personalization Surprise
+
+**Neuroscience Principle:** Unexpected positive recognition creates emotional connection.
+
+| Surprise Type | Trigger Data | Message Example |
+|---------------|--------------|-----------------|
+| **Skill Improvement** | Compare quiz scores over time | "Your VLOOKUP speed improved 40% this month!" |
+| **Consistency Celebration** | 30-day practice milestone | "You've practiced every day for 30 days. Impressive dedication!" |
+| **Breakthrough Moment** | Finally master difficult formula | "INDEX-MATCH clicked! You've mastered the hardest formula." |
+| **Learning Spurt** | Unusual activity spike | "5 modules in 2 days? You're on fire!" |
+| **Unique Pattern** | e.g., night owl learner | "You're a night learner! 80% of your practice happens after 10 PM." |
+
+**Delivery Method:**
+```typescript
+// Surprise detection algorithm
+function detectSurprise(user: User): Surprise | null {
+  const insights = analyzeUserBehavior(user);
+
+  // Skill improvement
+  if (insights.quizScoreImprovement > 30) {
+    return {
+      type: 'improvement',
+      message: `Your ${insights.improvedSkill} improved ${insights.percent}%!`,
+      visual: 'growth-chart-animation'
+    };
+  }
+
+  // Consistency milestone
+  if (insights.currentStreak === 30) {
+    return {
+      type: 'milestone',
+      message: '30 days of consistent practice. You\'re building a habit!',
+      visual: 'fire-badge-animation'
+    };
+  }
+
+  return null; // No surprise this time
+}
+```
+
+### 11.9 Flash Sale Countdown
+
+**Neuroscience Principle:** Scarcity + time urgency triggers immediate action.
+
+| Sale Type | Duration | Discount | Target Audience |
+|-----------|----------|----------|-----------------|
+| **Launch Discount** | 48 hours | 40% off | New users, course launch |
+| **Bundle Flash** | 24 hours | 50% off | Course bundles |
+| **Streak Bonus** | 6 hours | 30% off | Active learners (5+ day streak) |
+| **Referral Bonus** | 72 hours | 35% off | Referred users |
+
+**Visual Design:**
+```
+┌─────────────────────────────────────────────┐
+│   ⏰ FLASH SALE ENDS IN:                    │
+│   ════════════════════════════════════════  │
+│                                             │
+│   [02:45:32]                                │
+│                                             │
+│   40% OFF ALL COURSES                        │
+│                                             │ │
+│   [Claim Discount Now]                      │
+│                                             │
+│   "Sale ends at midnight. Don't miss out!"   │
+└─────────────────────────────────────────────┘
+```
+
+**Technical Implementation:**
+```typescript
+// Countdown timer with urgency messaging
+function startCountdown(endTime: Date) {
+  const timer = setInterval(() => {
+    const now = new Date();
+    const remaining = endTime.getTime() - now.getTime();
+
+    if (remaining <= 0) {
+      clearInterval(timer);
+      showSaleEnded();
+      return;
+    }
+
+    const hours = Math.floor(remaining / (1000 * 60 * 60));
+    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+    updateTimerDisplay(hours, minutes, seconds);
+
+    // Urgency messaging
+    if (hours < 1) {
+      showUrgencyMessage('Less than 1 hour left!');
+    } else if (hours < 6) {
+      showUrgencyMessage('Sale ending soon!');
+    }
+  }, 1000);
+}
+```
+
+### 11.10 Social Commerce
+
+**Neuroscience Principle:** Social incentives amplify individual motivation.
+
+| Social Feature | Incentive | Implementation |
+|----------------|-----------|----------------|
+| **Team Learning** | 20% group discount | 3+ users enroll together dalam course sama |
+| **Referral Bonus** | IDR 50K credit per referral | Referred user makes purchase |
+| **Study Group** | Unlock group projects | Form group dengan 2+ friends |
+| **Leaderboard** | Badge + visibility | Top learners weekly/monthly |
+| **Share Achievement** | 5% discount coupon | Share certificate ke social media |
+
+**Team Learning Implementation:**
+```
+┌─────────────────────────────────────────────┐
+│   👥 LEARN TOGETHER, SAVE TOGETHER          │
+│   ════════════════════════════════════════  │
+│                                             │
+│   Form a team of 3+ and get 20% off!        │
+│                                             │
+│   Your Team:                                │
+│   ┌─────────────────────────────────────┐   │
+│   │ ✓ You (Team Captain)                 │   │
+│   │ ✓ Sarah (sarah@email.com)            │   │
+│   │ ⏳ Waiting for 1 more...              │   │
+│   └─────────────────────────────────────┘   │
+│                                             │
+│   [Invite Team Member]  [Proceed to Pay]    │
+└─────────────────────────────────────────────┘
+```
+
+**Referral System:**
+```typescript
+// Referral tracking and reward
+interface ReferralProgram {
+  referrerId: string;
+  referredUserId: string;
+  rewardAmount: number; // in IDR or percentage
+  status: 'pending' | 'completed' | 'rewarded';
+}
+
+function processReferral(referral: ReferralProgram) {
+  if (referral.status === 'completed') {
+    // Credit referrer account
+    creditUser(referral.referrerId, referral.rewardAmount);
+
+    // Notify referrer
+    sendNotification({
+      userId: referral.referrerId,
+      message: `You earned IDR ${referral.rewardAmount} from a referral!`,
+      action: 'View Credits'
+    });
+
+    referral.status = 'rewarded';
+  }
+}
+```
+
+### 11.11 Gentle Nudge
+
+**Neuroscience Principle:** Well-timed reminders capitalize on motivation spikes.
+
+| Nudge Type | Trigger | Message Tone |
+|------------|---------|--------------|
+| **Daily Practice** | 24 hours since last practice | Encouraging, low pressure |
+| **Course Restart** | 3+ days since last activity | "Pick up where you left off" |
+| **New Course Available** | Relevant to completed courses | "Since you liked X, try Y" |
+| **Streak Warning** | 6 hours before streak reset | "Don't break your streak!" |
+| **Weekly Goal** | End of week, 1-2 days short | "Almost there! One more day" |
+
+**Nudge Timing Strategy:**
+```typescript
+// Intelligent nudge scheduling
+function scheduleNudges(user: User) {
+  const nudges = [];
+
+  // Daily practice: User's most active time
+  const peakActivityHour = getUserPeakHour(user);
+  nudges.push({
+    type: 'daily_practice',
+    time: `${peakActivityHour}:00`,
+    condition: () => getHoursSinceLastPractice(user) >= 24,
+    message: 'Ready for today\'s Excel practice?'
+  });
+
+  // Streak warning: 6 hours before reset
+  nudges.push({
+    type: 'streak_warning',
+    time: '18:00', // Assuming day resets at midnight
+    condition: () => user.streak > 0 && getHoursUntilReset() <= 6,
+    message: 'Practice today to keep your streak alive!'
+  });
+
+  // Weekly goal: Sunday evening
+  nudges.push({
+    type: 'weekly_goal',
+    time: '20:00',
+    day: 'Sunday',
+    condition: () => getWeeklyPracticeDays(user) >= 5 && getWeeklyPracticeDays(user) < 7,
+    message: 'One more day to complete your weekly goal!'
+  });
+
+  return nudges;
+}
+```
+
+**Nudge Message Templates:**
+| Scenario | Message |
+|----------|---------|
+| Daily practice (morning) | "Good morning! Ready to master Excel today?" |
+| Daily practice (evening) | "End your day with a quick Excel win. 5 minutes is all you need." |
+| Streak at risk | "You've practiced for 7 days straight. Don't break your streak now!" |
+| Course restart | "You were making great progress on Pivot Tables. Continue where you left off?" |
+| New relevant course | "Since you mastered VLOOKUP, try INDEX-MATCH next!" |
+
+### Ethical Design Implementation
+
+**Sticky vs. Addictive Design:**
+
+For learning products like ExcelCircle, the goal is **skill acquisition**, not endless scrolling. Here's how to maintain ethical boundaries:
+
+| Ethical Principle | Implementation |
+|-------------------|----------------|
+| **Transparent Streaks** | Show streak reset time, no hidden timers |
+| **Practice Limit Suggestions** | "You've practiced for 2 hours. Take a break?" |
+| **No Dark Patterns** | Never hide cancellation, clear unsubscribe |
+| **Progress Over Perfection** | Celebrate effort, not just perfect scores |
+| **Reality-Based Goals** | Recommend 15-30 min daily, not hours |
+| **Healthy Reminders** | Easy to snooze/disable, respect user preferences |
+
+**Example - Healthy Streak Design:**
+```typescript
+// Ethical streak implementation
+interface EthicalStreak {
+  currentStreak: number;
+  lastPracticeDate: Date;
+  nextResetTime: Date;
+  userPreference: {
+    practiceReminderEnabled: boolean;
+    preferredTime: string;
+    dailyGoalMinutes: number;
+  };
+}
+
+function shouldSendStreakWarning(streak: EthicalStreak): boolean {
+  // Only warn if user has reminders enabled
+  if (!streak.userPreference.practiceReminderEnabled) {
+    return false;
+  }
+
+  // Only warn if approaching reset time
+  const hoursUntilReset = getHoursUntil(streak.nextResetTime);
+  if (hoursUntilReset > 6) {
+    return false; // Too early, don't create anxiety
+  }
+
+  return true;
+}
+```
+
+---
+
 *Based on: [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)*
 
 *Last Updated: 2026-03-03*

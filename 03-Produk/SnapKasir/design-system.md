@@ -381,6 +381,114 @@ Based on Peak-End Rule: Users remember the **peak moment** and the **ending**, n
 
 ---
 
+## 11. Behavioral Design Techniques
+
+**Category:** B2B/Serious - Business Operations
+
+### Ethical Design Note
+POS B2B products should lean toward **Sticky** design karena membantu business run efficiently, bukan membuat merchant addicted to checking. Goal = operational efficiency, bukan engagement metrics.
+
+### Applicable Techniques for SnapKasir
+
+| Technique | Implementation | Example |
+|-----------|----------------|---------|
+| **Anticipation Loop** | Transaction processing, report generation loading | "Memproses pembayaran..." dengan progress bar 150ms animation sebelum success screen |
+| **Invisible Personalization** | Product recommendations based on sales patterns | Highlight frequently sold products di daftar, smart product search ranking |
+| **Variable Reward Notification** | Daily sales milestone, new order received | "Milestone tercapai! Rp 1M hari ini" pada dashboard saat mencapai target omzet |
+| **Social Proof Counter** | Transactions processed, businesses using SnapKasir | "12.458 transaksi diproses hari ini" di footer, "500+ UMKM menggunakan SnapKasir" di landing |
+| **Annual Wrapped** | Yearly business performance summary (popular for POS!) | "2025 Business Summary: Top product Nasi Goreng dengan 1.234 penjualan, total omzet Rp 450M" - sharedable report |
+| **Personalization Surprise** | "Your best selling product is X with Y units" | Daily insight: "Produk terlaris hari ini: Es Teh Manis (45 unit)" di dashboard |
+| **Gentle Nudge** | End of day report reminder, low stock alert | "Jangan lupa tutup kasir hari ini" notifikasi 1 jam sebelum tutup, "Stok Nasi Goreng menipis (5 unit)" |
+
+### Not Applicable Techniques
+
+| Technique | Status | Rationale |
+|-----------|--------|-----------|
+| **Streak + Loss Aversion** | NOT applicable | POS is operational tool, not habit-forming app. Merchant uses karena bisnis need, bukan karena gamification |
+| **Emotional Character** | NOT applicable | Professional business tool - character persona inappropriate untuk B2B operational software |
+| **Flash Sale Countdown** | NOT applicable | POS manages transactions, not create urgency untuk purchase. Merchant's products may have sales, but app itself shouldn't |
+| **Social Commerce** | NOT applicable | POS is backend operational tool, not social shopping platform |
+
+### Implementation Priorities
+
+| Priority | Technique | Impact | Effort |
+|----------|-----------|--------|--------|
+| **High** | Anticipation Loop | Improves perceived performance | Low |
+| **High** | Gentle Nudge (low stock) | Direct business value | Low |
+| **Medium** | Annual Wrapped | High engagement, retention | Medium |
+| **Medium** | Variable Reward Notification | Motivational, feel-good | Low |
+| **Low** | Social Proof Counter | Trust building | Low |
+| **Low** | Personalization Surprise | Delight factor | Medium |
+
+### Technique Deep Dives
+
+#### Annual Wrapped (Recommended for POS)
+
+**Why Popular:** POS systems yang generate annual summary reports selalu menjadi moment yang ditunggu merchant. Ini bukan tentang addiction, tapi tentang **business insight** yang valuable.
+
+**Implementation:**
+- Generate yearly summary pada 31 Desember atau first login Januari
+- Include: Top products, busiest day, total transactions, growth comparison
+- Make shareable (PNG/PDF) untuk social media
+- Tone: Professional + celebratory (acknowledge merchant's hard work)
+
+**Example:**
+```
+┌─────────────────────────────────────────┐
+│  📊 SNAPKASIR 2025 BUSINESS SUMMARY     │
+│                                         │
+│  Top Produk: Nasi Goreng (1.234 unit)   │
+│  Hari Ter sibuk: Jumat (avg 45 trx)    │
+│  Total Omzet: Rp 450.000.000           │
+│  Pertumbuhan: +23% dari 2024           │
+│                                         │
+│  [Bagikan]  [Download PDF]              │
+└─────────────────────────────────────────┘
+```
+
+#### Gentle Nudge (Low Stock Alert)
+
+**Critical for Business:** Low stock notification is bukan gamification, tapi **operational necessity** yang prevents lost revenue.
+
+**Implementation:**
+- Real-time stock monitoring
+- Alert threshold: configurable (default 5-10 units)
+- Multi-channel: In-app + WhatsApp (optional)
+- Action-oriented: "Restok sekarang" button links ke supplier atau purchase order
+
+**Example:**
+```
+┌─────────────────────────────────────────┐
+│  ⚠️ Stok Menipis                        │
+│                                         │
+│  Nasi Goreng: 5 unit tersisa           │
+│  Es Teh Manis: 8 unit tersisa          │
+│                                         │
+│  [Restok Sekarang]  [Nanti]             │
+└─────────────────────────────────────────┘
+```
+
+#### Anticipation Loop (Transaction Processing)
+
+**Purpose:** Reduce perceived wait time dan increase confidence bahwa system bekerja.
+
+**Implementation:**
+- Progress bar dengan realistic timing (bukan fake delay)
+- Status update: "Memproses pembayaran..." → "Verifikasi..." → "Selesai!"
+- Total duration: 150-300ms (fast enough untuk POS, slow enough untuk feedback)
+
+**Example:**
+```
+┌─────────────────────────────────────────┐
+│                                         │
+│         [██████████░░] 75%              │
+│      Memproses pembayaran...            │
+│                                         │
+└─────────────────────────────────────────┘
+```
+
+---
+
 *Based on: [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)*
 
 *Last Updated: 2026-03-03*

@@ -371,6 +371,270 @@ Based on Peak-End Rule: Users remember the **peak moment** and the **ending**, n
 
 ---
 
+## 11. Behavioral Design Techniques
+
+**Product Category:** Trust-based - Legacy Planning
+
+**Ethical Design Note:** Legacy products should lean toward **Sticky** design karena deal dengan sensitive, emotional content dan trust is paramount. Avoid aggressive addictive patterns; prioritize gentle, supportive engagement.
+
+### Technique Applicability Matrix
+
+| # | Technique | Applicable | Implementation Priority |
+|---|-----------|------------|------------------------|
+| 1 | Anticipation Loop | ✅ Yes | High - Loading/generation states |
+| 2 | Invisible Personalization | ✅ Yes | Medium - Suggestion engine |
+| 3 | Streak + Loss Aversion | ❌ No | N/A - Legacy is one-time setup |
+| 4 | Emotional Character | ✅ Yes | High - Guide for emotional support |
+| 5 | Variable Reward Notification | ✅ Yes | Medium - Milestone celebrations |
+| 6 | Social Proof Counter | ✅ Yes | High - Trust-building metrics |
+| 7 | Annual Wrapped | ✅ Yes | Medium - Yearly reflection |
+| 8 | Personalization Surprise | ✅ Yes | Low - Delight moments |
+| 9 | Flash Sale Countdown | ❌ No | N/A - Not applicable for legacy |
+| 10 | Social Commerce | ✅ Yes | Low - Family plan sharing |
+| 11 | Gentle Nudge | ✅ Yes | High - Very light touch reminders |
+
+### 1. Anticipation Loop
+
+**Purpose:** Build positive anticipation during loading/processing states to reduce perceived wait time and create excitement.
+
+**Implementation for LayanganLegacy:**
+
+| Use Case | Visual Pattern | Copy Example |
+|----------|----------------|--------------|
+| **Legacy Preview Loading** | Staggered card reveal dengan warm fade-in | "Menyiapkan warisan Anda..." → "Kenangan ditemukan: 47" → "Hampir selesai..." |
+| **Document Generation** | Progress bar dengan milestone markers | "Mengumpulkan cerita hidup Anda... 47%" → "Menyusun timeline keluarga... 78%" → "Membuat dokumen warisan... 92%" |
+| **Memory Upload** | Photo masonry cascade animation | "Mengunggah kenangan... 3/15 foto" → "Menyusun galeri hidup..." → "Selesai! 15 kenangan tersimpan" |
+
+**Technical Specs:**
+- Duration: 2-4 seconds total (staggered reveals)
+- Animation: Fade-in dengan slight upward slide (20px)
+- Easing: `cubic-bezier(0.4, 0, 0.2, 1)` (ease-in-out)
+- Color progress: Warm Sand → Terra Cotta progression
+
+### 2. Invisible Personalization
+
+**Purpose:** Surface relevant content without asking, creating "this knows me" feeling.
+
+**Implementation for LayanganLegacy:**
+
+| Data Source | Personalization Output | Example |
+|-------------|------------------------|---------|
+| **Life Events** | Suggest legacy items based on milestones | "Sepertinya Anda baru saja merayakan ulang tahun ke-50. Ingin mendokumentasikan pelajaran hidup dari 5 dekade terakhir?" |
+| **Family Structure** | Tailor legacy categories | "Terdeteksi 3 anak. Ingin membuat pesan khusus untuk setiap anak?" |
+| **Photo Metadata** | Auto-group memories by era | "Kami menemukan 23 foto dari era 2010-2015. Ingin membuat cerita untuk masa itu?" |
+| **Location Data** | Suggest place-based memories | "Kenangan di Jakarta: 12 foto. Ingin menambahkan cerita tentang kota ini?" |
+
+**Privacy Note:** Always opt-in with clear explanation. Allow users to disable personalization.
+
+### 3. Streak + Loss Aversion
+
+**Status:** ❌ **NOT APPLICABLE**
+
+**Rationale:** Legacy planning is a one-time meaningful setup, not a daily habit. Forcing streaks would be inappropriate and could create anxiety around sensitive emotional tasks.
+
+**Alternative:** Use **Gentle Nudge** (Technique #11) for light, supportive reminders.
+
+### 4. Emotional Character
+
+**Purpose:** Provide empathetic guidance through emotional legacy planning process.
+
+**Character Specification:**
+
+| Attribute | Design Choice | Rationale |
+|-----------|---------------|-----------|
+| **Name** | "Penjaga Kenangan" (Memory Keeper) | Warm, reverent, non-intrusive |
+| **Visual** | Subtle glow icon (warm light) | Symbolizes hope and preservation |
+| **Tone** | Gentle, patient, respectful | Legacy is sensitive; avoid urgency |
+| **Presence** | On-demand + key moments | Available but not overbearing |
+
+**Trigger Lines:**
+
+| Moment | Character Message |
+|--------|-------------------|
+| **First Sign-up** | "Selamat datang. Saya di sini untuk membantu Anda menyusun warisan yang bermakna. Ambil waktu Anda, tidak ada yang buru-buru." |
+| **Adding Difficult Memory** | "Terkadang kenangan yang paling berat adalah yang paling berharga. Anda tidak sendirian dalam proses ini." |
+| **Completing Milestone** | "Setiap kenangan yang Anda dokumentasikan adalah hadiah bagi generasi berikutnya. Terima kasih." |
+| **Long Absence** | "Masih banyak cerita hidup Anda yang belum terdokumentasi. Ingin melanjutkan kapan saja Anda siap." |
+| **Final Legacy Complete** | "Warisan Anda kini aman. Generasi berikutnya akan mengenal Anda melalui cerita-cerita ini. Terima kasih telah membagikan hidup Anda." |
+
+**Technical Implementation:**
+- Display: Toast/bottom sheet (non-blocking)
+- Timing: 2-second delay after trigger event
+- Dismissible: Always, with "Don't show again" option
+- Animation: Gentle fade-in (400ms), no exit animation (respectful)
+
+### 5. Variable Reward Notification
+
+**Purpose:** Create delight through unexpected positive reinforcement at key milestones.
+
+**Implementation for LayanganLegacy:**
+
+| Milestone Trigger | Reward Type | Visual Pattern | Copy Example |
+|-------------------|-------------|----------------|--------------|
+| **Legacy Milestone Completed** | Confetti warm-toned + milestone badge | Subtle particle celebration | "Milestone tercapai! Bab 'Keluarga' selesai. 4 bab lagi." |
+| **Memory Added** | Photo gallery animation + count celebration | Card cascade effect | "Kenangan #10 ditambahkan! Anda telah menyimpan 10 momen berharga." |
+| **First Video Message** | Spotlight animation + special icon | Glowing border effect | "Pesan video pertama! Generasi mendatang akan bisa melihat senyuman Anda." |
+| **Legacy Document Generated** | Document reveal animation + download ready | Unfold effect | "Dokumen warisan Anda siap! 47 halaman kehidupan, terdokumentasi dengan indah." |
+
+**Reward Schedule (Variable):**
+- Not after every action (becomes expected/boring)
+- Random intervals: 30%, 50%, 70% completion points
+- Always for: First action, major milestones, completion
+- Never for: Deleting/editing (negative actions)
+
+**Ethical Note:** Rewards should celebrate progress, not create FOMO or pressure. Keep it warm, not urgent.
+
+### 6. Social Proof Counter
+
+**Purpose:** Build trust through collective action indicators (privacy-preserving).
+
+**Implementation for LayanganLegacy:**
+
+| Metric | Display Location | Example Copy | Privacy Note |
+|--------|------------------|--------------|--------------|
+| **Families Protected** | Homepage hero section | "12,847 keluarga telah melindungi warisan mereka" | Aggregate count only |
+| **Legacies Preserved** | Feature section | "8,234 warisan digital telah dibuat tahun ini" | Monthly updated |
+| **Memories Stored** | Trust indicator | "2.3 juta kenangan tersimpan aman" | Rounded figures |
+| **Active Users** | Optional footer | "Dipercaya oleh 5,000+ penjaga kenangan" | Current month |
+
+**Design Specifications:**
+- Display: Subtle, Layer 4-5 (not focal)
+- Animation: Gentle count-up on page load (2 seconds)
+- Color: Warm Gray (muted, not attention-grabbing)
+- Icon: Simple shield/lock icon (trust symbol)
+
+**Privacy-First Approach:**
+- Never show real-time counts
+- Round to nearest thousand/hundred
+- Update monthly, not real-time
+- No user profiles or avatars
+- No geographic or demographic breakdowns
+
+### 7. Annual Wrapped
+
+**Purpose:** Create yearly reflection moment that reinforces value and emotional connection.
+
+**Implementation for LayanganLegacy:**
+
+**"Life Story: Year in Review"**
+
+| Section | Content Example | Visual Pattern |
+|---------|----------------|----------------|
+| **Opening** | "2025: Tahun penuh kenangan" | Full-screen warm gradient |
+| **Memories Added** | "47 kenangan baru ditambahkan" | Photo masonry reveal |
+| **Top Categories** | "Keluarga (23), Wisata (12), Karier (8)" | Category breakdown chart |
+| **Most Viewed** | "Kenangan paling sering dilihat: Gradiasi Anak" | Spotlight card |
+| **Emotional Highlight** | "Anda mendokumentasikan 3 momen sulit dengan indah" | Gentle acknowledgment |
+| **Sharing** | "Bagikan refleksi tahun ini (opsional)" | Single share button |
+
+**Timing:**
+- Trigger: January 1-7 each year
+- Notification: "Life Story 2025 sudah siap. Lihat sekarang atau nanti."
+- Availability: Entire month of January
+- Archive: Saved to user profile, accessible anytime
+
+**Export Options:**
+- PDF: "Unduh Life Story 2025 sebagai PDF"
+- Video: (Premium) "Buat video refleksi otomatis"
+- Print: "Siap untuk dicetak sebagai buku"
+
+### 8. Personalization Surprise
+
+**Purpose:** Create "this really gets me" moments through personalized insights.
+
+**Implementation for LayanganLegacy:**
+
+| Surprise Type | Trigger Condition | Example Message |
+|---------------|-------------------|-----------------|
+| **Memory Milestone** | User adds 50th memory | "Anda telah mendokumentasikan 50 kenangan berharga. Ini lebih dari kebanyakan orang orang seumur hidup mereka. Terima kasih sudah merawat ingatan ini." |
+| **Dedication Detect** | User active for 30 days | "Anda telah kembali selama 30 hari berturut-turut. Komitmen Anda pada warisan keluarga luar biasa." |
+| **Category Affinity** | 70%+ memories in one category | "Anda menyukai memori 'Keluarga'. Ingin kami buatkan kumpulan cerita khusus keluarga?" |
+| **Legacy Completeness** | All core sections filled | "Warisan Anda 85% lengkap. Bagian 'Pesan Masa Depan' masih kosong. Ingin mengisinya?" |
+| **First Video** | User records first video message | "Generasi mendatang akan sangat berterima kasih bisa mendengar suara Anda. Ini adalah hadiah yang tak ternilai." |
+
+**Design Principles:**
+- Unexpected: Don't show these every time
+- Genuine: Feel personal, not templated
+- Respectful: Acknowledge emotional weight
+- No pressure: Always allow "Maybe later" option
+
+### 9. Flash Sale Countdown
+
+**Status:** ❌ **NOT APPLICABLE**
+
+**Rationale:** Legacy planning is not a transactional e-commerce product. Time pressure is inappropriate and could cause anxiety around sensitive emotional tasks.
+
+**Alternative:** Use **Variable Reward Notification** (Technique #5) for milestone celebrations, not urgency.
+
+### 10. Social Commerce
+
+**Purpose:** Enable organic sharing of family legacy plans (optional, privacy-respecting).
+
+**Implementation for LayanganLegacy:**
+
+| Feature | Description | Privacy Control |
+|---------|-------------|-----------------|
+| **Family Legacy Plan** | Share overview of planned legacy sections | "Bagikan ringkasan warisan (tanpa detail rahasia)" |
+| **Memory Collaboration** | Invite family to contribute their memories | "Undang anggota keluarga untuk menambahkan kenangan mereka" |
+| **Legacy Preview** | Share sanitized preview (non-sensitive content) | "Tampilkan cuplikan (tanpa password, aset, dll)" |
+| **Gift Subscription** | Share gift link for LayanganLegacy Premium | "Berikan hadiah warisan digital kepada orang tersayang" |
+
+**Share Copy Examples:**
+
+| Platform | Message Template |
+|----------|------------------|
+| **WhatsApp** | "Aku sedang membuat warisan digital di LayanganLegacy. Ingin membantu dengan menambahkan kenangan bersama?" |
+| **Email** | "Hai! Aku sedang menyusun cerita hidupku untuk generasi mendatang. Mau lihat ringkasannya?" (link) |
+| **Social** | "Mulai mendokumentasikan warisan keluarga di LayanganLegacy. Ternyata menyimpan kenangan itu menyenangkan 🌱" |
+
+**Ethical Safeguards:**
+- Never auto-share (always explicit user action)
+- Preview shows only non-sensitive content
+- Recipient must opt-in to collaborate
+- Easy revocation of access
+- Clear data ownership communication
+
+### 11. Gentle Nudge
+
+**Purpose:** Provide light, supportive reminders without creating pressure or anxiety.
+
+**Implementation for LayanganLegacy:**
+
+**"Very Light Touch" Approach**
+
+| Trigger Condition | Nudge Message | Timing | Channel |
+|-------------------|---------------|--------|---------|
+| **30+ days inactive** | "Masih ada cerita hidup yang belum terdokumentasi. Kapan saja Anda siap, kami di sini." | Once | Email |
+| **Draft detected** | "Draf 'Pesan untuk Anak' tersimpan. Ingin melanjutkannya?" | Once | In-app toast |
+| **Milestone nearby** | "Warisan Anda hampir lengkap! Tinggal 1 bagian lagi." | Once | In-app toast |
+| **Life event detected** | "Sepertinya ada momen baru dalam hidup Anda. Ingin mendokumentasikannya?" | Once | Email |
+
+**Nudge Design Principles:**
+
+| Principle | Implementation |
+|-----------|----------------|
+| **Frequency** | Maximum 1 nudge per 30 days |
+| **Opt-out** | Always include "Jangan reminder saya lagi" link |
+| **Tone** | Gentle, optional, supportive (never urgent) |
+| **Content** | Focus on value, not FOMO |
+| **Timing** | Respect local time, avoid late nights |
+| **Escalation** | Never increase frequency over time |
+
+**Anti-Patterns to Avoid:**
+
+- ❌ "Anda belum login 14 hari!" (shaming)
+- ❌ "Warisan Anda terbengkalai!" (anxiety-inducing)
+- ❌ "Selesaikan sebelum terlambat!" (false urgency)
+- ❌ Daily/weekly reminders (too frequent)
+
+**Valid Examples:**
+
+- ✅ "Masih ada cerita yang belum terdokumentasi. Kami di sini saat Anda siap."
+- ✅ "Draf pesan untuk anak Anda tersimpan. Ingin melanjutkan kapan saja?"
+- ✅ "Kenangan baru tersimpan. Terima kasih merawat ingatan ini."
+
+---
+
 *Based on: [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)*
 
 *Last Updated: 2026-03-03*

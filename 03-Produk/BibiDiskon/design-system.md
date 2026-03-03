@@ -375,7 +375,52 @@ Based on Peak-End Rule: Users remember the **peak moment** and the **ending**, n
 
 ---
 
+## 11. Behavioral Design Techniques
+
+### Ethical Design Note
+**Engaging Design Mode:** Celebration products can use **Engaging** design patterns karena moment bersifat sesekali (once a year) dan fokus pada joy, bukan daily addiction. Birthday context inherently limits frequency concerns.
+
+### Product-Specific Implementation
+
+| # | Technique | BibiDiskon Implementation | Applicability |
+|---|-----------|--------------------------|---------------|
+| 1 | **Anticipation Loop** | Birthday countdown timer on dashboard (showing days/hours/minutes). Discount reveal animation with gift box opening effect. Build excitement BEFORE the birthday arrives. | ✅ Highly Applicable |
+| 2 | **Invisible Personalization** | Partner recommendations based on past claims. "Based on your favorite stores..." secara halus tanpa explicit "we personalized this for you" messaging. | ✅ Highly Applicable |
+| 3 | **Streak + Loss Aversion** | ❌ **NOT APPLICABLE** - Birthday is once a year, tidak ada streak concept. Avoid artificial streak mechanics. | ❌ Not Applicable |
+| 4 | **Emotional Character** | "Bibi" mascot - friendly character yang celebrates with user. Appears in birthday greetings, celebration moments, dan notification emails. Character yang "grew up" with user. | ✅ Highly Applicable |
+| 5 | **Variable Reward Notification** | Surprise bonus discount ("You also got a free gift! 🎁"). Flash partner offer yang muncul tiba-tiba dengan limited quantity. | ✅ Applicable |
+| 6 | **Social Proof Counter** | "X people claimed this offer today" pada partner offers. "Join 1,234 birthday celebrators this month!" Social validation bahwa banyak orang juga celebrating. | ✅ Applicable |
+| 7 | **Annual Wrapped** | Birthday celebration summary - "Your Year in Birthday Savings!". Total savings, top claimed offers, favorite partner categories. Shareable summary card. | ✅ Highly Applicable |
+| 8 | **Personalization Surprise** | "Your favorite store [Name] has a special birthday offer just for you!". Unexpected delight dari partner yang user sering claim. Feels magical dan personal. | ✅ Highly Applicable |
+| 9 | **Flash Sale Countdown** | ⭐ **VERY APPLICABLE** ⭐ - Birthday offer validity countdown (e.g., "Valid for 7 days! Only 5 days left!"). Creates urgency tanpa feeling manipulative karena birthday offers memang time-limited. | ⭐ Critical |
+| 10 | **Social Commerce** | "Celebrate together! Group birthday deal - invite 3 friends, everyone gets extra 10% off!". Shared birthday experience dengan friends. | ✅ Applicable |
+| 11 | **Gentle Nudge** | Pre-birthday reminder (1 week before): "Your birthday is coming! Get ready to celebrate. Check out these early-bird offers!". Helpful, bukan pushy. | ✅ Highly Applicable |
+
+### Priority Techniques for BibiDiskon
+
+**Must-Have (Critical):**
+1. Flash Sale Countdown (9) - Core mechanic untuk time-limited birthday offers
+2. Anticipation Loop (1) - Birthday countdown builds excitement
+3. Emotional Character (4) - "Bibi" mascot creates brand connection
+
+**Should-Have (High Impact):**
+4. Personalization Surprise (8) - Delight factor untuk user engagement
+5. Annual Wrapped (7) - Retention dan shareable moment
+6. Invisible Personalization (2) - Better user experience secara subtle
+
+**Nice-to-Have (Enhancement):**
+7. Variable Reward Notification (5) - Extra delight moments
+8. Social Proof Counter (6) - Social validation
+9. Gentle Nudge (11) - Pre-birthday preparation
+10. Social Commerce (10) - Group celebration feature
+
+**Avoid:**
+- Streak + Loss Aversion (3) - Does not fit birthday-once-a-year model
+
+---
+
 *Based on: [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)*
 
 *Last Updated: 2026-03-03*
+*Document Version: 1.0*
 *Document Version: 1.0*
