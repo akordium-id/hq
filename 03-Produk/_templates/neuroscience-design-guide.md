@@ -2,6 +2,8 @@
 
 > Panduan komprehensif penerapan neuroscience dalam desain produk digital Akordium Lab
 
+**Related:** Untuk prinsip visual dan UI/UX (warna, tipografi, gestalt, motion), lihat [neurodesign-uiux-guide.md](./neurodesign-uiux-guide.md)
+
 ## Daftar Isi
 
 1. [7 Prinsip Neuroscience Inti](#7-prinsip-neuroscience-inti)

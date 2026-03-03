@@ -103,7 +103,7 @@ Each product folder contains comprehensive documentation:
 
 Semua produk Akordium dirancang menggunakan prinsip neuroscience yang terbukti meningkatkan engagement dan user retention.
 
-### 7 Prinsip Neuroscience Inti
+### Behavioral Psychology (Engagement)
 
 | Prinsip | Mekanisme | Contoh |
 | :-- | :-- | :-- |
@@ -115,7 +115,20 @@ Semua produk Akordium dirancang menggunakan prinsip neuroscience yang terbukti m
 | **Endowment Effect** | User yang sudah invest akan terus pakai | WeChat identity |
 | **Cognitive Ease** | Otak menyukai yang mudah diproses | HTMX/instant feedback |
 
-📖 **Panduan lengkap:** [Neuroscience Design Guide](./_templates/neuroscience-design-guide.md)
+📖 **Panduan engagement:** [Neuroscience Design Guide](./_templates/neuroscience-design-guide.md)
+
+### Visual & UI/UX (Perception)
+
+| Prinsip | Aplikasi |
+| :-- | :-- |
+| **Eye-Tracking Patterns** | F-Pattern (desktop), Z-Pattern (mobile) |
+| **Color Psychology** | Green=finance, Orange=commerce, Purple=creative |
+| **Gestalt Principles** | Proximity, Similarity, Closure, Figure-Ground |
+| **Cognitive Load** | Max 7 items (Miller's Law), Progressive Disclosure |
+| **Motion Design** | ease-out curves, <300ms transitions |
+| **Peak-End Rule** | Design memorable peak moments & endings |
+
+📖 **Panduan visual:** [Neurodesign UI/UX Guide](./_templates/neurodesign-uiux-guide.md)
 
 ---
 
