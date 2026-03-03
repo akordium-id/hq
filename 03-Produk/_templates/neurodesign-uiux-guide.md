@@ -115,9 +115,11 @@ Kapan JANGAN pakai motion:
 
 ### 1.3 Eye-Tracking Patterns
 
-Riset eye-tracking mengidentifikasi pola scanning mata yang sangat konsisten:
+Riset eye-tracking mengidentifikasi pola scanning mata yang sangat konsisten. Namun lebih penting dari pola itu sendiri adalah memahami **mengapa otak menghasilkan pola ini** — ini adalah kunci untuk mengeksploitasinya secara efektif dalam desain produk Akordium.
 
-#### Z-Pattern (untuk halaman minimal/landing page)
+#### 1.3.1 Z-Pattern (untuk halaman minimal/landing page)
+
+Z-pattern terjadi pada halaman dengan visual hierarchy yang dominan dan konten minimal. Otak mengikuti jalur Z karena layout yang terstruktur mengarahkan perhatian secara teratur.
 
 ```
 ┌──────────────────────────────┐
@@ -131,25 +133,387 @@ Riset eye-tracking mengidentifikasi pola scanning mata yang sangat konsisten:
 
 **Gunakan untuk:** Landing page Akordium.id, halaman sign-up semua produk, halaman pricing SnapKasir/CaptionMania.
 
-#### F-Pattern (untuk halaman konten/dashboard)
+**Z vs F — Kapan menggunakan yang mana:**
+
+| Pattern | Konteks | Otak User |
+|---------|---------|-----------|
+| **Z-Pattern** | Landing page, halaman dengan 1 CTA dominan | Mode eksplorasi — mengikuti visual guidance |
+| **F-Pattern** | Dashboard, daftar, content-heavy pages | Mode scanning — memaksimalkan info per saccade |
+
+---
+
+#### 1.3.2 F-Pattern: Neurological Foundations
+
+F-pattern pertama kali diidentifikasi oleh Jakob Nielsen (NNG) melalui studi eye-tracking pada 232 partisipan yang membaca ribuan halaman web. Tapi yang lebih penting: **mengapa otak menghasilkan pola ini?**
+
+Jawabannya ada di tiga mekanisme neurologis yang bekerja bersamaan:
+
+##### Mekanisme 1: Saccade Economics (Kognitif)
 
 ```
-┌──────────────────────────────┐
-│ ████████████████████████████ │  ← Scan horizontal pertama (penuh)
-│ ████████████████             │  ← Scan horizontal kedua (lebih pendek)
-│ █                            │
-│ █                            │  ← Vertical scan di sisi kiri
-│ █                            │
-└──────────────────────────────┘
+SACCADE ECONOMICS
+─────────────────────────────────────────
+Saccade = gerakan mata cepat dari satu titik ke titik lain
+Fixation = titik di mana mata berhenti dan otak memproses
+
+Otak diprogram untuk MEMINIMALKAN jumlah saccade
+(setiap saccade = biaya energi kognitif)
+
+Implikasi F-pattern:
+→ Scan horizontal pertama = high information density per saccade
+→ Semakin ke bawah → information scent makin lemah
+→ Otak switch ke "vertical skim" untuk efisiensi
+→ Hanya scan kiri karena kiri = highest info density per fixation
+
+Ini bukan kebiasaan — ini adalah OPTIMIZATION ALGORITHM
+yang dijalankan oleh sistem visual otak secara otomatis
 ```
 
-**Gunakan untuk:** Dashboard Katauser, laporan keuangan Anggarin, daftar feedback/transaksi.
+##### Mekanisme 2: Predictive Processing (Prediktif)
 
-**Aturan F-Pattern untuk dashboard Akordium:**
+```
+PRIOR KNOWLEDGE WEIGHTING
+───────────────────────────────────────────────────
+Otak tidak membaca secara reaktif — ia PREDIKTIF
 
-- Letakkan **metric terpenting** di horizontal pertama (top row cards)
-- Letakkan **aksi terpenting** di sisi **kiri** kolom, bukan kanan — mata selalu kembali ke kiri
-- Jangan taruh informasi kritis di pojok kanan bawah — area paling jarang di-scan
+Predictive processing theory:
+→ Otak terus membangun model "apa yang akan ada di sini"
+→ Mata bergerak ke area yang otak prediksi paling informatif
+→ Untuk konten web berbahasa LTR (left-to-right):
+  - Kiri = awal kalimat = keyword/topik utama
+  - Kanan = akhir kalimat = detail (bisa di-skip)
+
+Setelah ribuan jam browsing, otak "tahu":
+→ Informasi paling penting ada di KIRI dan ATAS
+→ Kanan dan bawah adalah "diluted information zone"
+→ Ini menjadi self-reinforcing neural pathway
+```
+
+##### Mekanisme 3: Cognitive Fatigue Cascade (Energi)
+
+```
+COGNITIVE FATIGUE CASCADE
+────────────────────────────────────────────────
+Working memory kapasitas terbatas (Miller's Law: 7±2 chunks)
+
+Saat user mulai scroll:
+→ Baris pertama: working memory fresh → baca penuh horizontal
+→ Baris kedua: sedikit berkurang → scan lebih pendek
+→ Baris ke-3+: fatigue mulai → hanya fixation di kiri
+→ Akhirnya: pure vertical skim di margin kiri saja
+
+Ini sebabnya F-pattern LEBIH KUAT di halaman text-heavy
+dan LEBIH LEMAH di halaman dengan visual breaks yang baik
+```
+
+##### Brain Anatomy: DAN & VAN
+
+fMRI dan studi saccade menunjukkan jaringan otak yang mengontrol F-pattern reading secara konkret:
+
+```
+DORSAL ATTENTION NETWORK (DAN)
+─────────────────────────────────────────────────
+Lokasi: Intraparietal Sulcus (IPS) + Frontal Eye Field (FEF)
+Fungsi: Mengarahkan atensi visual secara top-down (voluntary)
+Peran dalam F-pattern:
+  → Menentukan prioritas area mana yang "worth scanning"
+  → Bekerja berdasarkan ekspektasi user tentang content structure
+
+VENTRAL ATTENTION NETWORK (VAN)
+─────────────────────────────────────────────────
+Lokasi: Temporoparietal Junction (TPJ) + Inferior Frontal Gyrus
+Fungsi: Menangkap stimulus unexpected/salient (bottom-up)
+Peran dalam F-pattern:
+  → Menghentikan F-pattern saat ada elemen yang "pop"
+  → Inilah mengapa visual yang kontras bisa BREAK F-pattern
+
+Implikasi desain:
+  DAN = pattern yang sudah ada (F-pattern)
+  VAN = cara kita OVERRIDE pattern tersebut dengan pre-attentive design
+  → Semua teknik pre-attentive attributes bekerja via VAN
+```
+
+---
+
+#### 1.3.3 Enam Variasi F-Pattern
+
+Update riset NNG 2024 mengungkapkan bahwa F-pattern tidak monolitik — ada **6 variasi** berdasarkan konteks konten:
+
+##### 1. F-Pattern (Classic)
+
+Konteks: Content pages, blog posts, berita, daftar teks
+
+```
+┌────────────────────┐
+│████████████████████│ ← Scan penuh (baris pertama)
+│████████████        │ ← Scan lebih pendek (baris kedua)
+│█                   │
+│█                   │ ← Vertical skim kiri
+│█                   │
+└────────────────────┘
+```
+
+**Gunakan untuk:** Blog Akordium, dokumentasi produk, changelog
+
+##### 2. Layer-Cake Pattern
+
+Konteks: Well-formatted content dengan subheadings yang kuat
+
+```
+┌────────────────────┐
+│████████████████████│ ← Heading di-scan
+│                    │ ← Body text di-skip
+│████████████████████│ ← Heading berikutnya di-scan
+│                    │ ← Body text di-skip lagi
+└────────────────────┘
+```
+
+**Implikasi:** Subheading adalah SATU-SATUNYA hal yang dibaca oleh banyak user.
+
+##### 3. Spotted Pattern
+
+Konteks: User mencari sesuatu spesifik (angka, nama, link)
+
+```
+┌────────────────────┐
+│     ●    ●         │ ← Random fixation
+│  ●           ●     │   pada elemen yang
+│         ●          │   "scent informatif"
+│  ●    ●            │
+└────────────────────┘
+```
+
+**Implikasi:** User dalam mode ini TIDAK membaca — mereka hunting. Bold dan angka menjadi anchor.
+
+##### 4. Bypassing Pattern
+
+Konteks: User sudah familiar dengan layout
+
+```
+Mata skip baris pertama dan langsung ke baris ke-2 atau ke-3
+Terjadi ketika baris pertama dianggap "boilerplate"
+```
+
+**Implikasi:** Jangan taruh info kritis di line pertama jika target audience adalah return visitors.
+
+##### 5. Commitment Pattern (THE GOAL)
+
+Konteks: User sangat tertarik, konten sangat relevan
+
+```
+Membaca hampir seperti di buku (linear, word-by-word)
+Ini yang ingin kita ciptakan untuk konten kritis (pricing, T&C)
+```
+
+**Implikasi penting:** F-pattern adalah sinyal kegagalan konten. Target sebenarnya adalah mendorong user masuk ke **commitment pattern** — di mana konten sangat relevan sehingga otak melepaskan default scan-mode.
+
+##### 6. Structure Pattern (Mobile)
+
+Konteks: Mobile, konten singkat
+
+```
+F-pattern terkompres menjadi lebih vertikal
+"Left-edge fixation" lebih dominan dari horizontal scan
+```
+
+**Implikasi:** Di mobile, konten di sisi kanan semakin diabaikan.
+
+---
+
+#### 1.3.4 Product-Specific Heatmaps
+
+Simulasi heatmap berdasarkan F-pattern untuk produk Akordium:
+
+##### Dashboard Katauser (Feedback Management)
+
+```
+┌──────────────────────────────────────────────────┐
+│🔴 Katauser    Feedback  Roadmap  Settings  [Notif]│ ← Hot (nav scan)
+├──────────────────────────────────────────────────┤
+│🔴 47 Feedback Baru   🟡 Roadmap Q1   🔵 Changelog │ ← Hot (hero metrics)
+├──────────────────────────────────────────────────┤
+│🔴 Tambah dark mode        ↑234 votes    [Respond] │ ← Hot (baris pertama)
+│🟡 Fix login bug            ↑89 votes    [Respond] │ ← Medium
+│🟡 Export CSV feature       ↑67 votes    [Respond] │ ← Medium
+│🔵 Arabic language support  ↑45 votes    [Respond] │ ← Cool
+│⚫ Better onboarding flow   ↑23 votes    [Respond] │ ← Mostly ignored
+│⚫ Custom domain            ↑12 votes    [Respond] │ ← Mostly ignored
+└──────────────────────────────────────────────────┘
+Warna: 🔴 Paling diperhatikan → 🟡 → 🔵 → ⚫ Paling diabaikan
+```
+
+**Desain insight:** Item ke-5 dan ke-6 dalam daftar hampir tidak pernah dibaca. Untuk Katauser, gunakan **pinning mechanism** untuk force items penting ke atas, terlepas dari urutan kronologis atau votes.
+
+##### Halaman Pricing SnapKasir
+
+```
+┌──────────────────────────────────────────────────┐
+│🔴 SNAPKASIR     Fitur   Harga   Demo   [Daftar]  │ ← Hot
+├──────────────────────────────────────────────────┤
+│🔴 Pilih Paket yang Tepat untuk Bisnis Anda        │ ← Hot
+│🟡 Mulai gratis, upgrade kapan saja               │ ← Medium
+├──────────────────────────────────────────────────┤
+│🔴 [GRATIS]    🔴 [STARTER]    🟡 [BISNIS]        │ ← Hot (card headers)
+│🔴 Rp 0        🔴 Rp 99rb/bln  🔵 Rp 199rb/bln   │ ← Hot (harga)
+│🟡 1 outlet    🟡 3 outlet     ⚫ Unlimited outlet │ ← Medium/Cool
+│⚫ Basic POS   ⚫ + Analytics  ⚫ + Multi-user     │ ← Mostly ignored
+│⚫ QRIS        ⚫ QRIS+ewallet ⚫ Semua payment    │ ← Mostly ignored
+│🔴 [Mulai]     🔴 [Coba Gratis]🟡 [Hubungi Kami] │ ← CTA hot
+└──────────────────────────────────────────────────┘
+```
+
+**Desain insight:** Feature list di tengah kartu pricing hampir **tidak dibaca**. User hanya membaca nama paket + harga + CTA.
+
+**Optimasi pricing SnapKasir:**
+
+```
+❌ Jangan: Feature list panjang per paket (effort sia-sia)
+
+✅ Lakukan:
+  1. Nama paket singkat dan bermakna
+  2. Harga besar dan jelas
+  3. SATU differentiator per paket: "3 outlet" saja, bukan list 10 fitur
+  4. Social proof di bawah harga: "2.847 UMKM sudah pakai"
+  5. CTA button yang kontras — ini yang paling sering diklik
+```
+
+---
+
+#### 1.3.5 Breaking the F-Pattern
+
+Karena F-pattern adalah default behavior otak, ada dua strategi:
+
+**Strategi 1 — Design WITH F-Pattern:** Tempatkan konten sesuai urutan kepentingan mengikuti natural scan path. Optimal untuk content-heavy pages (blog, daftar, dashboard).
+
+**Strategi 2 — Design AGAINST F-Pattern:** Gunakan pre-attentive attributes untuk *interrupt* scan dan paksa otak memperhatikan area yang biasanya di-skip. Optimal untuk conversion pages (landing, pricing, checkout).
+
+##### Teknik Breaking via VAN (Ventral Attention Network):
+
+**1. Visual Interrupts**
+
+Sisipkan elemen yang "berbeda" di titik yang biasanya di-skip:
+
+```
+....teks biasa....
+....teks biasa....
+┌─────────────────────────────────────┐
+│  💡 "2.847 UMKM sudah profit lebih  │ ← Visual interrupt
+│     dengan SnapKasir"               │   memaksa fixation
+└─────────────────────────────────────┘
+....teks biasa....
+```
+
+**2. Inline Visual Anchors**
+
+Taruh angka, icon, atau highlight tepat di KIRI content area:
+
+```
+✅  Fitur pertama yang penting        ← Checkmark = visual anchor kiri
+✅  Fitur kedua
+✅  Fitur ketiga
+
+Lebih baik dari:
+Fitur pertama yang penting
+Fitur kedua
+Fitur ketiga
+```
+
+**3. Progressive Contrast**
+
+```
+Baris pertama = normal contrast
+Baris kedua   = sedikit lebih muted
+Baris ketiga  = LEBIH TERANG/KONTRAS lagi → pattern interrupt!
+(counter-intuitive tapi efektif melawan cognitive fatigue)
+```
+
+**4. Strategic Bold**
+
+Bold tidak boleh digunakan untuk emphasis sembarangan. Spotted pattern: otak melakukan "bold scan" sebelum F-scan.
+
+```
+"Platform POS terbaik untuk **UMKM Indonesia** dengan fitur
+**offline-first** yang bekerja tanpa internet."
+
+User spotted pattern akan membaca: "UMKM Indonesia" + "offline-first"
+→ Ini sudah cukup untuk keputusan apakah perlu baca lebih lanjut
+```
+
+---
+
+#### 1.3.6 Layer-Cake Strategy
+
+Layer-cake pattern — di mana user hanya membaca subheadings — adalah variasi F-pattern yang paling **actionable**. Subheading adalah *the only text many users read*.
+
+##### Contoh: Anggarin Landing Page
+
+```
+❌ Salah (subheading generik):
+H1: "Platform Keuangan Personal Terbaik"
+H2: "Fitur-Fitur Unggulan Kami"
+H2: "Kenapa Memilih Kami"
+H2: "Testimoni Pengguna"
+
+✅ Benar (subheadings sebagai self-contained pitch):
+H1: "Prediksi keuanganmu 90 hari ke depan — otomatis"
+H2: "Tahu persis kapan saldo kamu akan habis sebelum kejadian"
+H2: "Zakat, THR, dan pajak sudah otomatis diperhitungkan"
+H2: "User naik tabungan 34% dalam 3 bulan pertama"
+H2: "Mulai gratis — upgrade hanya jika kamu butuh lebih"
+
+User yang hanya baca subheadings sudah dapat FULL PITCH.
+```
+
+##### Contoh: WaqfWise Dashboard
+
+Setiap section card harus standalone:
+
+```
+✅ "677 Aset Wakaf Terkelola" (bukan "Data Aset")
+✅ "Rp 2.4M Distribusi Bulan Ini" (bukan "Laporan Keuangan")
+✅ "3 Sertifikasi Pending" (bukan "Status Dokumen")
+```
+
+---
+
+#### 1.3.7 Seven Design Rules (Quick Reference)
+
+Aturan final yang berlaku untuk **semua** produk Akordium berdasarkan neuroscience F-pattern:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  RULE 1: KIRI > KANAN                                      │
+│  Informasi kritis selalu di kiri content area              │
+├─────────────────────────────────────────────────────────────┤
+│  RULE 2: ATAS > BAWAH                                      │
+│  Hierarki informasi dari atas ke bawah tanpa pengecualian  │
+├─────────────────────────────────────────────────────────────┤
+│  RULE 3: BARIS 1-2 > ELSE                                  │
+│  Above-the-fold adalah prime real estate neurologis         │
+├─────────────────────────────────────────────────────────────┤
+│  RULE 4: BOLD = SCENT                                      │
+│  Bold bukan dekorasi — ini adalah waypoint untuk spotted    │
+├─────────────────────────────────────────────────────────────┤
+│  RULE 5: SUBHEADINGS = PITCH                               │
+│  Setiap H2/H3 harus bisa berdiri sendiri sebagai value prop │
+├─────────────────────────────────────────────────────────────┤
+│  RULE 6: VISUAL INTERRUPT                                  │
+│  Setiap 3-4 baris teks butuh visual break untuk melawan     │
+│  cognitive fatigue                                         │
+├─────────────────────────────────────────────────────────────┤
+│  RULE 7: MOBILE COMPRESSION                                │
+│  F-pattern lebih vertikal di mobile — left margin semakin   │
+│  kritis, konten kanan semakin diabaikan                    │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+#### 1.3.8 Key Insight
+
+> **F-pattern adalah sinyal kegagalan konten.** Saat user membaca dalam F-pattern, artinya konten tidak cukup menarik untuk mempertahankan commitment reading. Target sebenarnya adalah mendorong user masuk ke **Commitment Pattern** — di mana konten sangat relevan sehingga otak melepaskan default scan-mode dan benar-benar membaca.
+
+F-pattern awareness memberi desainer peta jalan untuk mencapai kondisi itu.
 
 ### 1.4 Visual Weight & Hierarki 5 Layer
 
@@ -690,24 +1054,35 @@ interface ProgressComponent {
 
 ### Academic & Industry Sources
 
-1. [Neurodesign Using Neuroscience for Better UX](https://bejamas.com/blog/neurodesign-using-neuroscience-for-better-ux-design) - Bejamas
-2. [Neurodesign and Cognitive UX](https://boryanachervilova.com/blog/neurodesign-and-cognitive-ux) - Boryana Chervilova
-3. [Neuroscience Design Principles](https://zamora.design/neuroscience-design-principles/) - Zamora Design
-4. [Color Psychology in Digital Design](https://nmqdigital.com/blog/color-psychology-in-digital-design) - NMQ Digital
-5. [Color Psychology in UI Design](https://voya.digital/en/blog/color-psychology-in-ui-design-how-does-it-influence-user-decisions/) - Voya Digital
-6. [Psychology of Color in UI/UX](https://uxmag.com/articles/the-psychology-of-color-in-ui-ux-design) - UX Magazine
-7. [Typography and Color Psychology](https://www.linkedin.com/advice/0/how-do-you-apply-typography-color-psychology) - LinkedIn
-8. [Designing for the Mind: 6 Psychological Principles](https://www.linkedin.com/pulse/designing-mind-6-psychological-principles-every-ux-sidorovskaya-rw7pe) - LinkedIn
-9. [Gestalt Principles of Design](https://www.lazarev.agency/articles/gestalt-principles-of-design) - Lazarev Agency
-10. [Neuroscience-Based App Design](https://thisisglance.com/blog/neuroscience-based-app-design-the-ultimate-guide) - Glance
-11. [Dopamine-Driven Design](https://thisisglance.com/blog/dopamine-driven-design-creating-apps-users-cant-delete) - Glance
-12. [UX and Neuroscience](https://aguayo.co/en/blog-aguayo-user-experience/ux-and-neuroscience/) - Aguayo
-13. [Peak-End Rule in UX](https://www.eyequant.com/resources/how-to-use-neuroscience-to-create-the-best-ux/) - EyeQuant
+#### Eye-Tracking & F-Pattern (Section 1.3)
+
+1. [F-Shaped Pattern of Reading on the Web](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/) - Nielsen Norman Group (Original study, 2006)
+2. [F-Shaped Pattern — How Users Scan Content](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content-discovered/) - Nielsen Norman Group (Updated 2024)
+3. [Eye-Tracking Studies and the F-Pattern](https://www.eyequant.com/resources/eye-tracking-studies-does-the-famous-f-shape-pattern-really-exist/) - EyeQuant
+4. [Saccade Economics and Eye Movement Control](https://pmc.ncbi.nlm.nih.gov/articles/PMC8026251/) - NCBI/PubMed
+5. [Frontiers in Psychology: Visual Attention](https://www.frontiersin.org/articles/10.3389/fpsyg.2025.1455177/full) - Frontiers
+6. [How People Read on the Web](https://www.iso.org/files/live/sites/isoorg/files/styleguide/resources/How_People_Read_on_the_Web.pdf) - ISO
+
+#### General Neuroscience & Design
+
+7. [Neurodesign Using Neuroscience for Better UX](https://bejamas.com/blog/neurodesign-using-neuroscience-for-better-ux-design) - Bejamas
+8. [Neurodesign and Cognitive UX](https://boryanachervilova.com/blog/neurodesign-and-cognitive-ux) - Boryana Chervilova
+9. [Neuroscience Design Principles](https://zamora.design/neuroscience-design-principles/) - Zamora Design
+10. [Color Psychology in Digital Design](https://nmqdigital.com/blog/color-psychology-in-digital-design) - NMQ Digital
+11. [Color Psychology in UI Design](https://voya.digital/en/blog/color-psychology-in-ui-design-how-does-it-influence-user-decisions/) - Voya Digital
+12. [Psychology of Color in UI/UX](https://uxmag.com/articles/the-psychology-of-color-in-ui-ux-design) - UX Magazine
+13. [Typography and Color Psychology](https://www.linkedin.com/advice/0/how-do-you-apply-typography-color-psychology) - LinkedIn
+14. [Designing for the Mind: 6 Psychological Principles](https://www.linkedin.com/pulse/designing-mind-6-psychological-principles-every-ux-sidorovskaya-rw7pe) - LinkedIn
+15. [Gestalt Principles of Design](https://www.lazarev.agency/articles/gestalt-principles-of-design) - Lazarev Agency
+16. [Neuroscience-Based App Design](https://thisisglance.com/blog/neuroscience-based-app-design-the-ultimate-guide) - Glance
+17. [Dopamine-Driven Design](https://thisisglance.com/blog/dopamine-driven-design-creating-apps-users-cant-delete) - Glance
+18. [UX and Neuroscience](https://aguayo.co/en/blog-aguayo-user-experience/ux-and-neuroscience/) - Aguayo
+19. [Peak-End Rule in UX](https://www.eyequant.com/resources/how-to-use-neuroscience-to-create-the-best-ux/) - EyeQuant
 
 ---
 
 **Last Updated:** 2026-03-03
-**Document Version:** 1.0
+**Document Version:** 1.1 (Enhanced F-Pattern section with neuroscience depth)
 **Author:** Akordium Lab Team
 **Status:** Living Document
 **Related:** [neuroscience-design-guide.md](./neuroscience-design-guide.md) (Behavioral Psychology)
