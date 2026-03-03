@@ -655,6 +655,41 @@ Community B2B products should lean toward **Sticky** design because:
 
 ---
 
+## 12. Neurodesign Philosophy
+
+> **Pendekatan Akordium:** Neurodesign sebagai layer di atas UX tradisional
+
+### UX Tradisional vs Neurodesign
+
+| Dimensi | UX Tradisional | Neurodesign |
+|---------|----------------|-------------|
+| Pertanyaan | "Bisakah user melakukan X?" | "Apa yang otak rasakan saat X?" |
+| Layer otak | System 2 (sadar, deliberate) | System 1 (otomatis, emosional) |
+| Fokus | Task completion | Emotion & memory formation |
+
+### Masalah "Say-Do Gap"
+
+```
+User berkata: "Saya suka desain minimal"
+Otak melakukan: Klik tombol paling colorful & high-contrast
+```
+
+95% keputusan terjadi di subconscious — jauh sebelum user bisa mengartikulasikannya.
+
+### Kapan Gunakan Yang Mana
+
+| Fase | UX Tradisional | Neurodesign |
+|------|----------------|-------------|
+| Wireframing | Information architecture | Visual hierarchy |
+| Prototype | Usability testing | 5-second test |
+| Post-Launch | Analytics funnel | Heatmap analysis |
+
+### Referensi Lengkap
+
+Lihat: [neurodesign-vs-ux-traditional.md](../_templates/neurodesign-vs-ux-traditional.md)
+
+---
+
 *Based on: [neurodesign-uiux-guide.md](../_templates/neurodesign-uiux-guide.md)*
 
 *Last Updated: 2026-03-03*

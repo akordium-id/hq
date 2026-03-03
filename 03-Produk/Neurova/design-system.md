@@ -647,7 +647,42 @@ Cognitive health products should lean toward **Sticky** design (engagement throu
 
 ---
 
-## 12. Implementation Checklist
+## 12. Neurodesign Philosophy
+
+> **Pendekatan Akordium:** Neurodesign sebagai layer di atas UX tradisional
+
+### UX Tradisional vs Neurodesign
+
+| Dimensi | UX Tradisional | Neurodesign |
+|---------|----------------|-------------|
+| Pertanyaan | "Bisakah user melakukan X?" | "Apa yang otak rasakan saat X?" |
+| Layer otak | System 2 (sadar, deliberate) | System 1 (otomatis, emosional) |
+| Fokus | Task completion | Emotion & memory formation |
+
+### Masalah "Say-Do Gap"
+
+```
+User berkata: "Saya suka desain minimal"
+Otak melakukan: Klik tombol paling colorful & high-contrast
+```
+
+95% keputusan terjadi di subconscious — jauh sebelum user bisa mengartikulasikannya.
+
+### Kapan Gunakan Yang Mana
+
+| Fase | UX Tradisional | Neurodesign |
+|------|----------------|-------------|
+| Wireframing | Information architecture | Visual hierarchy |
+| Prototype | Usability testing | 5-second test |
+| Post-Launch | Analytics funnel | Heatmap analysis |
+
+### Referensi Lengkap
+
+Lihat: [neurodesign-vs-ux-traditional.md](../_templates/neurodesign-vs-ux-traditional.md)
+
+---
+
+## 13. Implementation Checklist
 
 - [ ] Colors match Teal/White/Deep Blue palette
 - [ ] Single focal point per screen (Cognitive Score atau Focus Time)
@@ -663,7 +698,7 @@ Cognitive health products should lean toward **Sticky** design (engagement throu
 
 ---
 
-## 13. Integration dengan Ekosistem Akordium
+## 14. Integration dengan Ekosistem Akordium
 
 ### Cross-Product Identity Badge
 
@@ -684,7 +719,7 @@ Neurova menggunakan:
 
 ---
 
-## 14. Design Asset Specifications
+## 15. Design Asset Specifications
 
 ### Iconography
 
