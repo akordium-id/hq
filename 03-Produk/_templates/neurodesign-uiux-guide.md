@@ -33,45 +33,450 @@ Sebelum masuk ke teknik, pahami arsitektur dasar ini:
 
 **Implikasi terbesar:** semua keputusan desain kritis harus selesai dikomunikasikan di fase pre-attentive — sebelum user sempat berpikir. Tombol CTA, status error, angka penting — semua harus "pop" secara otomatis tanpa user perlu mencarinya.
 
-### 1.2 Pre-attentive Attributes: 4 Senjata Utama
+### 1.2 Color Contrast Neuroscience
 
-Otak di-hardwire untuk mendeteksi 4 properti visual secara instan, dalam urutan prioritas:
+Kontras warna adalah **sinyal paling primitif yang diproses otak manusia** — dideteksi bahkan di lapisan retina sebelum sinyal sampai ke korteks visual. Ini sebabnya kontras adalah fondasi mutlak hierarki visual dalam neurodesign, bukan sekadar preferensi estetika.
 
-#### 1. Kontras (Paling Kuat)
+#### 1.2.1 Neural Pathways for Contrast Processing
 
-Kontras adalah sinyal paling primitif yang diproses oleh retina bahkan sebelum sinyal sampai ke korteks. **Kontras tinggi = perhatian wajib. Kontras rendah = sinyal diabaikan.**
-
-```
-❌ Salah: Tombol "Bayar Sekarang" warna biru di background biru muda
-✅ Benar: Tombol "Bayar Sekarang" warna solid gelap di background putih
-         dengan contrast ratio minimum 4.5:1 (WCAG AA standard)
-```
-
-**Aplikasi Akordium:**
-
-| Produk | Implementasi |
-|--------|--------------|
-| **SnapKasir** | Tombol "Catat Transaksi" harus memiliki contrast ratio tertinggi dari semua elemen di layar; segala elemen lain sengaja dibuat lebih "soft" |
-| **Anggarin** | Angka surplus/defisit cashflow tampilkan dengan kontras berbeda: hijau terang untuk positif, merah untuk negatif — otak langsung "tahu" kondisi keuangan sebelum membaca angkanya |
-
-#### 2. Warna (Emotional Tagging)
-
-Warna diproses di area V4 korteks visual dan langsung ter-routing ke amygdala untuk tagging emosional. Ini sebabnya merah = bahaya/urgent bisa dipahami otak tanpa membaca teks apapun.
-
-**Sistem warna hierarkis untuk semua produk Akordium:**
+Otak memiliki dua jalur terpisah untuk memproses kontras, dan keduanya harus dipahami untuk desain yang efektif:
 
 ```
-Tier 1 — Primary Action    : Brand color paling saturasi tinggi
-Tier 2 — Secondary Action  : Brand color versi lebih muted/outlined
-Tier 3 — Tertiary/Passive  : Abu-abu netral
-Tier 4 — Destructive       : Merah (#DC2626) — konsisten di SEMUA produk
-Tier 5 — Success           : Hijau (#16A34A) — konsisten di SEMUA produk
-Tier 6 — Warning           : Amber (#D97706) — konsisten di SEMUA produk
+STIMULUS VISUAL MASUK
+        ↓
+┌─────────────────────────────────────────────────────┐
+│ RETINA                                              │
+│  ├── ON pathway  → merespons terang di atas gelap   │
+│  └── OFF pathway → merespons gelap di atas terang   │
+│  [Penelitian 2022: dark-on-light LEBIH visible      │
+│   daripada light-on-dark di high contrast]          │
+└─────────────────────────────────────────────────────┘
+        ↓
+┌─────────────────────────────────────────────────────┐
+│ JALUR 1: LUMINANCE CONTRAST (Achromatic)            │
+│ V1 → V2 → V3a/MT+                                  │
+│ Memproses: terang/gelap, edge detection, depth      │
+│ Kecepatan: sangat cepat (<80ms)                     │
+│ Fungsi hierarki: menentukan "apa yang menonjol"     │
+└─────────────────────────────────────────────────────┘
+        ↓
+┌─────────────────────────────────────────────────────┐
+│ JALUR 2: CHROMATIC CONTRAST (Color)                 │
+│ V1 → V4 → VO1 → Inferior Temporal Cortex           │
+│ Memproses: hue difference, color identity           │
+│ Kecepatan: sedikit lebih lambat (80-150ms)          │
+│ Fungsi hierarki: menentukan "kategori apa ini"      │
+└─────────────────────────────────────────────────────┘
+        ↓
+┌─────────────────────────────────────────────────────┐
+│ KOMBINASI: Luminance + Chromatic sekaligus          │
+│ → PCN latency (attention capture) lebih CEPAT       │
+│   dibanding luminance saja                          │
+│ → Ini adalah teknik paling kuat untuk focal point   │
+└─────────────────────────────────────────────────────┘
 ```
 
-Konsistensi tier warna lintas seluruh produk Akordium membangun **semantic memory** — user tidak perlu "belajar ulang" arti warna setiap pindah produk.
+**Implikasi desain terpenting:** Elemen focal point paling kuat adalah yang memiliki **kontras luminance TINGGI sekaligus kontras warna TINGGI** dari background. Bukan hanya salah satu.
 
-#### 3. Ukuran (Implied Importance)
+#### 1.2.2 WCAG vs Neurodesign Optimal
+
+WCAG (Web Content Accessibility Guidelines) mendefinisikan minimum contrast ratio berbasis formula luminance relatif. Tapi neurodesign memperluas ini menjadi **sistem hierarki neurologis**, bukan sekadar threshold aksesibilitas:
+
+```
+WCAG Minimum vs Neurodesign Optimal:
+
+                WCAG Min    Neuro-Optimal   Penggunaan
+                ─────────   ─────────────   ──────────────────────────
+Body text       4.5 : 1     7 : 1 (AAA)     Semua teks paragraf
+Large text      3.0 : 1     4.5 : 1         Heading besar (>18pt)
+UI components   3.0 : 1     4.5 : 1         Tombol, input field, icon
+Focal CTA       —           9 : 1 +         Tombol utama per halaman
+Disabled/muted  —           1.5 : 1         Elemen intentionally de-emphasized
+```
+
+Penelitian 2026 dari Blake Crosley membuktikan bahwa typography dan opacity saja — **tanpa warna sama sekali** — mampu membangun hierarki visual yang lengkap jika contrast ratio dikelola dengan benar:
+
+```css
+/* Pure luminance hierarchy — tanpa warna, hanya opacity/lightness */
+--text-primary:   oklch(10% 0 0);  /* ~7:1 ratio  — focal content */
+--text-secondary: oklch(35% 0 0);  /* ~4.5:1 ratio — supporting */
+--text-tertiary:  oklch(55% 0 0);  /* ~3:1 ratio  — metadata */
+--text-disabled:  oklch(72% 0 0);  /* ~1.8:1 ratio — inactive */
+--bg-base:        oklch(99% 0 0);  /* near-white background */
+```
+
+#### 1.2.3 Gamma Oscillation Effect: Mengapa Merah Paling "Teriakan"
+
+Studi primate fMRI dari PNAS (2018) menemukan hal yang sangat spesifik: **hue merah/warm menghasilkan gamma oscillations terkuat di V1** dibanding hue lainnya.
+
+```
+Gamma oscillations di V1 per warna (relative strength):
+
+  Merah        ████████████████████  Paling kuat
+  Oranye       ███████████████
+  Kuning       ████████████
+  Hijau        ████████
+  Biru         ██████
+  Ungu         ████████
+  Abu/Netral   ███               Paling lemah
+
+Gamma oscillations berkorelasi langsung dengan:
+  → Tingkat perhatian (attentional salience)
+  → Kecepatan deteksi objek
+  → Strength of binding dalam working memory
+```
+
+**Implikasi untuk Akordium:**
+
+```
+Gunakan merah/oranye HANYA untuk 1 tujuan per screen
+karena gamma oscillation = strongest attention interrupt:
+
+✓ SnapKasir: tombol "Catat Transaksi" → oranye (#EA580C)
+             + background putih → kombinasi luminance + gamma max
+✓ Semua produk: error state → merah (#DC2626)
+✓ BibiDiskon: badge "HARI INI SAJA" → merah/oranye
+              (birthday context + urgency color = double trigger)
+
+✗ JANGAN: multiple elemen merah/oranye dalam satu screen
+          → gamma oscillations saling cancel → chaos, bukan hierarchy
+```
+
+#### 1.2.4 Color + Luminance: Formula Kontras Terkuat
+
+Riset EEG 2020 membuktikan bahwa **kombinasi chromatic contrast + luminance contrast menghasilkan attentional capture yang lebih cepat** dari luminance saja. Ini adalah "formula atom bom" dalam visual hierarchy:
+
+```
+FORMULA FOCAL POINT MAKSIMUM:
+
+  Focal Element = High Luminance Contrast
+                + High Chromatic Contrast
+                + Isolated dari surrounding elements
+
+Contoh konkret untuk CTA button Akordium:
+
+  Background screen:  #F8FAFC  (near-white, luminance ~97%)
+  Button background:  #EA580C  (oranye, luminance ~38%)
+  Button text:        #FFFFFF  (putih, luminance ~100%)
+
+  Luminance contrast button-to-screen:  ~5.8:1  ✓
+  Chromatic contrast:  orange vs gray/white = HIGH  ✓
+  Color gamma:         warm hue = high oscillation  ✓
+
+  = Triple-channel focal signal → hampir impossible diabaikan
+```
+
+Bandingkan dengan anti-pattern umum:
+
+```
+❌ Anti-pattern: Blue button on white background
+  Background:  #FFFFFF  (luminance 100%)
+  Button:      #3B82F6  (blue, luminance ~37%)
+  Luminance contrast: ~4.5:1 ✓ (meets WCAG)
+  Chromatic contrast: blue vs white = MEDIUM
+  Color gamma: blue = low oscillation
+
+  → Technically accessible, tapi neurologis lemah
+  → User bisa miss button ini saat scanning
+
+✅ Fix: tambah luminance contrast + warm accent
+  Button:      #1D4ED8  (dark blue, luminance ~17%)
+  Luminance contrast: ~9.2:1 ✓✓
+  + border: 2px solid #EA580C (warm accent) → chromatic boost
+```
+
+#### 1.2.5 Simultaneous Contrast: Ilusi yang Mengacaukan Hierarki
+
+Simultaneous contrast adalah fenomena neurologis di mana **warna yang sama terlihat berbeda tergantung warna sekitarnya** — terjadi di area V4 korteks visual. Ini adalah jebakan paling umum dalam desain hierarki:
+
+```
+SIMULTANEOUS CONTRAST — Efek di V4:
+
+  Contoh klasik:
+  ┌─────────────┐    ┌─────────────┐
+  │  ░░░░ A ░░░ │    │  ████ B ████│
+  │  ░░ [■] ░░░ │    │  ██ [■] ████│
+  │  ░░░░░░░░░░ │    │  ████████████│
+  └─────────────┘    └─────────────┘
+
+  Kotak [■] sama persis warnanya di A dan B
+  Tapi di A (background terang) → terlihat GELAP
+  Di B (background gelap) → terlihat TERANG
+
+  Otak bukan mengukur warna absolut —
+  ia mengukur RELASI kontras terhadap sekitarnya
+```
+
+**Jebakan simultaneous contrast yang sering terjadi di produk Indonesia:**
+
+```
+Kasus nyata — Tombol disabled di Anggarin/SnapKasir:
+
+  Designer pikir:
+  Button disabled = abu-abu #9CA3AF
+  Background card = abu-abu muda #F3F4F6
+  → "Tombol abu di background abu → kontras rendah = disabled feel"
+
+  Yang terjadi di otak user:
+  → Simultaneous contrast membuat batas tombol hampir invisible
+  → User tidak tahu apakah ada tombol di sana atau tidak
+  → Confusion, bukan "disabled affordance"
+
+  Fix berbasis neuroscience:
+  Button disabled = #9CA3AF (abu) + border dashed 1px #6B7280
+  Background      = #FFFFFF (putih bersih)
+  → Kontras cukup untuk perceived, tapi muted untuk disabled state
+```
+
+##### Dark Mode Neuroscience
+
+```
+Dark mode bukan sekadar inversi warna —
+otak memproses light-on-dark BERBEDA dari dark-on-light:
+
+Light mode (dark-on-light):
+  → OFF pathway dominan di retina
+  → Lebih comfortable untuk extended reading
+  → Edge detection lebih tajam (teks lebih readable)
+
+Dark mode (light-on-dark):
+  → ON pathway dominan
+  → Lebih comfortable di low-light environment
+  → Halation effect: teks terang "blur" di sekitarnya
+    (pupil membesar → lebih cahaya masuk → glare)
+
+Dark mode best practice berbasis neuroscience:
+  ❌ Pure white (#FFFFFF) on pure black (#000000)
+     → Maximum halation, sangat melelahkan
+
+  ✅ Off-white (#E2E8F0) on dark gray (#1E293B)
+     → Luminance contrast: ~12:1 (sufficient)
+     → Reduced halation karena tidak pure white
+     → V1 neurons less fatigued
+```
+
+#### 1.2.6 OKLCH Contrast Hierarchy System
+
+Berdasarkan semua prinsip neuroscience di atas, berikut sistem kontras yang lengkap menggunakan **OKLCH color space** (perceptually uniform — lebih akurat dari HEX/RGB untuk prediksi kontras neurologis):
+
+##### Light Mode — Semua Produk Akordium
+
+```css
+/* === AKORDIUM CONTRAST HIERARCHY SYSTEM (Light) === */
+/* OKLCH format: oklch(lightness% chroma hue) */
+
+/* --- BACKGROUND STACK --- */
+--bg-canvas:    oklch(99% 0.002 250);   /* Base page background */
+--bg-surface:   oklch(97% 0.003 250);   /* Card, panel */
+--bg-elevated:  oklch(95% 0.004 250);   /* Dropdown, tooltip */
+--bg-sunken:    oklch(93% 0.005 250);   /* Input, code block */
+
+/* --- TEXT HIERARCHY --- */
+/* Rasio terhadap --bg-canvas */
+--text-display:  oklch(8%  0 0);  /* ~18:1 — Angka hero, display */
+--text-primary:  oklch(15% 0 0);  /* ~12:1 — Body, heading */
+--text-secondary:oklch(38% 0 0);  /* ~5.5:1 — Supporting text */
+--text-tertiary: oklch(52% 0 0);  /* ~3.2:1 — Metadata, placeholder */
+--text-disabled: oklch(68% 0 0);  /* ~1.9:1 — Disabled (intentional) */
+
+/* --- BRAND ACCENT per PRODUK --- */
+/* SnapKasir: Oranye (high gamma + high luminance contrast) */
+--snapkasir-focal:   oklch(52% 0.19 45);  /* Orange #EA580C, ratio ~4.8:1 */
+--snapkasir-hover:   oklch(44% 0.19 45);  /* Darker orange on hover */
+--snapkasir-muted:   oklch(92% 0.07 45);  /* Very light orange bg */
+
+/* Anggarin/Nanabung: Hijau (growth + safety signal) */
+--finance-focal:     oklch(46% 0.15 145); /* Green #16A34A, ratio ~5.2:1 */
+--finance-positive:  oklch(46% 0.15 145); /* Positive numbers */
+--finance-negative:  oklch(45% 0.20 25);  /* Red #DC2626, negative */
+
+/* WaqfWise/Klustera: Teal-Emerald (trust + institution) */
+--trust-focal:       oklch(42% 0.13 168); /* Deep teal */
+--trust-muted:       oklch(94% 0.05 168); /* Light teal bg */
+
+/* Atribuo/BibiDiskon: Violet (energy + gamification) */
+--game-focal:        oklch(46% 0.22 290); /* Purple #7C3AED */
+--game-bright:       oklch(62% 0.22 290); /* Lighter purple for badges */
+
+/* === SEMANTIC COLORS (konsisten lintas SEMUA produk) === */
+--semantic-success:  oklch(46% 0.15 145); /* Hijau — selalu sama */
+--semantic-warning:  oklch(62% 0.16 80);  /* Amber — selalu sama */
+--semantic-error:    oklch(45% 0.20 25);  /* Merah — selalu sama */
+--semantic-info:     oklch(48% 0.17 240); /* Biru — selalu sama */
+```
+
+##### Dark Mode — Semua Produk Akordium
+
+```css
+/* === AKORDIUM CONTRAST HIERARCHY SYSTEM (Dark) === */
+/* Off-black backgrounds untuk mengurangi halation */
+
+--bg-canvas:    oklch(14% 0.008 250);   /* NOT pure black */
+--bg-surface:   oklch(18% 0.009 250);
+--bg-elevated:  oklch(22% 0.010 250);
+--bg-sunken:    oklch(11% 0.006 250);
+
+/* Off-white text untuk mengurangi glare */
+--text-display:  oklch(96% 0.005 250); /* ~12:1 vs canvas */
+--text-primary:  oklch(90% 0.005 250); /* ~9:1 */
+--text-secondary:oklch(68% 0.005 250); /* ~4.5:1 */
+--text-tertiary: oklch(52% 0.005 250); /* ~3:1 */
+--text-disabled: oklch(38% 0.005 250); /* ~1.8:1 */
+```
+
+#### 1.2.7 Product-Specific Scenarios
+
+##### Skenario 1: Tabel Data SnapKasir (Daftar Transaksi)
+
+```
+Masalah neurologis tabel data:
+→ Alternating rows bisa menciptakan "visual noise" jika
+  contrast antara odd/even rows terlalu tinggi
+→ Otak mulai memperlakukan stripes sebagai informasi,
+  bukan sebagai visual separator
+
+Fix berbasis neuroscience:
+  Row odd:  background --bg-canvas (#FAFAFA)
+  Row even: background --bg-surface (#F4F4F5)
+  Contrast ratio antara keduanya: ~1.04:1 (SANGAT subtle)
+
+  → Cukup untuk stripe effect tanpa menciptakan noise
+  → Hover state: naik ke --bg-elevated untuk clear selection signal
+
+  Tapi highlight row kritis (misal: void/cancelled):
+  background: oklch(96% 0.05 25)  → subtle red tint
+  → Chromatic signal tanpa luminance terlalu kontras
+```
+
+##### Skenario 2: Form Input Klustera (Validasi Real-time)
+
+```
+State-based contrast system:
+
+Default:   border oklch(75% 0 0)    → 3:1 vs bg — visible tapi quiet
+Focus:     border oklch(46% 0.17 240) + ring → blue, prominent
+Valid:     border oklch(46% 0.15 145) → hijau — success signal
+Error:     border oklch(45% 0.20 25) + bg oklch(98% 0.04 25)
+           → merah border + pink tint bg — dual-channel error signal
+Disabled:  border oklch(88% 0 0), bg oklch(96% 0 0)
+           → reduced contrast = intentional "not interactive" affordance
+```
+
+**Dual-channel error** (border merah + background pink tint) penting karena **8% pria buta warna merah-hijau** — mereka mendeteksi error dari luminance contrast dan chromatic context, bukan hanya dari hue merah.
+
+##### Skenario 3: Dashboard Anggarin (Angka Keuangan)
+
+```
+Neuroscience rule untuk angka finansial:
+
+Positif (surplus, tabungan naik):
+  → oklch(40% 0.17 145)  — hijau gelap, ratio > 7:1
+  → Jangan pakai hijau muda — luminance terlalu tinggi,
+    contrast vs white background turun dramatis
+
+Negatif (defisit, pengeluaran melebihi budget):
+  → oklch(42% 0.22 25)  — merah gelap, ratio > 6:1
+  → + gamma oscillation dari warm hue = immediate attention capture
+  → Tambah ikon ↓ atau ▼ = redundant encoding
+    (warna + shape = dual pre-attentive signal)
+
+Netral (rata-rata, bulan lalu):
+  → oklch(35% 0 0)  — gelap tapi achromatic
+  → Tidak ada emotional tagging dari warna
+  → User fokus ke perbandingan angka, bukan warna
+
+PENTING: Jangan encode informasi HANYA via warna (WCAG 1.4.1)
+  ✓ Benar:  ↑ +12% (hijau)   ← warna + ikon + sign
+  ✗ Salah:  12% (hijau saja)  ← colorblind user kehilangan konteks
+```
+
+##### Skenario 4: Notification Badge di Akordium.id
+
+```
+Badge dengan angka = kombinasi terkuat color + luminance + shape:
+
+  .badge-critical {
+    background: oklch(45% 0.20 25);  /* merah */
+    color:      oklch(99% 0 0);       /* near-white */
+    /* Contrast ratio: ~8.5:1 */
+    /* Gamma oscillation: HIGH (red hue) */
+    /* Shape: circle = natural "attention dot" */
+  }
+
+  .badge-info {
+    background: oklch(48% 0.17 240); /* biru */
+    color:      oklch(99% 0 0);
+    /* Contrast ratio: ~6.8:1 */
+    /* Gamma: medium */
+  }
+
+  .badge-subtle {
+    background: oklch(52% 0 0);      /* abu gelap */
+    color:      oklch(99% 0 0);
+    /* Contrast ratio: ~5.2:1 */
+    /* Gamma: low — untuk non-urgent info */
+  }
+```
+
+##### Skenario 5: CTA Hierarchy di Landing Page Semua Produk
+
+```
+Satu halaman = satu focal CTA saja (neurologis rule)
+Sisanya secara sadar di-de-emphasize:
+
+  PRIMARY CTA (1 per page):
+  bg: oklch(52% 0.19 45)  + color: white
+  → Highest luminance contrast (~4.8:1)
+  → Highest chromatic signal (orange)
+  → Largest size
+  → Most isolated whitespace
+
+  SECONDARY CTA (1-2 per page):
+  bg: transparent + border: oklch(52% 0.19 45)
+  → Medium visual weight
+  → Same color family → coherent, tidak competing
+
+  TERTIARY / GHOST (opsional):
+  bg: transparent + color: oklch(38% 0 0)
+  → Low visual weight
+  → Achromatic → tidak competing sama sekali dengan primary
+```
+
+#### 1.2.8 Tooling Recommendations
+
+Dari neuroscience ke tooling praktis:
+
+```
+1. oklch.com atau oklch-picker
+   → Color picker berbasis perceptually uniform space
+   → Prediksi kontras lebih akurat dari HEX picker biasa
+
+2. Colour Contrast Analyser (app desktop, gratis)
+   → Test real-time contrast ratio saat design di Figma/browser
+   → Simulasi colorblind modes: protanopia, deuteranopia, tritanopia
+
+3. Polychrom (Figma plugin)
+   → Generate color scales yang perceptually uniform
+   → Otomatis kalkulasi contrast ratio per step
+
+4. Browser DevTools Accessibility Panel
+   → Inspect → Accessibility → Contrast ratio live
+   → Tersedia di Chrome, Firefox, Edge
+
+5. Firefox Accessibility Inspector
+   → Full audit kontras per elemen dalam satu klik
+   → Lebih detail dari Chrome untuk hierarchy check
+```
+
+#### 1.2.9 Key Insight
+
+> **Kontras bukan soal cantik atau tidak — kontras adalah cara otak diberitahu mana yang penting dan dalam urutan apa.** Setiap elemen yang salah kontras adalah instruksi yang salah dikirim ke visual cortex user, dan hasil akhirnya adalah confusion, fatigue, atau worse — exit dari produk.
+
+### 1.3 Other Pre-attentive Attributes
+
+Selain color contrast, otak juga di-hardwire untuk mendeteksi 2 properti visual lainnya secara instan: **Ukuran** dan **Gerakan**.
+
+#### 1.3.1 Ukuran (Implied Importance)
 
 Otak secara otomatis menginterpretasi elemen yang lebih besar sebagai lebih penting — ini adalah bias kognitif yang sangat reliable. Gunakan **typographic scale** dengan rasio yang konsisten:
 
@@ -95,7 +500,7 @@ Caption  : 12px  → Label, timestamp, metadata
 | **Katauser** | Jumlah feedback pending tampilkan sebagai angka besar di hero card, bukan dibenamkan dalam tabel — otak langsung tangkap urgency |
 | **DukunGPS** | Kecepatan kendaraan real-time tampilkan besar di center screen, informasi lain lebih kecil mengitarinya |
 
-#### 4. Gerakan (Motion Capture)
+#### 1.3.2 Gerakan (Motion Capture)
 
 Gerakan adalah sinyal paling primitif secara evolusioner — otak mamalia di-hardwire untuk otomatis shift perhatian ke objek bergerak (mekanisme survival). Gunakan ini dengan sangat selektif karena sangat powerful:
 
@@ -113,11 +518,11 @@ Kapan JANGAN pakai motion:
 ❌ Elemen yang terus bergerak saat user sedang baca
 ```
 
-### 1.3 Eye-Tracking Patterns
+### 1.4 Eye-Tracking Patterns
 
 Riset eye-tracking mengidentifikasi pola scanning mata yang sangat konsisten. Namun lebih penting dari pola itu sendiri adalah memahami **mengapa otak menghasilkan pola ini** — ini adalah kunci untuk mengeksploitasinya secara efektif dalam desain produk Akordium.
 
-#### 1.3.1 Z-Pattern (untuk halaman minimal/landing page)
+#### 1.4.1 Z-Pattern (untuk halaman minimal/landing page)
 
 Z-pattern terjadi pada halaman dengan visual hierarchy yang dominan dan konten minimal. Otak mengikuti jalur Z karena layout yang terstruktur mengarahkan perhatian secara teratur.
 
@@ -142,7 +547,7 @@ Z-pattern terjadi pada halaman dengan visual hierarchy yang dominan dan konten m
 
 ---
 
-#### 1.3.2 F-Pattern: Neurological Foundations
+#### 1.4.2 F-Pattern: Neurological Foundations
 
 F-pattern pertama kali diidentifikasi oleh Jakob Nielsen (NNG) melalui studi eye-tracking pada 232 partisipan yang membaca ribuan halaman web. Tapi yang lebih penting: **mengapa otak menghasilkan pola ini?**
 
@@ -235,7 +640,7 @@ Implikasi desain:
 
 ---
 
-#### 1.3.3 Enam Variasi F-Pattern
+#### 1.4.3 Enam Variasi F-Pattern
 
 Update riset NNG 2024 mengungkapkan bahwa F-pattern tidak monolitik — ada **6 variasi** berdasarkan konteks konten:
 
@@ -320,7 +725,7 @@ F-pattern terkompres menjadi lebih vertikal
 
 ---
 
-#### 1.3.4 Product-Specific Heatmaps
+#### 1.4.4 Product-Specific Heatmaps
 
 Simulasi heatmap berdasarkan F-pattern untuk produk Akordium:
 
@@ -379,7 +784,7 @@ Warna: 🔴 Paling diperhatikan → 🟡 → 🔵 → ⚫ Paling diabaikan
 
 ---
 
-#### 1.3.5 Breaking the F-Pattern
+#### 1.4.5 Breaking the F-Pattern
 
 Karena F-pattern adalah default behavior otak, ada dua strategi:
 
@@ -441,7 +846,7 @@ User spotted pattern akan membaca: "UMKM Indonesia" + "offline-first"
 
 ---
 
-#### 1.3.6 Layer-Cake Strategy
+#### 1.4.6 Layer-Cake Strategy
 
 Layer-cake pattern — di mana user hanya membaca subheadings — adalah variasi F-pattern yang paling **actionable**. Subheading adalah *the only text many users read*.
 
@@ -476,7 +881,7 @@ Setiap section card harus standalone:
 
 ---
 
-#### 1.3.7 Seven Design Rules (Quick Reference)
+#### 1.4.7 Seven Design Rules (Quick Reference)
 
 Aturan final yang berlaku untuk **semua** produk Akordium berdasarkan neuroscience F-pattern:
 
@@ -509,13 +914,13 @@ Aturan final yang berlaku untuk **semua** produk Akordium berdasarkan neuroscien
 
 ---
 
-#### 1.3.8 Key Insight
+#### 1.4.8 Key Insight
 
 > **F-pattern adalah sinyal kegagalan konten.** Saat user membaca dalam F-pattern, artinya konten tidak cukup menarik untuk mempertahankan commitment reading. Target sebenarnya adalah mendorong user masuk ke **Commitment Pattern** — di mana konten sangat relevan sehingga otak melepaskan default scan-mode dan benar-benar membaca.
 
 F-pattern awareness memberi desainer peta jalan untuk mencapai kondisi itu.
 
-### 1.4 Visual Weight & Hierarki 5 Layer
+### 1.5 Visual Weight & Hierarki 5 Layer
 
 Setiap screen harus punya hierarki yang jelas dalam **5 layer** — tidak lebih, tidak kurang:
 
@@ -553,7 +958,7 @@ Layer 5 — STRUCTURAL/UI CHROME (navigasi, border, dll)
    elemen lain yang visually lebih dominan
 ```
 
-### 1.5 Whitespace sebagai Tool Neuroscience
+### 1.6 Whitespace sebagai Tool Neuroscience
 
 Whitespace (ruang kosong) bukan "pemborosan ruang" — ini adalah **neural directing tool** yang aktif. Otak secara otomatis menginterpretasi elemen yang dikelilingi whitespace lebih banyak sebagai **lebih penting dan premium**.
 
@@ -571,7 +976,7 @@ Dua jenis whitespace yang harus dikelola:
 | **WaqfWise & Klustera** | Gunakan whitespace lebih banyak — generous whitespace diasosiasikan dengan trustworthiness dan kualitas premium |
 | **Atribuo & BibiDiskon** | Whitespace lebih sedikit dengan elemen lebih rapat — menciptakan rasa energi dan densitas aktivitas |
 
-### 1.6 Design Tokens untuk Visual Hierarchy
+### 1.7 Design Tokens untuk Visual Hierarchy
 
 ```css
 /* --- VISUAL WEIGHT SCALE --- */
@@ -1054,7 +1459,21 @@ interface ProgressComponent {
 
 ### Academic & Industry Sources
 
-#### Eye-Tracking & F-Pattern (Section 1.3)
+#### Color Contrast Neuroscience (Section 1.2)
+
+1. [Visual Contrast Processing in the Brain](https://www.annualreviews.org/content/journals/10.1146/annurev-vision-101322-111204) - Annual Review of Vision Science
+2. [ON/OFF Pathway Research](https://www.jneurosci.org/lookup/doi/10.1523/JNEUROSCI.1672-22.2022) - Journal of Neuroscience (2022)
+3. [Chromatic vs Luminance Contrast Attention Capture](https://pmc.ncbi.nlm.nih.gov/articles/PMC7408945/) - NCBI/PMC (EEG Study 2020)
+4. [WCAG Contrast Guidelines](https://webaim.org/articles/contrast/) - WebAIM
+5. [Understanding WCAG Color Contrast](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Guides/Understanding_WCAG/Perceivable/Color_contrast) - MDN Web Docs
+6. [Color Science for Interfaces](https://blakecrosley.com/blog/color-science-interfaces) - Blake Crosley (2026)
+7. [Gamma Oscillations in Visual Cortex](https://pnas.org/doi/full/10.1073/pnas.1717334115) - PNAS (2018 fMRI Study)
+8. [Simultaneous Contrast Effect](https://pmc.ncbi.nlm.nih.gov/articles/PMC6583951/) - NCBI/PMC
+9. [Color Context Effects in V4](https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2021.668116/full) - Frontiers in Neuroscience
+10. [Colorblind Accessibility](https://dap.berkeley.edu/web-a11y-basics/color) - UC Berkeley Digital Accessibility
+11. [Color Contrast Accessibility Guide 2025](https://www.allaccessible.org/blog/color-contrast-accessibility-wcag-guide-2025) - AllAccessible
+
+#### Eye-Tracking & F-Pattern (Section 1.4)
 
 1. [F-Shaped Pattern of Reading on the Web](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/) - Nielsen Norman Group (Original study, 2006)
 2. [F-Shaped Pattern — How Users Scan Content](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content-discovered/) - Nielsen Norman Group (Updated 2024)
@@ -1082,7 +1501,7 @@ interface ProgressComponent {
 ---
 
 **Last Updated:** 2026-03-03
-**Document Version:** 1.1 (Enhanced F-Pattern section with neuroscience depth)
+**Document Version:** 1.2 (Added comprehensive Color Contrast Neuroscience section)
 **Author:** Akordium Lab Team
 **Status:** Living Document
 **Related:** [neuroscience-design-guide.md](./neuroscience-design-guide.md) (Behavioral Psychology)
