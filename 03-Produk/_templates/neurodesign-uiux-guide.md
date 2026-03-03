@@ -20,30 +20,227 @@
 
 ## 1. Hierarki Visual & Perhatian Otak
 
-Otak memproses visual mengikuti urutan yang sangat predictable: **kontras → warna → ukuran → gerakan**. Desain yang menumpuk semua sinyal ini pada elemen kunci akan menangkap perhatian secara reliable, sedangkan desain yang menyebarnya merata menciptakan "visual noise" di mana tidak ada yang menonjol.
+Hierarki visual berbasis neurodesign bukan tentang "terlihat bagus" — ini tentang **mengendalikan urutan pemrosesan informasi di otak user secara terprogram**. Otak manusia memproses visual dalam dua fase berbeda yang harus dipahami setiap designer dan programmer.
 
-### Eye-Tracking Patterns
+### 1.1 Dua Fase Pemrosesan Visual Otak
 
-Riset eye-tracking membuktikan dua pola scanning dominan:
+Sebelum masuk ke teknik, pahami arsitektur dasar ini:
 
-| Pattern | Platform | Pergerakan Mata |
-|---------|----------|-----------------|
-| **F-Pattern** | Desktop | Horizontal di atas → turun ke kiri → scan horizontal pendek |
-| **Z-Pattern** | Mobile | Zig-zag dari kiri-atas ke kanan-bawah |
+| Fase | Sistem | Kecepatan | Karakteristik |
+|------|--------|-----------|---------------|
+| **Pre-attentive** | System 1 | < 200ms | Otomatis, tak sadar, di V1/V2 cortex |
+| **Attentive** | System 2 | > 200ms | Sadar, deliberate, butuh cognitive effort |
 
-### Implementasi Akordium
+**Implikasi terbesar:** semua keputusan desain kritis harus selesai dikomunikasikan di fase pre-attentive — sebelum user sempat berpikir. Tombol CTA, status error, angka penting — semua harus "pop" secara otomatis tanpa user perlu mencarinya.
+
+### 1.2 Pre-attentive Attributes: 4 Senjata Utama
+
+Otak di-hardwire untuk mendeteksi 4 properti visual secara instan, dalam urutan prioritas:
+
+#### 1. Kontras (Paling Kuat)
+
+Kontras adalah sinyal paling primitif yang diproses oleh retina bahkan sebelum sinyal sampai ke korteks. **Kontras tinggi = perhatian wajib. Kontras rendah = sinyal diabaikan.**
+
+```
+❌ Salah: Tombol "Bayar Sekarang" warna biru di background biru muda
+✅ Benar: Tombol "Bayar Sekarang" warna solid gelap di background putih
+         dengan contrast ratio minimum 4.5:1 (WCAG AA standard)
+```
+
+**Aplikasi Akordium:**
 
 | Produk | Implementasi |
 |--------|--------------|
-| **SnapKasir** | Tombol "Catat Transaksi" di pojok kanan bawah (thumb zone mobile) dengan kontras warna tertinggi |
-| **Anggarin/Nanabung** | Angka saldo/surplus di kiri-atas dengan ukuran besar — "anchor visual" pertama dibaca otak |
-| **All Products** | CTA utama (upgrade, bayar) di zona paling aktif pola F/Z — bukan di tengah halaman secara simetris |
+| **SnapKasir** | Tombol "Catat Transaksi" harus memiliki contrast ratio tertinggi dari semua elemen di layar; segala elemen lain sengaja dibuat lebih "soft" |
+| **Anggarin** | Angka surplus/defisit cashflow tampilkan dengan kontras berbeda: hijau terang untuk positif, merah untuk negatif — otak langsung "tahu" kondisi keuangan sebelum membaca angkanya |
 
-### Key Rules
+#### 2. Warna (Emotional Tagging)
+
+Warna diproses di area V4 korteks visual dan langsung ter-routing ke amygdala untuk tagging emosional. Ini sebabnya merah = bahaya/urgent bisa dipahami otak tanpa membaca teks apapun.
+
+**Sistem warna hierarkis untuk semua produk Akordium:**
+
+```
+Tier 1 — Primary Action    : Brand color paling saturasi tinggi
+Tier 2 — Secondary Action  : Brand color versi lebih muted/outlined
+Tier 3 — Tertiary/Passive  : Abu-abu netral
+Tier 4 — Destructive       : Merah (#DC2626) — konsisten di SEMUA produk
+Tier 5 — Success           : Hijau (#16A34A) — konsisten di SEMUA produk
+Tier 6 — Warning           : Amber (#D97706) — konsisten di SEMUA produk
+```
+
+Konsistensi tier warna lintas seluruh produk Akordium membangun **semantic memory** — user tidak perlu "belajar ulang" arti warna setiap pindah produk.
+
+#### 3. Ukuran (Implied Importance)
+
+Otak secara otomatis menginterpretasi elemen yang lebih besar sebagai lebih penting — ini adalah bias kognitif yang sangat reliable. Gunakan **typographic scale** dengan rasio yang konsisten:
+
+```
+Typographic Scale (rasio 1.25 - "Major Third"):
+Display  : 48px  → Angka hero (total saldo, omzet hari ini)
+H1       : 38px  → Judul halaman
+H2       : 30px  → Section header
+H3       : 24px  → Card title
+Body L   : 18px  → Primary body text
+Body     : 16px  → Default body
+Body S   : 14px  → Supporting text
+Caption  : 12px  → Label, timestamp, metadata
+```
+
+**Aplikasi per produk:**
+
+| Produk | Implementasi |
+|--------|--------------|
+| **Nanabung** | Saldo total `48px bold` di atas, transaksi individual `16px` di bawahnya — gap besar ini secara visual menyatakan "ini yang terpenting" |
+| **Katauser** | Jumlah feedback pending tampilkan sebagai angka besar di hero card, bukan dibenamkan dalam tabel — otak langsung tangkap urgency |
+| **DukunGPS** | Kecepatan kendaraan real-time tampilkan besar di center screen, informasi lain lebih kecil mengitarinya |
+
+#### 4. Gerakan (Motion Capture)
+
+Gerakan adalah sinyal paling primitif secara evolusioner — otak mamalia di-hardwire untuk otomatis shift perhatian ke objek bergerak (mekanisme survival). Gunakan ini dengan sangat selektif karena sangat powerful:
+
+```
+Kapan pakai motion:
+✅ Loading state (skeleton shimmer)
+✅ Notifikasi badge muncul (bounce kecil)
+✅ Success state (konfeti micro-animation)
+✅ Error shake (form field salah)
+✅ Transition antar halaman (slide/fade)
+
+Kapan JANGAN pakai motion:
+❌ Background animation dekoratif
+❌ Auto-playing carousel tanpa pause
+❌ Elemen yang terus bergerak saat user sedang baca
+```
+
+### 1.3 Eye-Tracking Patterns
+
+Riset eye-tracking mengidentifikasi pola scanning mata yang sangat konsisten:
+
+#### Z-Pattern (untuk halaman minimal/landing page)
+
+```
+┌──────────────────────────────┐
+│ LOGO          ←→    NAV/CTA  │  ← Zona 1: Paling pertama dilihat
+│                  ↘           │
+│        HEADLINE/HERO         │
+│           ↙                  │
+│ VALUE PROP   →→→    CTA BTN  │  ← Zona 4: Keputusan akhir
+└──────────────────────────────┘
+```
+
+**Gunakan untuk:** Landing page Akordium.id, halaman sign-up semua produk, halaman pricing SnapKasir/CaptionMania.
+
+#### F-Pattern (untuk halaman konten/dashboard)
+
+```
+┌──────────────────────────────┐
+│ ████████████████████████████ │  ← Scan horizontal pertama (penuh)
+│ ████████████████             │  ← Scan horizontal kedua (lebih pendek)
+│ █                            │
+│ █                            │  ← Vertical scan di sisi kiri
+│ █                            │
+└──────────────────────────────┘
+```
+
+**Gunakan untuk:** Dashboard Katauser, laporan keuangan Anggarin, daftar feedback/transaksi.
+
+**Aturan F-Pattern untuk dashboard Akordium:**
+
+- Letakkan **metric terpenting** di horizontal pertama (top row cards)
+- Letakkan **aksi terpenting** di sisi **kiri** kolom, bukan kanan — mata selalu kembali ke kiri
+- Jangan taruh informasi kritis di pojok kanan bawah — area paling jarang di-scan
+
+### 1.4 Visual Weight & Hierarki 5 Layer
+
+Setiap screen harus punya hierarki yang jelas dalam **5 layer** — tidak lebih, tidak kurang:
+
+```
+Layer 1 — FOCAL POINT (1 elemen saja per screen)
+          Contoh: Tombol "Catat Transaksi" di SnapKasir
+          Teknik: Ukuran terbesar + kontras tertinggi + isolated whitespace
+
+Layer 2 — PRIMARY INFO (2-3 elemen)
+          Contoh: Total omzet hari ini, jumlah transaksi
+          Teknik: Ukuran besar, warna brand, medium weight
+
+Layer 3 — SECONDARY INFO (4-6 elemen)
+          Contoh: Daftar 5 transaksi terakhir
+          Teknik: Ukuran normal, warna netral, regular weight
+
+Layer 4 — SUPPORTING INFO (bebas)
+          Contoh: Timestamp, nama kasir, kategori
+          Teknik: Ukuran kecil, abu-abu, light weight
+
+Layer 5 — STRUCTURAL/UI CHROME (navigasi, border, dll)
+          Teknik: Paling subtle, hampir invisible, hanya guide mata
+```
+
+**Anti-pattern yang harus dihindari di semua produk Akordium:**
+
+```
+❌ "Christmas Tree Effect": semua elemen di-bold, di-highlight,
+   berwarna — tidak ada yang jadi focal point karena semua "teriak"
+
+❌ "Flat Hierarchy": semua elemen ukuran dan warna yang sama,
+   otak tidak tahu harus mulai baca dari mana
+
+❌ "Hidden CTA": tombol aksi utama bersembunyi di antara
+   elemen lain yang visually lebih dominan
+```
+
+### 1.5 Whitespace sebagai Tool Neuroscience
+
+Whitespace (ruang kosong) bukan "pemborosan ruang" — ini adalah **neural directing tool** yang aktif. Otak secara otomatis menginterpretasi elemen yang dikelilingi whitespace lebih banyak sebagai **lebih penting dan premium**.
+
+Dua jenis whitespace yang harus dikelola:
+
+| Jenis | Definisi | Minimum |
+|-------|----------|---------|
+| **Macro whitespace** | Jarak antar section besar | `64px` antar section di desktop |
+| **Micro whitespace** | Padding dalam elemen | Card padding `24px`, line-height `1.6` |
+
+**Aplikasi spesifik per produk:**
+
+| Produk | Whitespace Strategy |
+|--------|---------------------|
+| **WaqfWise & Klustera** | Gunakan whitespace lebih banyak — generous whitespace diasosiasikan dengan trustworthiness dan kualitas premium |
+| **Atribuo & BibiDiskon** | Whitespace lebih sedikit dengan elemen lebih rapat — menciptakan rasa energi dan densitas aktivitas |
+
+### 1.6 Design Tokens untuk Visual Hierarchy
+
+```css
+/* --- VISUAL WEIGHT SCALE --- */
+--focal-size: 48px;       /* Layer 1: satu per screen */
+--primary-size: 30px;     /* Layer 2 */
+--secondary-size: 18px;   /* Layer 3 */
+--supporting-size: 14px;  /* Layer 4 */
+--chrome-size: 12px;      /* Layer 5 */
+
+/* --- CONTRAST SYSTEM --- */
+--contrast-focal: 7:1;    /* WCAG AAA — untuk focal point */
+--contrast-primary: 4.5:1;/* WCAG AA — untuk semua teks body */
+--contrast-secondary: 3:1;/* Minimum untuk UI components */
+
+/* --- WHITESPACE RHYTHM --- */
+--space-xs: 4px;
+--space-sm: 8px;
+--space-md: 16px;
+--space-lg: 24px;
+--space-xl: 48px;
+--space-2xl: 64px;         /* Antar section */
+--space-3xl: 96px;         /* Antar page sections besar */
+```
+
+Dengan design tokens ini terpusat di **Akordium Design System**, semua produk — dari SnapKasir hingga WaqfWise — secara otomatis akan berbagi hierarki visual yang sama. Otak user yang pindah dari satu produk ke produk lain tidak perlu "re-orientasi" karena **neural pattern recognition** sudah terbentuk, dan ini menjadi keunggulan kompetitif yang sangat sulit ditiru kompetitor.
+
+### Key Rules Summary
 
 - **Kontras tertinggi** = elemen paling penting
 - **Jangan distribusikan** kontras merata — pilih 1-2 focal points
 - **Thumb zone** (mobile): pojok kanan bawah untuk primary action
+- **5 Layer hierarchy**: maksimal 1 focal point per screen
+- **Whitespace is active**: bukan "kosong" tapi neural directing tool
 
 ---
 
@@ -307,11 +504,13 @@ Konsistensi lintas produk bukan sekadar branding — ini membangun **procedural 
 Akordium Design System
 ├── 1. Neural Color Tokens
 ├── 2. Typography Scale
-├── 3. Motion Library
-├── 4. Cognitive Chunk Components
-├── 5. Micro-celebration Animations
-├── 6. Progress Architecture
-└── 7. Gesture Vocabulary
+├── 3. Visual Weight & Contrast Tokens
+├── 4. Whitespace Rhythm Tokens
+├── 5. Motion Library
+├── 6. Cognitive Chunk Components
+├── 7. Micro-celebration Animations
+├── 8. Progress Architecture
+└── 9. Gesture Vocabulary
 ```
 
 ### 8.1 Neural Color Tokens
@@ -362,7 +561,55 @@ Akordium Design System
 --text-5xl: 3rem;      /* 48px */
 ```
 
-### 8.3 Motion Library
+### 8.3 Visual Weight & Contrast Tokens
+
+```css
+/* --- VISUAL WEIGHT SCALE (5-Layer Hierarchy) --- */
+--focal-size: 48px;       /* Layer 1: Focal Point - ONE per screen */
+--primary-size: 30px;     /* Layer 2: Primary Info - 2-3 elements */
+--secondary-size: 18px;   /* Layer 3: Secondary Info - 4-6 elements */
+--supporting-size: 14px;  /* Layer 4: Supporting Info */
+--chrome-size: 12px;      /* Layer 5: UI Chrome */
+
+/* Font Weight Scale */
+--weight-light: 300;
+--weight-regular: 400;
+--weight-medium: 500;
+--weight-semibold: 600;
+--weight-bold: 700;
+
+/* --- CONTRAST SYSTEM (WCAG Compliance) --- */
+--contrast-focal: 7:1;      /* WCAG AAA - Focal points */
+--contrast-primary: 4.5:1;  /* WCAG AA - Body text */
+--contrast-secondary: 3:1;  /* Minimum - UI components */
+--contrast-muted: 2:1;      /* Disabled/inactive states */
+```
+
+### 8.4 Whitespace Rhythm Tokens
+
+```css
+/* --- WHITESPACE RHYTHM --- */
+--space-xs: 4px;      /* Tight grouping */
+--space-sm: 8px;      /* Related items */
+--space-md: 16px;     /* Default spacing */
+--space-lg: 24px;     /* Card padding */
+--space-xl: 48px;     /* Large gaps */
+--space-2xl: 64px;    /* Section separators */
+--space-3xl: 96px;    /* Page section breaks */
+
+/* Component-Specific Spacing */
+--card-padding: 24px;
+--section-gap: 64px;
+--form-group-gap: 16px;
+--list-item-gap: 12px;
+
+/* Line Heights */
+--line-height-tight: 1.25;   /* Headings */
+--line-height-normal: 1.5;   /* UI text */
+--line-height-relaxed: 1.75; /* Long-form content */
+```
+
+### 8.5 Motion Library
 
 ```css
 /* Duration Tokens */
@@ -382,7 +629,7 @@ Akordium Design System
 --animate-scale-in: scale-in var(--duration-fast) var(--ease-spring);
 ```
 
-### 8.4 Cognitive Chunk Components
+### 8.6 Cognitive Chunk Components
 
 ```typescript
 // Max items per group (Miller's Law: 7±2)
@@ -395,7 +642,7 @@ const CHUNK_LIMITS = {
 };
 ```
 
-### 8.5 Micro-celebration Animations
+### 8.7 Micro-celebration Animations
 
 ```
 /animations
@@ -409,7 +656,7 @@ const CHUNK_LIMITS = {
 
 **Library:** Lottie (After Effects → JSON)
 
-### 8.6 Progress Architecture
+### 8.8 Progress Architecture
 
 ```typescript
 // Zeigarnik Effect components
@@ -427,7 +674,7 @@ interface ProgressComponent {
 // - Goal: "Rp 4.500.000 / Rp 10.000.000"
 ```
 
-### 8.7 Gesture Vocabulary
+### 8.9 Gesture Vocabulary
 
 | Gesture | Action | Consistent Across |
 |---------|--------|-------------------|
